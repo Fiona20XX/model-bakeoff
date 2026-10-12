@@ -1,5 +1,5 @@
 # Flagship example: a sourced briefing on any company.
-# Run: bakeoff run tasks/company_research.yaml --var company="Stripe"
+# Run: bakeoff run tasks/company_research.yaml --var company="Zilliant"
 # Pick other models with: bakeoff models --search <text>
 name: company_research
 description: A sourced one-page briefing on a company, for meeting or interview prep.

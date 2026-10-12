@@ -29,22 +29,22 @@ bakeoff run tasks/hello.yaml --free
 Then the real thing (paid models plus web search, about $0.10 per run):
 
 ```bash
-bakeoff run tasks/company_research.yaml --var company="Stripe"
+bakeoff run tasks/company_research.yaml --var company="Zilliant"
 ```
 
 Results are saved to `results/<task>-<vars>-<timestamp>/` as `results.json` (everything) and `report.md` (the table, judge rationales, unsupported claims, and each model's full answer with its sources).
 
 ## A real run
 
-`bakeoff run tasks/company_research.yaml --var company="Stripe"`, judged by `openai/gpt-6-sol`, web search via exa with 5 results ([full report](results/company-research-stripe-20261012-161616/report.md)):
+`bakeoff run tasks/company_research.yaml --var company="Zilliant" --runs 2`, judged by `openai/gpt-6-sol`, web search via exa with 5 results ([full report](results/company-research-zilliant-20261012-171818/report.md)):
 
 | Model | Score | Cost | Latency | Sources | Unsupported claims | Score per cent |
 |---|---|---|---|---|---|---|
-| google/gemini-3.8-flash | 7.8 | $0.0235 | 29.8s | 5 | 4 | 3.3 |
-| deepseek/deepseek-v4-pro | 6.5 | $0.0102 | 43.0s | 5 | 5 | 6.4 |
-| anthropic/claude-sonnet-5.5 | 5.7 | $0.0363 | 18.8s | 5 | 4 | 1.6 |
+| anthropic/claude-sonnet-5.5 | 8.2 (8.2–8.2) | $0.0373 | 16.0s (15.2s–16.8s) | 5 (5–5) | 5 (4–6) | 2.2 |
+| google/gemini-3.8-flash | 7.2 (6.6–7.8) | $0.0207 | 23.0s (20.3s–25.7s) | 5 (5–5) | 6 (6–7) | 3.5 |
+| deepseek/deepseek-v4-pro | 6.7 (6.4–7.0) | $0.0148 | 36.5s (30.3s–42.7s) | 5 (5–5) | 8 (7–8) | 4.5 |
 
-Total cost of run: $0.1068 (contestants $0.0699, judge $0.0370).
+Total cost of run: $0.2179 (contestants $0.1455, judge $0.0724). With `--runs 2`, each cell shows the mean and then the (min–max) across runs.
 
 ## Commands
 
@@ -111,6 +111,28 @@ Find model IDs with `bakeoff models --search <text>`. Model IDs live only in tas
 
 The judge doesn't get web search itself. It checks claims against what each model actually retrieved, so "Unsupported claims" means "not backed by the model's own sources", not "false".
 
+### Worked example
+
+Gemini 3.8 Flash on Zilliant, from the [run above](results/company-research-zilliant-20261012-171818/report.md):
+
+| Run | grounding (0.35) | specificity (0.25) | recency (0.2) | usefulness (0.2) | Weighted score |
+|---|---|---|---|---|---|
+| 1 | 5 | 8 | 7 | 7 | 0.35·5 + 0.25·8 + 0.2·7 + 0.2·7 = **6.55** |
+| 2 | 6 | 9 | 9 | 8 | 0.35·6 + 0.25·9 + 0.2·9 + 0.2·8 = **7.75** |
+
+The table shows `7.2 (6.6–7.8)`: the mean, then the min–max across runs, rounded to one decimal. Score per cent is the mean score divided by the mean cost of one answer in cents (7.15 ÷ 2.07 ≈ 3.5). It counts the contestant's cost only, not the judge's.
+
+### Trade-offs in this scoring
+
+The scoring is deliberately simple. That makes it cheap and easy to read, but you should know what it doesn't do:
+
+- **Unsupported claims are reported, not subtracted.** The "Unsupported claims" column counts the claims the judge listed. It is not part of the formula. It lowers the score only as far as the judge lowered `grounding` for them, and the judge isn't consistent about that: in the first Amazon run, Sonnet had fewer unsupported claims than DeepSeek (5 vs 6) but a lower grounding score (4 vs 5). Read the column alongside the score, not instead of it.
+- **Scores are relative within a run.** The judge sees all answers together, so a 7 means "a 7 next to these other answers", not an absolute standard. Compare models within a task, not scores across different tasks.
+- **Variance comes from both sides.** Every run generates a fresh answer from a fresh search, at the task's temperature. The judge runs at temperature 0, which still isn't fully deterministic. In the example above, Gemini gained 1.2 points between runs because its second answer was better on every criterion. On Chewy, DeepSeek scored 4.7 and then 6.75, because its first answer was cut off at `max_tokens`. Use `--runs` and look at the range.
+- **Scores are coarse.** Each criterion is a whole number from 1 to 10, so one point of grounding moves the total by 0.35. Differences under about half a point between models are noise.
+- **One judge, uncalibrated.** Anonymising, shuffling, the length instruction and the self-judging warning reduce known biases, but nothing checks the judge against a human or a second judge. Its taste becomes your ranking. Spot-check a few answers in `report.md` against your own reading.
+- **The judge is part of the bill.** It reads every answer plus every retrieved excerpt, so it can be a large share of a run's cost; see the cost line under each table.
+
 ## Reliability
 
 - At most 3 requests in flight (free models are limited to 20 requests per minute).
@@ -128,7 +150,12 @@ All tests mock the API; none make network calls.
 
 ## What I learned
 
-_To fill in after real runs: which models won on which tasks, whether the expensive ones earned their price, how much web search helped, and where the judge disagreed with my own reading._
+From `company_research` with `--runs 2` on four companies: two big (Amazon, Chewy) and two small (Kajabi, Zilliant). That's 24 briefings and 8 judge calls, $0.85 in total. The contestants were Claude Sonnet 5.5, Gemini 3.8 Flash and DeepSeek V4 Pro, judged by GPT-6 Sol. The full reports are in [`results/`](results/).
+
+1. **The most expensive model won, but the cheapest one gave the most score per dollar.** Sonnet won 7 of 8 runs and averaged 7.6, against 6.7 for Gemini and 6.3 for DeepSeek. It also cost 2.9x as much as DeepSeek per briefing ($0.038 vs $0.013). That gives DeepSeek 4.8 points per cent, Gemini 3.3 and Sonnet 2.0. DeepSeek was also the slowest by far: 55s per briefing, against 25s for Gemini and 18s for Sonnet.
+2. **The gap is in grounding, not detail.** All three models were about equally specific, averaging 8.3–8.6 out of 10 on specificity. They split on grounding, meaning whether claims match the retrieved sources: Sonnet averaged 6.5, and Gemini and DeepSeek 5.0 each. Sonnet's lead also roughly doubled on the small companies: 1.1 points over the next model on Kajabi and Zilliant, against 0.6 on Amazon and Chewy. That's where sources are thin and it's tempting to fill gaps.
+3. **Every briefing contained claims its sources didn't back.** All 24 had between 4 and 8 claims the judge couldn't match to the model's own retrieved excerpts. The average was 4.9 for Sonnet, 5.9 for Gemini and 6.0 for DeepSeek, even though each model had 5 sources. Most were financial figures and competitor comparisons. "Unsupported" doesn't mean false, but it is what you'd need to fact-check before a meeting.
+4. **Budget for the hidden costs.** The judge was 33% of the total spend ($0.28 of $0.85), because it reads every answer plus every retrieved excerpt. Reasoning tokens also count against `max_tokens`: even at 4,000, DeepSeek used up the whole budget twice and was cut off mid-briefing (Chewy and Kajabi, run 1). The Chewy one scored 4.7, the lowest of all 24 answers, against 6.75 for its complete second attempt.
 
 ## Roadmap
 

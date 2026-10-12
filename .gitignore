@@ -221,8 +221,7 @@ __marimo__/
 
 # model-bakeoff
 results/*
-!results/company-research-stripe-20261012-161616/
-!results/company-research-stripe-20261012-163128/
-!results/company-research-openrouter-20261012-163344/
-!results/company-research-plausible-analytics-20261012-163547/
-!results/company-research-oxide-computer-company-20261012-163751/
+!results/company-research-amazon-20261012-171113/
+!results/company-research-chewy-20261012-171321/
+!results/company-research-kajabi-20261012-171550/
+!results/company-research-zilliant-20261012-171818/

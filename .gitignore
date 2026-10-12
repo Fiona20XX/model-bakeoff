@@ -218,3 +218,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# model-bakeoff
+results/*
+!results/company-research-amazon-20261012-171113/
+!results/company-research-chewy-20261012-171321/
+!results/company-research-kajabi-20261012-171550/
+!results/company-research-zilliant-20261012-171818/

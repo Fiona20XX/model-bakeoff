@@ -1,0 +1,43 @@
+# Flagship example: a sourced briefing on any company.
+# Run: bakeoff run tasks/company_research.yaml --var company="Zilliant"
+# Pick other models with: bakeoff models --search <text>
+name: company_research
+description: A sourced one-page briefing on a company, for meeting or interview prep.
+system: |
+  You are a research analyst preparing a briefing for someone about to meet this company.
+  Be specific and current. Cite a source for every factual claim. If you can't find
+  something, say so rather than guessing.
+user: |
+  Write a briefing on {{var:company}} with these sections:
+  1. What they do, who buys it, and how they make money
+  2. Recent news and launches (last 6 months)
+  3. Funding, size, and financial signals
+  4. Leadership
+  5. Main competitors and how they differ
+  6. Likely strategic priorities and open questions
+  Keep it under 500 words.
+models:
+  - anthropic/claude-sonnet-5.5
+  - google/gemini-3.8-flash
+  - deepseek/deepseek-v4-pro
+judge: openai/gpt-6-sol
+web:
+  enabled: true
+  engine: exa        # same engine for every model, so the comparison is between models, not search engines
+  max_results: 5
+max_tokens: 4000   # reasoning models spend part of this budget thinking before they write
+temperature: 0.2
+runs: 1
+rubric:
+  - name: grounding
+    weight: 0.35
+    description: Factual claims are supported by the cited sources; nothing invented or unsupported.
+  - name: specificity
+    weight: 0.25
+    description: Concrete facts (names, numbers, dates, products) rather than generic statements.
+  - name: recency
+    weight: 0.2
+    description: Reflects current information, not stale or outdated facts.
+  - name: usefulness
+    weight: 0.2
+    description: Would genuinely prepare someone for a meeting; strategic section shows real insight. Length is not a virtue.

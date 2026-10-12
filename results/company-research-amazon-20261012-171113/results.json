@@ -1,0 +1,781 @@
+{
+  "task": {
+    "name": "company_research",
+    "description": "A sourced one-page briefing on a company, for meeting or interview prep.",
+    "path": "tasks/company_research.yaml",
+    "vars": {
+      "company": "Amazon"
+    },
+    "system": "You are a research analyst preparing a briefing for someone about to meet this company.\nBe specific and current. Cite a source for every factual claim. If you can't find\nsomething, say so rather than guessing.\n",
+    "user": "Write a briefing on Amazon with these sections:\n1. What they do, who buys it, and how they make money\n2. Recent news and launches (last 6 months)\n3. Funding, size, and financial signals\n4. Leadership\n5. Main competitors and how they differ\n6. Likely strategic priorities and open questions\nKeep it under 500 words.\n",
+    "rubric": [
+      {
+        "name": "grounding",
+        "weight": 0.35,
+        "description": "Factual claims are supported by the cited sources; nothing invented or unsupported."
+      },
+      {
+        "name": "specificity",
+        "weight": 0.25,
+        "description": "Concrete facts (names, numbers, dates, products) rather than generic statements."
+      },
+      {
+        "name": "recency",
+        "weight": 0.2,
+        "description": "Reflects current information, not stale or outdated facts."
+      },
+      {
+        "name": "usefulness",
+        "weight": 0.2,
+        "description": "Would genuinely prepare someone for a meeting; strategic section shows real insight. Length is not a virtue."
+      }
+    ],
+    "web": {
+      "enabled": true,
+      "engine": "exa",
+      "max_results": 5
+    },
+    "max_tokens": 4000,
+    "temperature": 0.2
+  },
+  "started_at": "2026-10-12T17:11:13",
+  "flags": {
+    "runs": 2,
+    "free": false,
+    "web": true,
+    "judge": true
+  },
+  "models": [
+    "anthropic/claude-sonnet-5.5",
+    "google/gemini-3.8-flash",
+    "deepseek/deepseek-v4-pro"
+  ],
+  "judge": "openai/gpt-6-sol",
+  "skipped_models": [],
+  "warnings": [],
+  "total_cost": 0.20780411455,
+  "contestant_cost": 0.14015961455,
+  "judge_cost": 0.0676445,
+  "summary": [
+    {
+      "model": "anthropic/claude-sonnet-5.5",
+      "runs": 2,
+      "ok_runs": 2,
+      "scores": [
+        7.3,
+        7.3
+      ],
+      "mean_score": 7.3,
+      "latencies": [
+        20.13715443000001,
+        15.911168777
+      ],
+      "costs": [
+        0.039336,
+        0.037772
+      ],
+      "mean_cost": 0.038554000000000005,
+      "sources": [
+        5,
+        5
+      ],
+      "unsupported_claims": [
+        5,
+        5
+      ],
+      "score_per_cent": 1.8934481506458472,
+      "rationales": [
+        "Its revenue breakdown and explicit caveats are useful, but many current operational and strategic details rely on information not present in the supplied excerpts.",
+        "C combines useful financial context with explicit open questions, though several recent announcements and quantitative claims lack support in the supplied excerpts."
+      ],
+      "errors": []
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "runs": 2,
+      "ok_runs": 2,
+      "scores": [
+        7.4,
+        7.0
+      ],
+      "mean_score": 7.2,
+      "latencies": [
+        51.65437694099998,
+        46.21854148700001
+      ],
+      "costs": [
+        0.0107007789,
+        0.00959733565
+      ],
+      "mean_cost": 0.010149057275,
+      "sources": [
+        5,
+        5
+      ],
+      "unsupported_claims": [
+        6,
+        5
+      ],
+      "score_per_cent": 7.094254968622197,
+      "rationales": [
+        "The supplied excerpts support its business overview, employee count, Leo update, and some cloud positioning, but leave many specific financial, leadership, and operational claims unverified.",
+        "A detailed, meeting-oriented briefing, but many of its most consequential recent figures and competitive claims cannot be verified from the supplied excerpts."
+      ],
+      "errors": []
+    },
+    {
+      "model": "google/gemini-3.8-flash",
+      "runs": 2,
+      "ok_runs": 2,
+      "scores": [
+        6.85,
+        6.95
+      ],
+      "mean_score": 6.9,
+      "latencies": [
+        31.409264861999986,
+        24.548339365999993
+      ],
+      "costs": [
+        0.022618,
+        0.0201355
+      ],
+      "mean_cost": 0.02137675,
+      "sources": [
+        5,
+        5
+      ],
+      "unsupported_claims": [
+        5,
+        5
+      ],
+      "score_per_cent": 3.227805910627201,
+      "rationales": [
+        "The briefing is concrete and timely, but several of its most meeting-relevant figures and competitive claims cannot be verified from the supplied excerpts.",
+        "B is concise and strategically useful, but its prominent launch and financial claims rely on details absent from the supplied excerpts."
+      ],
+      "errors": []
+    }
+  ],
+  "contestants": [
+    {
+      "model": "anthropic/claude-sonnet-5.5",
+      "run": 1,
+      "ok": true,
+      "answer": "# Amazon Briefing (as of 12 Oct 2026)\n\n## 1. What they do, who buys it, and how they make money\nAmazon sells to consumers, sellers, developers, enterprises, content creators and advertisers ([sec-api.io](https://sec-api.io/insights/financial-analysis-of-amazon-fy2025-and-the-first-half-of-2026)). FY2025 net sales were $716.9B:\n- Online stores: $269.3B (37.6%), recognized gross on owned inventory.\n- Third-party seller services: $172.2B (24.0%), recognized as commissions and fulfillment fees.\n- AWS: $128.7B (18.0%).\n- Advertising: $68.6B (9.6%).\n- Subscriptions (Prime and others): $49.6B (6.9%).\n- Physical stores: $22.6B (3.1%).\n- Other: $5.9B (0.8%).\n\nAll figures are from [sec-api.io](https://sec-api.io/insights/financial-analysis-of-amazon-fy2025-and-the-first-half-of-2026). Because Amazon books only its fees on third-party sales, reported revenue understates the merchandise flowing through its stores ([sec-api.io](https://sec-api.io/insights/financial-analysis-of-amazon-fy2025-and-the-first-half-of-2026)). One secondary source says AWS generates most of the operating profit, at roughly 37% margins ([pitchgrade.com](https://pitchgrade.com/companies/amazon)). I did not verify that against filings.\n\n## 2. Recent news and launches\n- **Q2 FY2026 results (30 Jul):** AWS reached a $169B annualized run rate. AWS chips and AI revenue each passed a $25B run rate ([signals.ai](https://signals.ai/reports/amzn)).\n- **Delivery:** Amazon Now is in 9 countries and more than 250 cities and towns ([signals.ai](https://signals.ai/reports/amzn)).\n- **Logistics:** Amazon launched Amazon Supply Chain Services for external business customers in Q2 2026. Its financial return isn't reported separately ([investomine.substack.com](https://investomine.substack.com/p/business-breakdown-amazon-explained)).\n- **Zoox:** Paid Las Vegas rides began on 10 August and later extended to the airport ([investomine.substack.com](https://investomine.substack.com/p/business-breakdown-amazon-explained)).\n- **Amazon Leo:** Nearly 400 satellites are in orbit. Initial service is planned for later in 2026, but mass-market service isn't yet established ([investomine.substack.com](https://investomine.substack.com/p/business-breakdown-amazon-explained)).\n\n## 3. Funding, size, and financial signals\nAmazon is public, so there are no funding rounds. Management expects about $220B of cash capex in FY2026, up from an earlier estimate of about $200B, mostly for AI and AWS ([signals.ai](https://signals.ai/reports/amzn)). Servers and networking typically break even in slightly less than three years, and data centers are expected to run for more than 30 years ([signals.ai](https://signals.ai/reports/amzn)). I did not find net income, operating income or free cash flow figures in the sources, so I'm not citing any.\n\n## 4. Leadership\n- Andrew Jassy is president and CEO.\n- Jeffrey Bezos is executive chair.\n- Matthew Garman is CEO of AWS.\n- The board has 12 directors.\n\nAll from the 2026 Form 10-K via [signals.ai](https://signals.ai/reports/amzn). I did not find other executives, such as the CFO, in the sources.\n\n## 5. Main competitors and how they differ\n- **Retail:** Walmart competes on store density, low prices and Walmart Fulfillment Services. Shopify lets merchants own the customer relationship. Alibaba, Temu and Shein compete on selection and price ([signals.ai](https://signals.ai/reports/amzn)).\n- **Cloud and AI:** Microsoft Azure and Google Cloud are the main scaled rivals. Oracle and specialized providers compete for selected workloads ([signals.ai](https://signals.ai/reports/amzn)).\n- **Convenience:** Delivery platforms challenge last-mile density ([signals.ai](https://signals.ai/reports/amzn)).\n- **Amazon's edge:** It integrates Prime, marketplace, fulfillment, advertising and AWS ([signals.ai](https://signals.ai/reports/amzn)).\n\n## 6. Likely strategic priorities and open questions\n**Priorities** (stated by management):\n- Faster delivery: same-day and overnight items grew more than 40% year over year in H1 FY2026.\n- More robotics: the robotic arm fleet is set to more than double in FY2026.\n- AI and custom chips.\n- Free cash flow.\n\nSources: [signals.ai](https://signals.ai/reports/amzn).\n\n**Open questions:**\n- Will $220B of capex earn adequate returns? Management says returns depend on bringing capacity online ahead of demand ([signals.ai](https://signals.ai/reports/amzn)).\n- Can chip and power supply keep up, and will regulators challenge Amazon's scale across markets? Both are flagged as exposures ([signals.ai](https://signals.ai/reports/amzn)).\n- Can Leo, Zoox and Supply Chain Services become material? Their financial contribution isn't yet disclosed ([investomine.substack.com](https://investomine.substack.com/p/business-breakdown-amazon-explained)).",
+      "error": null,
+      "latency": 20.13715443000001,
+      "prompt_tokens": 4093,
+      "completion_tokens": 2415,
+      "cost": 0.039336,
+      "citations": [
+        {
+          "url": "https://signals.ai/reports/amzn",
+          "title": "Amazon.com, Inc. (AMZN) Deep Dive Research Report | Signals.AI",
+          "content": "Retail has two distinct ownership models. Amazon buys and resells products in its own stores, recognizing the gross product sale. Third-party sellers retain ownership of their inventory, while Amazon earns commissions and related fulfillment and shipping fees; those arrangements are recognized as service sales. The distinction affects reported revenue, working capital, and the amount of inventory risk attached to each transaction. Per the FY2025 10-K, Note 1.\n\n...\n\nPrime is monetized through membership fees recognized over the subscription period, while digital video, music, audiobooks, and books are included in subscription or other content arrangements depending on the offering. Advertising is a separate service, with revenue recognized as sponsored, display, or video ads generate clicks or impressions. Amazon Web Services is also a separate service stream, billed primarily as customers consume compute, storage, databases, analytics, and other technology capacity, with some services sold for fixed quantities over contract terms. Per the FY2025 10-K, Note 1.\n\n...\n\nAmazon combines a long-tenured senior team with a strategy that is becoming more capital intensive. The 2026 Form 10-K identifies Andrew R. Jassy as president and chief executive officer, Jeffrey P. Bezos as executive chair, and Matthew S. Garman as chief executive of Amazon Web Services. The board listed in the filing has 12 directors, with Bezos serving as executive chair and Jassy serving as chief executive officer.\n\n...\n\nThe central tension is visible in management's latest operating plan: AWS is expanding quickly, but the company expects to commit approximately $220.00B to cash capital expenditures in FY2026, primarily for artificial intelligence and cloud infrastructure. Management describes this spending as a long-cycle investment whose cash returns depend on bringing data centers and computing capacity online ahead of demand.\n\n...\n\n| Pillar | Objective | Stated targets with numbers and dates | Source |\n| --- | --- | --- | --- |\n| Customer obsession | Improve selection, price, convenience, delivery speed, and customer trust across stores and subscriptions. | More than 40% year-over-year growth in items delivered same day or overnight during the first half of FY2026; Amazon Now available in 9 countries and more than 250 cities and towns in Q2 FY2026. | FY2025 Form 10-K; Q2 FY2026 earnings call, July 30, 2026 [15][16] |\n| Passion for invention | Build new businesses and services in artificial intelligence, custom chips, advertising, logistics, connectivity, and digital experiences. | AWS chips annual revenue run rate above $25.00B and artificial-intelligence revenue annual revenue run rate above $25.00B in Q2 FY2026; nearly 400 Amazon Leo satellites in orbit by Q2 FY2026. | FY2025 Form 10-K; Q2 FY2026 earnings call, July 30, 2026 [15][16] |\n| Operational excellence | Lower the cost per unit while improving fulfillment speed, capacity utilization, and service reliability. | More than double the fleet of robotic arms in FY2026; management said shipping costs, excluding fuel and linehaul pressures, were growing more slowly than worldwide unit volume in Q2 FY2026. | Q2 FY2026 earnings call, July 30, 2026 [16] |\n| Long-term, sustainable free cash flow | Use operating-income growth and working-capital efficiency to fund investments that improve customer experience and expand infrastructure. | Management expects cash capital expenditures of approximately $220.00B in FY2026, up from its earlier estimate of approximately $200.00B, with the majority directed to artificial intelligence and AWS. | FY2025 Form 10-K; Q2 FY2026 earnings call, July 30, 2026 [15][16] |\n| AWS scale and monetization | Expand core cloud services and artificial-intelligence infrastructure while improving the return profile of new capacity. | AWS reached a $169.00B annualized revenue run rate in Q2 FY2026; servers and networking equipment typically reach break-even in slightly less than three years, while data centers are expected to operate for more than 30 years. | Q2 FY2026 earnings call, July 30, 2026 [16] |\n\n...\n\n> Our read: Recent competitor actions matter by segment rather than as one unified threat: Walmart and low-price marketplaces pressure retail and seller economics, Microsoft and Alphabet contest cloud and artificial intelligence workloads, and delivery platforms challenge convenience and last-mile density. The exhibit should be read alongside Amazon’s Q2 FY2026 evidence of faster delivery, Amazon Now expansion, AWS growth, and advertising growth, which show where the company is responding through service breadth and infrastructure spending.\n\n...\n\nCompetition is most direct in retail and cloud. Walmart competes through store density, everyday-low-price positioning, marketplace services, and Walmart Fulfillment Services; Shopify gives merchants a way to own their storefront and customer relationship; Alibaba, Temu, Shein, and other cross-border platforms compete on selection and low prices. In cloud, Microsoft Azure and Google Cloud remain the primary scaled rivals, while Oracle and specialized infrastructure providers compete for selected workloads.\n\n...\n\nAmazon’s advantages are unusually integrated: Prime combines shipping and content, the marketplace increases selection, fulfillment improves delivery speed, advertising monetizes shopping intent, and AWS supplies a separate enterprise technology platform. The exposures are equally clear: competitors can underprice individual services, enterprise customers can use multiple clouds, suppliers of advanced chips and power can constrain capacity, and regulators can challenge the use of scale across adjacent markets."
+        },
+        {
+          "url": "https://investomine.substack.com/p/business-breakdown-amazon-explained",
+          "title": "Business Breakdown: Amazon Explained: Stores, Sellers, AWS, Media and New Bets",
+          "content": "An independent merchant can list a product in Amazon’s marketplace. Amazon earns a commission and may separately charge the merchant for storage, picking, packing, fulfillment and shipping under programs such as Fulfillment by Amazon. It is not the seller of record for those third-party goods: Amazon reports its fees, not the full value of a seller’s merchandise, in third-party seller services. These fees rise with services rendered and orders completed. Seller selection strengthens the store without Amazon having to own every item of inventory. 2025 Form 10-K, third-party seller accounting.\n\n...\n\nThe delivery system operates across both models. Warehouses, local delivery facilities, routing software, vehicles and people move Amazon-owned products and sellers’ products; fast service also makes Prime more useful. In the second quarter of 2026, Amazon said it launched Amazon Supply Chain Services for external business customers, extending its network beyond sales on Amazon. The financial return from that newer offering is not separately reported. Robotics such as Proteus can lower handling effort or improve safety, but an internal robot’s savings are part of operations, not a separate public robot-sales line. Q2 2026 company release, supply chain and Proteus.\n\n...\n\nAmazon Leo, previously called Project Kuiper, aims to provide satellite broadband through a constellation, ground systems and customer equipment. Potential payers include households, telecommunications partners, airlines, enterprises and governments. Amazon reported nearly 400 satellites in orbit, 14 completed missions and six additional Arianespace launches under contract in its September 2026 update. It was preparing for an initial service rollout later in 2026; the update did not establish completed mass-market service. Customer commitments are evidence of prospective demand, not automatically recognized service sales. Amazon Leo, September 2026 update.\n\n...\n\nZoox develops purpose-built electric robotaxis and an autonomous ride service. In July 2026, Amazon said a US regulatory exemption would allow Zoox to charge for rides. Zoox subsequently announced a 10 August launch of paid Las Vegas rides, and reporting in September confirmed commercial service extending to the Las Vegas airport. Its fares combine a base amount with travel time and distance. Limited access in some other cities should not be described as paid service. Vehicles, autonomous-driving engineering,"
+        },
+        {
+          "url": "https://sec-api.io/insights/financial-analysis-of-amazon-fy2025-and-the-first-half-of-2026",
+          "title": "Financial analysis of Amazon, FY2025 and the first half of 2026",
+          "content": "Amazon serves seven customer sets: consumers, sellers, developers, enterprises, content creators, advertisers and employees. The recognition basis differs sharply between them, and that difference is the reason reported revenue understates the merchandise flowing through the stores. Amazon records gross revenue on goods it owns and sells, and only its net share on goods sold by third parties, for which it is not the seller of record. Seller fees are fixed fees, a percentage of sales, per unit activity fees, interest, or a combination.\n\n...\n\n| Revenue line | What is sold | Recognition basis | FY2025 net sales ($m) | Share of net sales |\n| --- | --- | --- | --- | --- |\n| Online stores | Own inventory and digital media content, with related shipping fees | Gross | 269,287 | 37.6% |\n| Third party seller services | Commissions, fulfilment and shipping fees on marketplace orders | Net share of the sale, as service revenue | 172,162 | 24.0% |\n| AWS | Compute, storage, database, analytics and machine learning services | Gross, over the service period | 128,725 | 18.0% |\n| Advertising services | Sponsored ads, display and video advertising sold to sellers, vendors, publishers and authors | Gross | 68,635 | 9.6% |\n| Subscription services | Amazon Prime membership fees and digital video, music, audiobook and digital book subscriptions | Gross, over the service period | 49,619 | 6.9% |\n| Physical stores | Goods a customer physically selects in a store | Gross | 22,561 | 3.1% |\n| Other | Shipping services, healthcare services, video content licensing and credit card agreements | Not separately disclosed | 5,935 | 0.8% |\n| Consolidated | | | 716,924 | 100.0% |"
+        },
+        {
+          "url": "https://www.deepresearchglobal.com/p/amazon-amzn-fundamental-analysis-report",
+          "title": "Amazon (AMZN) - Fundamental Analysis Report 2026 (Updated)",
+          "content": "The third pillar is AWS, an infrastructure-as-a-service business that sells compute, storage, networking, AI, and managed software services to enterprises, governments, and developers worldwide. AWS continues to hold the largest share of global cloud"
+        },
+        {
+          "url": "https://pitchgrade.com/companies/amazon",
+          "title": "Amazon: Business Model, SWOT Analysis, and Competitors 2026 - PitchGrade",
+          "content": "services, and logistics. While e-commerce generates the majority of revenue (~50%), it operates at thin margins. AWS — Amazon's cloud arm — generates roughly 17% of revenue but accounts for the majority of operating profit, with margins around 37%."
+        }
+      ],
+      "usage": {
+        "completion_tokens": 2415,
+        "prompt_tokens": 4093,
+        "total_tokens": 6508,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 505,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.039336,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.032336,
+          "upstream_inference_prompt_cost": 0.008186,
+          "upstream_inference_completions_cost": 0.02415
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "google/gemini-3.8-flash",
+      "run": 1,
+      "ok": true,
+      "answer": "### 1. What They Do, Who Buys It, and How They Make Money\nAmazon operates a global ecosystem spanning retail, cloud infrastructure, advertising, and digital services [signals.ai](https://signals.ai/reports/amzn). Its monetization models include:\n* **Consumers:** Direct retail sales (recognized gross), digital media, and Prime subscriptions recognized over time [sec-api.io](https://sec-api.io/insights/financial-analysis-of-amazon-fy2025-and-the-first-half-of-2026).\n* **Third-Party Sellers:** Commissions, storage, picking, packing, and shipping fees (e.g., Fulfillment by Amazon), recognized net as service revenue [investomine.substack.com](https://investomine.substack.com/p/business-breakdown-amazon-explained).\n* **Enterprises & Developers:** Amazon Web Services (AWS) bills for compute, storage, databases, and AI models via consumption and fixed-term contracts [signals.ai](https://signals.ai/reports/amzn).\n* **Advertisers:** Pay-per-click and impression-based sponsored ads, display, and video placements across retail and streaming platforms [sec-api.io](https://sec-api.io/insights/financial-analysis-of-amazon-fy2025-and-the-first-half-of-2026).\n\n### 2. Recent News and Launches\n* **Autonomous Rides Commercialized:** Zoox received a U.S. regulatory exemption and launched paid robotaxi rides in Las Vegas in August 2026, expanding commercial trips to the airport in September [investomine.substack.com](https://investomine.substack.com/p/business-breakdown-amazon-explained).\n* **Amazon Leo (Project Kuiper):** Surpassed 400 low-Earth-orbit satellites across 14 missions, preparing for an initial commercial broadband rollout [investomine.substack.com](https://investomine.substack.com/p/business-breakdown-amazon-explained).\n* **External Logistics Expansion:** Rolled out Amazon Supply Chain Services to fulfill orders for business clients off Amazon’s marketplace [investomine.substack.com](https://investomine.substack.com/p/business-breakdown-amazon-explained).\n* **AI & Silicon Run Rates:** AWS disclosed that its proprietary custom chip revenue and overall AI revenue run rates each exceeded $25B annualized in Q2 2026 [signals.ai](https://signals.ai/reports/amzn).\n\n### 3. Funding, Size, and Financial Signals\n* **Revenue Scale:** Total net sales reached $716.9B in FY2025 [sec-api.io](https://sec-api.io/insights/financial-analysis-of-amazon-fy2025-and-the-first-half-of-2026). \n* **Cloud Outperformance:** In Q2 2026, AWS grew 36.7% year-over-year to $42.23B in quarterly revenue ($169B run rate), delivering $16.62B in operating income [signals.ai](https://signals.ai/reports/amzn).\n* **Massive CapEx Commitments:** Raised expected FY2026 cash capital expenditures to ~$220B (up from $200B), primarily directed toward AI, custom chips, and data center capacity [signals.ai](https://signals.ai/reports/amzn).\n\n### 4. Leadership\n* **Jeffrey P. Bezos:** Founder & Executive Chair [signals.ai](https://signals.ai/reports/amzn).\n* **Andrew R. Jassy:** President & Chief Executive Officer [signals.ai](https://signals.ai/reports/amzn).\n* **Matthew S. Garman:** Chief Executive Officer, Amazon Web Services [signals.ai](https://signals.ai/reports/amzn).\n\n### 5. Main Competitors and How They Differ\n* **Retail & Marketplace:** Walmart (competes via physical store density and grocery strength), Shopify (empowers independent merchant-owned stores), and Temu/Shein (ultra-low-cost, direct-from-manufacturer supply chains) [signals.ai](https://signals.ai/reports/amzn).\n* **Cloud & AI:** Microsoft Azure and Google Cloud [signals.ai](https://signals.ai/reports/amzn).\n* **Differentiator:** Amazon's integrated flywheel: high-margin cloud and advertising profits subsidize massive logistics automation, driving delivery speeds that competitors struggle to match profitably [signals.ai](https://signals.ai/reports/amzn).\n\n### 6. Likely Strategic Priorities and Open Questions\n* **Priorities:** Bringing massive generative AI computing capacity online ahead of demand; scaling custom silicon to reduce reliance on third-party GPUs; and automating fulfillment centers with robotics to reduce cost per unit [signals.ai](https://signals.ai/reports/amzn).\n* **Open Questions:**\n  * How quickly will the ~$220B CapEx cycle translate into sustained free cash flow amidst rising power and facility constraints?\n  * What is the timeline for Amazon Leo and Zoox to deliver material, standalone operating profitability?\n  * How will consumer retail margins hold up against aggressive discount cross-border apps?",
+      "error": null,
+      "latency": 31.409264861999986,
+      "prompt_tokens": 2754,
+      "completion_tokens": 3614,
+      "cost": 0.022618,
+      "citations": [
+        {
+          "url": "https://signals.ai/reports/amzn",
+          "title": "Amazon.com, Inc. (AMZN) Deep Dive Research Report | Signals.AI",
+          "content": "Retail has two distinct ownership models. Amazon buys and resells products in its own stores, recognizing the gross product sale. Third-party sellers retain ownership of their inventory, while Amazon earns commissions and related fulfillment and shipping fees; those arrangements are recognized as service sales. The distinction affects reported revenue, working capital, and the amount of inventory risk attached to each transaction. Per the FY2025 10-K, Note 1.\n\n...\n\nPrime is monetized through membership fees recognized over the subscription period, while digital video, music, audiobooks, and books are included in subscription or other content arrangements depending on the offering. Advertising is a separate service, with revenue recognized as sponsored, display, or video ads generate clicks or impressions. Amazon Web Services is also a separate service stream, billed primarily as customers consume compute, storage, databases, analytics, and other technology capacity, with some services sold for fixed quantities over contract terms. Per the FY2025 10-K, Note 1.\n\n...\n\nAmazon combines a long-tenured senior team with a strategy that is becoming more capital intensive. The 2026 Form 10-K identifies Andrew R. Jassy as president and chief executive officer, Jeffrey P. Bezos as executive chair, and Matthew S. Garman as chief executive of Amazon Web Services. The board listed in the filing has 12 directors, with Bezos serving as executive chair and Jassy serving as chief executive officer.\n\n...\n\nThe central tension is visible in management's latest operating plan: AWS is expanding quickly, but the company expects to commit approximately $220.00B to cash capital expenditures in FY2026, primarily for artificial intelligence and cloud infrastructure. Management describes this spending as a long-cycle investment whose cash returns depend on bringing data centers and computing capacity online ahead of demand.\n\n...\n\n| Pillar | Objective | Stated targets with numbers and dates | Source |\n| --- | --- | --- | --- |\n| Customer obsession | Improve selection, price, convenience, delivery speed, and customer trust across stores and subscriptions. | More than 40% year-over-year growth in items delivered same day or overnight during the first half of FY2026; Amazon Now available in 9 countries and more than 250 cities and towns in Q2 FY2026. | FY2025 Form 10-K; Q2 FY2026 earnings call, July 30, 2026 [15][16] |\n| Passion for invention | Build new businesses and services in artificial intelligence, custom chips, advertising, logistics, connectivity, and digital experiences. | AWS chips annual revenue run rate above $25.00B and artificial-intelligence revenue annual revenue run rate above $25.00B in Q2 FY2026; nearly 400 Amazon Leo satellites in orbit by Q2 FY2026. | FY2025 Form 10-K; Q2 FY2026 earnings call, July 30, 2026 [15][16] |\n| Operational excellence | Lower the cost per unit while improving fulfillment speed, capacity utilization, and service reliability. | More than double the fleet of robotic arms in FY2026; management said shipping costs, excluding fuel and linehaul pressures, were growing more slowly than worldwide unit volume in Q2 FY2026. | Q2 FY2026 earnings call, July 30, 2026 [16] |\n| Long-term, sustainable free cash flow | Use operating-income growth and working-capital efficiency to fund investments that improve customer experience and expand infrastructure. | Management expects cash capital expenditures of approximately $220.00B in FY2026, up from its earlier estimate of approximately $200.00B, with the majority directed to artificial intelligence and AWS. | FY2025 Form 10-K; Q2 FY2026 earnings call, July 30, 2026 [15][16] |\n| AWS scale and monetization | Expand core cloud services and artificial-intelligence infrastructure while improving the return profile of new capacity. | AWS reached a $169.00B annualized revenue run rate in Q2 FY2026; servers and networking equipment typically reach break-even in slightly less than three years, while data centers are expected to operate for more than 30 years. | Q2 FY2026 earnings call, July 30, 2026 [16] |\n\n...\n\nAWS is the clearest financial engine behind the strategy. In Q2 FY2026, AWS revenue reached $42.23B and grew 36.7% year over year, while AWS operating income reached $16.62B. Management linked artificial-intelligence demand to\n\n...\n\nCompetition is most direct in retail and cloud. Walmart competes through store density, everyday-low-price positioning, marketplace services, and Walmart Fulfillment Services; Shopify gives merchants a way to own their storefront and customer relationship; Alibaba, Temu, Shein, and other cross-border platforms compete on selection and low prices. In cloud, Microsoft Azure and Google Cloud remain the primary scaled rivals, while Oracle and specialized infrastructure providers compete for selected workloads.\n\n...\n\nAmazon’s advantages are unusually integrated: Prime combines shipping and content, the marketplace increases selection, fulfillment improves delivery speed, advertising monetizes shopping intent, and AWS supplies a separate enterprise technology platform. The exposures are equally clear: competitors can underprice individual services, enterprise customers can use multiple clouds, suppliers of advanced chips and power can constrain capacity, and regulators can challenge the use of scale across adjacent markets."
+        },
+        {
+          "url": "https://investomine.substack.com/p/business-breakdown-amazon-explained",
+          "title": "Business Breakdown: Amazon Explained: Stores, Sellers, AWS, Media and New Bets",
+          "content": "An independent merchant can list a product in Amazon’s marketplace. Amazon earns a commission and may separately charge the merchant for storage, picking, packing, fulfillment and shipping under programs such as Fulfillment by Amazon. It is not the seller of record for those third-party goods: Amazon reports its fees, not the full value of a seller’s merchandise, in third-party seller services. These fees rise with services rendered and orders completed. Seller selection strengthens the store without Amazon having to own every item of inventory. 2025 Form 10-K, third-party seller accounting.\n\n...\n\nThe delivery system operates across both models. Warehouses, local delivery facilities, routing software, vehicles and people move Amazon-owned products and sellers’ products; fast service also makes Prime more useful. In the second quarter of 2026, Amazon said it launched Amazon Supply Chain Services for external business customers, extending its network beyond sales on Amazon. The financial return from that newer offering is not separately reported. Robotics such as Proteus can lower handling effort or improve safety, but an internal robot’s savings are part of operations, not a separate public robot-sales line. Q2 2026 company release, supply chain and Proteus.\n\n...\n\nAmazon Leo, previously called Project Kuiper, aims to provide satellite broadband through a constellation, ground systems and customer equipment. Potential payers include households, telecommunications partners, airlines, enterprises and governments. Amazon reported nearly 400 satellites in orbit, 14 completed missions and six additional Arianespace launches under contract in its September 2026 update. It was preparing for an initial service rollout later in 2026; the update did not establish completed mass-market service. Customer commitments are evidence of prospective demand, not automatically recognized service sales. Amazon Leo, September 2026 update.\n\n...\n\nZoox develops purpose-built electric robotaxis and an autonomous ride service. In July 2026, Amazon said a US regulatory exemption would allow Zoox to charge for rides. Zoox subsequently announced a 10 August launch of paid Las Vegas rides, and reporting in September confirmed commercial service extending to the Las Vegas airport. Its fares combine a base amount with travel time and distance. Limited access in some other cities should not be described as paid service. Vehicles, autonomous-driving engineering, fleet operations, safety and expansion create costs. Zoox generates fare revenue in Las Vegas, but Amazon does not separately publish its fare amount or operating profit or loss. Q2 2026 Amazon release, regulatory milestone; Reuters, Zoox’s fare plan, 5 August 2026; TechCrunch, operating paid service, 3 September 2026."
+        },
+        {
+          "url": "https://sec-api.io/insights/financial-analysis-of-amazon-fy2025-and-the-first-half-of-2026",
+          "title": "Financial analysis of Amazon, FY2025 and the first half of 2026",
+          "content": "Amazon serves seven customer sets: consumers, sellers, developers, enterprises, content creators, advertisers and employees. The recognition basis differs sharply between them, and that difference is the reason reported revenue understates the merchandise flowing through the stores. Amazon records gross revenue on goods it owns and sells, and only its net share on goods sold by third parties, for which it is not the seller of record. Seller fees are fixed fees, a percentage of sales, per unit activity fees, interest, or a combination.\n\n...\n\n| Revenue line | What is sold | Recognition basis | FY2025 net sales ($m) | Share of net sales |\n| --- | --- | --- | --- | --- |\n| Online stores | Own inventory and digital media content, with related shipping fees | Gross | 269,287 | 37.6% |\n| Third party seller services | Commissions, fulfilment and shipping fees on marketplace orders | Net share of the sale, as service revenue | 172,162 | 24.0% |\n| AWS | Compute, storage, database, analytics and machine learning services | Gross, over the service period | 128,725 | 18.0% |\n| Advertising services | Sponsored ads, display and video advertising sold to sellers, vendors, publishers and authors | Gross | 68,635 | 9.6% |\n| Subscription services | Amazon Prime membership fees and digital video, music, audiobook and digital book subscriptions | Gross, over the service period | 49,619 | 6.9% |\n| Physical stores | Goods a customer physically selects in a store | Gross | 22,561 | 3.1% |\n| Other | Shipping services, healthcare services, video content licensing and credit card agreements | Not separately disclosed | 5,935 | 0.8% |\n| Consolidated | | | 716,924 | 100.0% |"
+        },
+        {
+          "url": "https://www.deepresearchglobal.com/p/amazon-amzn-fundamental-analysis-report",
+          "title": "Amazon (AMZN) - Fundamental Analysis Report 2026 (Updated)",
+          "content": "The third pillar is AWS, an infrastructure-as-a-service business that sells compute, storage, networking, AI, and managed software services to enterprises, governments, and developers worldwide. AWS continues to hold the largest share of global cloud"
+        },
+        {
+          "url": "https://pitchgrade.com/companies/amazon",
+          "title": "Amazon: Business Model, SWOT Analysis, and Competitors 2026 - PitchGrade",
+          "content": "services, and logistics. While e-commerce generates the majority of revenue (~50%), it operates at thin margins. AWS — Amazon's cloud arm — generates roughly 17% of revenue but accounts for the majority of operating profit, with margins around 37%."
+        }
+      ],
+      "usage": {
+        "completion_tokens": 3614,
+        "prompt_tokens": 2754,
+        "total_tokens": 6368,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 2436,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.022618,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.015618,
+          "upstream_inference_prompt_cost": 0.0020655,
+          "upstream_inference_completions_cost": 0.0135525
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "run": 1,
+      "ok": true,
+      "answer": "# Amazon Briefing (October 2026)\n\n## 1. What they do, who buys it, and how they make money\nAmazon operates a massive, multi‑faceted platform spanning e‑commerce, cloud computing, advertising, subscriptions and logistics. It sells products directly (gross sales) and enables millions of third‑party sellers to list goods, earning commissions and fees from services like Fulfillment by Amazon [signals.ai](https://signals.ai/reports/amzn), [investomine.substack.com](https://investomine.substack.com/p/business-breakdown-amazon-explained). Consumers, enterprises, developers, content creators and advertisers buy through online and physical stores, Alexa devices, streaming services and AWS [signals.ai](https://signals.ai/reports/amzn).  \n\nRetail (~50% of revenue) has thin margins, while AWS (~17% of revenue) delivers the majority of operating profit with margins around 37% [pitchgrade.com](https://pitchgrade.com/companies/amazon). Prime subscriptions, advertising (sponsored, display, video) and AWS consumption‑based services layer additional high‑margin revenue streams [signals.ai](https://signals.ai/reports/amzn).\n\n## 2. Recent news and launches (last 6 months)\n- **Zoox robotaxi service:** In July 2026, Amazon obtained a U.S. regulatory exemption to charge for rides. Paid operations launched in Las Vegas on 10 August, and by September the service had expanded to the Las Vegas airport [investomine.substack.com](https://investomine.substack.com/p/business-breakdown-amazon-explained).\n- **Amazon Leo satellite broadband:** As of September 2026, nearly 400 satellites were in orbit, with initial service rollout expected later in the year [investomine.substack.com](https://investomine.substack.com/p/business-breakdown-amazon-explained).  \n- **Operational acceleration:** In Q2 FY2026 (July call), the company reported >40% YoY growth in same‑day/overnight deliveries, Amazon Now quick commerce available in 9 countries and >250 cities, and a plan to more than double its robotic arm fleet. AWS annualized revenue reached $169 bn and the AI annual revenue run rate topped $25 bn [signals.ai](https://signals.ai/reports/amzn).\n\n## 3. Funding, size, and financial signals\nAmazon is self‑funding and publicly listed. It employed ~1.576 million people at end‑2025 [signals.ai](https://signals.ai/reports/amzn). The company has guided a massive ~$220 bn in cash capex for FY2026, predominantly for AI/cloud infrastructure [signals.ai](https://signals.ai/reports/amzn). AWS remains the financial engine: Q2 FY2026 revenue of $42.23 bn (+36.7% YoY) generated $16.62 bn in operating income [signals.ai](https://signals.ai/reports/amzn). The retail business remains capital‑intensive but is becoming more efficient; management expects AWS hardware to break‑even in under three years and data centers to operate for 30+ years [signals.ai](https://signals.ai/reports/amzn).\n\n## 4. Leadership\n- **President & CEO:** Andrew R. Jassy  \n- **Executive Chair:** Jeffrey P. Bezos  \n- **CEO, Amazon Web Services:** Matthew S. Garman  \n- **Board:** 12 directors, including Bezos as executive chair [signals.ai](https://signals.ai/reports/amzn).\n\n## 5. Main competitors and how they differ\nCompetition plays out by segment, not as a single rival [signals.ai](https://signals.ai/reports/amzn).  \n- **Retail:** Walmart (store density, everyday‑low‑price, Walmart Fulfillment Services), Shopify (merchant‑owned storefronts), and cross‑border platforms like Temu and Shein [signals.ai](https://signals.ai/reports/amzn).  \n- **Cloud:** Microsoft Azure and Google Cloud are the primary scaled rivals; Azure is cited as the “principal public competitor” for cloud workloads [dyorhq.ai](https://dyorhq.ai/reports/amazoncominc)[signals.ai](https://signals.ai/reports/amzn).  \n- **Convenience/last‑mile:** Delivery platforms challenge Amazon’s speed ambitions [signals.ai](https://signals.ai/reports/amzn).  \nAmazon’s integration of Prime, marketplace, fulfillment, advertising and AWS creates a unique bundle; competitors can underprice individual services, but the breadth is hard to replicate [signals.ai](https://signals.ai/reports/amzn).\n\n## 6. Likely strategic priorities and open questions\nThe strategic arc centers on making retail more efficient (regional inventory, automation, faster delivery), feeding cloud and AI growth (custom chips, generative‑AI services, new data centres), and layering advertising across the platform [signals.ai](https://signals.ai/reports/amzn).  \n\n**Open questions:**  \n- Can the historic $220 bn capex build generate adequate returns, especially if AI demand moderates?  \n- Will Amazon Leo satellite broadband move from initial rollout to a profitable mass‑market service?  \n- Can Zoox scale paid autonomous rides beyond Las Vegas?  \n- How will regulators respond to Amazon’s combined scale in retail, logistics, cloud and advertising?",
+      "error": null,
+      "latency": 51.65437694099998,
+      "prompt_tokens": 2454,
+      "completion_tokens": 3242,
+      "cost": 0.0107007789,
+      "citations": [
+        {
+          "url": "https://investomine.substack.com/p/business-breakdown-amazon-explained",
+          "title": "Business Breakdown: Amazon Explained: Stores, Sellers, AWS, Media and New Bets",
+          "content": "An independent merchant can list a product in Amazon’s marketplace. Amazon earns a commission and may separately charge the merchant for storage, picking, packing, fulfillment and shipping under programs such as Fulfillment by Amazon. It is not the seller of record for those third-party goods: Amazon reports its fees, not the full value of a seller’s merchandise, in third-party seller services. These fees rise with services rendered and orders completed. Seller selection strengthens the store without Amazon having to own every item of inventory. 2025 Form 10-K, third-party seller accounting.\n\n...\n\nAmazon Leo, previously called Project Kuiper, aims to provide satellite broadband through a constellation, ground systems and customer equipment. Potential payers include households, telecommunications partners, airlines, enterprises and governments. Amazon reported nearly 400 satellites in orbit, 14 completed missions and six additional Arianespace launches under contract in its September 2026 update. It was preparing for an initial service rollout later in 2026; the update did not establish completed mass-market service. Customer commitments are evidence of prospective demand, not automatically recognized service sales. Amazon Leo, September 2026 update.\n\n...\n\nZoox develops purpose-built electric robotaxis and an autonomous ride service. In July 2026, Amazon said a US regulatory exemption would allow Zoox to charge for rides. Zoox subsequently announced a 10 August launch of paid Las Vegas rides, and reporting in September confirmed commercial service extending to the Las Vegas airport. Its fares combine a base amount with travel time and distance. Limited access in some other cities should not be described as paid service. Vehicles, autonomous-driving engineering, fleet operations, safety and expansion create costs. Zoox generates fare revenue in Las Vegas, but Amazon does not separately publish its fare amount or operating profit or loss. Q2 2026 Amazon release, regulatory"
+        },
+        {
+          "url": "https://signals.ai/reports/amzn",
+          "title": "Amazon.com, Inc. (AMZN) Deep Dive Research Report | Signals.AI",
+          "content": "Amazon combines a large retail marketplace with cloud computing, advertising, subscriptions, and delivery services. The key business question is how much of each sale requires Amazon to own inventory and build infrastructure, versus earning fees from services that use its platform.\n\n...\n\nAmazon is a Seattle-based, multi-business platform led by CEO Andrew R. Jassy. Founded in 1994, the company employed approximately 1,576,000 full- and part-time workers as of December 31, 2025. Its operations are organized into North America, International, and Amazon Web Services segments, serving consumers, sellers, developers, enterprises, content creators, and advertisers. Per the FY2025 10-K.\n\n...\n\nThe business sells consumer products through online and physical stores, offers cloud infrastructure through Amazon Web Services, and monetizes traffic and participation through seller services, advertising, subscriptions, digital content, and other services. Customers reach Amazon through websites, mobile applications, voice-enabled devices, streaming services, physical stores, and fulfillment networks.\n\n...\n\nAmazon earns through both gross product sales and service fees layered onto retail, logistics, media, and cloud infrastructure. Source: FY2025 10-K, Item 1 and Note 1; 2021 Annual Report business description\n\n...\n\nRetail has two distinct ownership models. Amazon buys and resells products in its own stores, recognizing the gross product sale. Third-party sellers retain ownership of their inventory, while Amazon earns commissions and related fulfillment and shipping fees; those arrangements are recognized as service sales. The distinction affects reported revenue, working capital, and the amount of inventory risk attached to each transaction. Per the FY2025 10-K, Note 1.\n\n...\n\nPrime is monetized through membership fees recognized over the subscription period, while digital video, music, audiobooks, and books are included in subscription or other content arrangements depending on the offering. Advertising is a separate service, with revenue recognized as sponsored, display, or video ads generate clicks or impressions. Amazon Web Services is also a separate service stream, billed primarily as customers consume compute, storage, databases, analytics, and other technology capacity, with some services sold for fixed quantities over contract terms. Per the FY2025 10-K, Note 1.\n\n...\n\nStrategic arc: The last three years have been about making the retail engine more efficient while directing more resources toward cloud computing and artificial intelligence. Management has described lower fulfillment cost, regionalized inventory placement, automation, and faster delivery as the retail priorities, while cloud strategy has centered on generative-artificial-intelligence services, custom chips, and new infrastructure capacity. Advertising has become another monetization layer across the shopping platform, and the company continues to position adjacent efforts such as satellites, quick commerce, and everyday essentials as longer-term growth investments.\n\n...\n\nAmazon combines a long-tenured senior team with a strategy that is becoming more capital intensive. The 2026 Form 10-K identifies Andrew R. Jassy as president and chief executive officer, Jeffrey P. Bezos as executive chair, and Matthew S. Garman as chief executive of Amazon Web Services. The board listed in the filing has 12 directors, with Bezos serving as executive chair and Jassy serving as chief executive officer.\n\n...\n\nThe central tension is visible in management's latest operating plan: AWS is expanding quickly, but the company expects to commit approximately $220.00B to cash capital expenditures in FY2026, primarily for artificial intelligence and cloud infrastructure. Management describes this spending as a long-cycle investment whose cash returns depend on bringing data centers and computing capacity online ahead of demand.\n\n...\n\n| Pillar | Objective | Stated targets with numbers and dates | Source |\n| --- | --- | --- | --- |\n| Customer obsession | Improve selection, price, convenience, delivery speed, and customer trust across stores and subscriptions. | More than 40% year-over-year growth in items delivered same day or overnight during the first half of FY2026; Amazon Now available in 9 countries and more than 250 cities and towns in Q2 FY2026. | FY2025 Form 10-K; Q2 FY2026 earnings call, July 30, 2026 [15][16] |\n| Passion for invention | Build new businesses and services in artificial intelligence, custom chips, advertising, logistics, connectivity, and digital experiences. | AWS chips annual revenue run rate above $25.00B and artificial-intelligence revenue annual revenue run rate above $25.00B in Q2 FY2026; nearly 400 Amazon Leo satellites in orbit by Q2 FY2026. | FY2025 Form 10-K; Q2 FY2026 earnings call, July 30, 2026 [15][16] |\n| Operational excellence | Lower the cost per unit while improving fulfillment speed, capacity utilization, and service reliability. | More than double the fleet of robotic arms in FY2026; management said shipping costs, excluding fuel and linehaul pressures, were growing more slowly than worldwide unit volume in Q2 FY2026. | Q2 FY2026 earnings call, July 30, 2026 [16] |\n| Long-term, sustainable free cash flow | Use operating-income growth and working-capital efficiency to fund investments that improve customer experience and expand infrastructure. | Management expects cash capital expenditures of approximately $220.00B in FY2026, up from its earlier estimate of approximately $200.00B, with the majority directed to artificial intelligence and AWS. | FY2025 Form 10-K; Q2 FY2026 earnings call, July 30, 2026 [15][16] |\n| AWS scale and monetization | Expand core cloud services and artificial-intelligence infrastructure while improving the return profile of new capacity. | AWS reached a $169.00B annualized revenue run rate in Q2 FY2026; servers and networking equipment typically reach break-even in slightly less than three years, while data centers are expected to operate for more than 30 years. | Q2 FY2026 earnings call, July 30, 2026 [16] |\n\n...\n\nAWS is the clearest financial engine behind the strategy. In Q2 FY2026, AWS revenue reached $42.23B and grew 36.7% year over year, while AWS operating income reached $16.62B. Management linked artificial-intelligence demand to additional consumption of core computing,\n\n...\n\n> Our read: Recent competitor actions matter by segment rather than as one unified threat: Walmart and low-price marketplaces pressure retail and seller economics, Microsoft and Alphabet contest cloud and artificial intelligence workloads, and delivery platforms challenge convenience and last-mile density. The exhibit should be read alongside Amazon’s Q2 FY2026 evidence of faster delivery, Amazon Now expansion, AWS growth, and advertising growth, which show where the company is responding through service breadth and infrastructure spending.\n\n...\n\nCompetition is most direct in retail and cloud. Walmart competes through store density, everyday-low-price positioning, marketplace services, and Walmart Fulfillment Services; Shopify gives merchants a way to own their storefront and customer relationship; Alibaba, Temu, Shein, and other cross-border platforms compete on selection and low prices. In cloud, Microsoft Azure and Google Cloud remain the primary scaled rivals, while Oracle and specialized infrastructure providers compete for selected workloads.\n\n...\n\nAmazon’s advantages are unusually integrated: Prime combines shipping and content, the marketplace increases selection, fulfillment improves delivery speed, advertising monetizes shopping intent, and AWS supplies a separate enterprise technology platform. The exposures are equally clear: competitors can underprice individual services, enterprise customers can use multiple clouds, suppliers of advanced chips and power can constrain capacity, and regulators can challenge the use of scale across adjacent markets."
+        },
+        {
+          "url": "https://pitchgrade.com/companies/amazon",
+          "title": "Amazon: Business Model, SWOT Analysis, and Competitors 2026 - PitchGrade",
+          "content": "services, and logistics. While e-commerce generates the majority of revenue (~50%), it operates at thin margins. AWS — Amazon's cloud arm — generates roughly 17% of revenue but accounts for the majority of operating profit, with margins around 37%."
+        },
+        {
+          "url": "https://www.deepresearchglobal.com/p/amazon-amzn-fundamental-analysis-report",
+          "title": "Amazon (AMZN) - Fundamental Analysis Report 2026 (Updated)",
+          "content": "The third pillar is AWS, an infrastructure-as-a-service business that sells compute, storage, networking, AI, and managed software services to enterprises, governments, and developers worldwide. AWS continues to hold the largest share of global cloud"
+        },
+        {
+          "url": "https://dyorhq.ai/reports/amazoncominc",
+          "title": "DYOR HQ - Amazon.com Inc (AMZN) | 2026-10-04",
+          "content": "- Bedrock and Trainium in cloud, Rufus and agentic shopping in retail, and personalised advertising across the lot. A key disclosure from regulatory filings is that Microsoft Azure remains the principal public competitor for cloud workloads, with AI capex"
+        }
+      ],
+      "usage": {
+        "completion_tokens": 3242,
+        "prompt_tokens": 2454,
+        "total_tokens": 5696,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 2051,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.0107007789,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0037007789,
+          "upstream_inference_prompt_cost": 0.0010160787,
+          "upstream_inference_completions_cost": 0.0026847002
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "anthropic/claude-sonnet-5.5",
+      "run": 2,
+      "ok": true,
+      "answer": "# Amazon Briefing (as of Oct 12, 2026)\n\n## 1. What they do, who buys it, how they make money\nAmazon's mission is to make customers' lives better and easier through broad selection, value, and convenience, spanning online shopping and cloud computing ([aboutamazon.com](https://www.aboutamazon.com/about-us)). It reports three segments: North America, International (both retail), and AWS ([investopedia.com](https://www.investopedia.com/how-amazon-makes-money-4587523)). Revenue comes from:\n- **Retail:** first-party resale, plus commissions and fulfillment fees from third-party sellers.\n- **Prime subscriptions.**\n- **Advertising.**\n- **AWS:** usage-based cloud billing ([signals.ai](https://signals.ai/reports/amzn)).\n\nBuyers include consumers, sellers, advertisers, and businesses, government agencies, and academic institutions using AWS ([investopedia.com](https://www.investopedia.com/how-amazon-makes-money-4587523)).\n\n## 2. Recent news and launches\n- **April 2026:** Amazon invested $5B more in Anthropic ([wikipedia.org](https://en.wikipedia.org/wiki/Amazon_(company))).\n- **May 2026:** It launched \"Alexa for Shopping,\" combining Rufus and Alexa+ ([investopedia.com](https://www.investopedia.com/how-amazon-makes-money-4587523)).\n- **Q2 FY2026 call (July 30):** Amazon Now was in 9 countries and 250+ cities, nearly 400 Amazon Leo satellites were in orbit, and capex guidance rose to about $220B ([signals.ai](https://signals.ai/reports/amzn)).\n\n## 3. Funding, size, and financial signals\nAmazon is public, so I found no funding rounds. It is an investor, notably in Anthropic.\n- **Q1 2026:** Net sales were $181.5B (+16.6%) and net income was $30.3B ([investopedia.com](https://www.investopedia.com/how-amazon-makes-money-4587523)). AWS sales were $37.6B (+28%), and AWS operating income was $14.2B, about 59% of the company total ([investopedia.com](https://www.investopedia.com/how-amazon-makes-money-4587523)).\n- **Q2 2026:** AWS hit a $169B annualized run rate. AWS chips and AI each exceeded a $25B run rate ([signals.ai](https://signals.ai/reports/amzn)).\n- **Capex:** About $220B is planned for FY2026, mostly AI and AWS, up from about $200B ([signals.ai](https://signals.ai/reports/amzn)).\n- **Not found:** Q2 total revenue and income figures were not in my sources.\n\n## 4. Leadership\nAndrew Jassy is president and CEO, Jeff Bezos is executive chair, and Matt Garman is AWS CEO. The board has 12 directors ([signals.ai](https://signals.ai/reports/amzn)). I did not find retail or advertising leadership in these sources.\n\n## 5. Main competitors and how they differ\n- **Retail:** Walmart competes on store density and everyday low prices. Shopify lets merchants own the customer relationship. Alibaba, Temu, and Shein compete on selection and low prices ([signals.ai](https://signals.ai/reports/amzn)).\n- **Cloud:** Microsoft Azure and Google Cloud are the main scaled rivals. Oracle and specialized providers compete for select workloads ([signals.ai](https://signals.ai/reports/amzn)). AWS holds roughly a third of the global cloud market ([investopedia.com](https://www.investopedia.com/how-amazon-makes-money-4587523)).\n- **Amazon's differentiator:** Prime, marketplace, fulfillment, advertising, and AWS are integrated ([signals.ai](https://signals.ai/reports/amzn)).\n\n## 6. Likely strategic priorities and open questions\n**Priorities:**\n- Scaling AI and cloud capacity, including custom chips.\n- Faster, cheaper retail fulfillment, with robotic arms expected to more than double in FY2026.\n- Embedding generative AI in shopping.\n- Longer-term bets such as satellites and quick commerce ([signals.ai](https://signals.ai/reports/amzn)).\n\n**Open questions:**\n- **Returns on capex:** Cash returns depend on bringing capacity online ahead of demand ([signals.ai](https://signals.ai/reports/amzn)). Management says servers break even in just under three years, while data centers last 30+ years.\n- **Constraints:** Chip and power supply could limit capacity.\n- **Multi-cloud:** Customers may spread workloads across providers.\n- **Regulation:** Regulators may challenge Amazon's scale across adjacent markets ([signals.ai](https://signals.ai/reports/amzn)).\n- **AI partner concentration:** Amazon has deep ties to Anthropic, and OpenAI agreed in November 2025 to pay AWS $38B ([britannica.com](https://www.britannica.com/money/Amazoncom)). It is unclear how these relationships balance.",
+      "error": null,
+      "latency": 15.911168777,
+      "prompt_tokens": 4066,
+      "completion_tokens": 2264,
+      "cost": 0.037772,
+      "citations": [
+        {
+          "url": "https://www.aboutamazon.com/about-us",
+          "title": "About Amazon: Mission, businesses, and innovation",
+          "content": "’s mission is to make customers’ lives better and easier every day by relentlessly inventing on their behalf. We work to provide broad selection, value, and convenience across a range of customer experiences, including online shopping, cloud computing,"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Amazon_(company)",
+          "title": "Amazon (company)",
+          "content": "partner and began using Amazon's Trainium and Inferentia chips. Anthropic Claude models became available on Amazon Bedrock. In March 2024, Amazon invested a further $2.75B. In November, Amazon invested $4B more. In April 2026, Amazon invested $5B. [73]"
+        },
+        {
+          "url": "https://www.investopedia.com/how-amazon-makes-money-4587523",
+          "title": "How Amazon Makes Money",
+          "content": "- Amazon makes money through retail, subscriptions, and web services, among other channels.\n- Retail remains Amazon’s primary source of revenue, with online and physical stores together accounting for the biggest share.\n- Amazon Web Services (AWS) currently generates the majority of Amazon’s operating income and is growing at a robust pace.\n\n...\n\nAmazon’s rivals include Walmart Inc. (WMT) and Alibaba Group Holding Ltd. (BABA).\n\n...\n\nFor Q1 2026, Amazon posted total net sales of $181.5 billion, an increase of 16.61% from the same period in 2025. The company posted net income of $30.3 billion, an increase of 76.65%. The increase in net income comes from growth in net sales, with a smaller increase in operating expenses; in short, the company was able to grow net sales while keeping operating expenses down. 1\n\n...\n\nAmazon divides its business into three segments: North America, International, and AWS (Amazon Web Services). The first two of these segments, North America and International, refer to geographical breakdowns of Amazon’s retail business. They generate revenue from retail sales in North America and the rest of the world, as well as from subscriptions, advertising, and export sales for those areas. The AWS segment consists of Amazon’s cloud services business. 2\n\n...\n\nRetail can be broken down further into online stores, comprising the bulk of sales, and physical stores. Companywide, online stores accounted for $64.3 billion in sales in Q1 2026, while physical stores generated $5.8 billion in sales. 3\n\n...\n\nAmazon Web Services (AWS), launched in 2006, provides cloud services to businesses, government agencies, and academic institutions to store information and deliver content. AWS provides an infrastructure platform in the cloud for a variety of solutions, such as hosting applications and websites, providing enterprise information technology (IT), and content delivery. 5\n\n...\n\nAmazon controls about a third of the global cloud market, substantially more than its next closest competitor. AWS’s biggest rivals are Microsoft Corp.’s (MSFT) Azure and Alphabet Inc.’s (GOOGL) Google Cloud.\n\n...\n\nAmazon’s AWS segment generated net sales of $37.6 billion for Q1 2026, an increase of 28.43%. It accounted for 20.71% of total net sales. Operating income for the segment was $14.2 billion, an increase of 22.64%. The segment accounted for 59.37% of operating income in Q1 2026. 4\n\n...\n\nIn April 2025, Amazon launched its first full batch of 27 satellites for its Project Kuiper, Amazon's satellite Internet business, which provides high-speed, low-latency Internet to any location on the planet. It's meant to compete with SpaceX's Starlink. This business could become a future revenue stream for Amazon through Internet services and cloud connectivity. 6\n\n...\n\nIn May 2026, Amazon introduced \"Alexa for Shopping,\" a new AI-powered shopping assistant that combines its Rufus shopping chatbot with Alexa+. The tool will help consumers compare products, track prices, automate purchases, and receive personalized recommendations from Amazon's app, website, and Echo devices. The release aligns with Amazon's goals of incorporating generative AI into its services, primarily to increase e-commerce sales. 7"
+        },
+        {
+          "url": "https://www.britannica.com/money/Amazoncom",
+          "title": "Amazon | E-commerce, Amazon Web Services, History, & ...",
+          "content": "In November 2025, OpenAI agreed to pay Amazon Web Services (AWS) $38 billion for the use of cloud\n\n...\n\nBut in 2023, Amazon—and the rest of the tech world—turned attention toward generative artificial intelligence (GenAI) and large language models (LLMs), following the 2022 launch of OpenAI’s ChatGPT. In September 2023, Amazon agreed to invest $4 billion in AI start-up"
+        },
+        {
+          "url": "https://signals.ai/reports/amzn",
+          "title": "Amazon.com, Inc. (AMZN) Deep Dive Research Report | Signals.AI",
+          "content": "Retail has two distinct ownership models. Amazon buys and resells products in its own stores, recognizing the gross product sale. Third-party sellers retain ownership of their inventory, while Amazon earns commissions and related fulfillment and shipping fees; those arrangements are recognized as service sales. The distinction affects reported revenue, working capital, and the amount of inventory risk attached to each transaction. Per the FY2025 10-K, Note 1.\n\n...\n\nPrime is monetized through membership fees recognized over the subscription period, while digital video, music, audiobooks, and books are included in subscription or other content arrangements depending on the offering. Advertising is a separate service, with revenue recognized as sponsored, display, or video ads generate clicks or impressions. Amazon Web Services is also a separate service stream, billed primarily as customers consume compute, storage, databases, analytics, and other technology capacity, with some services sold for fixed quantities over contract terms. Per the FY2025 10-K, Note 1.\n\n...\n\nStrategic arc: The last three years have been about making the retail engine more efficient while directing more resources toward cloud computing and artificial intelligence. Management has described lower fulfillment cost, regionalized inventory placement, automation, and faster delivery as the retail priorities, while cloud strategy has centered on generative-artificial-intelligence services, custom chips, and new infrastructure capacity. Advertising has become another monetization layer across the shopping platform, and the company continues to position adjacent efforts such as satellites, quick commerce, and everyday essentials as longer-term growth investments.\n\n...\n\nAmazon combines a long-tenured senior team with a strategy that is becoming more capital intensive. The 2026 Form 10-K identifies Andrew R. Jassy as president and chief executive officer, Jeffrey P. Bezos as executive chair, and Matthew S. Garman as chief executive of Amazon Web Services. The board listed in the filing has 12 directors, with Bezos serving as executive chair and Jassy serving as chief executive officer.\n\n...\n\nThe central tension is visible in management's latest operating plan: AWS is expanding quickly, but the company expects to commit approximately $220.00B to cash capital expenditures in FY2026, primarily for artificial intelligence and cloud infrastructure. Management describes this spending as a long-cycle investment whose cash returns depend on bringing data centers and computing capacity online ahead of demand.\n\n...\n\n| Pillar | Objective | Stated targets with numbers and dates | Source |\n| --- | --- | --- | --- |\n| Customer obsession | Improve selection, price, convenience, delivery speed, and customer trust across stores and subscriptions. | More than 40% year-over-year growth in items delivered same day or overnight during the first half of FY2026; Amazon Now available in 9 countries and more than 250 cities and towns in Q2 FY2026. | FY2025 Form 10-K; Q2 FY2026 earnings call, July 30, 2026 [15][16] |\n| Passion for invention | Build new businesses and services in artificial intelligence, custom chips, advertising, logistics, connectivity, and digital experiences. | AWS chips annual revenue run rate above $25.00B and artificial-intelligence revenue annual revenue run rate above $25.00B in Q2 FY2026; nearly 400 Amazon Leo satellites in orbit by Q2 FY2026. | FY2025 Form 10-K; Q2 FY2026 earnings call, July 30, 2026 [15][16] |\n| Operational excellence | Lower the cost per unit while improving fulfillment speed, capacity utilization, and service reliability. | More than double the fleet of robotic arms in FY2026; management said shipping costs, excluding fuel and linehaul pressures, were growing more slowly than worldwide unit volume in Q2 FY2026. | Q2 FY2026 earnings call, July 30, 2026 [16] |\n| Long-term, sustainable free cash flow | Use operating-income growth and working-capital efficiency to fund investments that improve customer experience and expand infrastructure. | Management expects cash capital expenditures of approximately $220.00B in FY2026, up from its earlier estimate of approximately $200.00B, with the majority directed to artificial intelligence and AWS. | FY2025 Form 10-K; Q2 FY2026 earnings call, July 30, 2026 [15][16] |\n| AWS scale and monetization | Expand core cloud services and artificial-intelligence infrastructure while improving the return profile of new capacity. | AWS reached a $169.00B annualized revenue run rate in Q2 FY2026; servers and networking equipment typically reach break-even in slightly less than three years, while data centers are expected to operate for more than 30 years. | Q2 FY2026 earnings call, July 30, 2026 [16] |\n\n...\n\n> Our read: Recent competitor actions matter by segment rather than as one unified threat: Walmart and low-price marketplaces pressure retail and seller economics, Microsoft and Alphabet contest cloud and artificial intelligence workloads, and delivery platforms challenge convenience and last-mile density. The exhibit should be read alongside Amazon’s Q2 FY2026 evidence of faster delivery, Amazon Now expansion, AWS growth, and advertising growth, which show where the company is responding through service breadth and infrastructure spending.\n\n...\n\nCompetition is most direct in retail and cloud. Walmart competes through store density, everyday-low-price positioning, marketplace services, and Walmart Fulfillment Services; Shopify gives merchants a way to own their storefront and customer relationship; Alibaba, Temu, Shein, and other cross-border platforms compete on selection and low prices. In cloud, Microsoft Azure and Google Cloud remain the primary scaled rivals, while Oracle and specialized infrastructure providers compete for selected workloads.\n\n...\n\nAmazon’s advantages are unusually integrated: Prime combines shipping and content, the marketplace increases selection, fulfillment improves delivery speed, advertising monetizes shopping intent, and AWS supplies a separate enterprise technology platform. The exposures are equally clear: competitors can underprice individual services, enterprise customers can use multiple clouds, suppliers of advanced chips and power can constrain capacity, and regulators can challenge the use of scale across adjacent markets."
+        }
+      ],
+      "usage": {
+        "completion_tokens": 2264,
+        "prompt_tokens": 4066,
+        "total_tokens": 6330,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 484,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.037772,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.030772,
+          "upstream_inference_prompt_cost": 0.008132,
+          "upstream_inference_completions_cost": 0.02264
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "google/gemini-3.8-flash",
+      "run": 2,
+      "ok": true,
+      "answer": "### 1. What They Do, Who Buys It, & How They Make Money\nAmazon operates a global commerce, cloud, and digital services ecosystem serving consumers, third-party sellers, enterprises, developers, and advertisers [sec-api.io](https://sec-api.io/insights/financial-analysis-of-amazon-fy2025-and-the-first-half-of-2026). It monetizes via:\n* **Retail & Marketplace:** Direct first-party product sales (gross revenue) and commissions, fulfillment (FBA), and shipping fees charged to third-party merchants [signals.ai](https://signals.ai/reports/amzn).\n* **AWS:** Consumption- and subscription-based enterprise cloud infrastructure, compute, storage, databases, and AI services [signals.ai](https://signals.ai/reports/amzn).\n* **Advertising & Subscriptions:** High-margin sponsored ads, video/display impressions, and Prime membership subscriptions [signals.ai](https://signals.ai/reports/amzn).\n\n### 2. Recent News & Launches\n* **Zoox Commercial Launch:** Following a July 2026 U.S. regulatory exemption, autonomous vehicle unit Zoox launched paid robotaxi rides in Las Vegas in August 2026, expanding routes to the Las Vegas airport by September [investomine.substack.com](https://investomine.substack.com/p/business-breakdown-amazon-explained).\n* **Amazon Leo (Project Kuiper):** Surpassed nearly 400 satellites in orbit across 14 missions by September 2026 ahead of an initial commercial satellite broadband rollout [investomine.substack.com](https://investomine.substack.com/p/business-breakdown-amazon-explained).\n* **Amazon Supply Chain Services:** Expanded logistics offerings in Q2 2026 to service external business customers outside Amazon's own marketplace [investomine.substack.com](https://investomine.substack.com/p/business-breakdown-amazon-explained).\n\n### 3. Funding, Size, & Financial Signals\n* **Revenue Base:** Generated $716.9B in net sales in FY2025, led by Online Stores ($269.3B), 3P Seller Services ($172.2B), and AWS ($128.7B) [sec-api.io](https://sec-api.io/insights/financial-analysis-of-amazon-fy2025-and-the-first-half-of-2026).\n* **AWS & AI Scale:** AWS reached a $169B annualized revenue run rate in Q2 2026 [signals.ai](https://signals.ai/reports/amzn). Both AWS custom chips and dedicated AI services reached individual annual run rates exceeding $25B [signals.ai](https://signals.ai/reports/amzn).\n* **CapEx Acceleration:** Management raised projected FY2026 cash capital expenditures to approximately $220B, driven heavily by cloud and AI data center infrastructure [signals.ai](https://signals.ai/reports/amzn).\n\n### 4. Leadership\n* **Andy Jassy:** President and Chief Executive Officer [signals.ai](https://signals.ai/reports/amzn).\n* **Jeff Bezos:** Founder and Executive Chair of the 12-member Board of Directors [signals.ai](https://signals.ai/reports/amzn).\n* **Matt Garman:** Chief Executive Officer of Amazon Web Services (AWS) [signals.ai](https://signals.ai/reports/amzn).\n\n### 5. Main Competitors & How They Differ\n* **Retail & Marketplace:** Walmart (competes via store density and everyday low prices), Shopify (enables direct-to-consumer independence), and low-price cross-border platforms like Temu and Shein [signals.ai](https://signals.ai/reports/amzn). Amazon differentiates through unmatched delivery speeds and integrated Prime ecosystem benefits [signals.ai](https://signals.ai/reports/amzn).\n* **Cloud & AI:** Microsoft Azure and Google Cloud [signals.ai](https://signals.ai/reports/amzn). Amazon differentiates with proprietary silicon (Trainium/Inferentia) and extensive enterprise infrastructure breadth, though enterprise multi-cloud adoption remains a challenge [signals.ai](https://signals.ai/reports/amzn).\n\n### 6. Likely Strategic Priorities & Open Questions\n* **Strategic Priorities:** Accelerating AI hardware/model infrastructure deployments; commercializing Amazon Leo satellite connectivity; and continuing warehouse robotics automation to lower per-unit fulfillment costs [signals.ai](https://signals.ai/reports/amzn).\n* **Open Questions:** How quickly will the massive ~$220B FY2026 CapEx deliver accretive free cash flow returns [signals.ai](https://signals.ai/reports/amzn)? How will retail margins hold up against intense discounting from cross-border e-commerce platforms [signals.ai](https://signals.ai/reports/amzn)?",
+      "error": null,
+      "latency": 24.548339365999993,
+      "prompt_tokens": 2709,
+      "completion_tokens": 2961,
+      "cost": 0.0201355,
+      "citations": [
+        {
+          "url": "https://signals.ai/reports/amzn",
+          "title": "Amazon.com, Inc. (AMZN) Deep Dive Research Report | Signals.AI",
+          "content": "Retail has two distinct ownership models. Amazon buys and resells products in its own stores, recognizing the gross product sale. Third-party sellers retain ownership of their inventory, while Amazon earns commissions and related fulfillment and shipping fees; those arrangements are recognized as service sales. The distinction affects reported revenue, working capital, and the amount of inventory risk attached to each transaction. Per the FY2025 10-K, Note 1.\n\n...\n\nPrime is monetized through membership fees recognized over the subscription period, while digital video, music, audiobooks, and books are included in subscription or other content arrangements depending on the offering. Advertising is a separate service, with revenue recognized as sponsored, display, or video ads generate clicks or impressions. Amazon Web Services is also a separate service stream, billed primarily as customers consume compute, storage, databases, analytics, and other technology capacity, with some services sold for fixed quantities over contract terms. Per the FY2025 10-K, Note 1.\n\n...\n\nAmazon combines a long-tenured senior team with a strategy that is becoming more capital intensive. The 2026 Form 10-K identifies Andrew R. Jassy as president and chief executive officer, Jeffrey P. Bezos as executive chair, and Matthew S. Garman as chief executive of Amazon Web Services. The board listed in the filing has 12 directors, with Bezos serving as executive chair and Jassy serving as chief executive officer.\n\n...\n\nThe central tension is visible in management's latest operating plan: AWS is expanding quickly, but the company expects to commit approximately $220.00B to cash capital expenditures in FY2026, primarily for artificial intelligence and cloud infrastructure. Management describes this spending as a long-cycle investment whose cash returns depend on bringing data centers and computing capacity online ahead of demand.\n\n...\n\n| Pillar | Objective | Stated targets with numbers and dates | Source |\n| --- | --- | --- | --- |\n| Customer obsession | Improve selection, price, convenience, delivery speed, and customer trust across stores and subscriptions. | More than 40% year-over-year growth in items delivered same day or overnight during the first half of FY2026; Amazon Now available in 9 countries and more than 250 cities and towns in Q2 FY2026. | FY2025 Form 10-K; Q2 FY2026 earnings call, July 30, 2026 [15][16] |\n| Passion for invention | Build new businesses and services in artificial intelligence, custom chips, advertising, logistics, connectivity, and digital experiences. | AWS chips annual revenue run rate above $25.00B and artificial-intelligence revenue annual revenue run rate above $25.00B in Q2 FY2026; nearly 400 Amazon Leo satellites in orbit by Q2 FY2026. | FY2025 Form 10-K; Q2 FY2026 earnings call, July 30, 2026 [15][16] |\n| Operational excellence | Lower the cost per unit while improving fulfillment speed, capacity utilization, and service reliability. | More than double the fleet of robotic arms in FY2026; management said shipping costs, excluding fuel and linehaul pressures, were growing more slowly than worldwide unit volume in Q2 FY2026. | Q2 FY2026 earnings call, July 30, 2026 [16] |\n| Long-term, sustainable free cash flow | Use operating-income growth and working-capital efficiency to fund investments that improve customer experience and expand infrastructure. | Management expects cash capital expenditures of approximately $220.00B in FY2026, up from its earlier estimate of approximately $200.00B, with the majority directed to artificial intelligence and AWS. | FY2025 Form 10-K; Q2 FY2026 earnings call, July 30, 2026 [15][16] |\n| AWS scale and monetization | Expand core cloud services and artificial-intelligence infrastructure while improving the return profile of new capacity. | AWS reached a $169.00B annualized revenue run rate in Q2 FY2026; servers and networking equipment typically reach break-even in slightly less than three years, while data centers are expected to operate for more than 30 years. | Q2 FY2026 earnings call, July 30, 2026 [16] |\n\n...\n\n> Our read: Recent competitor actions matter by segment rather than as one unified threat: Walmart and low-price marketplaces pressure retail and seller economics, Microsoft and Alphabet contest cloud and artificial intelligence workloads, and delivery platforms challenge convenience and last-mile density. The exhibit should be read alongside Amazon’s Q2 FY2026 evidence of faster delivery, Amazon Now expansion, AWS growth, and advertising growth, which show where the company is responding through service breadth and infrastructure spending.\n\n...\n\nCompetition is most direct in retail and cloud. Walmart competes through store density, everyday-low-price positioning, marketplace services, and Walmart Fulfillment Services; Shopify gives merchants a way to own their storefront and customer relationship; Alibaba, Temu, Shein, and other cross-border platforms compete on selection and low prices. In cloud, Microsoft Azure and Google Cloud remain the primary scaled rivals, while Oracle and specialized infrastructure providers compete for selected workloads.\n\n...\n\nAmazon’s advantages are unusually integrated: Prime combines shipping and content, the marketplace increases selection, fulfillment improves delivery speed, advertising monetizes shopping intent, and AWS supplies a separate enterprise technology platform. The exposures are equally clear: competitors can underprice individual services, enterprise customers can use multiple clouds, suppliers of advanced chips and power can constrain capacity, and regulators can challenge the use of scale across adjacent markets."
+        },
+        {
+          "url": "https://investomine.substack.com/p/business-breakdown-amazon-explained",
+          "title": "Business Breakdown: Amazon Explained: Stores, Sellers, AWS, Media and New Bets",
+          "content": "An independent merchant can list a product in Amazon’s marketplace. Amazon earns a commission and may separately charge the merchant for storage, picking, packing, fulfillment and shipping under programs such as Fulfillment by Amazon. It is not the seller of record for those third-party goods: Amazon reports its fees, not the full value of a seller’s merchandise, in third-party seller services. These fees rise with services rendered and orders completed. Seller selection strengthens the store without Amazon having to own every item of inventory. 2025 Form 10-K, third-party seller accounting.\n\n...\n\nThe delivery system operates across both models. Warehouses, local delivery facilities, routing software, vehicles and people move Amazon-owned products and sellers’ products; fast service also makes Prime more useful. In the second quarter of 2026, Amazon said it launched Amazon Supply Chain Services for external business customers, extending its network beyond sales on Amazon. The financial return from that newer offering is not separately reported. Robotics such as Proteus can lower handling effort or improve safety, but an internal robot’s savings are part of operations, not a separate public robot-sales line. Q2 2026 company release, supply chain and Proteus.\n\n...\n\nAmazon Leo, previously called Project Kuiper, aims to provide satellite broadband through a constellation, ground systems and customer equipment. Potential payers include households, telecommunications partners, airlines, enterprises and governments. Amazon reported nearly 400 satellites in orbit, 14 completed missions and six additional Arianespace launches under contract in its September 2026 update. It was preparing for an initial service rollout later in 2026; the update did not establish completed mass-market service. Customer commitments are evidence of prospective demand, not automatically recognized service sales. Amazon Leo, September 2026 update.\n\n...\n\nZoox develops purpose-built electric robotaxis and an autonomous ride service. In July 2026, Amazon said a US regulatory exemption would allow Zoox to charge for rides. Zoox subsequently announced a 10 August launch of paid Las Vegas rides, and reporting in September confirmed commercial service extending to the Las Vegas airport. Its fares combine a base amount with travel time and distance. Limited access in some other cities should not be described as paid service. Vehicles, autonomous-driving engineering,"
+        },
+        {
+          "url": "https://sec-api.io/insights/financial-analysis-of-amazon-fy2025-and-the-first-half-of-2026",
+          "title": "Financial analysis of Amazon, FY2025 and the first half of 2026",
+          "content": "Amazon serves seven customer sets: consumers, sellers, developers, enterprises, content creators, advertisers and employees. The recognition basis differs sharply between them, and that difference is the reason reported revenue understates the merchandise flowing through the stores. Amazon records gross revenue on goods it owns and sells, and only its net share on goods sold by third parties, for which it is not the seller of record. Seller fees are fixed fees, a percentage of sales, per unit activity fees, interest, or a combination.\n\n...\n\n| Revenue line | What is sold | Recognition basis | FY2025 net sales ($m) | Share of net sales |\n| --- | --- | --- | --- | --- |\n| Online stores | Own inventory and digital media content, with related shipping fees | Gross | 269,287 | 37.6% |\n| Third party seller services | Commissions, fulfilment and shipping fees on marketplace orders | Net share of the sale, as service revenue | 172,162 | 24.0% |\n| AWS | Compute, storage, database, analytics and machine learning services | Gross, over the service period | 128,725 | 18.0% |\n| Advertising services | Sponsored ads, display and video advertising sold to sellers, vendors, publishers and authors | Gross | 68,635 | 9.6% |\n| Subscription services | Amazon Prime membership fees and digital video, music, audiobook and digital book subscriptions | Gross, over the service period | 49,619 | 6.9% |\n| Physical stores | Goods a customer physically selects in a store | Gross | 22,561 | 3.1% |\n| Other | Shipping services, healthcare services, video content licensing and credit card agreements | Not separately disclosed | 5,935 | 0.8% |\n| Consolidated | | | 716,924 | 100.0% |"
+        },
+        {
+          "url": "https://www.deepresearchglobal.com/p/amazon-amzn-fundamental-analysis-report",
+          "title": "Amazon (AMZN) - Fundamental Analysis Report 2026 (Updated)",
+          "content": "The third pillar is AWS, an infrastructure-as-a-service business that sells compute, storage, networking, AI, and managed software services to enterprises, governments, and developers worldwide. AWS continues to hold the largest share of global cloud"
+        },
+        {
+          "url": "https://pitchgrade.com/companies/amazon",
+          "title": "Amazon: Business Model, SWOT Analysis, and Competitors 2026 - PitchGrade",
+          "content": "services, and logistics. While e-commerce generates the majority of revenue (~50%), it operates at thin margins. AWS — Amazon's cloud arm — generates roughly 17% of revenue but accounts for the majority of operating profit, with margins around 37%."
+        }
+      ],
+      "usage": {
+        "completion_tokens": 2961,
+        "prompt_tokens": 2709,
+        "total_tokens": 5670,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1853,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.0201355,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0131355,
+          "upstream_inference_prompt_cost": 0.00203175,
+          "upstream_inference_completions_cost": 0.01110375
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "run": 2,
+      "ok": true,
+      "answer": "**Briefing: Amazon.com, Inc. (AMZN)**  \nPrepared October 2026 — based on public disclosures and announcements through early Q4 2026.\n\n### 1. What they do, who buys it, and how they make money\nAmazon serves consumers, sellers, enterprises, developers, content creators, advertisers, and employees. Revenue recognition differs by business line — online stores and physical stores record gross merchandise sales, while third‑party seller services record only the net fees Amazon earns (commissions, fulfilment, shipping). In FY2025 (ended December 2025), consolidated net sales were $716.9 bn, led by online stores (37.6%), third‑party seller services (24.0%), AWS (18.0%), advertising (9.6%), subscriptions (6.9%), and physical stores (3.1%). [sec-api.io] This structure means reported revenue understates the total value of goods moving through Amazon because third‑party sales are recorded net. [signals.ai] AWS, the largest public cloud, sells compute, storage, AI, and databases on a consumption or contract basis. Advertising monetizes shopping intent; Prime bundles shipping, video, music, and more for a recurring fee.\n\n### 2. Recent news and launches (last six months)\n**Delivery & convenience**: Amazon Now, the ultrafast delivery service, was live in nine countries and more than 250 cities/towns by the end of Q2 FY2026. Items delivered same day or overnight grew more than 40% year‑over‑year in the first half of FY2026. [signals.ai]  \n**AWS & AI**: AWS reached a $169 bn annualised revenue run rate in Q2, with AI and custom‑chip revenue each above a $25 bn annual run rate. Management announced plans for approximately $220 bn in cash capital expenditures in FY2026 (up from a prior estimate of $100 bn?), mainly for AI and cloud data centres. [signals.ai]  \n**Satellite broadband (Amazon Leo)**: Nearly 400 satellites were in orbit by September 2026, with 14 completed missions and initial service rollout expected later in 2026, though mass‑market service had not yet been confirmed. [investomine.substack.com]  \n**Supply chain as a service**: Amazon Supply Chain Services was launched for external business customers, using its fulfilment network beyond Amazon’s own marketplace. [investomine.substack.com]\n\n###3. Funding, size, and financial signals\nAmazon is a public company with approximately 10.73 bn shares outstanding and a stock price of $218.94 as of early 2026. [pitchgrade.com] The business is generating substantial cash but is in a heavy investment cycle. Q2 FY2026 AWS operating income was $16.62 bn on revenue of $42.23 bn (36.7% YoY growth). [signals.ai] Management expects cash capex of ~$220 bn in FY2026, driven by AI and cloud infrastructure — a step‑up from earlier plans, with the expectation that servers break even in slightly under three years and data centres operate for more than30 years. [signals.ai] Free cash flow is being directed toward this long‑cycle expansion while operating income growth supports the investment.\n\n###4. Leadership\n- **Andrew R. Jassy** – President and Chief Executive Officer  \n- **Jeffrey P. Bezos** – Executive Chair of the Board  \n- **Matthew S. Garman** – Chief Executive Officer, Amazon Web Services  \nThe board consists of12 directors, with Bezos and Jassy serving in their respective roles. [signals.ai]\n\n###5. Main competitors and how they differ\n- **Retail**: Walmart (store density, everyday‑low‑price, marketplace and fulfilment services); Shopify (direct‑to‑consumer storefronts); cross‑border platforms Alibaba, Temu, Shein (low‑cost selection).  \n- **Cloud**: Microsoft Azure and Google Cloud are the primary scaled rivals; Oracle competes for certain workloads.  \n- **Digital offering**: Amazon’s integration of Prime, marketplace, fulfilment, advertising, and AWS creates a deep moat, but competitors can attack individual service lines, and enterprise customers often use multiple clouds. [signals.ai]\n\n###6. Likely strategic priorities and open questions\n**Priorities**: (a) Scale AWS and AI infrastructure while maintaining unit‑cost discipline and capacity ahead of demand. (b) broaden Amazon Now’s ultrafast delivery footprint. (c) Monetise Amazon Leo and new supply‑chain services. (d) Continue robotics‑led operational efficiencies (robotic arms fleet more than doubled in FY2026). [signals.ai]  \n\n**Open questions**: Will the $220 bn capex cycle generate adequate returns if AI demand shifts? Can Amazon price Leo competitively against Starlink? How will regulators view the company’s combination of scale across retail, cloud, and advertising? Are competitors like Temu and Walmart eroding marketplace seller economics?",
+      "error": null,
+      "latency": 46.21854148700001,
+      "prompt_tokens": 2465,
+      "completion_tokens": 1904,
+      "cost": 0.00959733565,
+      "citations": [
+        {
+          "url": "https://signals.ai/reports/amzn",
+          "title": "Amazon.com, Inc. (AMZN) Deep Dive Research Report | Signals.AI",
+          "content": "Retail has two distinct ownership models. Amazon buys and resells products in its own stores, recognizing the gross product sale. Third-party sellers retain ownership of their inventory, while Amazon earns commissions and related fulfillment and shipping fees; those arrangements are recognized as service sales. The distinction affects reported revenue, working capital, and the amount of inventory risk attached to each transaction. Per the FY2025 10-K, Note 1.\n\n...\n\nPrime is monetized through membership fees recognized over the subscription period, while digital video, music, audiobooks, and books are included in subscription or other content arrangements depending on the offering. Advertising is a separate service, with revenue recognized as sponsored, display, or video ads generate clicks or impressions. Amazon Web Services is also a separate service stream, billed primarily as customers consume compute, storage, databases, analytics, and other technology capacity, with some services sold for fixed quantities over contract terms. Per the FY2025 10-K, Note 1.\n\n...\n\nAmazon combines a long-tenured senior team with a strategy that is becoming more capital intensive. The 2026 Form 10-K identifies Andrew R. Jassy as president and chief executive officer, Jeffrey P. Bezos as executive chair, and Matthew S. Garman as chief executive of Amazon Web Services. The board listed in the filing has 12 directors, with Bezos serving as executive chair and Jassy serving as chief executive officer.\n\n...\n\nThe central tension is visible in management's latest operating plan: AWS is expanding quickly, but the company expects to commit approximately $220.00B to cash capital expenditures in FY2026, primarily for artificial intelligence and cloud infrastructure. Management describes this spending as a long-cycle investment whose cash returns depend on bringing data centers and computing capacity online ahead of demand.\n\n...\n\n| Pillar | Objective | Stated targets with numbers and dates | Source |\n| --- | --- | --- | --- |\n| Customer obsession | Improve selection, price, convenience, delivery speed, and customer trust across stores and subscriptions. | More than 40% year-over-year growth in items delivered same day or overnight during the first half of FY2026; Amazon Now available in 9 countries and more than 250 cities and towns in Q2 FY2026. | FY2025 Form 10-K; Q2 FY2026 earnings call, July 30, 2026 [15][16] |\n| Passion for invention | Build new businesses and services in artificial intelligence, custom chips, advertising, logistics, connectivity, and digital experiences. | AWS chips annual revenue run rate above $25.00B and artificial-intelligence revenue annual revenue run rate above $25.00B in Q2 FY2026; nearly 400 Amazon Leo satellites in orbit by Q2 FY2026. | FY2025 Form 10-K; Q2 FY2026 earnings call, July 30, 2026 [15][16] |\n| Operational excellence | Lower the cost per unit while improving fulfillment speed, capacity utilization, and service reliability. | More than double the fleet of robotic arms in FY2026; management said shipping costs, excluding fuel and linehaul pressures, were growing more slowly than worldwide unit volume in Q2 FY2026. | Q2 FY2026 earnings call, July 30, 2026 [16] |\n| Long-term, sustainable free cash flow | Use operating-income growth and working-capital efficiency to fund investments that improve customer experience and expand infrastructure. | Management expects cash capital expenditures of approximately $220.00B in FY2026, up from its earlier estimate of approximately $200.00B, with the majority directed to artificial intelligence and AWS. | FY2025 Form 10-K; Q2 FY2026 earnings call, July 30, 2026 [15][16] |\n| AWS scale and monetization | Expand core cloud services and artificial-intelligence infrastructure while improving the return profile of new capacity. | AWS reached a $169.00B annualized revenue run rate in Q2 FY2026; servers and networking equipment typically reach break-even in slightly less than three years, while data centers are expected to operate for more than 30 years. | Q2 FY2026 earnings call, July 30, 2026 [16] |\n\n...\n\nAWS is the clearest financial engine behind the strategy. In Q2 FY2026, AWS revenue reached $42.23B and grew 36.7% year over year, while AWS operating income reached $16.62B. Management linked artificial-intelligence demand to additional consumption of core computing, storage, databases, and networking services, making the strategy\n\n...\n\n> Our read: Recent competitor actions matter by segment rather than as one unified threat: Walmart and low-price marketplaces pressure retail and seller economics, Microsoft and Alphabet contest cloud and artificial intelligence workloads, and delivery platforms challenge convenience and last-mile density. The exhibit should be read alongside Amazon’s Q2 FY2026 evidence of faster delivery, Amazon Now expansion, AWS growth, and advertising growth, which show where the company is responding through service breadth and infrastructure spending.\n\n...\n\nCompetition is most direct in retail and cloud. Walmart competes through store density, everyday-low-price positioning, marketplace services, and Walmart Fulfillment Services; Shopify gives merchants a way to own their storefront and customer relationship; Alibaba, Temu, Shein, and other cross-border platforms compete on selection and low prices. In cloud, Microsoft Azure and Google Cloud remain the primary scaled rivals, while Oracle and specialized infrastructure providers compete for selected workloads.\n\n...\n\nAmazon’s advantages are unusually integrated: Prime combines shipping and content, the marketplace increases selection, fulfillment improves delivery speed, advertising monetizes shopping intent, and AWS supplies a separate enterprise technology platform. The exposures are equally clear: competitors can underprice individual services, enterprise customers can use multiple clouds, suppliers of advanced chips and power can constrain capacity, and regulators can challenge the use of scale across adjacent markets."
+        },
+        {
+          "url": "https://investomine.substack.com/p/business-breakdown-amazon-explained",
+          "title": "Business Breakdown: Amazon Explained: Stores, Sellers, AWS, Media and New Bets",
+          "content": "An independent merchant can list a product in Amazon’s marketplace. Amazon earns a commission and may separately charge the merchant for storage, picking, packing, fulfillment and shipping under programs such as Fulfillment by Amazon. It is not the seller of record for those third-party goods: Amazon reports its fees, not the full value of a seller’s merchandise, in third-party seller services. These fees rise with services rendered and orders completed. Seller selection strengthens the store without Amazon having to own every item of inventory. 2025 Form 10-K, third-party seller accounting.\n\n...\n\nThe delivery system operates across both models. Warehouses, local delivery facilities, routing software, vehicles and people move Amazon-owned products and sellers’ products; fast service also makes Prime more useful. In the second quarter of 2026, Amazon said it launched Amazon Supply Chain Services for external business customers, extending its network beyond sales on Amazon. The financial return from that newer offering is not separately reported. Robotics such as Proteus can lower handling effort or improve safety, but an internal robot’s savings are part of operations, not a separate public robot-sales line. Q2 2026 company release, supply chain and Proteus.\n\n...\n\nAmazon Leo, previously called Project Kuiper, aims to provide satellite broadband through a constellation, ground systems and customer equipment. Potential payers include households, telecommunications partners, airlines, enterprises and governments. Amazon reported nearly 400 satellites in orbit, 14 completed missions and six additional Arianespace launches under contract in its September 2026 update. It was preparing for an initial service rollout later in 2026; the update did not establish completed mass-market service. Customer commitments are evidence of prospective demand, not automatically recognized service sales. Amazon Leo, September 2026 update."
+        },
+        {
+          "url": "https://sec-api.io/insights/financial-analysis-of-amazon-fy2025-and-the-first-half-of-2026",
+          "title": "Financial analysis of Amazon, FY2025 and the first half of 2026",
+          "content": "Amazon serves seven customer sets: consumers, sellers, developers, enterprises, content creators, advertisers and employees. The recognition basis differs sharply between them, and that difference is the reason reported revenue understates the merchandise flowing through the stores. Amazon records gross revenue on goods it owns and sells, and only its net share on goods sold by third parties, for which it is not the seller of record. Seller fees are fixed fees, a percentage of sales, per unit activity fees, interest, or a combination.\n\n...\n\n| Revenue line | What is sold | Recognition basis | FY2025 net sales ($m) | Share of net sales |\n| --- | --- | --- | --- | --- |\n| Online stores | Own inventory and digital media content, with related shipping fees | Gross | 269,287 | 37.6% |\n| Third party seller services | Commissions, fulfilment and shipping fees on marketplace orders | Net share of the sale, as service revenue | 172,162 | 24.0% |\n| AWS | Compute, storage, database, analytics and machine learning services | Gross, over the service period | 128,725 | 18.0% |\n| Advertising services | Sponsored ads, display and video advertising sold to sellers, vendors, publishers and authors | Gross | 68,635 | 9.6% |\n| Subscription services | Amazon Prime membership fees and digital video, music, audiobook and digital book subscriptions | Gross, over the service period | 49,619 | 6.9% |\n| Physical stores | Goods a customer physically selects in a store | Gross | 22,561 | 3.1% |\n| Other | Shipping services, healthcare services, video content licensing and credit card agreements | Not separately disclosed | 5,935 | 0.8% |\n| Consolidated | | | 716,924 | 100.0% |"
+        },
+        {
+          "url": "https://www.deepresearchglobal.com/p/amazon-amzn-fundamental-analysis-report",
+          "title": "Amazon (AMZN) - Fundamental Analysis Report 2026 (Updated)",
+          "content": "The third pillar is AWS, an infrastructure-as-a-service business that sells compute, storage, networking, AI, and managed software services to enterprises, governments, and developers worldwide. AWS continues to hold the largest share of global cloud"
+        },
+        {
+          "url": "https://pitchgrade.com/companies/amazon",
+          "title": "Amazon: Business Model, SWOT Analysis, and Competitors 2026 - PitchGrade",
+          "content": "Amazon has approximately 10.73 billion shares outstanding, with float shares of 9.75 billion — the freely tradeable portion. The stock trades at $218.94 per share as of early 2026.\n\n...\n\nAmazon's main competitors include Walmart, Alibaba, Microsoft Azure, Google Cloud, Shopify. The company operates in a competitive Internet"
+        }
+      ],
+      "usage": {
+        "completion_tokens": 1904,
+        "prompt_tokens": 2465,
+        "total_tokens": 4369,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 838,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.00959733565,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00259733565,
+          "upstream_inference_prompt_cost": 0.00102063325,
+          "upstream_inference_completions_cost": 0.0015767024
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    }
+  ],
+  "judgments": [
+    {
+      "run": 1,
+      "label_map": {
+        "A": "google/gemini-3.8-flash",
+        "B": "anthropic/claude-sonnet-5.5",
+        "C": "deepseek/deepseek-v4-pro"
+      },
+      "ok": true,
+      "scores": {
+        "google/gemini-3.8-flash": {
+          "criteria": {
+            "grounding": 4.0,
+            "specificity": 9.0,
+            "recency": 9.0,
+            "usefulness": 7.0
+          },
+          "unsupported_claims": [
+            "The cited excerpts do not establish Zoox’s paid-ride launch, airport expansion, or regulatory exemption.",
+            "The cited excerpts do not give Amazon Leo’s satellite count, mission count, or rollout status.",
+            "The AWS Q2 2026 revenue, growth, operating income, and $25B chip and AI run-rate figures are absent from the cited excerpts.",
+            "The $220B capex forecast and its stated uses are absent from the cited excerpts.",
+            "The cited excerpts do not substantiate the competitor comparisons or the claim that cloud and advertising profits subsidize logistics automation."
+          ],
+          "rationale": "The briefing is concrete and timely, but several of its most meeting-relevant figures and competitive claims cannot be verified from the supplied excerpts.",
+          "weighted_score": 6.85,
+          "label": "A"
+        },
+        "anthropic/claude-sonnet-5.5": {
+          "criteria": {
+            "grounding": 4.0,
+            "specificity": 10.0,
+            "recency": 9.0,
+            "usefulness": 8.0
+          },
+          "unsupported_claims": [
+            "The $5.9B Other revenue figure is not visible in the supplied revenue-table excerpt.",
+            "The AWS and custom-chip/AI run rates, Amazon Now reach, and dated Zoox and Leo updates are not established by the cited excerpts.",
+            "The $220B capex forecast, earlier $200B estimate, hardware break-even period, and data-center lifespan are not in the cited excerpts.",
+            "The detailed competitor comparisons, delivery-growth figure, robotic-arm fleet plan, and chip, power, and regulatory exposures are not established by the cited excerpts.",
+            "The statement that Amazon has no funding rounds is not sourced."
+          ],
+          "rationale": "Its revenue breakdown and explicit caveats are useful, but many current operational and strategic details rely on information not present in the supplied excerpts.",
+          "weighted_score": 7.3,
+          "label": "B"
+        },
+        "deepseek/deepseek-v4-pro": {
+          "criteria": {
+            "grounding": 5.0,
+            "specificity": 9.0,
+            "recency": 9.0,
+            "usefulness": 8.0
+          },
+          "unsupported_claims": [
+            "The claim that Amazon has millions of third-party sellers is not established by the cited excerpts.",
+            "The airport expansion and several details of Zoox’s paid launch are not fully established by the supplied Zoox excerpt.",
+            "The delivery-growth, Amazon Now, robotic-arm, AWS run-rate, AWS quarterly financial, and $220B capex figures are absent from the cited excerpts.",
+            "Being publicly listed and self-funding, the AWS hardware break-even estimate, and the data-center lifespan are not established by the cited excerpts.",
+            "The supplied excerpts identify Jassy as CEO but do not establish Bezos’s and Garman’s listed roles or the 12-director board.",
+            "Most detailed retail competitor comparisons and the claim that advertising is a high-margin revenue stream are not established by the cited excerpts."
+          ],
+          "rationale": "The supplied excerpts support its business overview, employee count, Leo update, and some cloud positioning, but leave many specific financial, leadership, and operational claims unverified.",
+          "weighted_score": 7.4,
+          "label": "C"
+        }
+      },
+      "raw_outputs": [
+        "{\n  \"A\": {\n    \"scores\": {\n      \"grounding\": 4,\n      \"specificity\": 9,\n      \"recency\": 9,\n      \"usefulness\": 7\n    },\n    \"unsupported_claims\": [\n      \"The cited excerpts do not establish Zoox’s paid-ride launch, airport expansion, or regulatory exemption.\",\n      \"The cited excerpts do not give Amazon Leo’s satellite count, mission count, or rollout status.\",\n      \"The AWS Q2 2026 revenue, growth, operating income, and $25B chip and AI run-rate figures are absent from the cited excerpts.\",\n      \"The $220B capex forecast and its stated uses are absent from the cited excerpts.\",\n      \"The cited excerpts do not substantiate the competitor comparisons or the claim that cloud and advertising profits subsidize logistics automation.\"\n    ],\n    \"rationale\": \"The briefing is concrete and timely, but several of its most meeting-relevant figures and competitive claims cannot be verified from the supplied excerpts.\"\n  },\n  \"B\": {\n    \"scores\": {\n      \"grounding\": 4,\n      \"specificity\": 10,\n      \"recency\": 9,\n      \"usefulness\": 8\n    },\n    \"unsupported_claims\": [\n      \"The $5.9B Other revenue figure is not visible in the supplied revenue-table excerpt.\",\n      \"The AWS and custom-chip/AI run rates, Amazon Now reach, and dated Zoox and Leo updates are not established by the cited excerpts.\",\n      \"The $220B capex forecast, earlier $200B estimate, hardware break-even period, and data-center lifespan are not in the cited excerpts.\",\n      \"The detailed competitor comparisons, delivery-growth figure, robotic-arm fleet plan, and chip, power, and regulatory exposures are not established by the cited excerpts.\",\n      \"The statement that Amazon has no funding rounds is not sourced.\"\n    ],\n    \"rationale\": \"Its revenue breakdown and explicit caveats are useful, but many current operational and strategic details rely on information not present in the supplied excerpts.\"\n  },\n  \"C\": {\n    \"scores\": {\n      \"grounding\": 5,\n      \"specificity\": 9,\n      \"recency\": 9,\n      \"usefulness\": 8\n    },\n    \"unsupported_claims\": [\n      \"The claim that Amazon has millions of third-party sellers is not established by the cited excerpts.\",\n      \"The airport expansion and several details of Zoox’s paid launch are not fully established by the supplied Zoox excerpt.\",\n      \"The delivery-growth, Amazon Now, robotic-arm, AWS run-rate, AWS quarterly financial, and $220B capex figures are absent from the cited excerpts.\",\n      \"Being publicly listed and self-funding, the AWS hardware break-even estimate, and the data-center lifespan are not established by the cited excerpts.\",\n      \"The supplied excerpts identify Jassy as CEO but do not establish Bezos’s and Garman’s listed roles or the 12-director board.\",\n      \"Most detailed retail competitor comparisons and the claim that advertising is a high-margin revenue stream are not established by the cited excerpts.\"\n    ],\n    \"rationale\": \"The supplied excerpts support its business overview, employee count, Leo update, and some cloud positioning, but leave many specific financial, leadership, and operational claims unverified.\"\n  }\n}"
+      ],
+      "error": null,
+      "cost": 0.0350985,
+      "latency": 25.921766273000003,
+      "usage": [
+        {
+          "completion_tokens": 1729,
+          "prompt_tokens": 7124,
+          "total_tokens": 8853,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": 0,
+            "reasoning_tokens": 1034,
+            "rejected_prediction_tokens": null,
+            "text_tokens": null,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 7121,
+            "cached_tokens": 0,
+            "image_tokens": null,
+            "text_tokens": null,
+            "video_tokens": 0
+          },
+          "cost": 0.0350985,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.0350985,
+            "upstream_inference_prompt_cost": 0.0178085,
+            "upstream_inference_completions_cost": 0.01729
+          }
+        }
+      ]
+    },
+    {
+      "run": 2,
+      "label_map": {
+        "A": "deepseek/deepseek-v4-pro",
+        "B": "google/gemini-3.8-flash",
+        "C": "anthropic/claude-sonnet-5.5"
+      },
+      "ok": true,
+      "scores": {
+        "deepseek/deepseek-v4-pro": {
+          "criteria": {
+            "grounding": 5.0,
+            "specificity": 9.0,
+            "recency": 8.0,
+            "usefulness": 7.0
+          },
+          "unsupported_claims": [
+            "The cited excerpts do not establish Amazon Now’s nine-country, 250-plus-city footprint or the 40% delivery-growth figure.",
+            "The cited excerpts do not establish the Q2 2026 AWS revenue, operating-income and run-rate figures, the two $25 billion AI-related run rates, or the $220 billion capex plan and its comparison with an earlier estimate.",
+            "The cited excerpts do not establish the satellite count, mission count or expected Amazon Leo rollout date.",
+            "The cited excerpts do not support the claims about free-cash-flow allocation, server and data-center economics, or the robotic-arms fleet doubling.",
+            "The competitor descriptions and the claim that Amazon’s integrated offerings create a deep moat go beyond the cited excerpts."
+          ],
+          "rationale": "A detailed, meeting-oriented briefing, but many of its most consequential recent figures and competitive claims cannot be verified from the supplied excerpts.",
+          "weighted_score": 7.0,
+          "label": "A"
+        },
+        "google/gemini-3.8-flash": {
+          "criteria": {
+            "grounding": 5.0,
+            "specificity": 8.0,
+            "recency": 8.0,
+            "usefulness": 8.0
+          },
+          "unsupported_claims": [
+            "The cited excerpt does not establish the Zoox regulatory exemption, paid Las Vegas launch or airport expansion.",
+            "The cited excerpt does not establish Amazon Leo’s satellite and mission counts or rollout timing.",
+            "The cited excerpts do not establish the $169 billion AWS run rate, the two $25 billion AI-related run rates, or the $220 billion FY2026 capex projection.",
+            "The description of advertising as high-margin is not supported by the cited excerpt.",
+            "The cited excerpts do not substantiate several competitor distinctions, unmatched delivery speeds, the Trainium/Inferentia comparison, or enterprise multi-cloud adoption."
+          ],
+          "rationale": "B is concise and strategically useful, but its prominent launch and financial claims rely on details absent from the supplied excerpts.",
+          "weighted_score": 6.95,
+          "label": "B"
+        },
+        "anthropic/claude-sonnet-5.5": {
+          "criteria": {
+            "grounding": 6.0,
+            "specificity": 8.0,
+            "recency": 8.0,
+            "usefulness": 8.0
+          },
+          "unsupported_claims": [
+            "The cited Investopedia excerpt does not support the claimed May 2026 launch of “Alexa for Shopping.”",
+            "The cited excerpts do not establish the July 30 call date, Amazon Now footprint, satellite count, $220 billion capex guidance or its comparison with a $200 billion plan.",
+            "The supplied Investopedia excerpt supports Q1 total sales and net income, but not the stated AWS sales, operating income or share of company operating income.",
+            "The cited excerpts do not establish the Q2 AWS and AI run rates, AWS’s roughly one-third global cloud share, or the robotic-arms forecast.",
+            "The claims about chip and power constraints and several competitor distinctions are not supported by the cited excerpts."
+          ],
+          "rationale": "C combines useful financial context with explicit open questions, though several recent announcements and quantitative claims lack support in the supplied excerpts.",
+          "weighted_score": 7.3,
+          "label": "C"
+        }
+      },
+      "raw_outputs": [
+        "{\n  \"A\": {\n    \"scores\": {\n      \"grounding\": 5,\n      \"specificity\": 9,\n      \"recency\": 8,\n      \"usefulness\": 7\n    },\n    \"unsupported_claims\": [\n      \"The cited excerpts do not establish Amazon Now’s nine-country, 250-plus-city footprint or the 40% delivery-growth figure.\",\n      \"The cited excerpts do not establish the Q2 2026 AWS revenue, operating-income and run-rate figures, the two $25 billion AI-related run rates, or the $220 billion capex plan and its comparison with an earlier estimate.\",\n      \"The cited excerpts do not establish the satellite count, mission count or expected Amazon Leo rollout date.\",\n      \"The cited excerpts do not support the claims about free-cash-flow allocation, server and data-center economics, or the robotic-arms fleet doubling.\",\n      \"The competitor descriptions and the claim that Amazon’s integrated offerings create a deep moat go beyond the cited excerpts.\"\n    ],\n    \"rationale\": \"A detailed, meeting-oriented briefing, but many of its most consequential recent figures and competitive claims cannot be verified from the supplied excerpts.\"\n  },\n  \"B\": {\n    \"scores\": {\n      \"grounding\": 5,\n      \"specificity\": 8,\n      \"recency\": 8,\n      \"usefulness\": 8\n    },\n    \"unsupported_claims\": [\n      \"The cited excerpt does not establish the Zoox regulatory exemption, paid Las Vegas launch or airport expansion.\",\n      \"The cited excerpt does not establish Amazon Leo’s satellite and mission counts or rollout timing.\",\n      \"The cited excerpts do not establish the $169 billion AWS run rate, the two $25 billion AI-related run rates, or the $220 billion FY2026 capex projection.\",\n      \"The description of advertising as high-margin is not supported by the cited excerpt.\",\n      \"The cited excerpts do not substantiate several competitor distinctions, unmatched delivery speeds, the Trainium/Inferentia comparison, or enterprise multi-cloud adoption.\"\n    ],\n    \"rationale\": \"B is concise and strategically useful, but its prominent launch and financial claims rely on details absent from the supplied excerpts.\"\n  },\n  \"C\": {\n    \"scores\": {\n      \"grounding\": 6,\n      \"specificity\": 8,\n      \"recency\": 8,\n      \"usefulness\": 8\n    },\n    \"unsupported_claims\": [\n      \"The cited Investopedia excerpt does not support the claimed May 2026 launch of “Alexa for Shopping.”\",\n      \"The cited excerpts do not establish the July 30 call date, Amazon Now footprint, satellite count, $220 billion capex guidance or its comparison with a $200 billion plan.\",\n      \"The supplied Investopedia excerpt supports Q1 total sales and net income, but not the stated AWS sales, operating income or share of company operating income.\",\n      \"The cited excerpts do not establish the Q2 AWS and AI run rates, AWS’s roughly one-third global cloud share, or the robotic-arms forecast.\",\n      \"The claims about chip and power constraints and several competitor distinctions are not supported by the cited excerpts.\"\n    ],\n    \"rationale\": \"C combines useful financial context with explicit open questions, though several recent announcements and quantitative claims lack support in the supplied excerpts.\"\n  }\n}"
+      ],
+      "error": null,
+      "cost": 0.032546,
+      "latency": 19.188954095999975,
+      "usage": [
+        {
+          "completion_tokens": 1520,
+          "prompt_tokens": 6939,
+          "total_tokens": 8459,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": 0,
+            "reasoning_tokens": 827,
+            "rejected_prediction_tokens": null,
+            "text_tokens": null,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 6936,
+            "cached_tokens": 0,
+            "image_tokens": null,
+            "text_tokens": null,
+            "video_tokens": 0
+          },
+          "cost": 0.032546,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.032546,
+            "upstream_inference_prompt_cost": 0.017346,
+            "upstream_inference_completions_cost": 0.0152
+          }
+        }
+      ]
+    }
+  ]
+}

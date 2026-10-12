@@ -1,0 +1,788 @@
+{
+  "task": {
+    "name": "company_research",
+    "description": "A sourced one-page briefing on a company, for meeting or interview prep.",
+    "path": "tasks/company_research.yaml",
+    "vars": {
+      "company": "Zilliant"
+    },
+    "system": "You are a research analyst preparing a briefing for someone about to meet this company.\nBe specific and current. Cite a source for every factual claim. If you can't find\nsomething, say so rather than guessing.\n",
+    "user": "Write a briefing on Zilliant with these sections:\n1. What they do, who buys it, and how they make money\n2. Recent news and launches (last 6 months)\n3. Funding, size, and financial signals\n4. Leadership\n5. Main competitors and how they differ\n6. Likely strategic priorities and open questions\nKeep it under 500 words.\n",
+    "rubric": [
+      {
+        "name": "grounding",
+        "weight": 0.35,
+        "description": "Factual claims are supported by the cited sources; nothing invented or unsupported."
+      },
+      {
+        "name": "specificity",
+        "weight": 0.25,
+        "description": "Concrete facts (names, numbers, dates, products) rather than generic statements."
+      },
+      {
+        "name": "recency",
+        "weight": 0.2,
+        "description": "Reflects current information, not stale or outdated facts."
+      },
+      {
+        "name": "usefulness",
+        "weight": 0.2,
+        "description": "Would genuinely prepare someone for a meeting; strategic section shows real insight. Length is not a virtue."
+      }
+    ],
+    "web": {
+      "enabled": true,
+      "engine": "exa",
+      "max_results": 5
+    },
+    "max_tokens": 4000,
+    "temperature": 0.2
+  },
+  "started_at": "2026-10-12T17:18:18",
+  "flags": {
+    "runs": 2,
+    "free": false,
+    "web": true,
+    "judge": true
+  },
+  "models": [
+    "anthropic/claude-sonnet-5.5",
+    "google/gemini-3.8-flash",
+    "deepseek/deepseek-v4-pro"
+  ],
+  "judge": "openai/gpt-6-sol",
+  "skipped_models": [],
+  "warnings": [],
+  "total_cost": 0.21785213645,
+  "contestant_cost": 0.14550013645,
+  "judge_cost": 0.072352,
+  "summary": [
+    {
+      "model": "anthropic/claude-sonnet-5.5",
+      "runs": 2,
+      "ok_runs": 2,
+      "scores": [
+        8.2,
+        8.2
+      ],
+      "mean_score": 8.2,
+      "latencies": [
+        16.788038032999907,
+        15.177933286999973
+      ],
+      "costs": [
+        0.039266,
+        0.03527
+      ],
+      "mean_cost": 0.037268,
+      "sources": [
+        5,
+        5
+      ],
+      "unsupported_claims": [
+        4,
+        6
+      ],
+      "score_per_cent": 2.200279059783192,
+      "rationales": [
+        "It distinguishes sourced facts from uncertainty and gives meeting-ready questions, though several product-history and leadership details exceed the supplied excerpts.",
+        "It distinguishes reported claims from inference and acknowledges missing commercial and competitor evidence, though a few product, leadership and date details remain unverified."
+      ],
+      "errors": []
+    },
+    {
+      "model": "google/gemini-3.8-flash",
+      "runs": 2,
+      "ok_runs": 2,
+      "scores": [
+        6.550000000000001,
+        7.75
+      ],
+      "mean_score": 7.15,
+      "latencies": [
+        20.262742127000024,
+        25.660524853000084
+      ],
+      "costs": [
+        0.0187735,
+        0.0225925
+      ],
+      "mean_cost": 0.020683,
+      "sources": [
+        5,
+        5
+      ],
+      "unsupported_claims": [
+        7,
+        6
+      ],
+      "score_per_cent": 3.456945317410434,
+      "rationales": [
+        "The briefing has relevant questions and recent examples, but it presents several unsupported financial, leadership and technical specifics as fact.",
+        "Concrete, timely customer and survey details make this useful, but its leadership, revenue-model and competitive-differentiation claims exceed the supplied evidence."
+      ],
+      "errors": []
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "runs": 2,
+      "ok_runs": 2,
+      "scores": [
+        6.3500000000000005,
+        7.0
+      ],
+      "mean_score": 6.675000000000001,
+      "latencies": [
+        30.306100678000007,
+        42.712156847000074
+      ],
+      "costs": [
+        0.00940521645,
+        0.02019292
+      ],
+      "mean_cost": 0.014799068225,
+      "sources": [
+        5,
+        5
+      ],
+      "unsupported_claims": [
+        7,
+        8
+      ],
+      "score_per_cent": 4.5104191010647225,
+      "rationales": [
+        "Concrete customer and survey details are useful, but unsupported business-model and competitor assertions, a misdated launch, and garbled leadership names weaken the briefing.",
+        "The recent wins and funding figures are specific, but several confident competitor comparisons and financial inferences lack support."
+      ],
+      "errors": []
+    }
+  ],
+  "contestants": [
+    {
+      "model": "anthropic/claude-sonnet-5.5",
+      "run": 1,
+      "ok": true,
+      "answer": "# Zilliant Briefing (as of 12 Oct 2026)\n\n## 1. What they do, who buys it, how they make money\nZilliant sells AI-driven pricing and revenue optimization software for B2B companies. Its products cover price management, analytics, optimization, quoting and agreement management ([cbinsights.com](https://www.cbinsights.com/company/zilliant)). It was founded in 1999 and is based in Austin, Texas. Its targets are manufacturers and distributors, mainly pricing and sales teams ([cbinsights.com](https://www.cbinsights.com/company/zilliant)). Recent customers include Danish auto-parts supplier FTZ ([zilliant.com](https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale)) and chemical distributor Julius Hoesch ([zilliant.com](https://zilliant.com/press-releases/zilliant-closes-2025-with-strategic-product-innovation-and-major-customer-win-with-julius-hoesch-gmbh-co-kg)). **Revenue model:** I found no source describing pricing or contract structure. It is presumably software licensing or subscription, but that is unconfirmed.\n\n## 2. Recent news (last 6 months)\n- **Sept 8, 2026:** FTZ, with 300,000+ SKUs and more than DKK 2B in digital sales, selected Price Manager, Real-Time Pricing Engine and Visual Analytics. Zilliant says FTZ's benchmark showed it ~3x faster sequentially and ~70x higher throughput ([zilliant.com](https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale)). This is a vendor press release, so the benchmark claim is unverified independently.\n- **Apr 28, 2026:** \"Pricing Without Control\" survey of 300 executives. 88% place pricing accountability with the CEO, CFO or CRO, 23% use AI pricing tools, and 18% still use spreadsheets ([zilliant.com](https://zilliant.com/press-releases/zilliant-survey-executives-are-adjusting-prices-more-than-ever-but-losing-control-of-the-outcomes)).\n- **Earlier context (outside the window):** Agentic AI with an MCP Server (Oct 2025), Pricing Plus (Nov 2025), and the Precision Pricing Platform ([zilliant.com](https://zilliant.com/press-releases/zilliant-closes-2025-with-strategic-product-innovation-and-major-customer-win-with-julius-hoesch-gmbh-co-kg)).\n\n## 3. Funding, size, financial signals\nCB Insights lists it as private equity-backed, with $130.85M raised in total, including $35M about three years ago. Investors include Madison Dearborn Partners, Goldman Sachs, Trellis Partners and Austin Ventures ([cbinsights.com](https://www.cbinsights.com/company/zilliant)). **Not found:** revenue, headcount, profitability, valuation. Customer wins are the only visible health signal.\n\n## 4. Leadership\n- **Pascal Yammine**, CEO ([zilliant.com](https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale)).\n- Crunchbase lists Pete Eppele (SVP Products & Science) and Greg Howe (SVP Worldwide Sales) ([crunchbase.com](https://www.crunchbase.com/organization/zilliant)). That profile may be dated, so confirm they are still in role.\n\n## 5. Competitors\nCB Insights names PROS, Model N and Pactum, among others ([cbinsights.com](https://www.cbinsights.com/company/zilliant)). Its list also includes RAPT Therapeutics, a biotech, which looks like an error. The sources I found don't compare features, so I can't substantiate how these rivals differ. Zilliant's own positioning is:\n- pricing \"lifecycle management\" with a unified platform\n- pricing held outside the ERP and embedded in Salesforce\n- deep SAP integration\n- real-time execution\n\nTreat those as marketing claims ([zilliant.com](https://zilliant.com/press-releases/zilliant-closes-2025-with-strategic-product-innovation-and-major-customer-win-with-julius-hoesch-gmbh-co-kg)).\n\n## 6. Likely priorities and open questions\n**Priorities (inferred from the announcements):**\n- Agentic and AI pricing capabilities\n- Real-time pricing for digital B2B commerce\n- European distribution wins (Denmark, Germany)\n- Governance and explainability as the pitch against spreadsheets and tool sprawl\n\n**Open questions:**\n- Scale, growth and profitability?\n- Where is the PE owner in its hold period, and is a sale likely?\n- How is it priced, and how much is recurring revenue?\n- Can the benchmark advantage be reproduced in other customers' environments?\n- How does it win against PROS and Model N in head-to-head deals?",
+      "error": null,
+      "latency": 16.788038032999907,
+      "prompt_tokens": 4138,
+      "completion_tokens": 2399,
+      "cost": 0.039266,
+      "citations": [
+        {
+          "url": "https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale",
+          "title": "FTZ Selects Zilliant After Real-Time Benchmark Confirms Superior Pricing Performance at Scale | press release",
+          "content": "## Denmark’s leading automotive supplier to use Zilliant Price Manager, Real-Time Pricing Engine and Visual Analytics to automate pricing, strengthen governance and deliver customer-specific prices across high-volume digital channels\n\n...\n\nAARUP, Denmark & AUSTIN, Texas, September 8, 2026 – Zilliant, the leader in pricing lifecycle management, today announced that FTZ Autodele & Værktøj A/S, Denmark’s largest partner and supplier to the automotive industry, has selected Zilliant to modernize pricing across its automotive aftermarket business.\n\n...\n\nFTZ supplies spare parts, tools, tires and consumables to professional workshops across Denmark, the Faroe Islands and Greenland. With more than 300,000 SKUs, a high-volume digital business, and more than DKK 2 billion in digital sales, FTZ required a pricing platform capable of combining governance, automation and real-time execution at scale.\n\n...\n\nA decisive factor in the selection was FTZ’s technical benchmark of real-time pricing performance. The evaluation used the same customer-side test client to generate 1,000 randomized pricing requests under directly comparable conditions, measuring the complete service response rather than compute time alone. In sequential request handling, Zilliant was approximately three times faster. Under maximum-throughput conditions, the difference became decisive: Zilliant delivered approximately 70 times higher pricing output.\n\n...\n\nThrough the partnership, FTZ will deploy Zilliant Price Manager, Zilliant Real-Time Pricing Engine and Zilliant Visual Analytics. The solution will help FTZ automate list-price calculations, manage pricing logic and guardrails, strengthen discount governance, and deliver real-time customer-specific pricing through its webshop and operational systems. Zilliant Visual Analytics will help FTZ monitor pricing execution, guidance adherence, revenue performance and margin drivers.\n\n...\n\n“FTZ approached this decision with the rigor that modern B2B digital commerce deserves,” said Pascal Yammine, Chief Executive Officer at Zilliant. “For a distributor managing hundreds of thousands of products, customer-specific conditions and real-time digital interactions, pricing performance is not a technical detail. It is what allows strategy, governance and execution to reach the customer at the moment of decision.”\n\n...\n\nThe partnership reflects a broader shift in B2B distribution. As more customer interactions move through digital channels, pricing must be fast, governed and explainable enough to support live commercial decisions. FTZ and Zilliant will work together to bring that capability into the core of FTZ’s commercial operations."
+        },
+        {
+          "url": "https://zilliant.com/press-releases/zilliant-survey-executives-are-adjusting-prices-more-than-ever-but-losing-control-of-the-outcomes",
+          "title": "Zilliant Survey: Executives Are Adjusting Prices More Than Ever but Losing Control of the Outcomes | press release",
+          "content": "AUSTIN, Texas—April 28, 2026— Zilliant, the leader in pricing lifecycle management, today released its Pricing Without Control report examining how 300 senior executives across manufacturing and distribution are navigating pricing decisions amid persistent economic volatility. The research reveals a striking disconnect: nearly every company is adjusting prices, but only half feel confident they understand the financial impact.\n\n...\n\nPricing ownership has shifted to the C-suite, with 88% of organizations placing pricing accountability with the CEO, CFO, or CRO. Yet pricing execution remains fragmented.\n\n...\n\n- 23% use AI-enabled pricing solutions.\n- 20% use non-AI vendor tools.\n- 18% still rely on spreadsheets.\n\n...\n\nAI adoption is growing, and these tools can improve pricing speed and responsiveness. But technology alone does not resolve the underlying challenges of governance and consistency. When AI is\n\n...\n\nThe findings point to three priorities for organizations looking to strengthen pricing performance:\n\n...\n\n- Establish a unified source of pricing truth across teams and systems.\n- Align pricing strategy across functions to eliminate conflicting decisions.\n- Invest in governance so automation improves control, not complexity."
+        },
+        {
+          "url": "https://www.cbinsights.com/company/zilliant",
+          "title": "Zilliant - Products, Competitors, Financials, Employees, Headquarters Locations",
+          "content": "Private Equity | Alive\n\n...\n\n## Total Raised\n\n...\n\n$130.85M\n\n...\n\n$35M | 3 yrs ago\n\n...\n\nZilliant focuses on artificial intelligence (AI) driven pricing and revenue optimization in the business to business (B2B) sector. The company offers products for automating pricing operations, including price management, pricing analytics, price optimization, and tools for configuring prices, quoting, and managing sales agreements. Zilliant serves industries such as manufacturing and distribution, targeting pricing and sales teams. It was founded in 1999 and is based in Austin, Texas.\n\n...\n\nZilliant raised a total of $130.85M.\n- Who are the investors of Zilliant?\n\n...\n\nInvestors of Zilliant include Madison Dearborn Partners, Paycheck Protection Program, Goldman Sachs, Trellis Partners, Austin Ventures and 15 more.\n- Who are Zilliant's competitors?\n\n...\n\nCompetitors of Zilliant include RAPT Therapeutics, PROS, Pactum, Model N, Celerity Enterprises and 7 more."
+        },
+        {
+          "url": "https://zilliant.com/press-releases/zilliant-closes-2025-with-strategic-product-innovation-and-major-customer-win-with-julius-hoesch-gmbh-co-kg",
+          "title": "Zilliant Closes 2025 with Strategic Product Innovation and Major Customer Win with Julius Hoesch GmbH & Co. KG | press release",
+          "content": "AUSTIN, Texas—Jan. 27, 2026— Zilliant, the leader in pricing lifecycle management, today announced it ended 2025 with significant market momentum, driven by a wave of product innovations designed to help companies transcend manual pricing methods. As B2B organizations faced increasing pressure from tariffs and market volatility throughout the year, Zilliant delivered industry-first AI capabilities and strategic solutions to transform pricing from a spreadsheet-managed task into a driver of profitable growth.\n\n...\n\nThe company’s momentum is underscored by its latest customer addition of the year: a new partnership with Julius Hoesch GmbH & Co. KG, a leading chemical distributor. Julius Hoesch selected Zilliant to modernize price setting and execution across sales and e-commerce in parallel with the company’s migration to the SAP S/4HANA Public Cloud.\n\n...\n\nChemical distributors face distinct challenges, including manual spreadsheets, frequent re-quoting due to daily cost swings and customer-specific prices that are difficult to align across channels. To address these issues during its SAP cutover, Julius Hoesch will use Zilliant as a single entry point in Salesforce—supported by deep SAP S/4HANA integration—to automate cost pass-throughs and provide explainable pricing guidance.\n\n...\n\n“We chose Zilliant because it’s built for chemical distribution and fits our stack,” said Lukas Thuir, Marketing Director, Julius Hoesch. “By unifying work in Salesforce, backed by S/4HANA and analytics at every step—from price waterfalls to churn-risk and next-best-buy actions—we remove manual effort, support fair, consistent pricing and strengthen customer lifetime value.”\n\n...\n\nZilliant CEO Pascal Yammine added, “We’re excited to partner with Julius Hoesch. Distributors are moving away from manual quoting, spreadsheet pricing and tool sprawl. Zilliant centralizes pricing outside ERP, embeds everything in Salesforce and makes prices transparent and fair, so customers buy with confidence and companies grow lifetime value.”\n\n...\n\nIn 2025, Zilliant cemented its role as a thought leader by identifying and addressing the macroeconomic forces shaping B2B commerce. Through two landmark studies—the Business Impact of Tariffs 2025 Survey and the 2025 Pricing Technology Trends Report—Zilliant highlighted critical market vulnerabilities. With 44% of U.S. businesses planning to pass tariff costs to customers and a majority of enterprises still hampered by manual pricing methods, the industry faced a clear mandate: modernize or lose margin.\n\n...\n\nZilliant responded to these disruptions with a series of defining product innovations:\n\n...\n\n- Agentic AI with Industry-First MCP Server: Addressing the need for speed and intelligence, Zilliant unveiled Agentic AI in October. This industry-first Model Context Protocol (MCP) Server allows autonomous agents to secure pricing data instantly, ending the era of manual data retrieval and enabling rapid response to market volatility.\n- Pricing Plus: Launched in November, Pricing Plus directly targets the operational gaps found in Zilliant’s research. It provides a streamlined path for companies to move beyond spreadsheets, preventing the margin leakage that often occurs during economic shifts.\n- Precision Pricing Platform: To unify strategy and execution, Zilliant consolidated its portfolio under the Precision Pricing Platform, giving customers a single source of truth to navigate complex policy changes and tariff impacts with confidence."
+        },
+        {
+          "url": "https://www.crunchbase.com/organization/zilliant",
+          "title": "Zilliant - Crunchbase Company Profile & Funding",
+          "content": "8103 \n\n Zilliant offers price optimization and management software for manufacturing, distribution, high-tech, and industrial service companies.\n\n...\n\n- Pete Eppele: SVP Products & Science Past Role: Stamford Industrial Group, Product Manager \n- Greg Howe: Senior Vice President of Worldwide Sales\n\n...\n\nZilliant, Inc. provides price optimization and price management software for manufacturing, distribution, high-tech, and industrial service companies. The company's pricing software enables manufacturers and distributors to adopt an approach to price analysis, optimization, price list management, quoting, and negotiation. It offers Zilliant\n\n...\n\nPrecision Pricing Suite (ZPPS), an enterprise software that combines price segmentation and price optimization science with analytics and process automation software for price management; ZPPS Analytics, which provides segment-specific metrics and KPIs to deliver a view of pricing performance and uncover opportunities to improve; ZPPS Price Optimization that produces price and deal envelope recommendations for various price segment; and ZPPS Price List Manager, which administers price lists and policies, as well as other price instruments, such as discount and markup schedules. The company also provides ZPPS Deal Manager and Deal Manager for Agreements, and ZPPS Price Campaign Manager that provides inline analytics and KPIs for scoring deals against peer group benchmarks and enforces corporate price policies; and ZPPS Pricing Information Manager, which manages product mix and selection in various deals. In addition, Zilliant, Inc. offers"
+        }
+      ],
+      "usage": {
+        "completion_tokens": 2399,
+        "prompt_tokens": 4138,
+        "total_tokens": 6537,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 620,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.039266,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.032266,
+          "upstream_inference_prompt_cost": 0.008276,
+          "upstream_inference_completions_cost": 0.02399
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "google/gemini-3.8-flash",
+      "run": 1,
+      "ok": true,
+      "answer": "### 1. What They Do, Who Buys It, & Business Model\n* **What they do:** Zilliant offers cloud-based pricing lifecycle management software—including Price Manager, Real-Time Pricing Engine, and Visual Analytics—to automate price setting, guardrails, and margin optimization ([zilliant.com](https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale)).\n* **Who buys it:** B2B enterprises in distribution, manufacturing, and chemicals managing complex, high-SKU catalogs and volatile input costs (e.g., FTZ, Julius Hoesch) ([zilliant.com](https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale), [zilliant.com](https://zilliant.com/press-releases/zilliant-closes-2025-with-strategic-product-innovation-and-major-customer-win-with-julius-hoesch-gmbh-co-kg)).\n* **How they make money:** Enterprise SaaS subscriptions and implementation services, tiered by platform modules, transaction volume, and data scale.\n\n### 2. Recent News & Launches (Last ~6 Months)\n* **FTZ Deal (Sept. 2026):** FTZ, Denmark’s largest automotive aftermarket supplier, selected Zilliant for 300,000+ SKUs after a benchmark test showed Zilliant generated ~70x higher throughput under peak real-time quoting load ([zilliant.com](https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale)).\n* **\"Pricing Without Control\" Report (Apr. 2026):** A survey of 300 B2B executives revealed that while 88% place pricing accountability in the C-suite, only 23% use AI-enabled tools and nearly half lack confidence in their price adjustments due to fragmented ERP/spreadsheet workflows ([zilliant.com](https://zilliant.com/press-releases/zilliant-survey-executives-are-adjusting-prices-more-than-ever-but-losing-control-of-the-outcomes)).\n* **Agentic AI & MCP Server:** Zilliant recently rolled out Agentic AI with an industry-first Model Context Protocol (MCP) Server to allow autonomous AI agents and enterprise workflows to retrieve pricing logic directly ([zilliant.com](https://zilliant.com/press-releases/zilliant-closes-2025-with-strategic-product-innovation-and-major-customer-win-with-julius-hoesch-gmbh-co-kg)).\n\n### 3. Funding, Size, & Financial Signals\n* **Ownership & Funding:** Private equity-backed by Madison Dearborn Partners (acquired in late 2021) ([cbinsights.com](https://www.cbinsights.com/company/zilliant)). Prior funding totaled ~$130.8M ([cbinsights.com](https://www.cbinsights.com/company/zilliant)).\n* **Scale:** Founded in 1999 and headquartered in Austin, Texas ([cbinsights.com](https://www.cbinsights.com/company/zilliant)). As a private company, revenue is not disclosed, but customer wins center on multi-billion-dollar global distributors.\n\n### 4. Leadership\n* **Chief Executive Officer:** Pascal Yammine (formerly Senior VP & GM of Salesforce Revenue Cloud), leading the company's shift toward high-speed, API-first execution integrated with modern CRM and ERP ecosystems ([zilliant.com](https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale)).\n\n### 5. Main Competitors & Differentiation\n* **Competitors:** PROS, Pricefx, Vendavo, and Model N ([cbinsights.com](https://www.cbinsights.com/company/zilliant)).\n* **Differentiation:**\n  * **Real-time execution speed:** Optimized for high-throughput, millisecond-level digital channel lookups without burdening ERP backends ([zilliant.com](https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale)).\n  * **Ecosystem integration:** Strong embedded positioning within Salesforce and SAP S/4HANA environments ([zilliant.com](https://zilliant.com/press-releases/zilliant-closes-2025-with-strategic-product-innovation-and-major-customer-win-with-julius-hoesch-gmbh-co-kg)).\n  * **Agentic architecture:** Open connectivity through its MCP server, letting external LLMs/agents pull governed pricing without custom integrations ([zilliant.com](https://zilliant.com/press-releases/zilliant-launches-agentic-ai-with-industry-first-mcp-server-to-end-spreadsheet-pricing)).\n\n### 6. Likely Strategic Priorities & Open Questions\n* **Strategic Priorities:** Driving displacement of legacy ERP pricing rules in European and North American B2B distribution; monetizing MCP/Agentic AI integrations; capitalizing on tariff and inflation-driven re-pricing needs ([zilliant.com](https://zilliant.com/press-releases/zilliant-closes-2025-with-strategic-product-innovation-and-major-customer-win-with-julius-hoesch-gmbh-co-kg)).\n* **Open Questions to Ask:**\n  * How are enterprise customers operationalizing the MCP Server today—is it primarily feeding sales chatbots or automated agent-to-agent procurement?\n  * What is the typical deployment timeline when co-migrating with an ERP overhaul (like SAP S/4HANA)?\n  * How is the company balancing core R&D against profitability benchmarks under Madison Dearborn Partners?",
+      "error": null,
+      "latency": 20.262742127000024,
+      "prompt_tokens": 2518,
+      "completion_tokens": 2636,
+      "cost": 0.0187735,
+      "citations": [
+        {
+          "url": "https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale",
+          "title": "FTZ Selects Zilliant After Real-Time Benchmark Confirms Superior Pricing Performance at Scale | press release",
+          "content": "## Denmark’s leading automotive supplier to use Zilliant Price Manager, Real-Time Pricing Engine and Visual Analytics to automate pricing, strengthen governance and deliver customer-specific prices across high-volume digital channels\n\n...\n\nAARUP, Denmark & AUSTIN, Texas, September 8, 2026 – Zilliant, the leader in pricing lifecycle management, today announced that FTZ Autodele & Værktøj A/S, Denmark’s largest partner and supplier to the automotive industry, has selected Zilliant to modernize pricing across its automotive aftermarket business.\n\n...\n\nFTZ supplies spare parts, tools, tires and consumables to professional workshops across Denmark, the Faroe Islands and Greenland. With more than 300,000 SKUs, a high-volume digital business, and more than DKK 2 billion in digital sales, FTZ required a pricing platform capable of combining governance, automation and real-time execution at scale.\n\n...\n\nA decisive factor in the selection was FTZ’s technical benchmark of real-time pricing performance. The evaluation used the same customer-side test client to generate 1,000 randomized pricing requests under directly comparable conditions, measuring the complete service response rather than compute time alone. In sequential request handling, Zilliant was approximately three times faster. Under maximum-throughput conditions, the difference became decisive: Zilliant delivered approximately 70 times higher pricing output.\n\n...\n\nThrough the partnership, FTZ will deploy Zilliant Price Manager, Zilliant Real-Time Pricing Engine and Zilliant Visual Analytics. The solution will help FTZ automate list-price calculations, manage pricing logic and guardrails, strengthen discount governance, and deliver real-time customer-specific pricing through its webshop and operational systems. Zilliant Visual Analytics will help FTZ monitor pricing execution, guidance adherence, revenue performance and margin drivers.\n\n...\n\n“FTZ approached this decision with the rigor that modern B2B digital commerce deserves,” said Pascal Yammine, Chief Executive Officer at Zilliant. “For a distributor managing hundreds of thousands of products, customer-specific conditions and real-time digital interactions, pricing performance is not a technical detail. It is what allows strategy, governance and execution to reach the customer at the moment of decision.”\n\n...\n\nThe partnership reflects a broader shift in B2B distribution. As more customer interactions move through digital channels, pricing must be fast, governed and explainable enough to support live commercial decisions. FTZ and Zilliant will work together to bring that capability into the core of FTZ’s commercial operations."
+        },
+        {
+          "url": "https://zilliant.com/press-releases/zilliant-closes-2025-with-strategic-product-innovation-and-major-customer-win-with-julius-hoesch-gmbh-co-kg",
+          "title": "Zilliant Closes 2025 with Strategic Product Innovation and Major Customer Win with Julius Hoesch GmbH & Co. KG | press release",
+          "content": "AUSTIN, Texas—Jan. 27, 2026— Zilliant, the leader in pricing lifecycle management, today announced it ended 2025 with significant market momentum, driven by a wave of product innovations designed to help companies transcend manual pricing methods. As B2B organizations faced increasing pressure from tariffs and market volatility throughout the year, Zilliant delivered industry-first AI capabilities and strategic solutions to transform pricing from a spreadsheet-managed task into a driver of profitable growth.\n\n...\n\nThe company’s momentum is underscored by its latest customer addition of the year: a new partnership with Julius Hoesch GmbH & Co. KG, a leading chemical distributor. Julius Hoesch selected Zilliant to modernize price setting and execution across sales and e-commerce in parallel with the company’s migration to the SAP S/4HANA Public Cloud.\n\n...\n\nChemical distributors face distinct challenges, including manual spreadsheets, frequent re-quoting due to daily cost swings and customer-specific prices that are difficult to align across channels. To address these issues during its SAP cutover, Julius Hoesch will use Zilliant as a single entry point in Salesforce—supported by deep SAP S/4HANA integration—to automate cost pass-throughs and provide explainable pricing guidance.\n\n...\n\n“We chose Zilliant because it’s built for chemical distribution and fits our stack,” said Lukas Thuir, Marketing Director, Julius Hoesch. “By unifying work in Salesforce, backed by S/4HANA and analytics at every step—from price waterfalls to churn-risk and next-best-buy actions—we remove manual effort, support fair, consistent pricing and strengthen customer lifetime value.”\n\n...\n\nZilliant CEO Pascal Yammine added, “We’re excited to partner with Julius Hoesch. Distributors are moving away from manual quoting, spreadsheet pricing and tool sprawl. Zilliant centralizes pricing outside ERP, embeds everything in Salesforce and makes prices transparent and fair, so customers buy with confidence and companies grow lifetime value.”\n\n...\n\nIn 2025, Zilliant cemented its role as a thought leader by identifying and addressing the macroeconomic forces shaping B2B commerce. Through two landmark studies—the Business Impact of Tariffs 2025 Survey and the 2025 Pricing Technology Trends Report—Zilliant highlighted critical market vulnerabilities. With 44% of U.S. businesses planning to pass tariff costs to customers and a majority of enterprises still hampered by manual pricing methods, the industry faced a clear mandate: modernize or lose margin.\n\n...\n\n- Agentic AI with Industry-First MCP Server: Addressing the need for speed and intelligence, Zilliant unveiled Agentic AI in October. This industry-first Model Context Protocol (MCP) Server allows autonomous agents to secure pricing data instantly, ending the era of manual data retrieval and enabling rapid response to market volatility.\n- Pricing Plus: Launched in November, Pricing Plus directly targets the operational gaps found in Zilliant’s research. It provides a streamlined path for companies to move beyond spreadsheets, preventing the margin leakage that often occurs during economic shifts.\n- Precision Pricing Platform: To unify strategy and execution, Zilliant consolidated its portfolio under the Precision Pricing Platform, giving customers a single source of truth to navigate complex policy changes and tariff impacts with confidence."
+        },
+        {
+          "url": "https://zilliant.com/press-releases/zilliant-survey-executives-are-adjusting-prices-more-than-ever-but-losing-control-of-the-outcomes",
+          "title": "Zilliant Survey: Executives Are Adjusting Prices More Than Ever but Losing Control of the Outcomes | press release",
+          "content": "AUSTIN, Texas—April 28, 2026— Zilliant, the leader in pricing lifecycle management, today released its Pricing Without Control report examining how 300 senior executives across manufacturing and distribution are navigating pricing decisions amid persistent economic volatility. The research reveals a striking disconnect: nearly every company is adjusting prices, but only half feel confident they understand the financial impact.\n\n...\n\nPricing ownership has shifted to the C-suite, with 88% of organizations placing pricing accountability with the CEO, CFO, or CRO. Yet pricing execution remains fragmented.\n\n...\n\n- 23% use AI-enabled pricing solutions.\n- 20% use non-AI vendor tools.\n- 18% still rely on spreadsheets.\n\n...\n\nAI adoption is growing, and these tools can improve pricing speed and responsiveness. But technology alone does not resolve the underlying challenges of governance and consistency. When AI is layered onto fragmented systems and processes, the result is faster decisions, not better-controlled ones.\n\n...\n\nThe findings point to three priorities for organizations looking to strengthen pricing performance:\n\n...\n\n- Establish a unified source of pricing truth across teams and systems.\n- Align pricing strategy across functions to eliminate conflicting decisions.\n- Invest in governance so automation improves control, not complexity."
+        },
+        {
+          "url": "https://www.cbinsights.com/company/zilliant",
+          "title": "Zilliant - Products, Competitors, Financials, Employees, Headquarters Locations",
+          "content": "## Stage\n\n...\n\nPrivate Equity | Alive\n\n...\n\n## Total Raised\n\n...\n\n$130.85M\n\n...\n\n$35M | 3 yrs ago\n\n...\n\nZilliant focuses on artificial intelligence (AI) driven pricing and revenue optimization in the business to business (B2B) sector. The company offers products for automating pricing operations, including price management, pricing analytics, price optimization, and tools for configuring prices, quoting, and managing sales agreements. Zilliant serves industries such as manufacturing and distribution, targeting pricing and sales teams. It was founded in 1999 and is based in Austin, Texas.\n\n...\n\nZilliant's latest funding round is Private Equity.\n- How much did Zilliant raise?\n\n...\n\nZilliant raised a total of $130.85M.\n- Who are the investors of Zilliant?\n\n...\n\nInvestors of Zilliant include Madison Dearborn Partners, Paycheck Protection Program, Goldman Sachs, Trellis Partners, Austin Ventures and 15 more.\n- Who are Zilliant's competitors?\n\n...\n\nCompetitors of Zilliant include RAPT Therapeutics, PROS, Pactum, Model N, Celerity Enterprises and 7 more."
+        },
+        {
+          "url": "https://zilliant.com/press-releases/zilliant-launches-agentic-ai-with-industry-first-mcp-server-to-end-spreadsheet-pricing",
+          "title": "Zilliant Launches Agentic AI with Industry-First MCP Server to End Spreadsheet Pricing | press release",
+          "content": "AUSTIN, Texas—Oct. 9, 2025—Zilliant, the leader in pricing lifecycle management, today announced the introduction of Agentic AI capabilities and the pricing industry’s first Model Context Protocol (MCP) Server to make intelligent pricing accessible and affordable for organizations of any size. By automating complex tasks and embedding intelligence directly into existing workflows, Zilliant’s new AI agents help businesses move beyond spreadsheets, expensive outside consultants and guesswork to achieve immediate, measurable results.\n\n...\n\nAs part of this launch, Zilliant is also introducing the pricing industry’s first Model Context Protocol (MCP) Server—a breakthrough integration capability that allows organizations to incorporate pricing intelligence into their existing AI ecosystem, without requiring specialized implementation. This addresses a key barrier for organizations exploring AI adoption: the ability to connect new capabilities with existing tools, data and workflows.\n\n...\n\nThe MCP Server enables organizations to bring Zilliant’s pricing intelligence wherever work is being done—whether through existing business applications, custom AI assistants or emerging enterprise AI platforms. For enterprises experimenting with AI-driven automation, this ensures that pricing decisions can be informed by the same intelligence that powers dedicated pricing solutions, without the complexity of managing multiple disconnected systems. This lowers the cost and risk of AI"
+        }
+      ],
+      "usage": {
+        "completion_tokens": 2636,
+        "prompt_tokens": 2518,
+        "total_tokens": 5154,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1281,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.0187735,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0117735,
+          "upstream_inference_prompt_cost": 0.0018885,
+          "upstream_inference_completions_cost": 0.009885
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "run": 1,
+      "ok": true,
+      "answer": "**1. What they do, who buys it, and how they make money**  \nZilliant provides AI-driven pricing lifecycle management software for B2B companies. Its Precision Pricing Platform helps manufacturers, distributors, and industrial service firms automate price setting, optimize deals, and enforce governance across digital and sales channels. Typical buyers are large enterprises with high SKU counts—recent wins include automotive parts distributor FTZ (300,000+ SKUs) and chemical distributor Julius Hoesch [zilliant.com]. The company sells annual or multi-year SaaS subscriptions, likely with implementation services.\n\n**2. Recent news and launches (last 6 months)**  \n- **September 8, 2026:** FTZ Autodele & Værktøj, Denmark’s largest automotive aftermarket supplier, selected Zilliant after a real-time benchmark. Zilliant delivered ~70x higher throughput under maximum load versus the alternative [zilliant.com].  \n- **April 28, 2026:** Zilliant released its *Pricing Without Control* report surveying 300 executives, revealing that 88% of organizations now vest pricing accountability in the C-suite, yet only half are confident they understand the financial impact. Only 23% use AI pricing tools, highlighting a governance gap [zilliant.com].  \nEarlier in 2026, the company consolidated its portfolio under the Precision Pricing Platform and launched Agentic AI with an industry-first MCP server for autonomous data retrieval, plus a streamlined “ricing Plus” offering targeting spreadsheet-dependent companies [zilliant.com].\n\n**3. Funding, size, and financial signals**  \nZilliant has raised approximately $130.85 million in total funding, with the most recent round of $35 million closed about three years ago. Investors include Madison Dearborn Partners, Goldman Sachs, Austin Ventures, and others [cbinsights.com]. The company is private and does not disclose revenue or employee count. The presence of private equity (Madison Dearborn) suggests a focus on scaling efficiently toward a liquidity event. No recent funding rounds indicate the business may be operating near cash-flow break-even, though that is unconfirmed.\n\n**4. Leadership**  \n- **ascal Yammine** – Chief Executive Officer [zilliant.com]  \n- **ete Eppele** – SV, Products & Science [crunchbase.com]  \n- **reg Howe** – Senior Vice President of Worldwide Sales [crunchbase.com]  \nNo other C-suite names were found in the provided sources.\n\n**5. Main competitors and how they differ**  \nKey competitors include PROS (AI-powered pricing and revenue optimization), Model N (revenue management for pharma and high-tech), and Pactum (A-driven autonomous negotiation). Unlike PROS, which spans both B2B and B2C, Zilliant concentrates exclusively on B2B manufacturing and distribution. Its recent emphasis on real-time, explainable pricing through dedicated engines and agentic AI differentiates it from spread-sheet or rule-based tools, while the MCP server integrates directly with autonomous workflows [zilliant.com][cbinsights.com].\n\n**6. Likely strategic priorities and open questions**  \nPriorities:  \n- Deploy the Precision Pricing Platform deeper into Europe, following the FTZ and Julius Hoesch wins.  \n- Extend Agentic AI capabilities to capture the 77% of companies still not using AI for pricing (per its own survey).  \n- Tighten integrations with SAP S/4HANA and Salesforce to become the embedded pricing layer for complex distributors.\n\nOpen questions:  \n- Can Zilliant maintain the performance advantage demonstrated in benchmarks as its customer base scales?  \n- How will it defend against ERP vendors adding native pricing modules?  \n- Is the company profitable, or will it require further funding amid macroeconomic uncertainty?  \n- What is the actual employee headcount and sustained revenue growth rate?",
+      "error": null,
+      "latency": 30.306100678000007,
+      "prompt_tokens": 2397,
+      "completion_tokens": 1706,
+      "cost": 0.00940521645,
+      "citations": [
+        {
+          "url": "https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale",
+          "title": "FTZ Selects Zilliant After Real-Time Benchmark Confirms Superior Pricing Performance at Scale | press release",
+          "content": "## Denmark’s leading automotive supplier to use Zilliant Price Manager, Real-Time Pricing Engine and Visual Analytics to automate pricing, strengthen governance and deliver customer-specific prices across high-volume digital channels\n\n...\n\nAARUP, Denmark & AUSTIN, Texas, September 8, 2026 – Zilliant, the leader in pricing lifecycle management, today announced that FTZ Autodele & Værktøj A/S, Denmark’s largest partner and supplier to the automotive industry, has selected Zilliant to modernize pricing across its automotive aftermarket business.\n\n...\n\nFTZ supplies spare parts, tools, tires and consumables to professional workshops across Denmark, the Faroe Islands and Greenland. With more than 300,000 SKUs, a high-volume digital business, and more than DKK 2 billion in digital sales, FTZ required a pricing platform capable of combining governance, automation and real-time execution at scale.\n\n...\n\nA decisive factor in the selection was FTZ’s technical benchmark of real-time pricing performance. The evaluation used the same customer-side test client to generate 1,000 randomized pricing requests under directly comparable conditions, measuring the complete service response rather than compute time alone. In sequential request handling, Zilliant was approximately three times faster. Under maximum-throughput conditions, the difference became decisive: Zilliant delivered approximately 70 times higher pricing output.\n\n...\n\nThrough the partnership, FTZ will deploy Zilliant Price Manager, Zilliant Real-Time Pricing Engine and Zilliant Visual Analytics. The solution will help FTZ automate list-price calculations, manage pricing logic and guardrails, strengthen discount governance, and deliver real-time customer-specific pricing through its webshop and operational systems. Zilliant Visual Analytics will help FTZ monitor pricing execution, guidance adherence, revenue performance and margin drivers.\n\n...\n\n“FTZ approached this decision with the rigor that modern B2B digital commerce deserves,” said Pascal Yammine, Chief Executive Officer at Zilliant. “For a distributor managing hundreds of thousands of products, customer-specific conditions and real-time digital interactions, pricing performance is not a technical detail. It is what allows strategy, governance and execution to reach the customer at the moment of decision.”\n\n...\n\nThe partnership reflects a broader shift in B2B distribution. As more customer interactions move through digital channels, pricing must be fast, governed and explainable enough to support live commercial decisions. FTZ and Zilliant will work together to bring that capability into the core of FTZ’s commercial operations."
+        },
+        {
+          "url": "https://zilliant.com/press-releases/zilliant-survey-executives-are-adjusting-prices-more-than-ever-but-losing-control-of-the-outcomes",
+          "title": "Zilliant Survey: Executives Are Adjusting Prices More Than Ever but Losing Control of the Outcomes | press release",
+          "content": "AUSTIN, Texas—April 28, 2026— Zilliant, the leader in pricing lifecycle management, today released its Pricing Without Control report examining how 300 senior executives across manufacturing and distribution are navigating pricing decisions amid persistent economic volatility. The research reveals a striking disconnect: nearly every company is adjusting prices, but only half feel confident they understand the financial impact.\n\n...\n\nPricing ownership has shifted to the C-suite, with 88% of organizations placing pricing accountability with the CEO, CFO, or CRO. Yet pricing execution remains fragmented.\n\n...\n\n- 23% use AI-enabled pricing solutions.\n- 20% use non-AI vendor tools.\n- 18% still rely on spreadsheets.\n\n...\n\nAI adoption is growing, and these tools can improve pricing speed and responsiveness. But technology alone does not resolve the underlying challenges of governance and consistency. When AI is layered onto fragmented systems and processes, the result is faster decisions, not better-controlled ones.\n\n...\n\nThe findings point to three priorities for organizations looking to strengthen pricing performance:\n\n...\n\n- Establish a unified source of pricing truth across teams and systems.\n- Align pricing strategy across functions to eliminate conflicting decisions.\n- Invest in governance so automation improves control, not complexity."
+        },
+        {
+          "url": "https://www.cbinsights.com/company/zilliant",
+          "title": "Zilliant - Products, Competitors, Financials, Employees, Headquarters Locations",
+          "content": "Private Equity | Alive\n\n...\n\n## Total Raised\n\n...\n\n$130.85M\n\n...\n\n## Last Raised\n\n...\n\n$35M | 3 yrs ago\n\n...\n\nZilliant focuses on artificial intelligence (AI) driven pricing and revenue optimization in the business to business (B2B) sector. The company offers products for automating pricing operations, including price management, pricing analytics, price optimization, and tools for configuring prices, quoting, and managing sales agreements. Zilliant serves industries such as manufacturing and distribution, targeting pricing and sales teams. It was founded in 1999 and is based in Austin, Texas.\n\n...\n\nZilliant raised a total of $130.85M.\n- Who are the investors of Zilliant?\n\n...\n\nInvestors of Zilliant include Madison Dearborn Partners, Paycheck Protection Program, Goldman Sachs, Trellis Partners, Austin Ventures and 15 more.\n- Who are Zilliant's competitors?\n\n...\n\nCompetitors of Zilliant include RAPT Therapeutics, PROS, Pactum, Model N, Celerity Enterprises and 7 more."
+        },
+        {
+          "url": "https://zilliant.com/press-releases/zilliant-closes-2025-with-strategic-product-innovation-and-major-customer-win-with-julius-hoesch-gmbh-co-kg",
+          "title": "Zilliant Closes 2025 with Strategic Product Innovation and Major Customer Win with Julius Hoesch GmbH & Co. KG | press release",
+          "content": "AUSTIN, Texas—Jan. 27, 2026— Zilliant, the leader in pricing lifecycle management, today announced it ended 2025 with significant market momentum, driven by a wave of product innovations designed to help companies transcend manual pricing methods. As B2B organizations faced increasing pressure from tariffs and market volatility throughout the year, Zilliant delivered industry-first AI capabilities and strategic solutions to transform pricing from a spreadsheet-managed task into a driver of profitable growth.\n\n...\n\nThe company’s momentum is underscored by its latest customer addition of the year: a new partnership with Julius Hoesch GmbH & Co. KG, a leading chemical distributor. Julius Hoesch selected Zilliant to modernize price setting and execution across sales and e-commerce in parallel with the company’s migration to the SAP S/4HANA Public Cloud.\n\n...\n\nChemical distributors face distinct challenges, including manual spreadsheets, frequent re-quoting due to daily cost swings and customer-specific prices that are difficult to align across channels. To address these issues during its SAP cutover, Julius Hoesch will use Zilliant as a single entry point in Salesforce—supported by deep SAP S/4HANA integration—to automate cost pass-throughs and provide explainable pricing guidance.\n\n...\n\n“We chose Zilliant because it’s built for chemical distribution and fits our stack,” said Lukas Thuir, Marketing Director, Julius Hoesch. “By unifying work in Salesforce, backed by S/4HANA and analytics at every step—from price waterfalls to churn-risk and next-best-buy actions—we remove manual effort, support fair, consistent pricing and strengthen customer lifetime value.”\n\n...\n\nZilliant CEO Pascal Yammine added, “We’re excited to partner with Julius Hoesch. Distributors are moving away from manual quoting, spreadsheet pricing and tool sprawl. Zilliant centralizes pricing outside ERP, embeds everything in Salesforce and makes prices transparent and fair, so customers buy with confidence and companies grow lifetime value.”\n\n...\n\nIn 2025, Zilliant cemented its role as a thought leader by identifying and addressing the macroeconomic forces shaping B2B commerce. Through two landmark studies—the Business Impact of Tariffs 2025 Survey and the 2025 Pricing Technology Trends Report—Zilliant highlighted critical market vulnerabilities. With 44% of U.S. businesses planning to pass tariff costs to customers and a majority\n\n...\n\nZilliant responded to these disruptions with a series of defining product innovations:\n\n...\n\n- Agentic AI with Industry-First MCP Server: Addressing the need for speed and intelligence, Zilliant unveiled Agentic AI in October. This industry-first Model Context Protocol (MCP) Server allows autonomous agents to secure pricing data instantly, ending the era of manual data retrieval and enabling rapid response to market volatility.\n- Pricing Plus: Launched in November, Pricing Plus directly targets the operational gaps found in Zilliant’s research. It provides a streamlined path for companies to move beyond spreadsheets, preventing the margin leakage that often occurs during economic shifts.\n- Precision Pricing Platform: To unify strategy and execution, Zilliant consolidated its portfolio under the Precision Pricing Platform, giving customers a single source of truth to navigate complex policy changes and tariff impacts with confidence."
+        },
+        {
+          "url": "https://www.crunchbase.com/organization/zilliant",
+          "title": "Zilliant - Crunchbase Company Profile & Funding",
+          "content": "8103 \n\n Zilliant offers price optimization and management software for manufacturing, distribution, high-tech, and industrial service companies.\n\n...\n\n- Pete Eppele: SVP Products & Science Past Role: Stamford Industrial Group, Product Manager \n- Greg Howe: Senior Vice President of Worldwide Sales\n\n...\n\nZilliant, Inc. provides price optimization and price management software for manufacturing, distribution, high-tech, and industrial service companies. The company's pricing software enables manufacturers and distributors to adopt an approach to price analysis, optimization, price list management, quoting, and negotiation. It offers Zilliant\n\n...\n\nPrecision Pricing Suite (ZPPS), an enterprise software that combines price segmentation and price optimization science with analytics and process automation software for price management; ZPPS Analytics, which provides segment-specific metrics and KPIs to deliver a view of pricing performance and uncover opportunities to improve; ZPPS Price Optimization that produces price and deal envelope recommendations for various price segment; and ZPPS Price List Manager, which administers price lists and policies, as well as other price instruments, such as discount and markup schedules. The company also provides ZPPS Deal Manager and Deal Manager for Agreements, and ZPPS Price Campaign Manager that provides inline analytics and KPIs for scoring deals against peer group benchmarks and enforces corporate price policies; and ZPPS Pricing Information Manager, which manages product mix and selection in various deals. In addition, Zilliant, Inc."
+        }
+      ],
+      "usage": {
+        "completion_tokens": 1706,
+        "prompt_tokens": 2397,
+        "total_tokens": 4103,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 906,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.00940521645,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00240521645,
+          "upstream_inference_prompt_cost": 0.00099247785,
+          "upstream_inference_completions_cost": 0.0014127386
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "anthropic/claude-sonnet-5.5",
+      "run": 2,
+      "ok": true,
+      "answer": "# Zilliant Briefing (as of Oct 12, 2026)\n\n## 1. What they do, who buys it, how they make money\nZilliant sells AI-driven pricing and revenue optimization software for B2B companies. Its products cover price management, analytics, optimization, quoting, and sales agreements. Its customers are in manufacturing and distribution, and its users are pricing and sales teams ([cbinsights.com](https://www.cbinsights.com/company/zilliant)). It was founded in 1999 and is based in Austin, Texas. The products are now grouped under the \"Precision Pricing Platform\" ([zilliant.com](https://zilliant.com/press-releases/zilliant-closes-2025-with-strategic-product-innovation-and-major-customer-win-with-julius-hoesch-gmbh-co-kg)). **Pricing model:** I found nothing on it. It is probably software licensing or subscription, but that is my inference and I could not confirm it.\n\n## 2. Recent news (last 6 months)\n- **Sept 8, 2026:** FTZ Autodele & Værktøj, Denmark's largest automotive aftermarket supplier, selected Zilliant. FTZ has 300,000+ SKUs and DKK 2B+ in digital sales. It will deploy Price Manager, Real-Time Pricing Engine and Visual Analytics. In FTZ's benchmark, Zilliant was about 3x faster sequentially and delivered about 70x higher throughput at maximum load ([zilliant.com](https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale)). The benchmark is as reported in Zilliant's own press release.\n- **April 28, 2026:** Zilliant published its \"Pricing Without Control\" survey of 300 executives. Nearly all adjust prices, but only half are confident they understand the financial impact. 23% use AI pricing tools and 18% still use spreadsheets ([zilliant.com](https://zilliant.com/press-releases/zilliant-survey-executives-are-adjusting-prices-more-than-ever-but-losing-control-of-the-outcomes)).\n\nEarlier context: Agentic AI and an \"industry-first\" MCP Server launched in Oct 2025 ([zilliant.com](https://zilliant.com/press-releases/zilliant-launches-agentic-ai-with-industry-first-mcp-server-to-end-spreadsheet-pricing)). Pricing Plus launched in Nov 2025, and Julius Hoesch (a chemical distributor) was announced as a customer in Jan 2026 ([zilliant.com](https://zilliant.com/press-releases/zilliant-closes-2025-with-strategic-product-innovation-and-major-customer-win-with-julius-hoesch-gmbh-co-kg)).\n\n## 3. Funding, size, financial signals\nCB Insights lists Zilliant as private equity-backed, with $130.85M raised in total. The last raise was $35M, about three years ago. Investors include Madison Dearborn Partners, Goldman Sachs, Trellis Partners and Austin Ventures ([cbinsights.com](https://www.cbinsights.com/company/zilliant)). **Not found:** revenue, headcount, profitability, and valuation.\n\n## 4. Leadership\nPascal Yammine is CEO ([zilliant.com](https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale)). I found no other executive names in these sources.\n\n## 5. Competitors\nCB Insights names PROS, Model N and Pactum, plus others ([cbinsights.com](https://www.cbinsights.com/company/zilliant)). It also lists RAPT Therapeutics, a biotech, which looks like a data error. The sources don't compare these companies in detail, so I can't verify how they differ. Zilliant's own positioning is:\n- pricing lifecycle management\n- pricing logic kept outside the ERP, with Salesforce embedding\n- explainable, governed pricing\n- real-time performance at scale\n\nTreat these as claims, not independent assessments.\n\n## 6. Likely priorities and open questions\n**Priorities (inferred from the news above):**\n- Winning digital-commerce and distribution customers, especially in Europe, where both recent customer wins are based\n- Selling AI and agentic capabilities as an alternative to spreadsheets\n- Selling governance and control as a theme, based on the survey\n\n**Questions to ask:**\n- How is revenue split between licensing, services and usage?\n- With PE ownership and the last raise about three years ago, what is the ownership or exit outlook?\n- How does Zilliant differentiate from PROS and Model N in competitive deals?\n- Are the benchmark and AI claims backed by customer results?\n- How broad is its customer base beyond the announced wins?",
+      "error": null,
+      "latency": 15.177933286999973,
+      "prompt_tokens": 4155,
+      "completion_tokens": 1996,
+      "cost": 0.03527,
+      "citations": [
+        {
+          "url": "https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale",
+          "title": "FTZ Selects Zilliant After Real-Time Benchmark Confirms Superior Pricing Performance at Scale | press release",
+          "content": "## Denmark’s leading automotive supplier to use Zilliant Price Manager, Real-Time Pricing Engine and Visual Analytics to automate pricing, strengthen governance and deliver customer-specific prices across high-volume digital channels\n\n...\n\nAARUP, Denmark & AUSTIN, Texas, September 8, 2026 – Zilliant, the leader in pricing lifecycle management, today announced that FTZ Autodele & Værktøj A/S, Denmark’s largest partner and supplier to the automotive industry, has selected Zilliant to modernize pricing across its automotive aftermarket business.\n\n...\n\nFTZ supplies spare parts, tools, tires and consumables to professional workshops across Denmark, the Faroe Islands and Greenland. With more than 300,000 SKUs, a high-volume digital business, and more than DKK 2 billion in digital sales, FTZ required a pricing platform capable of combining governance, automation and real-time execution at scale.\n\n...\n\nA decisive factor in the selection was FTZ’s technical benchmark of real-time pricing performance. The evaluation used the same customer-side test client to generate 1,000 randomized pricing requests under directly comparable conditions, measuring the complete service response rather than compute time alone. In sequential request handling, Zilliant was approximately three times faster. Under maximum-throughput conditions, the difference became decisive: Zilliant delivered approximately 70 times higher pricing output.\n\n...\n\nThrough the partnership, FTZ will deploy Zilliant Price Manager, Zilliant Real-Time Pricing Engine and Zilliant Visual Analytics. The solution will help FTZ automate list-price calculations, manage pricing logic and guardrails, strengthen discount governance, and deliver real-time customer-specific pricing through its webshop and operational systems. Zilliant Visual Analytics will help FTZ monitor pricing execution, guidance adherence, revenue performance and margin drivers.\n\n...\n\n“FTZ approached this decision with the rigor that modern B2B digital commerce deserves,” said Pascal Yammine, Chief Executive Officer at Zilliant. “For a distributor managing hundreds of thousands of products, customer-specific conditions and real-time digital interactions, pricing performance is not a technical detail. It is what allows strategy, governance and execution to reach the customer at the moment of decision.”\n\n...\n\nThe partnership reflects a broader shift in B2B distribution. As more customer interactions move through digital channels, pricing must be fast, governed and explainable enough to support live commercial decisions. FTZ and Zilliant will work together to bring that capability into the core of FTZ’s commercial operations."
+        },
+        {
+          "url": "https://zilliant.com/press-releases/zilliant-survey-executives-are-adjusting-prices-more-than-ever-but-losing-control-of-the-outcomes",
+          "title": "Zilliant Survey: Executives Are Adjusting Prices More Than Ever but Losing Control of the Outcomes | press release",
+          "content": "AUSTIN, Texas—April 28, 2026— Zilliant, the leader in pricing lifecycle management, today released its Pricing Without Control report examining how 300 senior executives across manufacturing and distribution are navigating pricing decisions amid persistent economic volatility. The research reveals a striking disconnect: nearly every company is adjusting prices, but only half feel confident they understand the financial impact.\n\n...\n\n- 23% use AI-enabled pricing solutions.\n- 20% use non-AI vendor tools.\n- 18% still rely on spreadsheets.\n\n...\n\nThe findings point to three priorities for organizations looking to strengthen pricing performance:\n\n...\n\n- Establish a unified source of pricing truth across teams and systems.\n- Align pricing strategy across functions to eliminate conflicting decisions.\n- Invest in governance so automation improves control, not complexity."
+        },
+        {
+          "url": "https://zilliant.com/press-releases/zilliant-closes-2025-with-strategic-product-innovation-and-major-customer-win-with-julius-hoesch-gmbh-co-kg",
+          "title": "Zilliant Closes 2025 with Strategic Product Innovation and Major Customer Win with Julius Hoesch GmbH & Co. KG | press release",
+          "content": "AUSTIN, Texas—Jan. 27, 2026— Zilliant, the leader in pricing lifecycle management, today announced it ended 2025 with significant market momentum, driven by a wave of product innovations designed to help companies transcend manual pricing methods. As B2B organizations faced increasing pressure from tariffs and market volatility throughout the year, Zilliant delivered industry-first AI capabilities and strategic solutions to transform pricing from a spreadsheet-managed task into a driver of profitable growth.\n\n...\n\nThe company’s momentum is underscored by its latest customer addition of the year: a new partnership with Julius Hoesch GmbH & Co. KG, a leading chemical distributor. Julius Hoesch selected Zilliant to modernize price setting and execution across sales and e-commerce in parallel with the company’s migration to the SAP S/4HANA Public Cloud.\n\n...\n\nChemical distributors face distinct challenges, including manual spreadsheets, frequent re-quoting due to daily cost swings and customer-specific prices that are difficult to align across channels. To address these issues during its SAP cutover, Julius Hoesch will use Zilliant as a single entry point in Salesforce—supported by deep SAP S/4HANA integration—to automate cost pass-throughs and provide explainable pricing guidance.\n\n...\n\n“We chose Zilliant because it’s built for chemical distribution and fits our stack,” said Lukas Thuir, Marketing Director, Julius Hoesch. “By unifying work in Salesforce, backed by S/4HANA and analytics at every step—from price waterfalls to churn-risk and next-best-buy actions—we remove manual effort, support fair, consistent pricing and strengthen customer lifetime value.”\n\n...\n\nZilliant CEO Pascal Yammine added, “We’re excited to partner with Julius Hoesch. Distributors are moving away from manual quoting, spreadsheet pricing and tool sprawl. Zilliant centralizes pricing outside ERP, embeds everything in Salesforce and makes prices transparent and fair, so customers buy with confidence and companies grow lifetime value.”\n\n...\n\n- Agentic AI with Industry-First MCP Server: Addressing the need for speed and intelligence, Zilliant unveiled Agentic AI in October. This industry-first Model Context Protocol (MCP) Server allows autonomous agents to secure pricing data instantly, ending the era of manual data retrieval and enabling rapid response to market volatility.\n- Pricing Plus: Launched in November, Pricing Plus directly targets the operational gaps found in Zilliant’s research. It provides a streamlined path for companies to move beyond spreadsheets, preventing the margin leakage that often occurs during economic shifts.\n- Precision Pricing Platform: To unify strategy and execution, Zilliant consolidated its portfolio under the Precision Pricing Platform, giving customers a single source of truth to navigate complex policy changes and tariff impacts with confidence."
+        },
+        {
+          "url": "https://www.cbinsights.com/company/zilliant",
+          "title": "Zilliant - Products, Competitors, Financials, Employees, Headquarters Locations",
+          "content": "## Stage\n\n...\n\nPrivate Equity | Alive\n\n## Total Raised\n\n...\n\n$130.85M\n\n...\n\n## Last Raised\n\n...\n\n$35M | 3 yrs ago\n\n...\n\nZilliant focuses on artificial intelligence (AI) driven pricing and revenue optimization in the business to business (B2B) sector. The company offers products for automating pricing operations, including price management, pricing analytics, price optimization, and tools for configuring prices, quoting, and managing sales agreements. Zilliant serves industries such as manufacturing and distribution, targeting pricing and sales teams. It was founded in 1999 and is based in Austin, Texas.\n\n...\n\nZilliant's latest funding round is Private Equity.\n- How much did Zilliant raise?\n\n...\n\nZilliant raised a total of $130.85M.\n- Who are the investors of Zilliant?\n\n...\n\nInvestors of Zilliant include Madison Dearborn Partners, Paycheck Protection Program, Goldman Sachs, Trellis Partners, Austin Ventures and 15 more.\n- Who are Zilliant's competitors?\n\n...\n\nCompetitors of Zilliant include RAPT Therapeutics, PROS, Pactum, Model N, Celerity Enterprises and 7 more."
+        },
+        {
+          "url": "https://zilliant.com/press-releases/zilliant-launches-agentic-ai-with-industry-first-mcp-server-to-end-spreadsheet-pricing",
+          "title": "Zilliant Launches Agentic AI with Industry-First MCP Server to End Spreadsheet Pricing | press release",
+          "content": "AUSTIN, Texas—Oct. 9, 2025—Zilliant, the leader in pricing lifecycle management, today announced the introduction of Agentic AI capabilities and the pricing industry’s first Model Context Protocol (MCP) Server to make intelligent pricing accessible and affordable for organizations of any size. By automating complex tasks and embedding intelligence directly into existing workflows, Zilliant’s new AI agents help businesses move beyond spreadsheets, expensive outside consultants and guesswork to achieve immediate, measurable results.\n\n...\n\n- Streamlining approvals: The Approvals Agent eliminates the bottlenecks and confusion that slow down pricing decisions. Instead of lengthy approval cycles or fear of making the wrong choice, it proactively guides users toward changes that align with company strategy, provides clear context for decisions and streamlines the approval process when needed—giving organizations confidence to act quickly. \n- Keeping sales agreements up to date: The Sales Agreement Agent solves the common problem of outdated agreements that no longer reflect current market conditions or customer value. It automatically identifies when agreements need updating, suggests revisions based on pricing changes and provides sales teams with clear positioning guidance—transforming a typically complex process into simple, guided actions. \n- Surfacing the right insights: The Insights Agent cuts through data complexity to surface the insights that matter most. Rather than requiring teams to build complex reports or dig through spreadsheets\n\n...\n\nAs part of this launch, Zilliant is also introducing the pricing industry’s first Model Context Protocol (MCP) Server—a breakthrough integration capability that allows organizations to incorporate pricing intelligence into their existing AI ecosystem, without requiring specialized implementation. This addresses a key barrier for organizations exploring AI adoption: the ability to connect new capabilities with existing tools, data and workflows.\n\n...\n\nThe MCP Server enables organizations to bring Zilliant’s pricing intelligence wherever work is being done—whether through existing business applications, custom AI assistants or emerging enterprise AI platforms. For enterprises experimenting with AI-driven automation, this ensures that pricing decisions can be informed by the same intelligence that powers dedicated pricing solutions, without the complexity of managing multiple disconnected"
+        }
+      ],
+      "usage": {
+        "completion_tokens": 1996,
+        "prompt_tokens": 4155,
+        "total_tokens": 6151,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 331,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.03527,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.02827,
+          "upstream_inference_prompt_cost": 0.00831,
+          "upstream_inference_completions_cost": 0.01996
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "google/gemini-3.8-flash",
+      "run": 2,
+      "ok": true,
+      "answer": "### 1. What They Do, Who Buys It, and How They Make Money\nZilliant provides cloud-based B2B pricing lifecycle management and revenue optimization software, including price management, real-time pricing engines, analytics, and CPQ (configure, price, quote) capabilities [cbinsights.com](https://www.cbinsights.com/company/zilliant), [zilliant.com](https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale). \n* **Buyers:** Pricing, sales, and commercial operations leaders (often overseen by the CEO, CFO, or CRO) at mid-market and enterprise B2B distributors and manufacturers in sectors like automotive aftermarket and chemicals [zilliant.com](https://zilliant.com/press-releases/zilliant-survey-executives-are-adjusting-prices-more-than-ever-but-losing-control-of-the-outcomes), [zilliant.com](https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale).\n* **Revenue Model:** Enterprise B2B SaaS software subscriptions alongside professional implementation and advisory services (specific contractual terms are not publicly disclosed).\n\n### 2. Recent News and Launches (Past 6 Months)\n* **FTZ Automotive Win (September 2026):** FTZ, Denmark’s largest automotive supplier, selected Zilliant after benchmark testing demonstrated 70x higher output under peak throughput and 3x faster sequential pricing responses [zilliant.com](https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale).\n* **\"Pricing Without Control\" Research (April 2026):** Surveyed 300 enterprise executives, reporting that while 88% place pricing accountability in the C-suite, only 23% use AI-enabled pricing platforms and 18% still run pricing via spreadsheets [zilliant.com](https://zilliant.com/press-releases/zilliant-survey-executives-are-adjusting-prices-more-than-ever-but-losing-control-of-the-outcomes).\n* **Agentic AI Expansion:** Follows Zilliant’s rollout of its industry-first Model Context Protocol (MCP) Server, enabling autonomous enterprise AI agents to retrieve live pricing data without manual integration [zilliant.com](https://zilliant.com/press-releases/zilliant-launches-agentic-ai-with-industry-first-mcp-server-to-end-spreadsheet-pricing).\n\n### 3. Funding, Size, and Financial Signals\n* **Ownership & Capital:** Founded in 1999 in Austin, Texas, Zilliant is private equity-backed by Madison Dearborn Partners [cbinsights.com](https://www.cbinsights.com/company/zilliant). It has raised $130.85M in total funding [cbinsights.com](https://www.cbinsights.com/company/zilliant).\n* **Size:** Exact employee headcount and financial revenues are kept private, but customer deployments handle high transaction volumes (e.g., FTZ's 300,000+ SKUs and >DKK 2B in digital sales) [zilliant.com](https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale).\n\n### 4. Leadership\n* **Pascal Yammine:** Chief Executive Officer [zilliant.com](https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale)\n* **Kylie Fuentes:** Chief Product & Marketing Officer [zilliant.com](https://zilliant.com/press-releases/zilliant-launches-agentic-ai-with-industry-first-mcp-server-to-end-spreadsheet-pricing)\n\n### 5. Main Competitors and Differentiation\n* **Competitors:** PROS, Model N, and native ERP/CRM pricing functionality within SAP, Microsoft, and Oracle [cbinsights.com](https://www.cbinsights.com/company/zilliant).\n* **Differentiators:** \n  * Extreme low-latency, real-time pricing execution designed for complex, high-SKU distribution environments [zilliant.com](https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale).\n  * System neutrality: Deep integration with both SAP S/4HANA and Salesforce, avoiding ERP vendor lock-in [zilliant.com](https://zilliant.com/press-releases/zilliant-closes-2025-with-strategic-product-innovation-and-major-customer-win-with-julius-hoesch-gmbh-co-kg).\n  * An open MCP Server architecture allowing 3rd-party AI agents to query pricing guardrails [zilliant.com](https://zilliant.com/press-releases/zilliant-launches-agentic-ai-with-industry-first-mcp-server-to-end-spreadsheet-pricing).\n\n### 6. Likely Strategic Priorities and Open Questions\n* **Priorities:** Converting B2B distributors migrating to cloud ERPs (like SAP S/4HANA) into Zilliant pricing hubs [zilliant.com](https://zilliant.com/press-releases/zilliant-closes-2025-with-strategic-product-innovation-and-major-customer-win-with-julius-hoesch-gmbh-co-kg), and driving enterprise adoption of autonomous Agentic AI tools [zilliant.com](https://zilliant.com/press-releases/zilliant-launches-agentic-ai-with-industry-first-mcp-server-to-end-spreadsheet-pricing).\n* **Open Questions to Ask:**\n  * How are customers using the new MCP server—are enterprise clients deploying custom agents to manage quote approvals autonomously?\n  * How is Zilliant positioning against ERP vendors building more advanced native pricing modules?",
+      "error": null,
+      "latency": 25.660524853000084,
+      "prompt_tokens": 2510,
+      "completion_tokens": 3656,
+      "cost": 0.0225925,
+      "citations": [
+        {
+          "url": "https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale",
+          "title": "FTZ Selects Zilliant After Real-Time Benchmark Confirms Superior Pricing Performance at Scale | press release",
+          "content": "## Denmark’s leading automotive supplier to use Zilliant Price Manager, Real-Time Pricing Engine and Visual Analytics to automate pricing, strengthen governance and deliver customer-specific prices across high-volume digital channels\n\n...\n\nAARUP, Denmark & AUSTIN, Texas, September 8, 2026 – Zilliant, the leader in pricing lifecycle management, today announced that FTZ Autodele & Værktøj A/S, Denmark’s largest partner and supplier to the automotive industry, has selected Zilliant to modernize pricing across its automotive aftermarket business.\n\n...\n\nFTZ supplies spare parts, tools, tires and consumables to professional workshops across Denmark, the Faroe Islands and Greenland. With more than 300,000 SKUs, a high-volume digital business, and more than DKK 2 billion in digital sales, FTZ required a pricing platform capable of combining governance, automation and real-time execution at scale.\n\n...\n\nA decisive factor in the selection was FTZ’s technical benchmark of real-time pricing performance. The evaluation used the same customer-side test client to generate 1,000 randomized pricing requests under directly comparable conditions, measuring the complete service response rather than compute time alone. In sequential request handling, Zilliant was approximately three times faster. Under maximum-throughput conditions, the difference became decisive: Zilliant delivered approximately 70 times higher pricing output.\n\n...\n\nThrough the partnership, FTZ will deploy Zilliant Price Manager, Zilliant Real-Time Pricing Engine and Zilliant Visual Analytics. The solution will help FTZ automate list-price calculations, manage pricing logic and guardrails, strengthen discount governance, and deliver real-time customer-specific pricing through its webshop and operational systems. Zilliant Visual Analytics will help FTZ monitor pricing execution, guidance adherence, revenue performance and margin drivers.\n\n...\n\n“FTZ approached this decision with the rigor that modern B2B digital commerce deserves,” said Pascal Yammine, Chief Executive Officer at Zilliant. “For a distributor managing hundreds of thousands of products, customer-specific conditions and real-time digital interactions, pricing performance is not a technical detail. It is what allows strategy, governance and execution to reach the customer at the moment of decision.”\n\n...\n\nThe partnership reflects a broader shift in B2B distribution. As more customer interactions move through digital channels, pricing must be fast, governed and explainable enough to support live commercial decisions. FTZ and Zilliant will work together to bring that capability into the core of FTZ’s commercial operations."
+        },
+        {
+          "url": "https://zilliant.com/press-releases/zilliant-survey-executives-are-adjusting-prices-more-than-ever-but-losing-control-of-the-outcomes",
+          "title": "Zilliant Survey: Executives Are Adjusting Prices More Than Ever but Losing Control of the Outcomes | press release",
+          "content": "AUSTIN, Texas—April 28, 2026— Zilliant, the leader in pricing lifecycle management, today released its Pricing Without Control report examining how 300 senior executives across manufacturing and distribution are navigating pricing decisions amid persistent economic volatility. The research reveals a striking disconnect: nearly every company is adjusting prices, but only half feel confident they understand the financial impact.\n\n...\n\nPricing ownership has shifted to the C-suite, with 88% of organizations placing pricing accountability with the CEO, CFO, or CRO. Yet pricing execution remains fragmented.\n\n...\n\n- 23% use AI-enabled pricing solutions.\n- 20% use non-AI vendor tools.\n- 18% still rely on spreadsheets.\n\n...\n\nThe findings point to three priorities for organizations looking to strengthen pricing performance:\n\n...\n\n- Establish a unified source of pricing truth across teams and systems.\n- Align pricing strategy across functions to eliminate conflicting decisions.\n- Invest in governance so automation improves control, not complexity."
+        },
+        {
+          "url": "https://zilliant.com/press-releases/zilliant-closes-2025-with-strategic-product-innovation-and-major-customer-win-with-julius-hoesch-gmbh-co-kg",
+          "title": "Zilliant Closes 2025 with Strategic Product Innovation and Major Customer Win with Julius Hoesch GmbH & Co. KG | press release",
+          "content": "AUSTIN, Texas—Jan. 27, 2026— Zilliant, the leader in pricing lifecycle management, today announced it ended 2025 with significant market momentum, driven by a wave of product innovations designed to help companies transcend manual pricing methods. As B2B organizations faced increasing pressure from tariffs and market volatility throughout the year, Zilliant delivered industry-first AI capabilities and strategic solutions to transform pricing from a spreadsheet-managed task into a driver of profitable growth.\n\n...\n\nThe company’s momentum is underscored by its latest customer addition of the year: a new partnership with Julius Hoesch GmbH & Co. KG, a leading chemical distributor. Julius Hoesch selected Zilliant to modernize price setting and execution across sales and e-commerce in parallel with the company’s migration to the SAP S/4HANA Public Cloud.\n\n...\n\nChemical distributors face distinct challenges, including manual spreadsheets, frequent re-quoting due to daily cost swings and customer-specific prices that are difficult to align across channels. To address these issues during its SAP cutover, Julius Hoesch will use Zilliant as a single entry point in Salesforce—supported by deep SAP S/4HANA integration—to automate cost pass-throughs and provide explainable pricing guidance.\n\n...\n\n“We chose Zilliant because it’s built for chemical distribution and fits our stack,” said Lukas Thuir, Marketing Director, Julius Hoesch. “By unifying work in Salesforce, backed by S/4HANA and analytics at every step—from price waterfalls to churn-risk and next-best-buy actions—we remove manual effort, support fair, consistent pricing and strengthen customer lifetime value.”\n\n...\n\nZilliant CEO Pascal Yammine added, “We’re excited to partner with Julius Hoesch. Distributors are moving away from manual quoting, spreadsheet pricing and tool sprawl. Zilliant centralizes pricing outside ERP, embeds everything in Salesforce and makes prices transparent and fair, so customers buy with confidence and companies grow lifetime value.”\n\n...\n\nZilliant responded to these disruptions with a series of defining product innovations:\n\n...\n\n- Agentic AI with Industry-First MCP Server: Addressing the need for speed and intelligence, Zilliant unveiled Agentic AI in October. This industry-first Model Context Protocol (MCP) Server allows autonomous agents to secure pricing data instantly, ending the era of manual data retrieval and enabling rapid response to market volatility.\n- Pricing Plus: Launched in November, Pricing Plus directly targets the operational gaps found in Zilliant’s research. It provides a streamlined path for companies to move beyond spreadsheets, preventing the margin leakage that often occurs during economic shifts.\n- Precision Pricing Platform: To unify strategy and execution, Zilliant consolidated its portfolio under the Precision Pricing Platform, giving customers a single source of truth to navigate complex policy changes and tariff impacts with confidence."
+        },
+        {
+          "url": "https://www.cbinsights.com/company/zilliant",
+          "title": "Zilliant - Products, Competitors, Financials, Employees, Headquarters Locations",
+          "content": "## Stage\n\n...\n\nPrivate Equity | Alive\n\n## Total Raised\n\n...\n\n$130.85M\n\n...\n\n## Last Raised\n\n...\n\n$35M | 3 yrs ago\n\n...\n\nZilliant focuses on artificial intelligence (AI) driven pricing and revenue optimization in the business to business (B2B) sector. The company offers products for automating pricing operations, including price management, pricing analytics, price optimization, and tools for configuring prices, quoting, and managing sales agreements. Zilliant serves industries such as manufacturing and distribution, targeting pricing and sales teams. It was founded in 1999 and is based in Austin, Texas.\n\n...\n\nZilliant named as Challenger among 11 other companies, including Microsoft, Oracle, and SAP.\n\n...\n\nZilliant's latest funding round is Private Equity.\n- How much did Zilliant raise?\n\n...\n\nZilliant raised a total of $130.85M.\n- Who are the investors of Zilliant?\n\n...\n\nInvestors of Zilliant include Madison Dearborn Partners, Paycheck Protection Program, Goldman Sachs, Trellis Partners, Austin Ventures and 15 more.\n- Who are Zilliant's competitors?\n\n...\n\nCompetitors of Zilliant include RAPT Therapeutics, PROS, Pactum, Model N, Celerity Enterprises and 7 more."
+        },
+        {
+          "url": "https://zilliant.com/press-releases/zilliant-launches-agentic-ai-with-industry-first-mcp-server-to-end-spreadsheet-pricing",
+          "title": "Zilliant Launches Agentic AI with Industry-First MCP Server to End Spreadsheet Pricing | press release",
+          "content": "AUSTIN, Texas—Oct. 9, 2025—Zilliant, the leader in pricing lifecycle management, today announced the introduction of Agentic AI capabilities and the pricing industry’s first Model Context Protocol (MCP) Server to make intelligent pricing accessible and affordable for organizations of any size. By automating complex tasks and embedding intelligence directly into existing workflows, Zilliant’s new AI agents help businesses move beyond spreadsheets, expensive outside consultants and guesswork to achieve immediate, measurable results.\n\n...\n\n- Streamlining approvals: The Approvals Agent\n\n...\n\nAs part of this launch, Zilliant is also introducing the pricing industry’s first Model Context Protocol (MCP) Server—a breakthrough integration capability that allows organizations to incorporate pricing intelligence into their existing AI ecosystem, without requiring specialized implementation. This addresses a key barrier for organizations exploring AI adoption: the ability to connect new capabilities with existing tools, data and workflows.\n\n...\n\nThe MCP Server enables organizations to bring Zilliant’s pricing intelligence wherever work is being done—whether through existing business applications, custom AI assistants or emerging enterprise AI platforms. For enterprises experimenting with AI-driven automation, this ensures that pricing decisions can be informed by the same intelligence that powers dedicated pricing solutions, without the complexity of managing multiple disconnected systems. This lowers the cost and risk of AI adoption while accelerating time to value.\n\n...\n\nThis integration approach represents a fundamental shift from requiring organizations to adopt entirely new platforms to allowing them to enhance their existing workflows with intelligent pricing capabilities.\n\n...\n\n“Great AI experiences fit seamlessly into the way people already work. That’s why we built flexible, powerful agents,” said Kylie Fuentes, Zilliant’s chief product & marketing officer. “They adapt to the unique logic, data and workflows of each business while the MCP Server ensures they operate"
+        }
+      ],
+      "usage": {
+        "completion_tokens": 3656,
+        "prompt_tokens": 2510,
+        "total_tokens": 6166,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 2232,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.0225925,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0155925,
+          "upstream_inference_prompt_cost": 0.0018825,
+          "upstream_inference_completions_cost": 0.01371
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "run": 2,
+      "ok": true,
+      "answer": "**Briefing: Zilliant (Pricing Lifecycle Management)**\n\n### 1. What they do, who buys it, and how they make money\nZilliant provides AI‑driven price optimization and management software for B2B manufacturing, distribution, high‑tech and industrial service companies. Its “Precision Pricing Platform” consolidates list‑price management, real‑time deal pricing, visual analytics, agreement management and campaign tools, aiming to replace spreadsheet‑based processes. Typical buyers are large SKU‑intensive distributors (e.g., auto parts, chemicals) that need governed, explainable pricing across digital channels. Zilliant likely sells recurring SaaS subscriptions, though exact commercial terms are not public.\n\n### 2. Recent news and launches (last 6 months)\n- **FTZ partnership (Sep 2026):** Denmark’s largest automotive aftermarket supplier chose Zilliant Price Manager, Real‑Time Pricing Engine and Visual Analytics after a rigorous benchmark. Zilliant delivered ~3x faster sequential response times and ~70x higher throughput than the competitor. FTZ will use Zilliant to automate customer‑specific prices for its 300k‑SKU digital business [zilliant.com](https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale).  \n- **Pricing Without Control survey (Apr 2026):** Zilliant released research among 300 manufacturing/distribution executives showing that 88% of pricing accountability now sits with the CEO, CFO or CRO, yet only 23% use AI‑enabled solutions and 18% still rely on spreadsheets. The study underscored that speed without governance compounds complexity, highlighting the need for a unified pricing truth [zilliant.com](https://zilliant.com/press-releases/zilliant-survey-executives-are-adjusting-prices-more-than-ever-but-losing-control-of-the-outcomes).\n\n### 3. Funding, size, and financial signals\nZilliant is private‑equity‑backed and has raised **$130.85 M** in total; its most recent round was $35 M about three years ago [cbinsights.com](https://www.cbinsights.com/company/zilliant). Key investors include **Madison Dearborn Partners, Goldman Sachs, Trellis Partners and Austin Ventures**. The company is classified as a “Challenger” in its segment alongside giants like Microsoft, Oracle and SAP. While revenue is undisclosed, large‑deal wins (e.g., FTZ with over DKK 2 B in digital sales) suggest a solid enterprise customer base.\n\n### 4. Leadership\n- **Pascal Yammine**, Chief Executive Officer (quoted in recent press releases) [zilliant.com](https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale).  \n- **Pete Eppele**, SVP Products & Science (previously at Stamford Industrial Group) [crunchbase.com](https://www.crunchbase.com/organization/zilliant).  \n- **Greg Howe**, Senior Vice President of Worldwide Sales [crunchbase.com](https://www.crunchbase.com/organization/zilliant).  \nFurther C‑suite roles (CFO, CRO) not identified in the provided sources.\n\n### 5. Main competitors and how they differ\n- **PROS:** Also AI‑focused, strong in airlines and B2B, but Zilliant differentiates with a real‑time pricing engine that showed a 70x throughput advantage in a customer benchmark and a deep focus on governance for complex distributors.  \n- **Model N:** Concentrates on revenue management and compliance for life sciences and high-tech, whereas Zilliant serves broad manufacturing/distribution with an emphasis on price lifecycle automation.  \n- **Pactum:** AI‑driven supplier negotiation, not a full lifecycle pricing suite.  \n- **SAP/Oracle/Microsoft:** Offer broader ERP suites with pricing modules; Zilliant positions itself as a specialist that complements (and integrates with) those platforms, providing faster, more explainable pricing.  \nNamed a “Challenger” to these large players [cbinsights.com](https://www.cbinsights.com/company/zilliant).\n\n### 6. Likely strategic priorities and open questions\n**Priorities:**  \n- Deepen European distribution wins (FTZ, Julius Hoesch) and promote agentic AI capabilities for autonomous cost‑pass‑through.  \n- Leverage survey findings to drive governance‑first messaging, selling the “unified pricing truth” concept.  \n- Extend integrations with cloud ERPs (especially SAP S/4HANA) and CRMs (Salesforce).  \n\n**Open questions:**  \n- With no new funding in three years, will Zilliant seek another round or an exit to sustain growth against larger platform vendors?  \n- How large is the revenue concentration risk from a few anchor customers?  \n- Can Zilliant maintain its technical edge as competitors embed AI pricing natively into ERP suites?",
+      "error": null,
+      "latency": 42.712156847000074,
+      "prompt_tokens": 2399,
+      "completion_tokens": 3029,
+      "cost": 0.02019292,
+      "citations": [
+        {
+          "url": "https://zilliant.com/press-releases/ftz-selects-zilliant-after-real-time-benchmark-confirms-superior-pricing-performance-at-scale",
+          "title": "FTZ Selects Zilliant After Real-Time Benchmark Confirms Superior Pricing Performance at Scale | press release",
+          "content": "## Denmark’s leading automotive supplier to use Zilliant Price Manager, Real-Time Pricing Engine and Visual Analytics to automate pricing, strengthen governance and deliver customer-specific prices across high-volume digital channels\n\n...\n\nAARUP, Denmark & AUSTIN, Texas, September 8, 2026 – Zilliant, the leader in pricing lifecycle management, today announced that FTZ Autodele & Værktøj A/S, Denmark’s largest partner and supplier to the automotive industry, has selected Zilliant to modernize pricing across its automotive aftermarket business.\n\n...\n\nFTZ supplies spare parts, tools, tires and consumables to professional workshops across Denmark, the Faroe Islands and Greenland. With more than 300,000 SKUs, a high-volume digital business, and more than DKK 2 billion in digital sales, FTZ required a pricing platform capable of combining governance, automation and real-time execution at scale.\n\n...\n\nA decisive factor in the selection was FTZ’s technical benchmark of real-time pricing performance. The evaluation used the same customer-side test client to generate 1,000 randomized pricing requests under directly comparable conditions, measuring the complete service response rather than compute time alone. In sequential request handling, Zilliant was approximately three times faster. Under maximum-throughput conditions, the difference became decisive: Zilliant delivered approximately 70 times higher pricing output.\n\n...\n\nThrough the partnership, FTZ will deploy Zilliant Price Manager, Zilliant Real-Time Pricing Engine and Zilliant Visual Analytics. The solution will help FTZ automate list-price calculations, manage pricing logic and guardrails, strengthen discount governance, and deliver real-time customer-specific pricing through its webshop and operational systems. Zilliant Visual Analytics will help FTZ monitor pricing execution, guidance adherence, revenue performance and margin drivers.\n\n...\n\n“FTZ approached this decision with the rigor that modern B2B digital commerce deserves,” said Pascal Yammine, Chief Executive Officer at Zilliant. “For a distributor managing hundreds of thousands of products, customer-specific conditions and real-time digital interactions, pricing performance is not a technical detail. It is what allows strategy, governance and execution to reach the customer at the moment of decision.”\n\n...\n\nThe partnership reflects a broader shift in B2B distribution. As more customer interactions move through digital channels, pricing must be fast, governed and explainable enough to support live commercial decisions. FTZ and Zilliant will work together to bring that capability into the core of FTZ’s commercial operations."
+        },
+        {
+          "url": "https://zilliant.com/press-releases/zilliant-survey-executives-are-adjusting-prices-more-than-ever-but-losing-control-of-the-outcomes",
+          "title": "Zilliant Survey: Executives Are Adjusting Prices More Than Ever but Losing Control of the Outcomes | press release",
+          "content": "AUSTIN, Texas—April 28, 2026— Zilliant, the leader in pricing lifecycle management, today released its Pricing Without Control report examining how 300 senior executives across manufacturing and distribution are navigating pricing decisions amid persistent economic volatility. The research reveals a striking disconnect: nearly every company is adjusting prices, but only half feel confident they understand the financial impact.\n\n...\n\nPricing ownership has shifted to the C-suite, with 88% of organizations placing pricing accountability with the CEO, CFO, or CRO. Yet pricing execution remains fragmented.\n\n...\n\n- 23% use AI-enabled pricing solutions.\n- 20% use non-AI vendor tools.\n- 18% still rely on spreadsheets.\n\n...\n\nAI adoption is growing, and these tools can improve pricing speed and responsiveness. But technology alone does not resolve the underlying challenges of governance and consistency. When AI is layered onto fragmented systems and processes, the result is faster decisions, not better-controlled ones.\n\n...\n\nThe findings point to three priorities for organizations looking to strengthen pricing performance:\n\n...\n\n- Establish a unified source of pricing truth across teams and systems.\n- Align pricing strategy across functions to eliminate conflicting decisions.\n- Invest in governance so automation improves control, not complexity."
+        },
+        {
+          "url": "https://zilliant.com/press-releases/zilliant-closes-2025-with-strategic-product-innovation-and-major-customer-win-with-julius-hoesch-gmbh-co-kg",
+          "title": "Zilliant Closes 2025 with Strategic Product Innovation and Major Customer Win with Julius Hoesch GmbH & Co. KG | press release",
+          "content": "AUSTIN, Texas—Jan. 27, 2026— Zilliant, the leader in pricing lifecycle management, today announced it ended 2025 with significant market momentum, driven by a wave of product innovations designed to help companies transcend manual pricing methods. As B2B organizations faced increasing pressure from tariffs and market volatility throughout the year, Zilliant delivered industry-first AI capabilities and strategic solutions to transform pricing from a spreadsheet-managed task into a driver of profitable growth.\n\n...\n\nThe company’s momentum is underscored by its latest customer addition of the year: a new partnership with Julius Hoesch GmbH & Co. KG, a leading chemical distributor. Julius Hoesch selected Zilliant to modernize price setting and execution across sales and e-commerce in parallel with the company’s migration to the SAP S/4HANA Public Cloud.\n\n...\n\nChemical distributors face distinct challenges, including manual spreadsheets, frequent re-quoting due to daily cost swings and customer-specific prices that are difficult to align across channels. To address these issues during its SAP cutover, Julius Hoesch will use Zilliant as a single entry point in Salesforce—supported by deep SAP S/4HANA integration—to automate cost pass-throughs and provide explainable pricing guidance.\n\n...\n\n“We chose Zilliant because it’s built for chemical distribution and fits our stack,” said Lukas Thuir, Marketing Director, Julius Hoesch. “By unifying work in Salesforce, backed by S/4HANA and analytics at every step—from price waterfalls to churn-risk and next-best-buy actions—we remove manual effort, support fair, consistent pricing and strengthen customer lifetime value.”\n\n...\n\nZilliant CEO Pascal Yammine added, “We’re excited to partner with Julius Hoesch. Distributors are moving away from manual quoting, spreadsheet pricing and tool sprawl. Zilliant centralizes pricing outside ERP, embeds everything in Salesforce and makes prices transparent and fair, so customers buy with confidence and companies grow lifetime value.”\n\n...\n\nIn 2025, Zilliant cemented its role as a thought leader by identifying and addressing the macroeconomic forces\n\n...\n\nZilliant responded to these disruptions with a series of defining product innovations:\n\n...\n\n- Agentic AI with Industry-First MCP Server: Addressing the need for speed and intelligence, Zilliant unveiled Agentic AI in October. This industry-first Model Context Protocol (MCP) Server allows autonomous agents to secure pricing data instantly, ending the era of manual data retrieval and enabling rapid response to market volatility.\n- Pricing Plus: Launched in November, Pricing Plus directly targets the operational gaps found in Zilliant’s research. It provides a streamlined path for companies to move beyond spreadsheets, preventing the margin leakage that often occurs during economic shifts.\n- Precision Pricing Platform: To unify strategy and execution, Zilliant consolidated its portfolio under the Precision Pricing Platform, giving customers a single source of truth to navigate complex policy changes and tariff impacts with confidence."
+        },
+        {
+          "url": "https://www.cbinsights.com/company/zilliant",
+          "title": "Zilliant - Products, Competitors, Financials, Employees, Headquarters Locations",
+          "content": "## Stage\n\n...\n\nPrivate Equity | Alive\n\n...\n\n## Total Raised\n\n...\n\n$130.85M\n\n...\n\n## Last Raised\n\n...\n\n$35M | 3 yrs ago\n\n...\n\nZilliant focuses on artificial intelligence (AI) driven pricing and revenue optimization in the business to business (B2B) sector. The company offers products for automating pricing operations, including price management, pricing analytics, price optimization, and tools for configuring prices, quoting, and managing sales agreements. Zilliant serves industries such as manufacturing and distribution, targeting pricing and sales teams. It was founded in 1999 and is based in Austin, Texas.\n\n...\n\nZilliant named as Challenger among 11 other companies, including Microsoft, Oracle, and SAP.\n\n...\n\nZilliant's latest funding round is Private Equity.\n- How much did Zilliant raise?\n\n...\n\nZilliant raised a total of $130.85M.\n- Who are the investors of Zilliant?\n\n...\n\nInvestors of Zilliant include Madison Dearborn Partners, Paycheck Protection Program, Goldman Sachs, Trellis Partners, Austin Ventures and 15 more.\n- Who are Zilliant's competitors?\n\n...\n\nCompetitors of Zilliant include RAPT Therapeutics, PROS, Pactum, Model N, Celerity Enterprises and 7 more."
+        },
+        {
+          "url": "https://www.crunchbase.com/organization/zilliant",
+          "title": "Zilliant - Crunchbase Company Profile & Funding",
+          "content": "8103 \n\n Zilliant offers price optimization and management software for manufacturing, distribution, high-tech, and industrial service companies.\n\n...\n\n## Key People\n\n...\n\n- Pete Eppele: SVP Products & Science Past Role: Stamford Industrial Group, Product Manager \n- Greg Howe: Senior Vice President of Worldwide Sales\n\n...\n\nZilliant, Inc. provides price optimization and price management software for manufacturing, distribution, high-tech, and industrial service companies. The company's pricing software enables manufacturers and distributors to adopt an approach to price analysis, optimization, price list management, quoting, and negotiation. It offers Zilliant\n\n...\n\nPrecision Pricing Suite (ZPPS), an enterprise software that combines price segmentation and price optimization science with analytics and process automation software for price management; ZPPS Analytics, which provides segment-specific metrics and KPIs to deliver a view of pricing performance and uncover opportunities to improve; ZPPS Price Optimization that produces price and deal envelope recommendations for various price segment; and ZPPS Price List Manager, which administers price lists and policies, as well as other price instruments, such as discount and markup schedules. The company also provides ZPPS Deal Manager and Deal Manager for Agreements, and ZPPS Price Campaign Manager that provides inline analytics and KPIs for scoring deals against peer group benchmarks and enforces corporate price policies; and ZPPS Pricing Information Manager, which manages product mix and selection in various deals. In addition, Zilliant, Inc. offers deployment strategy and planning, and"
+        }
+      ],
+      "usage": {
+        "completion_tokens": 3029,
+        "prompt_tokens": 2399,
+        "total_tokens": 5428,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1940,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.02019292,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.01319292,
+          "upstream_inference_prompt_cost": 0.00374244,
+          "upstream_inference_completions_cost": 0.00945048
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    }
+  ],
+  "judgments": [
+    {
+      "run": 1,
+      "label_map": {
+        "A": "deepseek/deepseek-v4-pro",
+        "B": "anthropic/claude-sonnet-5.5",
+        "C": "google/gemini-3.8-flash"
+      },
+      "ok": true,
+      "scores": {
+        "deepseek/deepseek-v4-pro": {
+          "criteria": {
+            "grounding": 5.0,
+            "specificity": 8.0,
+            "recency": 7.0,
+            "usefulness": 6.0
+          },
+          "unsupported_claims": [
+            "Zilliant sells annual or multi-year SaaS subscriptions, likely with implementation services.",
+            "The cited excerpts establish that typical buyers are large enterprises with high SKU counts.",
+            "The Precision Pricing Platform consolidation, Agentic AI launch and MCP server occurred earlier in 2026; the supplied excerpts do not establish those claims, and the Agentic AI launch was in October 2025.",
+            "Zilliant does not disclose employee count, is focused on a liquidity event, or may be near cash-flow break-even.",
+            "Pascal Yammine is CEO; that name does not appear in A's cited excerpts.",
+            "PROS spans B2B and B2C, Model N focuses on pharma and high-tech, Pactum provides autonomous negotiation, and Zilliant concentrates exclusively on B2B manufacturing and distribution.",
+            "Zilliant's engines provide explainable pricing as a differentiator from the named competitors."
+          ],
+          "rationale": "Concrete customer and survey details are useful, but unsupported business-model and competitor assertions, a misdated launch, and garbled leadership names weaken the briefing.",
+          "weighted_score": 6.3500000000000005,
+          "label": "A"
+        },
+        "anthropic/claude-sonnet-5.5": {
+          "criteria": {
+            "grounding": 8.0,
+            "specificity": 8.0,
+            "recency": 9.0,
+            "usefulness": 8.0
+          },
+          "unsupported_claims": [
+            "The October and November 2025 launch dates and the Pricing Plus name are not established by B's supplied excerpts.",
+            "Pascal Yammine is CEO; his name does not appear in B's cited excerpt.",
+            "Pricing is held outside the ERP; the excerpt establishes Salesforce and SAP integration, but not that architecture.",
+            "Madison Dearborn Partners is the PE owner; the excerpt lists it as an investor but does not establish ownership."
+          ],
+          "rationale": "It distinguishes sourced facts from uncertainty and gives meeting-ready questions, though several product-history and leadership details exceed the supplied excerpts.",
+          "weighted_score": 8.2,
+          "label": "B"
+        },
+        "google/gemini-3.8-flash": {
+          "criteria": {
+            "grounding": 5.0,
+            "specificity": 8.0,
+            "recency": 7.0,
+            "usefulness": 7.0
+          },
+          "unsupported_claims": [
+            "Zilliant's revenue comes from enterprise SaaS subscriptions and implementation services tiered by modules, transaction volume and data scale.",
+            "Madison Dearborn Partners acquired Zilliant in late 2021.",
+            "Customer wins center on multi-billion-dollar global distributors; the excerpts establish FTZ's digital sales, not that broader characterization.",
+            "Pascal Yammine's CEO role, former Salesforce position and role in an API-first strategic shift are not established by C's cited excerpts.",
+            "Pricefx and Vendavo are named competitors in the cited CB Insights excerpt.",
+            "Zilliant delivers millisecond-level lookups without burdening ERP backends.",
+            "The MCP server lets external LLMs pull governed pricing logic without custom integrations; the excerpt describes broader integration of pricing intelligence but not those specifics."
+          ],
+          "rationale": "The briefing has relevant questions and recent examples, but it presents several unsupported financial, leadership and technical specifics as fact.",
+          "weighted_score": 6.550000000000001,
+          "label": "C"
+        }
+      },
+      "raw_outputs": [
+        "{\n  \"A\": {\n    \"scores\": {\n      \"grounding\": 5,\n      \"specificity\": 8,\n      \"recency\": 7,\n      \"usefulness\": 6\n    },\n    \"unsupported_claims\": [\n      \"Zilliant sells annual or multi-year SaaS subscriptions, likely with implementation services.\",\n      \"The cited excerpts establish that typical buyers are large enterprises with high SKU counts.\",\n      \"The Precision Pricing Platform consolidation, Agentic AI launch and MCP server occurred earlier in 2026; the supplied excerpts do not establish those claims, and the Agentic AI launch was in October 2025.\",\n      \"Zilliant does not disclose employee count, is focused on a liquidity event, or may be near cash-flow break-even.\",\n      \"Pascal Yammine is CEO; that name does not appear in A's cited excerpts.\",\n      \"PROS spans B2B and B2C, Model N focuses on pharma and high-tech, Pactum provides autonomous negotiation, and Zilliant concentrates exclusively on B2B manufacturing and distribution.\",\n      \"Zilliant's engines provide explainable pricing as a differentiator from the named competitors.\"\n    ],\n    \"rationale\": \"Concrete customer and survey details are useful, but unsupported business-model and competitor assertions, a misdated launch, and garbled leadership names weaken the briefing.\"\n  },\n  \"B\": {\n    \"scores\": {\n      \"grounding\": 8,\n      \"specificity\": 8,\n      \"recency\": 9,\n      \"usefulness\": 8\n    },\n    \"unsupported_claims\": [\n      \"The October and November 2025 launch dates and the Pricing Plus name are not established by B's supplied excerpts.\",\n      \"Pascal Yammine is CEO; his name does not appear in B's cited excerpt.\",\n      \"Pricing is held outside the ERP; the excerpt establishes Salesforce and SAP integration, but not that architecture.\",\n      \"Madison Dearborn Partners is the PE owner; the excerpt lists it as an investor but does not establish ownership.\"\n    ],\n    \"rationale\": \"It distinguishes sourced facts from uncertainty and gives meeting-ready questions, though several product-history and leadership details exceed the supplied excerpts.\"\n  },\n  \"C\": {\n    \"scores\": {\n      \"grounding\": 5,\n      \"specificity\": 8,\n      \"recency\": 7,\n      \"usefulness\": 7\n    },\n    \"unsupported_claims\": [\n      \"Zilliant's revenue comes from enterprise SaaS subscriptions and implementation services tiered by modules, transaction volume and data scale.\",\n      \"Madison Dearborn Partners acquired Zilliant in late 2021.\",\n      \"Customer wins center on multi-billion-dollar global distributors; the excerpts establish FTZ's digital sales, not that broader characterization.\",\n      \"Pascal Yammine's CEO role, former Salesforce position and role in an API-first strategic shift are not established by C's cited excerpts.\",\n      \"Pricefx and Vendavo are named competitors in the cited CB Insights excerpt.\",\n      \"Zilliant delivers millisecond-level lookups without burdening ERP backends.\",\n      \"The MCP server lets external LLMs pull governed pricing logic without custom integrations; the excerpt describes broader integration of pricing intelligence but not those specifics.\"\n    ],\n    \"rationale\": \"The briefing has relevant questions and recent examples, but it presents several unsupported financial, leadership and technical specifics as fact.\"\n  }\n}"
+      ],
+      "error": null,
+      "cost": 0.0328235,
+      "latency": 15.899567476000016,
+      "usage": [
+        {
+          "completion_tokens": 1227,
+          "prompt_tokens": 8222,
+          "total_tokens": 9449,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": 0,
+            "reasoning_tokens": 516,
+            "rejected_prediction_tokens": null,
+            "text_tokens": null,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 8219,
+            "cached_tokens": 0,
+            "image_tokens": null,
+            "text_tokens": null,
+            "video_tokens": 0
+          },
+          "cost": 0.0328235,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.0328235,
+            "upstream_inference_prompt_cost": 0.0205535,
+            "upstream_inference_completions_cost": 0.01227
+          }
+        }
+      ]
+    },
+    {
+      "run": 2,
+      "label_map": {
+        "A": "google/gemini-3.8-flash",
+        "B": "deepseek/deepseek-v4-pro",
+        "C": "anthropic/claude-sonnet-5.5"
+      },
+      "ok": true,
+      "scores": {
+        "google/gemini-3.8-flash": {
+          "criteria": {
+            "grounding": 6.0,
+            "specificity": 9.0,
+            "recency": 9.0,
+            "usefulness": 8.0
+          },
+          "unsupported_claims": [
+            "Zilliant earns revenue from SaaS subscriptions and professional implementation or advisory services; the excerpts do not establish its revenue model.",
+            "Mid-market buyers and the stated cloud-based characterization are not established by the excerpts.",
+            "The MCP Server lets autonomous agents retrieve live pricing data and query pricing guardrails; the excerpt only establishes integration of pricing intelligence into other AI tools.",
+            "Pascal Yammine's and Kylie Fuentes's names and titles do not appear in the supplied excerpts.",
+            "SAP, Microsoft and Oracle offer competing native ERP/CRM pricing functionality, and Zilliant's integrations avoid vendor lock-in; those comparisons are not established by the excerpts.",
+            "Employee headcount and revenue are 'kept private'; the excerpts provide no figures, but do not establish that characterization."
+          ],
+          "rationale": "Concrete, timely customer and survey details make this useful, but its leadership, revenue-model and competitive-differentiation claims exceed the supplied evidence.",
+          "weighted_score": 7.75,
+          "label": "A"
+        },
+        "deepseek/deepseek-v4-pro": {
+          "criteria": {
+            "grounding": 5.0,
+            "specificity": 9.0,
+            "recency": 8.0,
+            "usefulness": 7.0
+          },
+          "unsupported_claims": [
+            "The current products are grouped under a 'Precision Pricing Platform'; that name is not established by the supplied excerpts.",
+            "Recurring SaaS subscriptions are presented as likely, but the excerpts do not establish commercial terms.",
+            "Pascal Yammine is CEO; his name and title do not appear in the supplied excerpts.",
+            "The Crunchbase excerpt lists Pete Eppele and Greg Howe as key people, but does not establish that their roles are current.",
+            "PROS's strength in airlines, Model N's focus on life sciences and high-tech, and Pactum's supplier-negotiation offering are not described in the excerpts.",
+            "SAP, Oracle and Microsoft have competing pricing modules, or Zilliant is faster and more explainable than those modules; the excerpts do not substantiate these comparisons.",
+            "The FTZ win indicates a solid enterprise customer base or bears on revenue concentration; neither follows from the cited customer sales figure.",
+            "Zilliant is promoting agentic AI for autonomous cost-pass-through; the excerpts separately describe agentic AI and automated cost pass-through, not that combined use."
+          ],
+          "rationale": "The recent wins and funding figures are specific, but several confident competitor comparisons and financial inferences lack support.",
+          "weighted_score": 7.0,
+          "label": "B"
+        },
+        "anthropic/claude-sonnet-5.5": {
+          "criteria": {
+            "grounding": 8.0,
+            "specificity": 8.0,
+            "recency": 9.0,
+            "usefulness": 8.0
+          },
+          "unsupported_claims": [
+            "October 12, 2026 is the briefing's as-of date; no supplied source establishes that exact date.",
+            "The products are grouped under the 'Precision Pricing Platform'; the cited excerpt does not establish that name.",
+            "Pricing Plus launched in November 2025; that launch and date do not appear in the supplied excerpt.",
+            "Pascal Yammine is CEO; his name and title do not appear in the supplied excerpts.",
+            "Zilliant keeps pricing logic outside the ERP; the cited customer account establishes a Salesforce entry point and SAP integration, not that architecture generally.",
+            "Both cited customer wins are based in Europe; Denmark is established for FTZ, but the supplied Julius Hoesch excerpt does not state its location."
+          ],
+          "rationale": "It distinguishes reported claims from inference and acknowledges missing commercial and competitor evidence, though a few product, leadership and date details remain unverified.",
+          "weighted_score": 8.2,
+          "label": "C"
+        }
+      },
+      "raw_outputs": [
+        "{\n  \"A\": {\n    \"scores\": {\n      \"grounding\": 6,\n      \"specificity\": 9,\n      \"recency\": 9,\n      \"usefulness\": 8\n    },\n    \"unsupported_claims\": [\n      \"Zilliant earns revenue from SaaS subscriptions and professional implementation or advisory services; the excerpts do not establish its revenue model.\",\n      \"Mid-market buyers and the stated cloud-based characterization are not established by the excerpts.\",\n      \"The MCP Server lets autonomous agents retrieve live pricing data and query pricing guardrails; the excerpt only establishes integration of pricing intelligence into other AI tools.\",\n      \"Pascal Yammine's and Kylie Fuentes's names and titles do not appear in the supplied excerpts.\",\n      \"SAP, Microsoft and Oracle offer competing native ERP/CRM pricing functionality, and Zilliant's integrations avoid vendor lock-in; those comparisons are not established by the excerpts.\",\n      \"Employee headcount and revenue are 'kept private'; the excerpts provide no figures, but do not establish that characterization.\"\n    ],\n    \"rationale\": \"Concrete, timely customer and survey details make this useful, but its leadership, revenue-model and competitive-differentiation claims exceed the supplied evidence.\"\n  },\n  \"B\": {\n    \"scores\": {\n      \"grounding\": 5,\n      \"specificity\": 9,\n      \"recency\": 8,\n      \"usefulness\": 7\n    },\n    \"unsupported_claims\": [\n      \"The current products are grouped under a 'Precision Pricing Platform'; that name is not established by the supplied excerpts.\",\n      \"Recurring SaaS subscriptions are presented as likely, but the excerpts do not establish commercial terms.\",\n      \"Pascal Yammine is CEO; his name and title do not appear in the supplied excerpts.\",\n      \"The Crunchbase excerpt lists Pete Eppele and Greg Howe as key people, but does not establish that their roles are current.\",\n      \"PROS's strength in airlines, Model N's focus on life sciences and high-tech, and Pactum's supplier-negotiation offering are not described in the excerpts.\",\n      \"SAP, Oracle and Microsoft have competing pricing modules, or Zilliant is faster and more explainable than those modules; the excerpts do not substantiate these comparisons.\",\n      \"The FTZ win indicates a solid enterprise customer base or bears on revenue concentration; neither follows from the cited customer sales figure.\",\n      \"Zilliant is promoting agentic AI for autonomous cost-pass-through; the excerpts separately describe agentic AI and automated cost pass-through, not that combined use.\"\n    ],\n    \"rationale\": \"The recent wins and funding figures are specific, but several confident competitor comparisons and financial inferences lack support.\"\n  },\n  \"C\": {\n    \"scores\": {\n      \"grounding\": 8,\n      \"specificity\": 8,\n      \"recency\": 9,\n      \"usefulness\": 8\n    },\n    \"unsupported_claims\": [\n      \"October 12, 2026 is the briefing's as-of date; no supplied source establishes that exact date.\",\n      \"The products are grouped under the 'Precision Pricing Platform'; the cited excerpt does not establish that name.\",\n      \"Pricing Plus launched in November 2025; that launch and date do not appear in the supplied excerpt.\",\n      \"Pascal Yammine is CEO; his name and title do not appear in the supplied excerpts.\",\n      \"Zilliant keeps pricing logic outside the ERP; the cited customer account establishes a Salesforce entry point and SAP integration, not that architecture generally.\",\n      \"Both cited customer wins are based in Europe; Denmark is established for FTZ, but the supplied Julius Hoesch excerpt does not state its location.\"\n    ],\n    \"rationale\": \"It distinguishes reported claims from inference and acknowledges missing commercial and competitor evidence, though a few product, leadership and date details remain unverified.\"\n  }\n}"
+      ],
+      "error": null,
+      "cost": 0.0395285,
+      "latency": 24.77654656300001,
+      "usage": [
+        {
+          "completion_tokens": 1837,
+          "prompt_tokens": 8464,
+          "total_tokens": 10301,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": 0,
+            "reasoning_tokens": 1034,
+            "rejected_prediction_tokens": null,
+            "text_tokens": null,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 8461,
+            "cached_tokens": 0,
+            "image_tokens": null,
+            "text_tokens": null,
+            "video_tokens": 0
+          },
+          "cost": 0.0395285,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.0395285,
+            "upstream_inference_prompt_cost": 0.0211585,
+            "upstream_inference_completions_cost": 0.01837
+          }
+        }
+      ]
+    }
+  ]
+}

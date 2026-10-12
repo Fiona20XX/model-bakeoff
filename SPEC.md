@@ -57,7 +57,7 @@ web:
   enabled: true
   engine: exa        # same engine for every model, so the comparison is between models, not search engines
   max_results: 5
-max_tokens: 1200
+max_tokens: 4000   # reasoning models spend part of this budget thinking before they write
 temperature: 0.2
 runs: 1
 rubric:
@@ -91,7 +91,7 @@ rubric:
 - `bakeoff run <task.yaml>` runs the bake-off. Flags:
   - `--var name=value` (repeatable) fills `{{var:...}}` placeholders
   - `--runs N` repeats each model N times (default from task file, else 1) and reports mean and min/max for score and latency
-  - `--free` ignores the task's model list and auto-selects up to 4 currently available free models (IDs ending in `:free`, fetched from `GET /api/v1/models`)
+  - `--free` ignores the task's model list and auto-selects up to 4 currently available free models (IDs ending in `:free`, fetched from `GET /api/v1/models`). Candidates exclude coding and safety models (IDs containing `code` or `safety`) and the judge, and are ranked by context length, largest first. Some listed free models can't actually be called (for example, OpenRouter restricts some to agentic harnesses and returns 403), and the model list doesn't say which. So if a candidate's first call fails with a permanent error (a 4xx other than 429), it is skipped and the next candidate takes its slot, until there are 4 models or no candidates left. Models that fail for other reasons (429, 5xx, timeouts, empty answers) keep their slot and show as failed. Skipped models and their errors are listed in a note under the table and saved in `results.json`.
   - `--no-web` disables web search for this run (useful to measure how much search helps)
   - `--no-judge` skips scoring and only collects answers, cost, and latency
 - `bakeoff models [--free] [--search TEXT]` lists available models from `GET /api/v1/models` with ID, context length, and prompt/completion price per million tokens, so the user can pick IDs for a task file.
@@ -103,6 +103,7 @@ rubric:
 - The judge must return JSON only: for each label, a 1-10 score per rubric criterion, a list of any claims it judged unsupported by the citations, and a one-sentence rationale. Parse it strictly, and retry once with a "return valid JSON only" reminder if parsing fails.
 - Weighted score = sum of criterion scores x weights, on a 0-10 scale.
 - If the judge model is also in the contestant list, print a warning about self-preference bias.
+- The judge can't be a coding or safety model (ID containing `code` or `safety`); the run stops with an error before any requests are sent.
 
 ### Output
 
@@ -114,7 +115,7 @@ Terminal table, sorted by weighted score:
 - Below the table, print total cost of the run (contestants plus judge) and each model's one-line judge rationale.
 
 Saved to `results/<task-name>-<var-values>-<timestamp>/`:
-- `results.json`: everything, including raw answers, citations, usage objects, judge output, and the label-to-model mapping
+- `results.json`: everything, including raw answers, citations, usage objects, judge output, the label-to-model mapping, and any `--free` models skipped with their errors
 - `report.md`: the ranked table, rationales, and each model's full briefing with its sources under its own heading, readable on GitHub
 
 ### Reliability
@@ -122,6 +123,7 @@ Saved to `results/<task-name>-<var-values>-<timestamp>/`:
 - Concurrency capped at 3 simultaneous requests (free models are limited to 20 requests per minute).
 - On 429 or 5xx, back off and retry up to 3 times, honoring `retry-after` if present.
 - A model that fails after retries is recorded as failed with its error message and shown in the table; one failure never crashes the run.
+- With `--free`, a permanent error (4xx other than 429) on a model's first call triggers backfill with the next free candidate instead (see `--free` above).
 - 90-second timeout per request (web search adds latency).
 
 ### Repo contents

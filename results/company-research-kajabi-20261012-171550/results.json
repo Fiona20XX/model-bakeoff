@@ -1,0 +1,778 @@
+{
+  "task": {
+    "name": "company_research",
+    "description": "A sourced one-page briefing on a company, for meeting or interview prep.",
+    "path": "tasks/company_research.yaml",
+    "vars": {
+      "company": "Kajabi"
+    },
+    "system": "You are a research analyst preparing a briefing for someone about to meet this company.\nBe specific and current. Cite a source for every factual claim. If you can't find\nsomething, say so rather than guessing.\n",
+    "user": "Write a briefing on Kajabi with these sections:\n1. What they do, who buys it, and how they make money\n2. Recent news and launches (last 6 months)\n3. Funding, size, and financial signals\n4. Leadership\n5. Main competitors and how they differ\n6. Likely strategic priorities and open questions\nKeep it under 500 words.\n",
+    "rubric": [
+      {
+        "name": "grounding",
+        "weight": 0.35,
+        "description": "Factual claims are supported by the cited sources; nothing invented or unsupported."
+      },
+      {
+        "name": "specificity",
+        "weight": 0.25,
+        "description": "Concrete facts (names, numbers, dates, products) rather than generic statements."
+      },
+      {
+        "name": "recency",
+        "weight": 0.2,
+        "description": "Reflects current information, not stale or outdated facts."
+      },
+      {
+        "name": "usefulness",
+        "weight": 0.2,
+        "description": "Would genuinely prepare someone for a meeting; strategic section shows real insight. Length is not a virtue."
+      }
+    ],
+    "web": {
+      "enabled": true,
+      "engine": "exa",
+      "max_results": 5
+    },
+    "max_tokens": 4000,
+    "temperature": 0.2
+  },
+  "started_at": "2026-10-12T17:15:50",
+  "flags": {
+    "runs": 2,
+    "free": false,
+    "web": true,
+    "judge": true
+  },
+  "models": [
+    "anthropic/claude-sonnet-5.5",
+    "google/gemini-3.8-flash",
+    "deepseek/deepseek-v4-pro"
+  ],
+  "judge": "openai/gpt-6-sol",
+  "skipped_models": [],
+  "warnings": [],
+  "total_cost": 0.22577175095,
+  "contestant_cost": 0.15077725095,
+  "judge_cost": 0.07499449999999999,
+  "summary": [
+    {
+      "model": "anthropic/claude-sonnet-5.5",
+      "runs": 2,
+      "ok_runs": 2,
+      "scores": [
+        7.45,
+        7.9
+      ],
+      "mean_score": 7.675000000000001,
+      "latencies": [
+        18.641718454,
+        21.076807788999986
+      ],
+      "costs": [
+        0.036546,
+        0.040244
+      ],
+      "mean_cost": 0.038395,
+      "sources": [
+        5,
+        5
+      ],
+      "unsupported_claims": [
+        4,
+        4
+      ],
+      "score_per_cent": 1.9989581976819901,
+      "rationales": [
+        "It identifies a potentially recent launch, flags verification gaps, and offers useful meeting questions, though some funding, leadership, and competitor details lack support in the provided excerpts.",
+        "The briefing is concrete and unusually clear about the absence of confirmed news in its stated six-month window, though several historical and competitive claims exceed the supplied excerpts."
+      ],
+      "errors": []
+    },
+    {
+      "model": "google/gemini-3.8-flash",
+      "runs": 2,
+      "ok_runs": 2,
+      "scores": [
+        6.35,
+        6.55
+      ],
+      "mean_score": 6.449999999999999,
+      "latencies": [
+        28.183467469999982,
+        26.274870900999986
+      ],
+      "costs": [
+        0.02114425,
+        0.0214255
+      ],
+      "mean_cost": 0.021284875,
+      "sources": [
+        5,
+        5
+      ],
+      "unsupported_claims": [
+        5,
+        5
+      ],
+      "score_per_cent": 3.030320826408423,
+      "rationales": [
+        "The briefing is specific and its strategic questions are useful, but it overstates several financial claims and treats late-2025 and early-2026 developments as recent.",
+        "It covers the requested topics with useful numbers and questions, but overstates what the excerpts verify and presents older launches as recent."
+      ],
+      "errors": []
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "runs": 2,
+      "ok_runs": 2,
+      "scores": [
+        5.75,
+        5.75
+      ],
+      "mean_score": 5.75,
+      "latencies": [
+        88.37221614200001,
+        62.309800024000026
+      ],
+      "costs": [
+        0.0201532,
+        0.01126430095
+      ],
+      "mean_cost": 0.015708750474999998,
+      "sources": [
+        5,
+        5
+      ],
+      "unsupported_claims": [
+        4,
+        6
+      ],
+      "score_per_cent": 3.660380250581325,
+      "rationales": [
+        "Concrete product and pricing details help, but several claims exceed the excerpts, the news is outside a six-month window ending in October 2026, and the answer stops before section 6.",
+        "The strategic questions are relevant, but the answer turns uncertain financial signals into firm conclusions and does not establish six-month recency."
+      ],
+      "errors": []
+    }
+  ],
+  "contestants": [
+    {
+      "model": "anthropic/claude-sonnet-5.5",
+      "run": 1,
+      "ok": true,
+      "answer": "# Kajabi Briefing (as of 2026-10-12)\n\n## 1. What they do, who buys it, how they make money\nKajabi is an all-in-one platform for experts and creators to build and sell courses, memberships, coaching, newsletters, and podcasts, with marketing and payment tools ([cbinsights.com](https://www.cbinsights.com/company/kajabi)). Its customers skew toward mid-sized experts: 89% of full-time creators have 50,000 or fewer Instagram followers, and Kajabi reports 60,000+ creators ([yespress.io](https://yespress.io/kajabi)). Revenue is mainly subscriptions, plus an optional paid branded mobile app ([akta.pro](https://akta.pro/company-profiles/00004mf/kajabi)).\n\n**Source conflict to verify:** akta.pro says Basic is $179/month with 0% transaction fees. yespress.io says plans run from roughly $55 to $319/month, with an optional ~2.9% + 30¢ fee on Kajabi Payments. These may reflect different dates or tier names, so confirm current pricing directly.\n\n## 2. Recent news and launches\n- Kajabi announced five new products for expert-led businesses ([linkedin.com](https://www.linkedin.com/posts/kajabi_this-isnt-the-kajabi-youve-come-to-know-activity-7462552804268654592-J2Iv)). I couldn't confirm the exact date or the full list.\n- A Kajabi MCP connects Kajabi to tools like Claude or ChatGPT and drafts courses, sales pages, and email sequences from a prompt. A 50% off, six-month promo ran through June 5 ([linkedin.com](https://www.linkedin.com/posts/kajabi_this-isnt-the-kajabi-youve-come-to-know-activity-7462552804268654592-J2Iv)). The year isn't stated.\n- Just outside the window, Kajabi Capital launched with Parafin in December 2025, offering financing for U.S. creators ([akta.pro](https://akta.pro/company-profiles/00004mf/kajabi)).\n\n## 3. Funding, size, financial signals\n- Kajabi raised a $550M round in May 2021 led by Tiger Global, at a valuation above $2B. Spectrum Equity made a minority investment in 2019, the first outside capital ([dot.la](https://dot.la/kajabi-president-sean-kim-2656529729.html)).\n- There has been no disclosed primary round since, and headcount is in the 251–500 range ([akta.pro](https://akta.pro/company-profiles/00004mf/kajabi)).\n- The company said it was profitable with record ARR in 2021 but declined to share revenue ([dot.la](https://dot.la/kajabi-president-sean-kim-2656529729.html)). I found no current revenue or profitability data.\n\n## 4. Leadership\n- Ahad Khan became CEO in 2021 and left in 2025. Co-founder Kenny Rueter returned as Co-CEO alongside longtime president Jonathan Cronstedt ([yespress.io](https://yespress.io/kajabi)).\n- Sean Kim, ex-TikTok, was hired in 2022 as president and chief product officer ([dot.la](https://dot.la/kajabi-president-sean-kim-2656529729.html)). I couldn't confirm his current status, given that Cronstedt is described as president.\n- The CB Insights profile lists Newport Beach as the base, while the 2022 dot.la article says Irvine ([cbinsights.com](https://www.cbinsights.com/company/kajabi)). Check the current location.\n\n## 5. Main competitors\nPer [akta.pro](https://akta.pro/company-profiles/00004mf/kajabi):\n- **Thinkific, Teachable:** course-focused. Teachable historically charged transaction fees.\n- **Podia:** cheaper entry tier, which pressures Kajabi's higher entry price.\n- **Kit (ConvertKit), Substack:** email- and newsletter-led.\n- **Mighty Networks, Circle, Patreon:** community and membership-led.\n- **Skool:** gamified all-in-one at $99/month, called one of Kajabi's most credible emerging threats.\n\n## 6. Likely priorities and open questions\nPriorities (my inference from the sources):\n- AI-led product work: Creator Studio (2024), Cofounder and Expert Agents (2025) ([yespress.io](https://yespress.io/kajabi)), and the MCP.\n- Fintech expansion through Kajabi Capital.\n- Defending against low-cost rivals such as Skool and Podia, with heavy promotions.\n\nOpen questions:\n- What is the current pricing and fee structure?\n- What drove the 2025 CEO change?\n- What is the revenue and profitability trajectory, given no round since 2021?\n- Which products were in the five-product launch, and how are they performing?",
+      "error": null,
+      "latency": 18.641718454,
+      "prompt_tokens": 3978,
+      "completion_tokens": 2159,
+      "cost": 0.036546,
+      "citations": [
+        {
+          "url": "https://akta.pro/company-profiles/00004mf/kajabi",
+          "title": "Kajabi company profile: firmographics, business model, customers, competitors | akta.pro",
+          "content": "Kajabi's business model is subscription SaaS with three published tiers (Basic at $179 per month, Growth, and Pro) plus an optional branded mobile app add-on. The company charges 0% transaction fees on creator GMV, a deliberate differentiator versus competitors that take 3-30%, and the platform monetizes volume through subscriptions rather than revenue share. Go-to-market is largely self-serve and creator-led, supplemented by partnerships (most recently Kajabi Capital with Parafin in December 2025) that extend the platform into creator fintech. The company has not disclosed a primary funding round since its $550 million Series D in May 2021 at an approximately $2 billion valuation, and headcount sits in the 251-500 range, indicating a post-hyper-growth operating profile.\n\n...\n\n1. Platform Subscription: Monthly or annual subscription fees for access to the all-in-one platform. Kajabi takes 0% of creator revenue, distinguishing it from competitors that charge transaction fees. Pricing tiers provide different feature levels and contact limits.\n2. Branded Mobile App: Optional paid add-on for custom-branded mobile applications available in app stores, providing additional revenue stream for established creators seeking deeper brand presence.\n\n...\n\n- Parafin core Strategic or Co-development Partner · 1 December 2025 Kajabi partnered with Parafin to launch Kajabi Capital, a financing program integrated directly into the platform for U.S.-based creators. The service addresses the difficulty small business owners face accessing traditional loans, offering fast, flexible funding for business expansion. This strategic partnership adds financial services capabilities to Kajabi's all-in-one creator platform.\n\n...\n\n- Thinkific: Closest direct competitor — all-in-one course + community + marketing platform targeting the same expert creator SMB segment; Kajabi explicitly produces migration guides from Thinkific.\n- Patreon: Membership/monetization platform for creators; Kajabi produces explicit Patreon migration content, indicating direct creator overlap and competitive intent.\n- Podia: All-in-one creator commerce platform (courses, memberships, downloads, webinars) for solopreneurs; competes on bundling and price, including a lower-priced Starter tier that puts pressure on Kajabi's elevated entry price.\n- ConvertKit (now Kit): Email + creator monetization platform (formerly ConvertKit) now adding commerce and landing-page features; comparable target market of solo creators and SMB experts.\n- Mighty Networks: Community + course + membership platform targeting the same expert-creator cohort; comparable SaaS economics and overlapping feature set.\n- Teachable: Direct competitor offering online course creation and hosting; comparable product/customer base and revenue model (SaaS subscription), but Teachable historically charged transaction fees where Kajabi charges 0%.\n- Circle: Community-first platform expanding into courses and paid memberships; competes for the same creator persona and overlaps Kajabi's community product offering.\n\n...\n\n- Skool: Fast-growing community + course platform that has rapidly captured creators with a gamified, lower-cost ($99/mo) all-in-one model; considered one of Kajabi's most credible emerging threats.\n- Substack: Newsletter-led creator monetization platform; competes for the same expert/creator audience, particularly in content-driven monetization where Kajabi's newsletter product overlaps.\n\n...\n\nTwo revenue lines are on record. Platform Subscription is the primary driver. The others are branded Mobile App.\n\n...\n\nDirect peers on record are Thinkific, Patreon, Podia, ConvertKit (now Kit), Mighty"
+        },
+        {
+          "url": "https://www.linkedin.com/posts/kajabi_this-isnt-the-kajabi-youve-come-to-know-activity-7462552804268654592-J2Iv",
+          "title": "Kajabi Launches New Products for Expert-Led Businesses - LinkedIn",
+          "content": "Most people think they know Kajabi. They don’t. Most expert businesses are still running on scattered tools, manual workflows, and gut instinct. That changes this month. We’re launching 5 new products to help expert-led businesses operate smarter, move faster, and scale with more confidence. If you know, you know. And if you don’t... You will soon. Learn more → https://bit.ly/42FM6Jg\n\n...\n\nI put off building an online course for years. Not because I didn't have it in my head. Because the setup was the wall. Slow software, endless clicking, and I never had a free week to grind through it. (Quick disclosure: I've partnered with Kajabi, and I actually use this.) This weekend I finally did it, mostly by talking. I tried the Kajabi MCP. It connects Kajabi to a tool like Claude or ChatGPT. You describe what you want, and it builds it inside Kajabi as drafts. I said what the course was, and it drafted the structure, the offer, the sales page, the opt-in forms, and the email sequences. I reviewed each piece, recorded the videos, connected payments, and published. It builds it. You launch it. An afternoon of setup now takes a sentence. That's the part that actually matters: the thing you keep putting off isn't a build problem anymore. It's a \"do you want to\" problem. Every Kajabi plan is 50% off for 6 months now through June 5th, locked in at signup. New customers and anyone coming back both qualify: https://lnkd.in/daQMkawU What would you build if you just had to talk?#KajabiPartner"
+        },
+        {
+          "url": "https://www.cbinsights.com/company/kajabi",
+          "title": "Kajabi - Products, Competitors, Financials, Employees ... - CB Insights",
+          "content": ", coaching programs, membership sites, and other digital products, along with marketing and payment solutions. The platform serves the knowledge commerce sector, targeting individuals and businesses. It was founded in 2010 and is based in Newport Beach,"
+        },
+        {
+          "url": "https://dot.la/kajabi-president-sean-kim-2656529729.html",
+          "title": "Knowledge Creator Platform Kajabi Raids TikTok for New President",
+          "content": "Irvine-based Kajabi has hired former TikTok executive Sean Kim as its president and chief product officer, the company announced Wednesday. Kim served as head of product at Tiktok as the Culver City-based social media giant became the most visited website on the internet, with over 1 billion monthly active users. He now joins Kajabi, which raised $550 million last year to grow a content platform that allows entrepreneurs, coaches and influencers to build online courses, newsletters and membership websites.\n\n...\n\nFounded in 2010, Kajabi sells a subscription software service for people who want to monetize their expertise—offering tools to publish, market and sell digital products like newsletters and podcasts. The company, which charges users a monthly fee, says it has helped its customers generate $3 billion in sales from more than 60 million people globally. Creators on the platform have instructed on topics ranging from how to sleep-train babies to how to forage for mushrooms.\n\n...\n\nIn a statement, Kajabi CEO Ahad Khan noted that Kim joins during a period of “rapid expansion [for] both our business and the knowledge economy.” The firm said it “significantly expanded” its customer base in 2021 and reached its highest-ever annual recurring revenue, while still remaining profitable. Kajabi declined to share its revenue or employment figures, but said its number of monthly transactions and average order values are growing. Its employee headcount is 2.5-times higher than in January 2020, according to a company spokesperson.\n\n...\n\nInvestment giant Tiger Global led Kajabi’s $550 million funding round last May, which valued the company at more than $2 billion. Kajabi had previously secured an undisclosed minority investment from growth equity firm Spectrum Equity Partners in 2019—the first outside capital raised by the company since its inception.\n\n...\n\nKim declined to share details on what he’ll be working on at Kajabi, but said the company is focused on building “some really great tools for knowledge creators.”"
+        },
+        {
+          "url": "https://yespress.io/kajabi",
+          "title": "Kajabi: The Operating System for Human Expertise | YesPress",
+          "content": "Most software in the creator economy solves one slice of the problem. One tool hosts your course. Another sends your email. A third builds a checkout page, and a fourth runs the community. Kajabi's argument is that a solo expert should not have to be a systems integrator. Inside a single account you can build a website,\n\n...\n\nThe instinct is to picture a Kardashian-scale influencer. The reality is closer to a yoga instructor with a mailing list. Kajabi's own research is blunt about it: 89% of its full-time creators have 50,000 or fewer Instagram followers. The platform is built for the mid-sized expert - the consultant, the course author, the niche coach - who has a real audience and a real skill, but no marketing department. Kajabi reports serving more than 60,000 creators who collectively reach around 70 million people, and cumulatively those creators have sold to roughly 85 million buyers.\n\n...\n\nKajabi is a subscription business first. Plans run from roughly $55 a month at the entry “Kickstarter” tier to about $319 at Pro, with a discount for paying annually. The tiers gate on how many active customers you have and how much automation you need, so the bill scales as a creator's business grows. On top of that sits Kajabi Payments, the native checkout, which adds an optional transaction fee (around 2.9% plus 30 cents) for those who don't wire up Stripe or PayPal themselves.\n\n...\n\nThe most unusual thing about Kajabi is not the product. It is the cap table. For roughly a decade, the company took no venture money at all. It grew on customer revenue, stayed profitable, and let the founders keep control. Only in 2019 did it accept a first minority investment, from Spectrum Equity. Then, in May 2021, it did the opposite of quiet: a single $550 million growth round led by Tiger Global, with TPG, Tidemark, Owl Rock, Meritech, and Spectrum joining, valuing the company at more than $2 billion. Ten years of patience, one very loud check.\n\n...\n\nLike everyone else, Kajabi has spent the last two years pointing its roadmap at AI - but the framing fits its audience. In 2024 it launched Creator Studio, a generative production tool built with Adobe that it claims can cut content time by up to 90%. In 2025 it began rolling out “Cofounder” and a set of Expert Agents, pitched not as chatbots but as AI teammates for a one-person business. The through-line is the same as it was in 2010: absorb the busywork so the expert can do the expert part.\n\n...\n\nThe leadership has come full circle too. Ahad Khan, who took the CEO seat in 2021 and steered the company through its growth-financing era, departed in 2025. In his place, co-founder Kenny Rueter - the man with the sprinkler toy - stepped back in as Co-CEO alongside longtime president Jonathan Cronstedt."
+        }
+      ],
+      "usage": {
+        "completion_tokens": 2159,
+        "prompt_tokens": 3978,
+        "total_tokens": 6137,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 495,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.036546,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.029546,
+          "upstream_inference_prompt_cost": 0.007956,
+          "upstream_inference_completions_cost": 0.02159
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "google/gemini-3.8-flash",
+      "run": 1,
+      "ok": true,
+      "answer": "### 1. What They Do, Who Buys It, and How They Make Money\n* **What they do:** Kajabi is an all-in-one SaaS platform enabling knowledge entrepreneurs to build websites, host courses and communities, offer coaching, send marketing emails, and process payments without code ([yespress.io](https://yespress.io/kajabi), [askcyborg.com](https://askcyborg.com/company/kajabi)).\n* **Who buys it:** Mid-market \"expert creators\"—consultants, niche educators, and coaches; 89% of full-time Kajabi creators have 50,000 or fewer Instagram followers ([yespress.io](https://yespress.io/kajabi)). Kajabi serves over 60,000 creators reaching 70 million users ([yespress.io](https://yespress.io/kajabi)).\n* **How they make money:** Flat-rate SaaS subscription tiers (Basic at $179/mo, Growth at $249/mo, Pro at $499/mo) charging **0% transaction fees** on creator GMV ([akta.pro](https://akta.pro/company-profiles/00004mf/kajabi), [thecoursetimes.com](https://thecoursetimes.com/story/kajabis-entry-plan-now-includes-zero-ai-credits-everyone-else-pays-15-per-500)). Secondary revenue stems from native Kajabi Payments processing (~2.9% + $0.30) ([yespress.io](https://yespress.io/kajabi)), branded mobile app add-ons ([akta.pro](https://akta.pro/company-profiles/00004mf/kajabi)), and AI usage credits ($15 per 500 credits) ([thecoursetimes.com](https://thecoursetimes.com/story/kajabis-entry-plan-now-includes-zero-ai-credits-everyone-else-pays-15-per-500)).\n\n### 2. Recent News and Launches\n* **January 2026 Pricing Overhaul:** Eliminated the low-cost $89/mo Kickstarter tier for new users, increased core subscription pricing across the board, tightened Basic contact limits to 2,500, and moved AI features to a credit model ([thecoursetimes.com](https://thecoursetimes.com/story/kajabis-entry-plan-now-includes-zero-ai-credits-everyone-else-pays-15-per-500)).\n* **Kajabi Evolved & AI Rollout:** Introduced an open API, visual automation builder, and autonomous \"Expert Agents\" / \"Cofounder\" tools designed to handle business operations for solopreneurs ([theeduassist.com](https://www.theeduassist.com/blog/kajabi-major-updates-2026-ai-cofounder-expert-agents-amplify-more/), [yespress.io](https://yespress.io/kajabi)).\n* **Kajabi Capital (December 2025):** Partnered with Parafin to offer embedded working capital financing to eligible U.S. creators directly via dashboard ([askcyborg.com](https://askcyborg.com/company/kajabi)).\n\n### 3. Funding, Size, and Financial Signals\n* **Funding & Valuation:** Bootstrapped for nearly a decade before raising a $550 million Series D in May 2021 led by Tiger Global at a $2.0 billion valuation ([yespress.io](https://yespress.io/kajabi), [akta.pro](https://akta.pro/company-profiles/00004mf/kajabi)). No primary equity rounds have been raised since ([akta.pro](https://akta.pro/company-profiles/00004mf/kajabi)).\n* **Financials & Scale:** $100M+ ARR ([askcyborg.com](https://askcyborg.com/company/kajabi)); cumulative creator GMV surpassed $10 billion ([yespress.io](https://yespress.io/kajabi)). \n* **Headcount:** ~390 employees ([askcyborg.com](https://askcyborg.com/company/kajabi)), maintaining disciplined, post-hypergrowth operational sizing ([akta.pro](https://akta.pro/company-profiles/00004mf/kajabi)).\n\n### 4. Leadership\nFollowing the departure of CEO Ahad Khan in 2025, co-founder **Kenny Rueter** returned as Co-CEO alongside longtime President **Jonathan Cronstedt** ([yespress.io](https://yespress.io/kajabi)).\n\n### 5. Main Competitors and Differentiation\n* **Competitors:** Thinkific, Teachable, Podia, Circle, Mighty Networks, Kit (formerly ConvertKit), and Skool ([akta.pro](https://akta.pro/company-profiles/00004mf/kajabi)).\n* **Differentiation:** \n  * *No GMV 'tax':* Unlike Teachable or Patreon, Kajabi takes 0% cut of sales, making it much more economical for creators earning over $2,000/month ([akta.pro](https://akta.pro/company-profiles/00004mf/kajabi), [askcyborg.com](https://askcyborg.com/company/kajabi)).\n  * *Consolidated stack:* Rather than stitching together separate tools for community (Circle), email (Kit), and courses (Thinkific), Kajabi provides the entire operating system in one platform ([yespress.io](https://yespress.io/kajabi), [askcyborg.com](https://askcyborg.com/company/kajabi)).\n\n### 6. Likely Strategic Priorities and Open Questions\n* **Priorities:** Expand platform ARPU through embedded fintech (Kajabi Capital, Kajabi Payments) and agentic AI tools ([askcyborg.com](https://askcyborg.com/company/kajabi), [yespress.io](https://yespress.io/kajabi)); move upmarket to prioritize high-earning, established creators over hobbyists ([thecoursetimes.com](https://thecoursetimes.com/story/kajabis-entry-plan-now-includes-zero-ai-credits-everyone-else-pays-15-per-500), [askcyborg.com](https://askcyborg.com/company/kajabi)).\n* **Open Questions:** \n  * How has customer retention responded to the early-2026 price hikes, tightened contact limits, and sunset of the sub-$100 Kickstarter tier ([thecoursetimes.com](https://thecoursetimes.com/story/kajabis-entry-plan-now-includes-zero-ai-credits-everyone-else-pays-15-per-500))?\n  * What is the eventual liquidity path or timeline for Tiger Global/TPG given the peak $2 billion 2021 valuation ([yespress.io](https://yespress.io/kajabi))?",
+      "error": null,
+      "latency": 28.183467469999982,
+      "prompt_tokens": 2694,
+      "completion_tokens": 3233,
+      "cost": 0.02114425,
+      "citations": [
+        {
+          "url": "https://akta.pro/company-profiles/00004mf/kajabi",
+          "title": "Kajabi company profile: firmographics, business model, customers, competitors | akta.pro",
+          "content": "Kajabi's business model is subscription SaaS with three published tiers (Basic at $179 per month, Growth, and Pro) plus an optional branded mobile app add-on. The company charges 0% transaction fees on creator GMV, a deliberate differentiator versus competitors that take 3-30%, and the platform monetizes volume through subscriptions rather than revenue share. Go-to-market is largely self-serve and creator-led, supplemented by partnerships (most recently Kajabi Capital with Parafin in December 2025) that extend the platform into creator fintech. The company has not disclosed a primary funding round since its $550 million Series D in May 2021 at an approximately $2 billion valuation, and headcount sits in the 251-500 range, indicating a post-hyper-growth operating profile.\n\n...\n\n1. Platform Subscription: Monthly or annual subscription fees for access to the all-in-one platform. Kajabi takes 0% of creator revenue, distinguishing it from competitors that charge transaction fees. Pricing tiers provide different feature levels and contact limits.\n2. Branded Mobile App: Optional paid add-on for custom-branded mobile applications available in app stores, providing additional revenue stream for established creators seeking deeper brand presence.\n\n...\n\n- Thinkific: Closest direct competitor — all-in-one course + community + marketing platform targeting the same expert creator SMB segment; Kajabi explicitly produces migration guides from Thinkific.\n- Patreon: Membership/monetization platform for creators; Kajabi produces explicit Patreon migration content, indicating direct creator overlap and competitive intent.\n- Podia: All-in-one creator commerce platform (courses, memberships, downloads, webinars) for solopreneurs; competes on bundling and price, including a lower-priced Starter tier that puts pressure on Kajabi's elevated entry price.\n- ConvertKit (now Kit): Email + creator monetization platform (formerly ConvertKit) now adding commerce and landing-page features; comparable target market of solo creators and SMB experts.\n- Mighty Networks: Community + course + membership platform targeting the same expert-creator cohort; comparable SaaS economics and overlapping feature set.\n- Teachable: Direct competitor offering online course creation and hosting; comparable product/customer base and revenue model (SaaS subscription), but Teachable historically charged transaction fees where Kajabi charges 0%.\n- Circle: Community-first platform expanding into courses and paid memberships; competes for the same creator persona and overlaps Kajabi's community product offering.\n\n...\n\nTwo revenue lines are on record. Platform Subscription is the primary driver. The others are branded Mobile App.\n\n...\n\nDirect peers on record are Thinkific, Patreon, Podia, ConvertKit (now Kit), Mighty Networks, Teachable and Circle. Emerging players are Skool and Substack. Shopify is listed as a broad incumbent."
+        },
+        {
+          "url": "https://yespress.io/kajabi",
+          "title": "Kajabi: The Operating System for Human Expertise | YesPress",
+          "content": "Most software in the creator economy solves one slice of the problem. One tool hosts your course. Another sends your email. A third builds a checkout page, and a fourth runs the community. Kajabi's argument is that a solo expert should not have to be a systems integrator. Inside a single account you can build a website, publish an online course, run coaching sessions, launch a membership or community, host a podcast, sell digital downloads, send marketing emails, wire up a sales funnel, and take payment - all without touching code.\n\n...\n\nThe instinct is to picture a Kardashian-scale influencer. The reality is closer to a yoga instructor with a mailing list. Kajabi's own research is blunt about it: 89% of its full-time creators have 50,000 or fewer Instagram followers. The platform is built for the mid-sized expert - the consultant, the course author, the niche coach - who has a real audience and a real skill, but no marketing department. Kajabi reports serving more than 60,000 creators who collectively reach around 70 million people, and cumulatively those creators have sold to roughly 85 million buyers.\n\n...\n\nKajabi is a subscription business first. Plans run from roughly $55 a month at the entry “Kickstarter” tier to about $319 at Pro, with a discount for paying annually. The tiers gate on how many active customers you have and how much automation you need, so the bill scales as a creator's business grows. On top of that sits Kajabi Payments, the native checkout, which adds an optional transaction fee (around 2.9% plus 30 cents) for those who don't wire up Stripe or PayPal themselves.\n\n...\n\nThe most unusual thing about Kajabi is not the product. It is the cap table. For roughly a decade, the company took no venture money at all. It grew on customer revenue, stayed profitable, and let the founders keep control. Only in 2019 did it accept a first minority investment, from Spectrum Equity. Then, in May 2021, it did the opposite of quiet: a single $550 million growth round led by Tiger Global, with TPG, Tidemark, Owl Rock, Meritech, and Spectrum joining, valuing the company at more than $2 billion. Ten years of patience, one very loud check.\n\n...\n\nCumulative sales pass $10B as Kenny Rueter and Jonathan Cronstedt step in as Co-CEOs.\n\n...\n\nLike everyone else, Kajabi has spent the last two years pointing its roadmap at AI - but the framing fits its audience. In 2024 it launched Creator Studio, a generative production tool built with Adobe that it claims can cut content time by up to 90%. In 2025 it began rolling out “Cofounder” and a set of Expert Agents, pitched not as chatbots but as AI teammates for a one-person business. The through-line is the same as it was in 2010: absorb the busywork so the expert can do the expert part.\n\n...\n\nThe leadership has come full circle too. Ahad Khan, who took the CEO seat in 2021 and steered the company through its growth-financing era, departed in 2025. In his place, co-founder Kenny Rueter - the man with the sprinkler toy - stepped back in as Co-CEO alongside longtime president Jonathan Cronstedt."
+        },
+        {
+          "url": "https://www.theeduassist.com/blog/kajabi-major-updates-2026-ai-cofounder-expert-agents-amplify-more/",
+          "title": "Kajabi Major Updates 2026: AI Cofounder, Expert Agents,... | TheEduAssist",
+          "content": "In late 2025 and early 2026, Kajabi rolled out a broader platform shift often referred to as Kajabi Evolved.\n\nSo,This update included a visual automation builder, stronger checkout customization, affiliate tools, community changes, and a more connected mobile experience. It also introduced an open API, which is especially useful for larger businesses that need custom integrations and more flexible workflows.\n\n...\n\nThe Evolved update also made communities more accessible by including them"
+        },
+        {
+          "url": "https://www.thecoursetimes.com/story/kajabis-entry-plan-now-includes-zero-ai-credits-everyone-else-pays-15-per-500",
+          "title": "Kajabi's Entry Plan Now Includes Zero AI Credits. Everyone Else Pays $15 Per 500. | The Course Times",
+          "content": "Three things, all at once. The Kickstarter plan came off the pricing page — new creators can no longer buy the $89/mo entry plan, though existing Kickstarter accounts kept that price. Prices rose across every tier: Basic +$30/mo, Growth +$50/mo, Pro +$100/mo. And Basic's contact limit dropped from 10,000 to 2,500.\n\n...\n\nNew customers got a 50% promotional discount; existing customers faced the full increase on their first billing date on or after January 13, 2026, with no grandfathered pricing.\n\n...\n\nBasic is $179/month, or $143 on annual billing, with 5 products and 2,500 contacts. Growth is $249/$199 with 50 products and 25,000 contacts. Pro is $499/$399 with unlimited products and 100,000 contacts.\n\nThe annual commitments work out to $1,716, $2,388 and $4,788."
+        },
+        {
+          "url": "https://askcyborg.com/company/kajabi",
+          "title": "Kajabi company overview 2026: revenue $100M+, Cyborg Score 8/10 | AskCyborg",
+          "content": "Kajabi provides a comprehensive business platform for knowledge entrepreneurs and service providers who want to monetize their expertise, enabling creators to build branded websites, create and sell digital courses, host membership communities, deliver coaching services, launch podcasts, send newsletters, and process payments—all from a single dashboard. Kajabi positions itself as the consolidator in a fragmented creator tools landscape, allowing creators to access comparable functionality through a single Kajabi subscription rather than paying separate subscriptions for email marketing, community platforms, and course hosting that could total $300-500 monthly.\n\n...\n\nKajabi's evolution from a course platform to a business suite reflects that successful creators are diversifying their monetization channels; by supporting this diversification under one platform, Kajabi can expand its market by becoming the operational hub for entire creator businesses rather than just one revenue channel. In December 2025, Kajabi launched Kajabi Capital, an embedded financing program built with Parafin that offers fast, flexible funding to eligible U.S.-based creators directly from the Kajabi dashboard, expanding the platform beyond software into financial services.\n\n...\n\nKajabi's top competitors include Hotmart, HoneyBook and Thinkific. ClickFunnels offers a marketing funnel platform that supports the online sales process, providing tools that allow users to create sales funnels, manage customer relationships, conduct email marketing, and sell products or services online without needing technical expertise. Kajabi differentiates through its all-in-one platform consolidating multiple tools, fixed subscription pricing favoring established creators, and embedded financial services.\n\n...\n\nFounded: 2010 · Headquarters: Irvine, US · Employees: 391 · Revenue: $100M+\n\n...\n\n- Kajabi reached a $2B valuation in 2021 when the company hit $100M ARR, corresponding to a 20x revenue multiple during the peak of creator economy enthusiasm.\n- Kajabi employs a B2B2C SaaS model with fixed monthly subscription fees ranging from $149 to $399, deliberately contrasting with transaction-based models like Patreon or Gumroad that take percentage cuts, strategically designed to attract established creators generating $1,000-$2,000+ in monthly revenue.\n\n...\n\n- January 2026 Updated pricing structure with new plans featuring higher limits, bundled premium features, and discounted Kajabi Payments fees\n- December 2025 Launched Kajabi Capital, embedded financing program with Parafin offering fast, flexible funding to eligible U.S.-based creators\n- +1 more Track every material event for Kajabi as it happens. Explore monitoring →"
+        }
+      ],
+      "usage": {
+        "completion_tokens": 3233,
+        "prompt_tokens": 2694,
+        "total_tokens": 5927,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1648,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.02114425,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.01414425,
+          "upstream_inference_prompt_cost": 0.0020205,
+          "upstream_inference_completions_cost": 0.01212375
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "run": 1,
+      "ok": true,
+      "answer": "**1. What they do, who buys it, and how they make money**  \nKajabi is an all-in-one SaaS platform for knowledge entrepreneurs: websites, courses, coaching, memberships/communities, podcasts, digital downloads, email, funnels, and payments. Its core buyer is the mid-sized expert, not mega-influencers; Kajabi says 89% of full-time creators have 50,000 or fewer Instagram followers, and it reports 60,000+ creators reaching ~70 million people and ~85 million cumulative buyers [yespress.io](https://yespress.io/kajabi). Revenue is subscription-first: current tiers are Basic $179/month, Growth $249/month, Pro $499/month, with annual discounts [thecoursetimes.com](https://www.thecoursetimes.com/story/kajabis-entry-plan-now-includes-zero-ai-credits-everyone-else-pays-15-per-500). Kajabi takes 0% revenue share on creator sales, but native Kajabi Payments charges ~2.9% + $0.30 if creators don’t use their own Stripe/PayPal [akta.pro](https://akta.pro/company-profiles/00004mf/kajabi) [yespress.io](https://yespress.io/kajabi). A branded mobile app is an add-on [akta.pro](https://akta.pro/company-profiles/00004mf/kajabi).\n\n**2. Recent news and launches (last 6 months)**  \nLate 2025/early 2026 brought “Kajabi Evolved”: visual automation, checkout customization, affiliate tools, community changes, mobile updates, and an open API [theeduassist.com](https://www.theeduassist.com/blog/kajabi-major-updates-2026-ai-cofounder-expert-agents-amplify-more/). Its AI push includes Cofounder and Expert Agents, framed as AI teammates for one-person businesses [yespress.io](https://yespress.io/kajabi). In December 2025, Kajabi launched Kajabi Capital with Parafin for embedded creator financing [akta.pro](https://akta.pro/company-profiles/00004mf/kajabi) [askcyborg.com](https://askcyborg.com/company/kajabi). In January 2026, it removed the Kickstarter entry plan, raised prices, cut Basic contacts from 10,000 to 2,500, and made Basic include zero AI credits while others pay $15 per 500 [thecoursetimes.com](https://www.thecoursetimes.com/story/kajabis-entry-plan-now-includes-zero-ai-credits-everyone-else-pays-15-per-500).\n\n**3. Funding, size, and financial signals**  \nFounded 2010, Irvine HQ, ~391 employees, reported $100M+ revenue [askcyborg.com](https://askcyborg.com/company/kajabi). It bootstrapped profitably for years; Spectrum Equity took a minority stake in 2019, then a $550 million growth round in May 2021 led by Tiger Global with TPG, Tidemark, Owl Rock, Meritech, and Spectrum valued it at over $2 billion [yespress.io](https://yespress.io/kajabi). No primary funding has been disclosed since [akta.pro](https://akta.pro/company-profiles/00004mf/kajabi). Cumulative creator sales have passed $10 billion [yespress.io](https://yespress.io/kajabi).\n\n**4. Leadership**  \nAhad Khan, CEO from 2021, departed in 2025. Co-founder Kenny Rueter returned as Co-CEO alongside longtime president Jonathan Cronstedt [yespress.io](https://yespress.io/kajabi).\n\n**5. Main competitors and how they differ**  \nDirect peers include Thinkific, Patreon, Podia, Kit/ConvertKit, Mighty Networks, Teachable, and Circle; emerging players include Skool and Substack, with Shopify as a broad incumbent [akta.pro](https://akta.pro/company-profiles/00004mf/kajabi). Kajabi differentiates by consolidating course, community, email, funnels, and payments into one subscription with 0% platform revenue share, versus transaction-based models like Patreon or Teachable. Thinkific is the closest all-in-one rival; Podia pressures on price [akta.pro](https://akta.pro/company-profiles/00004mf/kajabi). Other listed competitors include Hotmart, HoneyBook, and ClickFunnels [askcyborg.com](https://askcyborg.com/company/kajabi).\n\n**6",
+      "error": null,
+      "latency": 88.37221614200001,
+      "prompt_tokens": 2568,
+      "completion_tokens": 4000,
+      "cost": 0.0201532,
+      "citations": [
+        {
+          "url": "https://akta.pro/company-profiles/00004mf/kajabi",
+          "title": "Kajabi company profile: firmographics, business model, customers, competitors | akta.pro",
+          "content": "Kajabi's business model is subscription SaaS with three published tiers (Basic at $179 per month, Growth, and Pro) plus an optional branded mobile app add-on. The company charges 0% transaction fees on creator GMV, a deliberate differentiator versus competitors that take 3-30%, and the platform monetizes volume through subscriptions rather than revenue share. Go-to-market is largely self-serve and creator-led, supplemented by partnerships (most recently Kajabi Capital with Parafin in December 2025) that extend the platform into creator fintech. The company has not disclosed a primary funding round since its $550 million Series D in May 2021 at an approximately $2 billion valuation, and headcount sits in the 251-500 range, indicating a post-hyper-growth operating profile.\n\n...\n\n1. Platform Subscription: Monthly or annual subscription fees for access to the all-in-one platform. Kajabi takes 0% of creator revenue, distinguishing it from competitors that charge transaction fees. Pricing tiers provide different feature levels and contact limits.\n2. Branded Mobile App: Optional paid add-on for custom-branded mobile applications available in app stores, providing additional revenue stream for established creators seeking deeper brand presence.\n\n...\n\n- Thinkific: Closest direct competitor — all-in-one course + community + marketing platform targeting the same expert creator SMB segment; Kajabi explicitly produces migration guides from Thinkific.\n- Patreon: Membership/monetization platform for creators; Kajabi produces explicit Patreon migration content, indicating direct creator overlap and competitive intent.\n- Podia: All-in-one creator commerce platform (courses, memberships, downloads, webinars) for solopreneurs; competes on bundling and price, including a lower-priced Starter tier that puts pressure on Kajabi's elevated entry price.\n- ConvertKit (now Kit): Email + creator monetization platform (formerly ConvertKit) now adding commerce and landing-page features; comparable target market of solo creators and SMB experts.\n- Mighty Networks: Community + course + membership platform targeting the same expert-creator cohort; comparable SaaS economics and overlapping feature set.\n- Teachable: Direct competitor offering online course creation and hosting; comparable product/customer base and revenue model (SaaS subscription), but Teachable historically charged transaction fees where Kajabi charges 0%.\n- Circle: Community-first platform expanding into courses and paid memberships; competes for the same creator persona and overlaps Kajabi's community product offering.\n\n...\n\nTwo revenue lines are on record. Platform Subscription is the primary driver. The others are branded Mobile App.\n\n...\n\nDirect peers on record are Thinkific, Patreon, Podia, ConvertKit (now Kit), Mighty Networks, Teachable and Circle. Emerging players are Skool and Substack. Shopify is listed as a broad incumbent."
+        },
+        {
+          "url": "https://yespress.io/kajabi",
+          "title": "Kajabi: The Operating System for Human Expertise | YesPress",
+          "content": "Most software in the creator economy solves one slice of the problem. One tool hosts your course. Another sends your email. A third builds a checkout page, and a fourth runs the community. Kajabi's argument is that a solo expert should not have to be a systems integrator. Inside a single account you can build a website, publish an online course, run coaching sessions, launch a membership or community, host a podcast, sell digital downloads, send marketing emails, wire up a sales funnel, and take payment - all without touching code.\n\n...\n\nThe instinct is to picture a Kardashian-scale influencer. The reality is closer to a yoga instructor with a mailing list. Kajabi's own research is blunt about it: 89% of its full-time creators have 50,000 or fewer Instagram followers. The platform is built for the mid-sized expert - the consultant, the course author, the niche coach - who has a real audience and a real skill, but no marketing department. Kajabi reports serving more than 60,000 creators who collectively reach around 70 million people, and cumulatively those creators have sold to roughly 85 million buyers.\n\n...\n\nKajabi is a subscription business first. Plans run from roughly $55 a month at the entry “Kickstarter” tier to about $319 at Pro, with a discount for paying annually. The tiers gate on how many active customers you have and how much automation you need, so the bill scales as a creator's business grows. On top of that sits Kajabi Payments, the native checkout, which adds an optional transaction fee (around 2.9% plus 30 cents) for those who don't wire up Stripe or PayPal themselves.\n\n...\n\nThe most unusual thing about Kajabi is not the product. It is the cap table. For roughly a decade, the company took no venture money at all. It grew on customer revenue, stayed profitable, and let the founders keep control. Only in 2019 did it accept a first minority investment, from Spectrum Equity. Then, in May 2021, it did the opposite of quiet: a single $550 million growth round led by Tiger Global, with TPG, Tidemark, Owl Rock, Meritech, and Spectrum joining, valuing the company at more than $2 billion. Ten years of patience, one very loud check.\n\n...\n\nCumulative sales pass $10B as Kenny Rueter and Jonathan Cronstedt step in as Co-CEOs.\n\n...\n\nLike everyone else, Kajabi has spent the last two years pointing its roadmap at AI - but the framing fits its audience. In 2024 it launched Creator Studio, a generative production tool built with Adobe that it claims can cut content time by up to 90%. In 2025 it began rolling out “Cofounder” and a set of Expert Agents, pitched not as chatbots but as AI teammates for a one-person business. The through-line is the same as it was in 2010: absorb the busywork so the expert can do the expert part.\n\n...\n\nThe leadership has come full circle too. Ahad Khan, who took the CEO seat in 2021 and steered the company through its growth-financing era, departed in 2025. In his place, co-founder Kenny Rueter - the man with the sprinkler toy - stepped back in as Co-CEO alongside longtime president Jonathan Cronstedt."
+        },
+        {
+          "url": "https://www.theeduassist.com/blog/kajabi-major-updates-2026-ai-cofounder-expert-agents-amplify-more/",
+          "title": "Kajabi Major Updates 2026: AI Cofounder, Expert Agents,... | TheEduAssist",
+          "content": "In late 2025 and early 2026, Kajabi rolled out a broader platform shift often referred to as Kajabi Evolved.\n\nSo,This update included a visual automation builder, stronger checkout customization, affiliate tools, community changes, and a more connected mobile experience. It also introduced an open API, which is especially useful for larger businesses that need custom integrations and more flexible workflows.\n\n...\n\nThe Evolved update also made communities more accessible by including them"
+        },
+        {
+          "url": "https://www.thecoursetimes.com/story/kajabis-entry-plan-now-includes-zero-ai-credits-everyone-else-pays-15-per-500",
+          "title": "Kajabi's Entry Plan Now Includes Zero AI Credits. Everyone Else Pays $15 Per 500. | The Course Times",
+          "content": "Three things, all at once. The Kickstarter plan came off the pricing page — new creators can no longer buy the $89/mo entry plan, though existing Kickstarter accounts kept that price. Prices rose across every tier: Basic +$30/mo, Growth +$50/mo, Pro +$100/mo. And Basic's contact limit dropped from 10,000 to 2,500.\n\n...\n\nNew customers got a 50% promotional discount; existing customers faced the full increase on their first billing date on or after January 13, 2026, with no grandfathered pricing.\n\n...\n\nBasic is $179/month, or $143 on annual billing, with 5 products and 2,500 contacts. Growth is $249/$199 with 50 products and 25,000 contacts. Pro is $499/$399 with unlimited products and 100,000 contacts.\n\nThe annual commitments work out to $1,716, $2,388 and $4,788."
+        },
+        {
+          "url": "https://askcyborg.com/company/kajabi",
+          "title": "Kajabi company overview 2026: revenue $100M+, Cyborg Score 8/10 | AskCyborg",
+          "content": "Kajabi provides a comprehensive business platform for knowledge entrepreneurs and service providers who want to monetize their expertise, enabling creators to build branded websites, create and sell digital courses, host membership communities, deliver coaching services, launch podcasts, send newsletters, and process payments—all from a single dashboard. Kajabi positions itself as the consolidator in a fragmented creator tools landscape, allowing creators to access comparable functionality through a single Kajabi subscription rather than paying separate subscriptions for email marketing, community platforms, and course hosting that could total $300-500 monthly.\n\n...\n\nKajabi's evolution from a course platform to a business suite reflects that successful creators are diversifying their monetization channels; by supporting this diversification under one platform, Kajabi can expand its market by becoming the operational hub for entire creator businesses rather than just one revenue channel. In December 2025, Kajabi launched Kajabi Capital, an embedded financing program built with Parafin that offers fast, flexible funding to eligible U.S.-based creators directly from the Kajabi dashboard, expanding the platform beyond software into financial services.\n\n...\n\nKajabi's top competitors include Hotmart, HoneyBook and Thinkific. ClickFunnels offers a marketing funnel platform that supports the online sales process, providing tools that allow users to create sales funnels, manage customer relationships, conduct email marketing, and sell products or services online without needing technical expertise. Kajabi differentiates through its all-in-one platform consolidating multiple tools, fixed subscription pricing favoring established creators, and embedded financial services.\n\n...\n\nFounded: 2010 · Headquarters: Irvine, US · Employees: 391 · Revenue: $100M+\n\n...\n\n- Kajabi reached a $2B valuation in 2021 when the company hit $100M ARR, corresponding to a 20x revenue multiple during the peak of creator economy enthusiasm.\n- Kajabi employs a B2B2C SaaS model with fixed monthly subscription fees ranging from $149 to $399, deliberately contrasting with transaction-based models like Patreon or Gumroad that take percentage cuts, strategically designed to attract established creators generating $1,000-$2,000+ in monthly revenue.\n\n...\n\n- January 2026 Updated pricing structure with new plans featuring higher limits, bundled premium features, and discounted Kajabi Payments fees\n- December 2025 Launched Kajabi Capital, embedded financing program with Parafin offering fast, flexible funding to eligible U.S.-based creators\n- +1 more Track every material event for Kajabi as it happens. Explore monitoring →"
+        }
+      ],
+      "usage": {
+        "completion_tokens": 4000,
+        "prompt_tokens": 2568,
+        "total_tokens": 6568,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 3014,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.0201532,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0131532,
+          "upstream_inference_prompt_cost": 0.0029532,
+          "upstream_inference_completions_cost": 0.0102
+        }
+      },
+      "finish_reason": "length",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "anthropic/claude-sonnet-5.5",
+      "run": 2,
+      "ok": true,
+      "answer": "# Kajabi Briefing (as of 12 Oct 2026)\n\n## 1. What they do, who buys it, how they make money\nKajabi is an all-in-one platform for solo experts. One account covers a website, courses, coaching, memberships and community, podcasts, digital downloads, email, funnels and payments ([yespress.io](https://yespress.io/kajabi)). It targets mid-sized creators: 89% of full-time creators have 50,000 or fewer Instagram followers. Kajabi claims 60,000+ creators and about 85 million cumulative buyers ([yespress.io](https://yespress.io/kajabi)).\n\nRevenue is mainly subscriptions, plus an optional branded mobile app add-on ([akta.pro](https://akta.pro/company-profiles/00004mf/kajabi)). Current pricing is Basic $179/mo, Growth $249 and Pro $499, with lower annual rates. Kickstarter is no longer sold to new customers ([thecoursetimes.com](https://www.thecoursetimes.com/story/kajabis-entry-plan-now-includes-zero-ai-credits-everyone-else-pays-15-per-500)).\n\n**Conflict to verify:** one source says Kajabi takes 0% transaction fees ([akta.pro](https://akta.pro/company-profiles/00004mf/kajabi)). Another says Kajabi Payments adds about 2.9% + 30¢ if you don't use Stripe or PayPal ([yespress.io](https://yespress.io/kajabi)). Ask which applies.\n\n## 2. Recent news and launches\nI found no items clearly dated within the last six months (April–October 2026). The most recent items I could find are:\n- **Dec 2025:** Kajabi Capital, embedded financing built with Parafin for eligible US creators ([askcyborg.com](https://askcyborg.com/company/kajabi)).\n- **Late 2025 to early 2026:** the \"Kajabi Evolved\" update added a visual automation builder, affiliate tools, an open API and communities across plans ([theeduassist.com](https://www.theeduassist.com/blog/kajabi-major-updates-2026-ai-cofounder-expert-agents-amplify-more/)).\n- **Jan 2026:** price increases of +$30 (Basic), +$50 (Growth) and +$100 (Pro). Basic's contact limit fell from 10,000 to 2,500. Existing customers had no grandfathering. Basic includes no AI credits ([thecoursetimes.com](https://www.thecoursetimes.com/story/kajabis-entry-plan-now-includes-zero-ai-credits-everyone-else-pays-15-per-500)).\n- **AI:** Creator Studio (2024, built with Adobe) and Cofounder plus Expert Agents (rolling out from 2025) ([yespress.io](https://yespress.io/kajabi)).\n\n## 3. Funding, size, financial signals\n- Bootstrapped and profitable for about a decade. Spectrum Equity invested in 2019. A $550M round in May 2021, led by Tiger Global, valued the company at over $2B ([yespress.io](https://yespress.io/kajabi)).\n- No primary round disclosed since 2021. Headcount is 251–500 ([akta.pro](https://akta.pro/company-profiles/00004mf/kajabi)); another source says 391 ([askcyborg.com](https://askcyborg.com/company/kajabi)).\n- One source reports revenue of $100M+ and says the company hit $100M ARR in 2021 ([askcyborg.com](https://askcyborg.com/company/kajabi)). I found no current audited figures.\n- Cumulative creator sales passed $10B ([yespress.io](https://yespress.io/kajabi)).\n\n## 4. Leadership\nCo-founder Kenny Rueter and longtime president Jonathan Cronstedt are Co-CEOs. Ahad Khan, CEO since 2021, left in 2025 ([yespress.io](https://yespress.io/kajabi)). I found no other executive details.\n\n## 5. Competitors\n- **Thinkific, Teachable:** course-focused rivals. Kajabi publishes Thinkific migration guides, and Teachable historically charged transaction fees.\n- **Podia:** cheaper entry tier pressures Kajabi's higher entry price.\n- **Patreon, Kit, Mighty Networks, Circle:** membership, email and community overlap. Kajabi publishes Patreon migration content.\n- **Emerging:** Skool and Substack. **Broad incumbent:** Shopify ([akta.pro](https://akta.pro/company-profiles/00004mf/kajabi)).\n- Another source also lists Hotmart, HoneyBook and ClickFunnels ([askcyborg.com](https://askcyborg.com/company/kajabi)).\n\nKajabi's pitch is consolidation and fixed pricing rather than revenue share.\n\n## 6. Likely priorities and open questions\n**Priorities (my inference from the sources):**\n- Moving upmarket toward established creators, based on the price rises and removal of the entry plan.\n- AI as a differentiator, with credits gating some features.\n- Expanding into financial services, via Kajabi Capital.\n\n**Open questions:**\n- Has churn risen after the January price rises, especially among small creators?\n- How is the Co-CEO structure working, and what has the 2025 leadership change meant for strategy?\n- What is the transaction-fee reality?\n- Are there any funding, liquidity or IPO plans five years after the 2021 round?\n- What has shipped since early 2026? I couldn't confirm.",
+      "error": null,
+      "latency": 21.076807788999986,
+      "prompt_tokens": 4027,
+      "completion_tokens": 2519,
+      "cost": 0.040244,
+      "citations": [
+        {
+          "url": "https://akta.pro/company-profiles/00004mf/kajabi",
+          "title": "Kajabi company profile: firmographics, business model, customers, competitors | akta.pro",
+          "content": "Kajabi's business model is subscription SaaS with three published tiers (Basic at $179 per month, Growth, and Pro) plus an optional branded mobile app add-on. The company charges 0% transaction fees on creator GMV, a deliberate differentiator versus competitors that take 3-30%, and the platform monetizes volume through subscriptions rather than revenue share. Go-to-market is largely self-serve and creator-led, supplemented by partnerships (most recently Kajabi Capital with Parafin in December 2025) that extend the platform into creator fintech. The company has not disclosed a primary funding round since its $550 million Series D in May 2021 at an approximately $2 billion valuation, and headcount sits in the 251-500 range, indicating a post-hyper-growth operating profile.\n\n...\n\n1. Platform Subscription: Monthly or annual subscription fees for access to the all-in-one platform. Kajabi takes 0% of creator revenue, distinguishing it from competitors that charge transaction fees. Pricing tiers provide different feature levels and contact limits.\n2. Branded Mobile App: Optional paid add-on for custom-branded mobile applications available in app stores, providing additional revenue stream for established creators seeking deeper brand presence.\n\n...\n\n- Thinkific: Closest direct competitor — all-in-one course + community + marketing platform targeting the same expert creator SMB segment; Kajabi explicitly produces migration guides from Thinkific.\n- Patreon: Membership/monetization platform for creators; Kajabi produces explicit Patreon migration content, indicating direct creator overlap and competitive intent.\n- Podia: All-in-one creator commerce platform (courses, memberships, downloads, webinars) for solopreneurs; competes on bundling and price, including a lower-priced Starter tier that puts pressure on Kajabi's elevated entry price.\n- ConvertKit (now Kit): Email + creator monetization platform (formerly ConvertKit) now adding commerce and landing-page features; comparable target market of solo creators and SMB experts.\n- Mighty Networks: Community + course + membership platform targeting the same expert-creator cohort; comparable SaaS economics and overlapping feature set.\n- Teachable: Direct competitor offering online course creation and hosting; comparable product/customer base and revenue model (SaaS subscription), but Teachable historically charged transaction fees where Kajabi charges 0%.\n- Circle: Community-first platform expanding into courses and paid memberships; competes for the same creator persona and overlaps Kajabi's community product offering.\n\n...\n\nTwo revenue lines are on record. Platform Subscription is the primary driver. The others are branded Mobile App.\n\n...\n\nDirect peers on record are Thinkific, Patreon, Podia, ConvertKit (now Kit), Mighty Networks, Teachable and Circle. Emerging players are Skool and Substack. Shopify is listed as a broad incumbent."
+        },
+        {
+          "url": "https://yespress.io/kajabi",
+          "title": "Kajabi: The Operating System for Human Expertise | YesPress",
+          "content": "Most software in the creator economy solves one slice of the problem. One tool hosts your course. Another sends your email. A third builds a checkout page, and a fourth runs the community. Kajabi's argument is that a solo expert should not have to be a systems integrator. Inside a single account you can build a website, publish an online course, run coaching sessions, launch a membership or community, host a podcast, sell digital downloads, send marketing emails, wire up a sales funnel, and take payment - all without touching code.\n\n...\n\nThe instinct is to picture a Kardashian-scale influencer. The reality is closer to a yoga instructor with a mailing list. Kajabi's own research is blunt about it: 89% of its full-time creators have 50,000 or fewer Instagram followers. The platform is built for the mid-sized expert - the consultant, the course author, the niche coach - who has a real audience and a real skill, but no marketing department. Kajabi reports serving more than 60,000 creators who collectively reach around 70 million people, and cumulatively those creators have sold to roughly 85 million buyers.\n\n...\n\nKajabi is a subscription business first. Plans run from roughly $55 a month at the entry “Kickstarter” tier to about $319 at Pro, with a discount for paying annually. The tiers gate on how many active customers you have and how much automation you need, so the bill scales as a creator's business grows. On top of that sits Kajabi Payments, the native checkout, which adds an optional transaction fee (around 2.9% plus 30 cents) for those who don't wire up Stripe or PayPal themselves.\n\n...\n\nThe most unusual thing about Kajabi is not the product. It is the cap table. For roughly a decade, the company took no venture money at all. It grew on customer revenue, stayed profitable, and let the founders keep control. Only in 2019 did it accept a first minority investment, from Spectrum Equity. Then, in May 2021, it did the opposite of quiet: a single $550 million growth round led by Tiger Global, with TPG, Tidemark, Owl Rock, Meritech, and Spectrum joining, valuing the company at more than $2 billion. Ten years of patience, one very loud check.\n\n...\n\nCumulative sales pass $10B as Kenny Rueter and Jonathan Cronstedt step in as Co-CEOs.\n\n...\n\nLike everyone else, Kajabi has spent the last two years pointing its roadmap at AI - but the framing fits its audience. In 2024 it launched Creator Studio, a generative production tool built with Adobe that it claims can cut content time by up to 90%. In 2025 it began rolling out “Cofounder” and a set of Expert Agents, pitched not as chatbots but as AI teammates for a one-person business. The through-line is the same as it was in 2010: absorb the busywork so the expert can do the expert part.\n\n...\n\nThe leadership has come full circle too. Ahad Khan, who took the CEO seat in 2021 and steered the company through its growth-financing era, departed in 2025. In his place, co-founder Kenny Rueter - the man with the sprinkler toy - stepped back in as Co-CEO alongside longtime president Jonathan Cronstedt."
+        },
+        {
+          "url": "https://www.theeduassist.com/blog/kajabi-major-updates-2026-ai-cofounder-expert-agents-amplify-more/",
+          "title": "Kajabi Major Updates 2026: AI Cofounder, Expert Agents,... | TheEduAssist",
+          "content": "Another major update is the expanded checkout and sales experience. Kajabi introduced improvements such as Multiple Order Bumps, ACH bank transfer payments for** US** invoices, and checkout translation overrides, all of which are\n\n...\n\nIn late 2025 and early 2026, Kajabi rolled out a broader platform shift often referred to as Kajabi Evolved.\n\nSo,This update included a visual automation builder, stronger checkout customization, affiliate tools, community changes, and a more connected mobile experience. It also introduced an open API, which is especially useful for larger businesses that need custom integrations and more flexible workflows.\n\nThe Evolved update also made communities more accessible by including them across plans and removing some earlier limits on community groups. For creators who run cohorts, memberships, or multiple audience segments,"
+        },
+        {
+          "url": "https://www.thecoursetimes.com/story/kajabis-entry-plan-now-includes-zero-ai-credits-everyone-else-pays-15-per-500",
+          "title": "Kajabi's Entry Plan Now Includes Zero AI Credits. Everyone Else Pays $15 Per 500. | The Course Times",
+          "content": "Three things, all at once. The Kickstarter plan came off the pricing page — new creators can no longer buy the $89/mo entry plan, though existing Kickstarter accounts kept that price. Prices rose across every tier: Basic +$30/mo, Growth +$50/mo, Pro +$100/mo. And Basic's contact limit dropped from 10,000 to 2,500.\n\n...\n\nNew customers got a 50% promotional discount; existing customers faced the full increase on their first billing date on or after January 13, 2026, with no grandfathered pricing.\n\n...\n\nSome AI stays open to everyone — Kajabi Cofounder, the in-account chat that answers questions about revenue, targets and products, is on every plan, as is Kajabi MCP, which connects an outside AI to your account. But the credit-funded features are gated, and the cheapest tier is gated out entirely.\n\n...\n\nBasic is $179/month, or $143 on annual billing, with 5 products and 2,500 contacts. Growth is $249/$199 with 50 products and 25,000 contacts. Pro is $499/$399 with unlimited products and 100,000 contacts.\n\nThe annual commitments work out to $1,716, $2,388 and $4,788."
+        },
+        {
+          "url": "https://askcyborg.com/company/kajabi",
+          "title": "Kajabi company overview 2026: revenue $100M+, Cyborg Score 8/10 | AskCyborg",
+          "content": "Kajabi's evolution from a course platform to a business suite reflects that successful creators are diversifying their monetization channels; by supporting this diversification under one platform, Kajabi can expand its market by becoming the operational hub for entire creator businesses rather than just one revenue channel. In December 2025, Kajabi launched Kajabi Capital, an embedded financing program built with Parafin that offers fast, flexible funding to eligible U.S.-based creators directly from the Kajabi dashboard, expanding the platform beyond software into financial services.\n\n...\n\nKajabi's top competitors include Hotmart, HoneyBook and Thinkific. ClickFunnels offers a marketing funnel platform that supports the online sales process, providing tools that allow users to create sales funnels, manage customer relationships, conduct email marketing, and sell products or services online without needing technical expertise. Kajabi differentiates through its all-in-one platform consolidating multiple tools, fixed subscription pricing favoring established creators, and embedded financial services.\n\n...\n\nFounded: 2010 · Headquarters: Irvine, US · Employees: 391 · Revenue: $100M+\n\n...\n\n- Kajabi reached a $2B valuation in 2021 when the company hit $100M ARR, corresponding to a 20x revenue multiple during the peak of creator economy enthusiasm.\n- Kajabi employs a B2B2C SaaS model with fixed monthly subscription fees ranging from $149 to $399, deliberately contrasting with transaction-based models like Patreon or Gumroad that take percentage cuts, strategically designed to attract established creators generating $1,000-$2,000+ in monthly revenue.\n\n...\n\n- January 2026 Updated pricing structure with new plans featuring higher limits, bundled premium features, and discounted Kajabi Payments fees\n- December 2025 Launched Kajabi Capital, embedded financing program with Parafin offering fast, flexible funding to eligible U.S.-based creators\n- +1 more Track every material event for Kajabi as it happens. Explore monitoring →"
+        }
+      ],
+      "usage": {
+        "completion_tokens": 2519,
+        "prompt_tokens": 4027,
+        "total_tokens": 6546,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 615,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.040244,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.033244,
+          "upstream_inference_prompt_cost": 0.008054,
+          "upstream_inference_completions_cost": 0.02519
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "google/gemini-3.8-flash",
+      "run": 2,
+      "ok": true,
+      "answer": "### 1. What They Do, Who Buys, and Monetization\nKajabi is an all-in-one business platform for “knowledge entrepreneurs”—such as consultants, niche coaches, and course creators—allowing them to build websites, host online courses, run communities, send marketing emails, and manage checkouts without stitching together multiple tools ([yespress.io](https://yespress.io/kajabi), [askcyborg.com](https://askcyborg.com/company/kajabi)). Its core audience comprises mid-sized solo experts rather than mega-influencers; 89% of its full-time creators have fewer than 50,000 Instagram followers ([yespress.io](https://yespress.io/kajabi)).\n\nKajabi monetizes primarily via fixed-subscription SaaS tiers (Basic at $179/mo, Growth at $249/mo, Pro at $499/mo) and charges a 0% platform transaction fee on creator sales ([akta.pro](https://akta.pro/company-profiles/00004mf/kajabi), [thecoursetimes.com](https://www.thecoursetimes.com/story/kajabis-entry-plan-now-includes-zero-ai-credits-everyone-else-pays-15-per-500)). Secondary revenue stems from branded mobile app add-ons, payment processing via Kajabi Payments (~2.9% + 30¢), and AI usage credits ($15 per 500 credits) ([akta.pro](https://akta.pro/company-profiles/00004mf/kajabi), [yespress.io](https://yespress.io/kajabi), [thecoursetimes.com](https://www.thecoursetimes.com/story/kajabis-entry-plan-now-includes-zero-ai-credits-everyone-else-pays-15-per-500)).\n\n### 2. Recent News & Launches\n* **Pricing & Packaging Restructure (Jan 2026):** Retired its low-cost $89/month \"Kickstarter\" plan for new users, increased monthly prices across all standard tiers (+$30 to +$100/mo), reduced Basic contact caps to 2,500, and moved AI usage to a pay-per-credit model ([thecoursetimes.com](https://www.thecoursetimes.com/story/kajabis-entry-plan-now-includes-zero-ai-credits-everyone-else-pays-15-per-500)).\n* **Kajabi Evolved & AI Agents (Late 2025–2026):** Rolled out a platform update with an open API, visual automation builder, and autonomous \"Cofounder\" AI/Expert Agents acting as digital teammates ([theeduassist.com](https://www.theeduassist.com/blog/kajabi-major-updates-2026-ai-cofounder-expert-agents-amplify-more/), [yespress.io](https://yespress.io/kajabi)).\n* **Kajabi Capital (Dec 2025):** Partnered with Parafin to launch an embedded lending program offering financing to creators directly within their dashboard ([askcyborg.com](https://askcyborg.com/company/kajabi)).\n\n### 3. Funding, Size, and Financial Signals\n* **Valuation & Funding:** Bootstrapped for its first nine years before a 2019 minority check from Spectrum Equity ([yespress.io](https://yespress.io/kajabi)). Last raised a $550 million Series D in May 2021 led by Tiger Global at a $2 billion valuation on roughly $100 million ARR ([akta.pro](https://akta.pro/company-profiles/00004mf/kajabi), [askcyborg.com](https://askcyborg.com/company/kajabi)). \n* **Scale:** Serves over 60,000 creators who have collectively processed more than $10 billion in GMV ([yespress.io](https://yespress.io/kajabi)). Headcount is approximately 390 employees ([askcyborg.com](https://askcyborg.com/company/kajabi)).\n\n### 4. Leadership\nIn 2025, CEO Ahad Khan departed the company ([yespress.io](https://yespress.io/kajabi)). Co-founder Kenny Rueter returned to executive leadership as Co-CEO alongside longtime President Jonathan Cronstedt ([yespress.io](https://yespress.io/kajabi)). \n\n### 5. Main Competitors & Differentiation\n* **Competitors:** Direct rivals include Teachable, Thinkific, and Podia (course/commerce software), Circle and Skool (community-first platforms), and Kit or Patreon (monetization/newsletters) ([akta.pro](https://akta.pro/company-profiles/00004mf/kajabi)).\n* **Differentiation:** Unlike competitors that take transaction cuts (typically 3%–30%) or focus on a single vertical, Kajabi offers a fully consolidated tech stack for a premium flat subscription, targeting higher-earning, established creators looking to reduce software sprawl ([akta.pro](https://akta.pro/company-profiles/00004mf/kajabi), [askcyborg.com](https://askcyborg.com/company/kajabi)).\n\n### 6. Likely Strategic Priorities & Open Questions\n* **Priorities:** Pushing ARPU higher by shedding entry-tier users, embedding high-margin fintech products (Kajabi Capital/Payments), and integrating AI workflows to reduce creator churn ([akta.pro](https://akta.pro/company-profiles/00004mf/kajabi), [thecoursetimes.com](https://www.thecoursetimes.com/story/kajabis-entry-plan-now-includes-zero-ai-credits-everyone-else-pays-15-per-500), [askcyborg.com](https://askcyborg.com/company/kajabi)).\n* **Questions to Ask:** \n  * How has creator retention responded to the January 2026 pricing hike and contact cap reductions ([thecoursetimes.com](https://www.thecoursetimes.com/story/kajabis-entry-plan-now-includes-zero-ai-credits-everyone-else-pays-15-per-500))?\n  * What is the early adoption and default rate for Kajabi Capital ([askcyborg.com](https://askcyborg.com/company/kajabi))?\n  * What are the co-CEOs' plans regarding liquidity or an eventual IPO following the 2021 funding ([akta.pro](https://akta.pro/company-profiles/00004mf/kajabi), [yespress.io](https://yespress.io/kajabi))?",
+      "error": null,
+      "latency": 26.274870900999986,
+      "prompt_tokens": 2694,
+      "completion_tokens": 3308,
+      "cost": 0.0214255,
+      "citations": [
+        {
+          "url": "https://akta.pro/company-profiles/00004mf/kajabi",
+          "title": "Kajabi company profile: firmographics, business model, customers, competitors | akta.pro",
+          "content": "Kajabi's business model is subscription SaaS with three published tiers (Basic at $179 per month, Growth, and Pro) plus an optional branded mobile app add-on. The company charges 0% transaction fees on creator GMV, a deliberate differentiator versus competitors that take 3-30%, and the platform monetizes volume through subscriptions rather than revenue share. Go-to-market is largely self-serve and creator-led, supplemented by partnerships (most recently Kajabi Capital with Parafin in December 2025) that extend the platform into creator fintech. The company has not disclosed a primary funding round since its $550 million Series D in May 2021 at an approximately $2 billion valuation, and headcount sits in the 251-500 range, indicating a post-hyper-growth operating profile.\n\n...\n\n1. Platform Subscription: Monthly or annual subscription fees for access to the all-in-one platform. Kajabi takes 0% of creator revenue, distinguishing it from competitors that charge transaction fees. Pricing tiers provide different feature levels and contact limits.\n2. Branded Mobile App: Optional paid add-on for custom-branded mobile applications available in app stores, providing additional revenue stream for established creators seeking deeper brand presence.\n\n...\n\n- Thinkific: Closest direct competitor — all-in-one course + community + marketing platform targeting the same expert creator SMB segment; Kajabi explicitly produces migration guides from Thinkific.\n- Patreon: Membership/monetization platform for creators; Kajabi produces explicit Patreon migration content, indicating direct creator overlap and competitive intent.\n- Podia: All-in-one creator commerce platform (courses, memberships, downloads, webinars) for solopreneurs; competes on bundling and price, including a lower-priced Starter tier that puts pressure on Kajabi's elevated entry price.\n- ConvertKit (now Kit): Email + creator monetization platform (formerly ConvertKit) now adding commerce and landing-page features; comparable target market of solo creators and SMB experts.\n- Mighty Networks: Community + course + membership platform targeting the same expert-creator cohort; comparable SaaS economics and overlapping feature set.\n- Teachable: Direct competitor offering online course creation and hosting; comparable product/customer base and revenue model (SaaS subscription), but Teachable historically charged transaction fees where Kajabi charges 0%.\n- Circle: Community-first platform expanding into courses and paid memberships; competes for the same creator persona and overlaps Kajabi's community product offering.\n\n...\n\nTwo revenue lines are on record. Platform Subscription is the primary driver. The others are branded Mobile App.\n\n...\n\nDirect peers on record are Thinkific, Patreon, Podia, ConvertKit (now Kit), Mighty Networks, Teachable and Circle. Emerging players are Skool and Substack. Shopify is listed as a broad incumbent."
+        },
+        {
+          "url": "https://yespress.io/kajabi",
+          "title": "Kajabi: The Operating System for Human Expertise | YesPress",
+          "content": "Most software in the creator economy solves one slice of the problem. One tool hosts your course. Another sends your email. A third builds a checkout page, and a fourth runs the community. Kajabi's argument is that a solo expert should not have to be a systems integrator. Inside a single account you can build a website, publish an online course, run coaching sessions, launch a membership or community, host a podcast, sell digital downloads, send marketing emails, wire up a sales funnel, and take payment - all without touching code.\n\n...\n\nThe instinct is to picture a Kardashian-scale influencer. The reality is closer to a yoga instructor with a mailing list. Kajabi's own research is blunt about it: 89% of its full-time creators have 50,000 or fewer Instagram followers. The platform is built for the mid-sized expert - the consultant, the course author, the niche coach - who has a real audience and a real skill, but no marketing department. Kajabi reports serving more than 60,000 creators who collectively reach around 70 million people, and cumulatively those creators have sold to roughly 85 million buyers.\n\n...\n\nKajabi is a subscription business first. Plans run from roughly $55 a month at the entry “Kickstarter” tier to about $319 at Pro, with a discount for paying annually. The tiers gate on how many active customers you have and how much automation you need, so the bill scales as a creator's business grows. On top of that sits Kajabi Payments, the native checkout, which adds an optional transaction fee (around 2.9% plus 30 cents) for those who don't wire up Stripe or PayPal themselves.\n\n...\n\nThe most unusual thing about Kajabi is not the product. It is the cap table. For roughly a decade, the company took no venture money at all. It grew on customer revenue, stayed profitable, and let the founders keep control. Only in 2019 did it accept a first minority investment, from Spectrum Equity. Then, in May 2021, it did the opposite of quiet: a single $550 million growth round led by Tiger Global, with TPG, Tidemark, Owl Rock, Meritech, and Spectrum joining, valuing the company at more than $2 billion. Ten years of patience, one very loud check.\n\n...\n\nCumulative sales pass $10B as Kenny Rueter and Jonathan Cronstedt step in as Co-CEOs.\n\n...\n\nLike everyone else, Kajabi has spent the last two years pointing its roadmap at AI - but the framing fits its audience. In 2024 it launched Creator Studio, a generative production tool built with Adobe that it claims can cut content time by up to 90%. In 2025 it began rolling out “Cofounder” and a set of Expert Agents, pitched not as chatbots but as AI teammates for a one-person business. The through-line is the same as it was in 2010: absorb the busywork so the expert can do the expert part.\n\n...\n\nThe leadership has come full circle too. Ahad Khan, who took the CEO seat in 2021 and steered the company through its growth-financing era, departed in 2025. In his place, co-founder Kenny Rueter - the man with the sprinkler toy - stepped back in as Co-CEO alongside longtime president Jonathan Cronstedt."
+        },
+        {
+          "url": "https://www.theeduassist.com/blog/kajabi-major-updates-2026-ai-cofounder-expert-agents-amplify-more/",
+          "title": "Kajabi Major Updates 2026: AI Cofounder, Expert Agents,... | TheEduAssist",
+          "content": "In late 2025 and early 2026, Kajabi rolled out a broader platform shift often referred to as Kajabi Evolved.\n\nSo,This update included a visual automation builder, stronger checkout customization, affiliate tools, community changes, and a more connected mobile experience. It also introduced an open API, which is especially useful for larger businesses that need custom integrations and more flexible workflows.\n\n...\n\nThe Evolved update also made communities more accessible by including them"
+        },
+        {
+          "url": "https://www.thecoursetimes.com/story/kajabis-entry-plan-now-includes-zero-ai-credits-everyone-else-pays-15-per-500",
+          "title": "Kajabi's Entry Plan Now Includes Zero AI Credits. Everyone Else Pays $15 Per 500. | The Course Times",
+          "content": "Three things, all at once. The Kickstarter plan came off the pricing page — new creators can no longer buy the $89/mo entry plan, though existing Kickstarter accounts kept that price. Prices rose across every tier: Basic +$30/mo, Growth +$50/mo, Pro +$100/mo. And Basic's contact limit dropped from 10,000 to 2,500.\n\n...\n\nNew customers got a 50% promotional discount; existing customers faced the full increase on their first billing date on or after January 13, 2026, with no grandfathered pricing.\n\n...\n\nBasic is $179/month, or $143 on annual billing, with 5 products and 2,500 contacts. Growth is $249/$199 with 50 products and 25,000 contacts. Pro is $499/$399 with unlimited products and 100,000 contacts.\n\nThe annual commitments work out to $1,716, $2,388 and $4,788."
+        },
+        {
+          "url": "https://askcyborg.com/company/kajabi",
+          "title": "Kajabi company overview 2026: revenue $100M+, Cyborg Score 8/10 | AskCyborg",
+          "content": "Kajabi provides a comprehensive business platform for knowledge entrepreneurs and service providers who want to monetize their expertise, enabling creators to build branded websites, create and sell digital courses, host membership communities, deliver coaching services, launch podcasts, send newsletters, and process payments—all from a single dashboard. Kajabi positions itself as the consolidator in a fragmented creator tools landscape, allowing creators to access comparable functionality through a single Kajabi subscription rather than paying separate subscriptions for email marketing, community platforms, and course hosting that could total $300-500 monthly.\n\n...\n\nKajabi's evolution from a course platform to a business suite reflects that successful creators are diversifying their monetization channels; by supporting this diversification under one platform, Kajabi can expand its market by becoming the operational hub for entire creator businesses rather than just one revenue channel. In December 2025, Kajabi launched Kajabi Capital, an embedded financing program built with Parafin that offers fast, flexible funding to eligible U.S.-based creators directly from the Kajabi dashboard, expanding the platform beyond software into financial services.\n\n...\n\nKajabi's top competitors include Hotmart, HoneyBook and Thinkific. ClickFunnels offers a marketing funnel platform that supports the online sales process, providing tools that allow users to create sales funnels, manage customer relationships, conduct email marketing, and sell products or services online without needing technical expertise. Kajabi differentiates through its all-in-one platform consolidating multiple tools, fixed subscription pricing favoring established creators, and embedded financial services.\n\n...\n\nFounded: 2010 · Headquarters: Irvine, US · Employees: 391 · Revenue: $100M+\n\n...\n\n- Kajabi reached a $2B valuation in 2021 when the company hit $100M ARR, corresponding to a 20x revenue multiple during the peak of creator economy enthusiasm.\n- Kajabi employs a B2B2C SaaS model with fixed monthly subscription fees ranging from $149 to $399, deliberately contrasting with transaction-based models like Patreon or Gumroad that take percentage cuts, strategically designed to attract established creators generating $1,000-$2,000+ in monthly revenue.\n\n...\n\n- January 2026 Updated pricing structure with new plans featuring higher limits, bundled premium features, and discounted Kajabi Payments fees\n- December 2025 Launched Kajabi Capital, embedded financing program with Parafin offering fast, flexible funding to eligible U.S.-based creators\n- +1 more Track every material event for Kajabi as it happens. Explore monitoring →"
+        }
+      ],
+      "usage": {
+        "completion_tokens": 3308,
+        "prompt_tokens": 2694,
+        "total_tokens": 6002,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1763,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.0214255,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0144255,
+          "upstream_inference_prompt_cost": 0.0020205,
+          "upstream_inference_completions_cost": 0.012405
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "run": 2,
+      "ok": true,
+      "answer": "**1. What they do, who buys it, and how they make money**  \nKajabi is an all-in-one SaaS platform that lets knowledge entrepreneurs build a branded website, sell online courses, run membership communities, coach, host podcasts, send emails, and process payments — all without code. The core user is the mid‑scale expert: 89% of full‑time creators have fewer than 50,000 Instagram followers, and the platform supports over 60,000 creators who have collectively sold to ~85 million buyers [yespress.io](https://yespress.io/kajabi).  \nRevenue comes primarily from tiered subscriptions (Basic $179/mo, Growth $249/mo, Pro $499/mo) and an optional branded mobile‑app add‑on. Kajabi takes 0% of creators’ sales revenue, a deliberate differentiator; it only charges a standard processing fee (2.9% + 30¢) when users adopt its native Kajabi Payments instead of Stripe or PayPal [akta.pro](https://akta.pro/company-profiles/00004mf/kajabi)[yespress.io](https://yespress.io/kajabi)[thecoursetimes.com](https://www.thecoursetimes.com/story/kajabis-entry-plan-now-includes-zero-ai-credits-everyone-else-pays-15-per-500).\n\n**2. Recent news and launches (last 6 months)**  \nIn early 2026 Kajabi rolled out the “Evolved” platform update, including AI Cofounder and domain‑trained Expert Agents designed to slash content‑creation time, a visual automation builder, and an open API for custom integrations [theeduassist.com](https://www.theeduassist.com/blog/kajabi-major-updates-2026-ai-cofounder-expert-agents-amplify-more/). In January 2026 it restructured pricing: the entry Kickstarter tier was removed, prices rose $30‑$100/mo across plans, and the Basic plan’s contact limit dropped from10,000 to2,500. AI credits were monetised at $15 per500 for non‑Kickstarter customers [thecoursetimes.com](https://www.thecoursetimes.com/story/kajabis-entry-plan-now-includes-zero-ai-credits-everyone-else-pays-15-per-500). In late2025, Kajabi Capital launched with Parafin, offering embedded financing to U.S. creators directly from the dashboard [askcyborg.com](https://askcyborg.com/company/kajabi).\n\n**3. Funding, size, and financial signals**  \nAfter bootstrapping profitably for a decade, Kajabi raised a $550M Series D in May2021 led by Tiger Global at a $2B+ valuation. No primary round has followed [akta.pro](https://akta.pro/company-profiles/00004mf/kajabi)[yespress.io](https://yespress.io/kajabi). Revenue is an estimated $100M+ ARR, with roughly391 employees [askcyborg.com](https://askcyborg.com/company/kajabi). Cumulatively, creators have crossed $10B in platform sales [yespress.io](https://yespress.io/kajabi). The absence of new funding, stable headcount (251‑500 range), and recent price hikes suggest a mature, cash‑generating company optimising unit economics.\n\n**4. Leadership**  \nCo‑founder Kenny Rueter returned as Co‑CEO alongside longime president Jonathan Cronstedt in 2025, after previous CEO Ahad Khan departed. This brought founder‑led leadership back to the top [yespress.io](https://yespress.io/kajabi).\n\n**5. Main competitors and how they differ**  \nDirect rivals: Thinkific (all‑in‑one course platform; Kajabi publishes migration guides), Teachable (historically charges transaction fees, Kajabi charges 0%), Podia (lower‑priced starter tier), Patreon, Kit (formerly ConvertKit), Mighty Networks, and Circle [akta.pro](https://akta.pro/company-profiles/00004mf/kajabi). Emerging threats include Skool and Substack; Shopify is a broad incumbent. Kajabi differentiates by consolidating a full business suite in one subscription without revenue‑share, and now by embedding AI and fintech.\n\n**6. Likely strategic priorities and open questions**  \nPriorities: monetise AI (Cofounder, agents) to justify higher tiers; lift ARPU through price increases and add‑ons like Kajabi Capital; open the API to attract larger businesses; and defend against low‑cost alternatives.  \nOpen questions: Will the price hikes churn the small‑creator base? Can the AI‑credits model gain acceptance? Is a new funding round or exit on the horizon after years without primary capital? And will founder‑led management accelerate product velocity or slow decisions?",
+      "error": null,
+      "latency": 62.309800024000026,
+      "prompt_tokens": 2489,
+      "completion_tokens": 3905,
+      "cost": 0.01126430095,
+      "citations": [
+        {
+          "url": "https://akta.pro/company-profiles/00004mf/kajabi",
+          "title": "Kajabi company profile: firmographics, business model, customers, competitors | akta.pro",
+          "content": "Kajabi's business model is subscription SaaS with three published tiers (Basic at $179 per month, Growth, and Pro) plus an optional branded mobile app add-on. The company charges 0% transaction fees on creator GMV, a deliberate differentiator versus competitors that take 3-30%, and the platform monetizes volume through subscriptions rather than revenue share. Go-to-market is largely self-serve and creator-led, supplemented by partnerships (most recently Kajabi Capital with Parafin in December 2025) that extend the platform into creator fintech. The company has not disclosed a primary funding round since its $550 million Series D in May 2021 at an approximately $2 billion valuation, and headcount sits in the 251-500 range, indicating a post-hyper-growth operating profile.\n\n...\n\n1. Platform Subscription: Monthly or annual subscription fees for access to the all-in-one platform. Kajabi takes 0% of creator revenue, distinguishing it from competitors that charge transaction fees. Pricing tiers provide different feature levels and contact limits.\n2. Branded Mobile App: Optional paid add-on for custom-branded mobile applications available in app stores, providing additional revenue stream for established creators seeking deeper brand presence.\n\n...\n\n- Thinkific: Closest direct competitor — all-in-one course + community + marketing platform targeting the same expert creator SMB segment; Kajabi explicitly produces migration guides from Thinkific.\n- Patreon: Membership/monetization platform for creators; Kajabi produces explicit Patreon migration content, indicating direct creator overlap and competitive intent.\n- Podia: All-in-one creator commerce platform (courses, memberships, downloads, webinars) for solopreneurs; competes on bundling and price, including a lower-priced Starter tier that puts pressure on Kajabi's elevated entry price.\n- ConvertKit (now Kit): Email + creator monetization platform (formerly ConvertKit) now adding commerce and landing-page features; comparable target market of solo creators and SMB experts.\n- Mighty Networks: Community + course + membership platform targeting the same expert-creator cohort; comparable SaaS economics and overlapping feature set.\n- Teachable: Direct competitor offering online course creation and hosting; comparable product/customer base and revenue model (SaaS subscription), but Teachable historically charged transaction fees where Kajabi charges 0%.\n- Circle: Community-first platform expanding into courses and paid memberships; competes for the same creator persona and overlaps Kajabi's community product offering.\n\n...\n\nTwo revenue lines are on record. Platform Subscription is the primary driver. The others are branded Mobile App.\n\n...\n\nDirect peers on record are Thinkific, Patreon, Podia, ConvertKit (now Kit), Mighty Networks, Teachable and Circle. Emerging players are Skool and Substack. Shopify is listed as a broad incumbent."
+        },
+        {
+          "url": "https://yespress.io/kajabi",
+          "title": "Kajabi: The Operating System for Human Expertise | YesPress",
+          "content": "Most software in the creator economy solves one slice of the problem. One tool hosts your course. Another sends your email. A third builds a checkout page, and a fourth runs the community. Kajabi's argument is that a solo expert should not have to be a systems integrator. Inside a single account you can build a website, publish an online course, run coaching sessions, launch a membership or community, host a podcast, sell digital downloads, send marketing emails, wire up a sales funnel, and take payment - all without touching code.\n\n...\n\nThe instinct is to picture a Kardashian-scale influencer. The reality is closer to a yoga instructor with a mailing list. Kajabi's own research is blunt about it: 89% of its full-time creators have 50,000 or fewer Instagram followers. The platform is built for the mid-sized expert - the consultant, the course author, the niche coach - who has a real audience and a real skill, but no marketing department. Kajabi reports serving more than 60,000 creators who collectively reach around 70 million people, and cumulatively those creators have sold to roughly 85 million buyers.\n\n...\n\nKajabi is a subscription business first. Plans run from roughly $55 a month at the entry “Kickstarter” tier to about $319 at Pro, with a discount for paying annually. The tiers gate on how many active customers you have and how much automation you need, so the bill scales as a creator's business grows. On top of that sits Kajabi Payments, the native checkout, which adds an optional transaction fee (around 2.9% plus 30 cents) for those who don't wire up Stripe or PayPal themselves.\n\n...\n\nThe most unusual thing about Kajabi is not the product. It is the cap table. For roughly a decade, the company took no venture money at all. It grew on customer revenue, stayed profitable, and let the founders keep control. Only in 2019 did it accept a first minority investment, from Spectrum Equity. Then, in May 2021, it did the opposite of quiet: a single $550 million growth round led by Tiger Global, with TPG, Tidemark, Owl Rock, Meritech, and Spectrum joining, valuing the company at more than $2 billion. Ten years of patience, one very loud check.\n\n...\n\nCumulative sales pass $10B as Kenny Rueter and Jonathan Cronstedt step in as Co-CEOs.\n\n...\n\nLike everyone else, Kajabi has spent the last two years pointing its roadmap at AI - but the framing fits its audience. In 2024 it launched Creator Studio, a generative production tool built with Adobe that it claims can cut content time by up to 90%. In 2025 it began rolling out “Cofounder” and a set of Expert Agents, pitched not as chatbots but as AI teammates for a one-person business. The through-line is the same as it was in 2010: absorb the busywork so the expert can do the expert part.\n\n...\n\nThe leadership has come full circle too. Ahad Khan, who took the CEO seat in 2021 and steered the company through its growth-financing era, departed in 2025. In his place, co-founder Kenny Rueter - the man with the sprinkler toy - stepped back in as Co-CEO alongside longtime president Jonathan Cronstedt."
+        },
+        {
+          "url": "https://www.theeduassist.com/blog/kajabi-major-updates-2026-ai-cofounder-expert-agents-amplify-more/",
+          "title": "Kajabi Major Updates 2026: AI Cofounder, Expert Agents,... | TheEduAssist",
+          "content": "In late 2025 and early 2026, Kajabi rolled out a broader platform shift often referred to as Kajabi Evolved.\n\nSo,This update included a visual automation builder, stronger checkout customization, affiliate tools, community changes, and a more connected mobile experience. It also introduced an open API, which is especially useful for larger businesses that need custom integrations and more flexible workflows.\n\n...\n\nThe Evolved update also made communities more accessible by including them"
+        },
+        {
+          "url": "https://www.thecoursetimes.com/story/kajabis-entry-plan-now-includes-zero-ai-credits-everyone-else-pays-15-per-500",
+          "title": "Kajabi's Entry Plan Now Includes Zero AI Credits. Everyone Else Pays $15 Per 500. | The Course Times",
+          "content": "Three things, all at once. The Kickstarter plan came off the pricing page — new creators can no longer buy the $89/mo entry plan, though existing Kickstarter accounts kept that price. Prices rose across every tier: Basic +$30/mo, Growth +$50/mo, Pro +$100/mo. And Basic's contact limit dropped from 10,000 to 2,500.\n\n...\n\nNew customers got a 50% promotional discount; existing customers faced the full increase on their first billing date on or after January 13, 2026, with no grandfathered pricing.\n\n...\n\nBasic is $179/month, or $143 on annual billing, with 5 products and 2,500 contacts. Growth is $249/$199 with 50 products and 25,000 contacts. Pro is $499/$399 with unlimited products and 100,000 contacts.\n\nThe annual commitments work out to $1,716, $2,388 and $4,788."
+        },
+        {
+          "url": "https://askcyborg.com/company/kajabi",
+          "title": "Kajabi company overview 2026: revenue $100M+, Cyborg Score 8/10 | AskCyborg",
+          "content": "Kajabi provides a comprehensive business platform for knowledge entrepreneurs and service providers who want to monetize their expertise, enabling creators to build branded websites, create and sell digital courses, host membership communities, deliver coaching services, launch podcasts, send newsletters, and process payments—all from a single dashboard. Kajabi positions itself as the consolidator in a fragmented creator tools landscape, allowing creators to access comparable functionality through a single Kajabi subscription rather than paying separate subscriptions for email marketing, community platforms, and course hosting that could total $300-500 monthly.\n\n...\n\nKajabi's evolution from a course platform to a business suite reflects that successful creators are diversifying their monetization channels; by supporting this diversification under one platform, Kajabi can expand its market by becoming the operational hub for entire creator businesses rather than just one revenue channel. In December 2025, Kajabi launched Kajabi Capital, an embedded financing program built with Parafin that offers fast, flexible funding to eligible U.S.-based creators directly from the Kajabi dashboard, expanding the platform beyond software into financial services.\n\n...\n\nKajabi's top competitors include Hotmart, HoneyBook and Thinkific. ClickFunnels offers a marketing funnel platform that supports the online sales process, providing tools that allow users to create sales funnels, manage customer relationships, conduct email marketing, and sell products or services online without needing technical expertise. Kajabi differentiates through its all-in-one platform consolidating multiple tools, fixed subscription pricing favoring established creators, and embedded financial services.\n\n...\n\nFounded: 2010 · Headquarters: Irvine, US · Employees: 391 · Revenue: $100M+\n\n...\n\n- Kajabi reached a $2B valuation in 2021 when the company hit $100M ARR, corresponding to a 20x revenue multiple during the peak of creator economy enthusiasm.\n- Kajabi employs a B2B2C SaaS model with fixed monthly subscription fees ranging from $149 to $399, deliberately contrasting with transaction-based models like Patreon or Gumroad that take percentage cuts, strategically designed to attract established creators generating $1,000-$2,000+ in monthly revenue.\n\n...\n\n- January 2026 Updated pricing structure with new plans featuring higher limits, bundled premium features, and discounted Kajabi Payments fees\n- December 2025 Launched Kajabi Capital, embedded financing program with Parafin offering fast, flexible funding to eligible U.S.-based creators\n- +1 more Track every material event for Kajabi as it happens. Explore monitoring →"
+        }
+      ],
+      "usage": {
+        "completion_tokens": 3905,
+        "prompt_tokens": 2489,
+        "total_tokens": 6394,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 2862,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.01126430095,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00426430095,
+          "upstream_inference_prompt_cost": 0.00103057045,
+          "upstream_inference_completions_cost": 0.0032337305
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    }
+  ],
+  "judgments": [
+    {
+      "run": 1,
+      "label_map": {
+        "A": "deepseek/deepseek-v4-pro",
+        "B": "anthropic/claude-sonnet-5.5",
+        "C": "google/gemini-3.8-flash"
+      },
+      "ok": true,
+      "scores": {
+        "deepseek/deepseek-v4-pro": {
+          "criteria": {
+            "grounding": 6.0,
+            "specificity": 9.0,
+            "recency": 3.0,
+            "usefulness": 4.0
+          },
+          "unsupported_claims": [
+            "The cited excerpts do not establish the approximately 2.9% plus $0.30 Kajabi Payments charge.",
+            "The cited excerpts do not establish approximately 391 employees, the Irvine headquarters, cumulative creator sales above $10 billion, or the detailed 2021 investor list.",
+            "The cited excerpts do not substantiate the stated leadership transition.",
+            "The cited excerpts do not substantiate several named competitors or the specific claim that Podia pressures Kajabi on price."
+          ],
+          "rationale": "Concrete product and pricing details help, but several claims exceed the excerpts, the news is outside a six-month window ending in October 2026, and the answer stops before section 6.",
+          "weighted_score": 5.75,
+          "label": "A"
+        },
+        "anthropic/claude-sonnet-5.5": {
+          "criteria": {
+            "grounding": 7.0,
+            "specificity": 8.0,
+            "recency": 7.0,
+            "usefulness": 8.0
+          },
+          "unsupported_claims": [
+            "The cited excerpts do not establish Tiger Global as lead investor, a valuation above $2 billion, or that the 2019 investment was Kajabi's first outside capital.",
+            "The cited excerpts do not substantiate the stated 2025 leadership transition.",
+            "The cited excerpts do not substantiate most of the competitor-by-competitor comparisons, including Skool's $99 monthly price.",
+            "The cited excerpts do not establish the dates given for Creator Studio, Cofounder, and Expert Agents."
+          ],
+          "rationale": "It identifies a potentially recent launch, flags verification gaps, and offers useful meeting questions, though some funding, leadership, and competitor details lack support in the provided excerpts.",
+          "weighted_score": 7.45,
+          "label": "B"
+        },
+        "google/gemini-3.8-flash": {
+          "criteria": {
+            "grounding": 6.0,
+            "specificity": 9.0,
+            "recency": 3.0,
+            "usefulness": 7.0
+          },
+          "unsupported_claims": [
+            "The cited source labels the $100 million-plus figure as revenue, not ARR.",
+            "The cited excerpts do not establish approximately 390 employees or cumulative creator sales above $10 billion.",
+            "The source says no primary round has been disclosed since 2021; it does not establish that none was raised.",
+            "The cited excerpts do not substantiate the stated leadership transition or establish that the AI tools autonomously handle business operations.",
+            "The claim that Kajabi is much more economical above $2,000 per month is not supported by a cited comparison."
+          ],
+          "rationale": "The briefing is specific and its strategic questions are useful, but it overstates several financial claims and treats late-2025 and early-2026 developments as recent.",
+          "weighted_score": 6.35,
+          "label": "C"
+        }
+      },
+      "raw_outputs": [
+        "{\n  \"A\": {\n    \"scores\": {\n      \"grounding\": 6,\n      \"specificity\": 9,\n      \"recency\": 3,\n      \"usefulness\": 4\n    },\n    \"unsupported_claims\": [\n      \"The cited excerpts do not establish the approximately 2.9% plus $0.30 Kajabi Payments charge.\",\n      \"The cited excerpts do not establish approximately 391 employees, the Irvine headquarters, cumulative creator sales above $10 billion, or the detailed 2021 investor list.\",\n      \"The cited excerpts do not substantiate the stated leadership transition.\",\n      \"The cited excerpts do not substantiate several named competitors or the specific claim that Podia pressures Kajabi on price.\"\n    ],\n    \"rationale\": \"Concrete product and pricing details help, but several claims exceed the excerpts, the news is outside a six-month window ending in October 2026, and the answer stops before section 6.\"\n  },\n  \"B\": {\n    \"scores\": {\n      \"grounding\": 7,\n      \"specificity\": 8,\n      \"recency\": 7,\n      \"usefulness\": 8\n    },\n    \"unsupported_claims\": [\n      \"The cited excerpts do not establish Tiger Global as lead investor, a valuation above $2 billion, or that the 2019 investment was Kajabi's first outside capital.\",\n      \"The cited excerpts do not substantiate the stated 2025 leadership transition.\",\n      \"The cited excerpts do not substantiate most of the competitor-by-competitor comparisons, including Skool's $99 monthly price.\",\n      \"The cited excerpts do not establish the dates given for Creator Studio, Cofounder, and Expert Agents.\"\n    ],\n    \"rationale\": \"It identifies a potentially recent launch, flags verification gaps, and offers useful meeting questions, though some funding, leadership, and competitor details lack support in the provided excerpts.\"\n  },\n  \"C\": {\n    \"scores\": {\n      \"grounding\": 6,\n      \"specificity\": 9,\n      \"recency\": 3,\n      \"usefulness\": 7\n    },\n    \"unsupported_claims\": [\n      \"The cited source labels the $100 million-plus figure as revenue, not ARR.\",\n      \"The cited excerpts do not establish approximately 390 employees or cumulative creator sales above $10 billion.\",\n      \"The source says no primary round has been disclosed since 2021; it does not establish that none was raised.\",\n      \"The cited excerpts do not substantiate the stated leadership transition or establish that the AI tools autonomously handle business operations.\",\n      \"The claim that Kajabi is much more economical above $2,000 per month is not supported by a cited comparison.\"\n    ],\n    \"rationale\": \"The briefing is specific and its strategic questions are useful, but it overstates several financial claims and treats late-2025 and early-2026 developments as recent.\"\n  }\n}"
+      ],
+      "error": null,
+      "cost": 0.0367985,
+      "latency": 23.76108881999994,
+      "usage": [
+        {
+          "completion_tokens": 1646,
+          "prompt_tokens": 8136,
+          "total_tokens": 9782,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": 0,
+            "reasoning_tokens": 1034,
+            "rejected_prediction_tokens": null,
+            "text_tokens": null,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 8133,
+            "cached_tokens": 0,
+            "image_tokens": null,
+            "text_tokens": null,
+            "video_tokens": 0
+          },
+          "cost": 0.0367985,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.0367985,
+            "upstream_inference_prompt_cost": 0.0203385,
+            "upstream_inference_completions_cost": 0.01646
+          }
+        }
+      ]
+    },
+    {
+      "run": 2,
+      "label_map": {
+        "A": "anthropic/claude-sonnet-5.5",
+        "B": "google/gemini-3.8-flash",
+        "C": "deepseek/deepseek-v4-pro"
+      },
+      "ok": true,
+      "scores": {
+        "anthropic/claude-sonnet-5.5": {
+          "criteria": {
+            "grounding": 7.0,
+            "specificity": 9.0,
+            "recency": 8.0,
+            "usefulness": 8.0
+          },
+          "unsupported_claims": [
+            "The cited excerpts do not substantiate the 2.9% + 30¢ Kajabi Payments rate.",
+            "The cited excerpts do not substantiate Creator Studio’s 2024 launch or Adobe involvement.",
+            "The cited excerpts do not substantiate the funding history before the 2021 round, the $10B cumulative creator-sales figure, or the named leadership changes.",
+            "The cited excerpts do not substantiate several competitor details, including Podia’s cheaper tier and Teachable’s historical transaction fees."
+          ],
+          "rationale": "The briefing is concrete and unusually clear about the absence of confirmed news in its stated six-month window, though several historical and competitive claims exceed the supplied excerpts.",
+          "weighted_score": 7.9,
+          "label": "A"
+        },
+        "google/gemini-3.8-flash": {
+          "criteria": {
+            "grounding": 6.0,
+            "specificity": 9.0,
+            "recency": 4.0,
+            "usefulness": 7.0
+          },
+          "unsupported_claims": [
+            "The supplied excerpts do not establish the 2.9% + 30¢ Kajabi Payments rate or payment processing as a source of Kajabi revenue.",
+            "The supplied excerpts do not establish that AI Cofounder and Expert Agents are autonomous digital teammates.",
+            "The supplied excerpts do not substantiate Tiger Global’s lead role, the $100M ARR at the 2021 round, $10B in cumulative GMV, approximately 390 employees, or the named leadership changes.",
+            "The supplied excerpts do not substantiate the full competitor list or the claim that fintech products are high-margin.",
+            "The cited late-2025 and early-2026 items are not shown to fall within the last six months of Answer A’s stated October 2026 reference date."
+          ],
+          "rationale": "It covers the requested topics with useful numbers and questions, but overstates what the excerpts verify and presents older launches as recent.",
+          "weighted_score": 6.55,
+          "label": "B"
+        },
+        "deepseek/deepseek-v4-pro": {
+          "criteria": {
+            "grounding": 5.0,
+            "specificity": 8.0,
+            "recency": 4.0,
+            "usefulness": 6.0
+          },
+          "unsupported_claims": [
+            "The supplied excerpts do not establish the 2.9% + 30¢ Kajabi Payments rate or that this is the only fee charged when using it.",
+            "The supplied excerpts do not establish that the AI agents are designed to slash content-creation time.",
+            "No disclosed primary round since 2021 does not establish that no primary round occurred.",
+            "The excerpts do not support a current $100M+ ARR estimate, stable headcount over time, or the conclusion that Kajabi is currently cash-generating.",
+            "The supplied excerpts do not substantiate the $10B platform-sales figure, named leadership changes, or several competitor distinctions.",
+            "The cited late-2025 and early-2026 items are not shown to fall within the last six months of Answer A’s stated October 2026 reference date."
+          ],
+          "rationale": "The strategic questions are relevant, but the answer turns uncertain financial signals into firm conclusions and does not establish six-month recency.",
+          "weighted_score": 5.75,
+          "label": "C"
+        }
+      },
+      "raw_outputs": [
+        "{\n  \"A\": {\n    \"scores\": {\n      \"grounding\": 7,\n      \"specificity\": 9,\n      \"recency\": 8,\n      \"usefulness\": 8\n    },\n    \"unsupported_claims\": [\n      \"The cited excerpts do not substantiate the 2.9% + 30¢ Kajabi Payments rate.\",\n      \"The cited excerpts do not substantiate Creator Studio’s 2024 launch or Adobe involvement.\",\n      \"The cited excerpts do not substantiate the funding history before the 2021 round, the $10B cumulative creator-sales figure, or the named leadership changes.\",\n      \"The cited excerpts do not substantiate several competitor details, including Podia’s cheaper tier and Teachable’s historical transaction fees.\"\n    ],\n    \"rationale\": \"The briefing is concrete and unusually clear about the absence of confirmed news in its stated six-month window, though several historical and competitive claims exceed the supplied excerpts.\"\n  },\n  \"B\": {\n    \"scores\": {\n      \"grounding\": 6,\n      \"specificity\": 9,\n      \"recency\": 4,\n      \"usefulness\": 7\n    },\n    \"unsupported_claims\": [\n      \"The supplied excerpts do not establish the 2.9% + 30¢ Kajabi Payments rate or payment processing as a source of Kajabi revenue.\",\n      \"The supplied excerpts do not establish that AI Cofounder and Expert Agents are autonomous digital teammates.\",\n      \"The supplied excerpts do not substantiate Tiger Global’s lead role, the $100M ARR at the 2021 round, $10B in cumulative GMV, approximately 390 employees, or the named leadership changes.\",\n      \"The supplied excerpts do not substantiate the full competitor list or the claim that fintech products are high-margin.\",\n      \"The cited late-2025 and early-2026 items are not shown to fall within the last six months of Answer A’s stated October 2026 reference date.\"\n    ],\n    \"rationale\": \"It covers the requested topics with useful numbers and questions, but overstates what the excerpts verify and presents older launches as recent.\"\n  },\n  \"C\": {\n    \"scores\": {\n      \"grounding\": 5,\n      \"specificity\": 8,\n      \"recency\": 4,\n      \"usefulness\": 6\n    },\n    \"unsupported_claims\": [\n      \"The supplied excerpts do not establish the 2.9% + 30¢ Kajabi Payments rate or that this is the only fee charged when using it.\",\n      \"The supplied excerpts do not establish that the AI agents are designed to slash content-creation time.\",\n      \"No disclosed primary round since 2021 does not establish that no primary round occurred.\",\n      \"The excerpts do not support a current $100M+ ARR estimate, stable headcount over time, or the conclusion that Kajabi is currently cash-generating.\",\n      \"The supplied excerpts do not substantiate the $10B platform-sales figure, named leadership changes, or several competitor distinctions.\",\n      \"The cited late-2025 and early-2026 items are not shown to fall within the last six months of Answer A’s stated October 2026 reference date.\"\n    ],\n    \"rationale\": \"The strategic questions are relevant, but the answer turns uncertain financial signals into firm conclusions and does not establish six-month recency.\"\n  }\n}"
+      ],
+      "error": null,
+      "cost": 0.038196,
+      "latency": 21.456884941999988,
+      "usage": [
+        {
+          "completion_tokens": 1740,
+          "prompt_tokens": 8319,
+          "total_tokens": 10059,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": 0,
+            "reasoning_tokens": 1034,
+            "rejected_prediction_tokens": null,
+            "text_tokens": null,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 8316,
+            "cached_tokens": 0,
+            "image_tokens": null,
+            "text_tokens": null,
+            "video_tokens": 0
+          },
+          "cost": 0.038196,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.038196,
+            "upstream_inference_prompt_cost": 0.020796,
+            "upstream_inference_completions_cost": 0.0174
+          }
+        }
+      ]
+    }
+  ]
+}

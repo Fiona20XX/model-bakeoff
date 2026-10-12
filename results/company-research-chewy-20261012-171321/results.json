@@ -1,0 +1,787 @@
+{
+  "task": {
+    "name": "company_research",
+    "description": "A sourced one-page briefing on a company, for meeting or interview prep.",
+    "path": "tasks/company_research.yaml",
+    "vars": {
+      "company": "Chewy"
+    },
+    "system": "You are a research analyst preparing a briefing for someone about to meet this company.\nBe specific and current. Cite a source for every factual claim. If you can't find\nsomething, say so rather than guessing.\n",
+    "user": "Write a briefing on Chewy with these sections:\n1. What they do, who buys it, and how they make money\n2. Recent news and launches (last 6 months)\n3. Funding, size, and financial signals\n4. Leadership\n5. Main competitors and how they differ\n6. Likely strategic priorities and open questions\nKeep it under 500 words.\n",
+    "rubric": [
+      {
+        "name": "grounding",
+        "weight": 0.35,
+        "description": "Factual claims are supported by the cited sources; nothing invented or unsupported."
+      },
+      {
+        "name": "specificity",
+        "weight": 0.25,
+        "description": "Concrete facts (names, numbers, dates, products) rather than generic statements."
+      },
+      {
+        "name": "recency",
+        "weight": 0.2,
+        "description": "Reflects current information, not stale or outdated facts."
+      },
+      {
+        "name": "usefulness",
+        "weight": 0.2,
+        "description": "Would genuinely prepare someone for a meeting; strategic section shows real insight. Length is not a virtue."
+      }
+    ],
+    "web": {
+      "enabled": true,
+      "engine": "exa",
+      "max_results": 5
+    },
+    "max_tokens": 4000,
+    "temperature": 0.2
+  },
+  "started_at": "2026-10-12T17:13:21",
+  "flags": {
+    "runs": 2,
+    "free": false,
+    "web": true,
+    "judge": true
+  },
+  "models": [
+    "anthropic/claude-sonnet-5.5",
+    "google/gemini-3.8-flash",
+    "deepseek/deepseek-v4-pro"
+  ],
+  "judge": "openai/gpt-6-sol",
+  "skipped_models": [],
+  "warnings": [],
+  "total_cost": 0.20298587703499998,
+  "contestant_cost": 0.137626377035,
+  "judge_cost": 0.06535949999999999,
+  "summary": [
+    {
+      "model": "anthropic/claude-sonnet-5.5",
+      "runs": 2,
+      "ok_runs": 2,
+      "scores": [
+        7.1,
+        7.1
+      ],
+      "mean_score": 7.1,
+      "latencies": [
+        19.86600267800003,
+        18.58886016300005
+      ],
+      "costs": [
+        0.038994,
+        0.039034
+      ],
+      "mean_cost": 0.039014,
+      "sources": [
+        5,
+        5
+      ],
+      "unsupported_claims": [
+        6,
+        5
+      ],
+      "score_per_cent": 1.8198595376018862,
+      "rationales": [
+        "The dated briefing has useful supported Autoship, customer, and balance-sheet signals, but several detailed claims lack excerpt support and it does not identify leaders or named competitors.",
+        "A offers timely metrics and useful meeting questions, but several prominent acquisition, financial, and product claims are not backed by the supplied excerpts."
+      ],
+      "errors": []
+    },
+    {
+      "model": "google/gemini-3.8-flash",
+      "runs": 2,
+      "ok_runs": 2,
+      "scores": [
+        6.0,
+        6.65
+      ],
+      "mean_score": 6.325,
+      "latencies": [
+        20.823065695000025,
+        25.01837459500001
+      ],
+      "costs": [
+        0.0164515,
+        0.01943125
+      ],
+      "mean_cost": 0.017941375000000002,
+      "sources": [
+        5,
+        5
+      ],
+      "unsupported_claims": [
+        7,
+        7
+      ],
+      "score_per_cent": 3.5253708258146323,
+      "rationales": [
+        "It offers concrete meeting questions and supported scale figures, but many acquisition, financing, leadership, and competitive details are not backed by the supplied excerpts.",
+        "B is concrete and meeting-oriented, but its leadership and competitor sections, along with several recent-event claims, substantially outrun the supplied evidence."
+      ],
+      "errors": []
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "runs": 2,
+      "ok_runs": 2,
+      "scores": [
+        4.7,
+        6.75
+      ],
+      "mean_score": 5.725,
+      "latencies": [
+        99.223722452,
+        20.389817391999998
+      ],
+      "costs": [
+        0.010655027035,
+        0.0130606
+      ],
+      "mean_cost": 0.0118578135175,
+      "sources": [
+        5,
+        5
+      ],
+      "unsupported_claims": [
+        5,
+        7
+      ],
+      "score_per_cent": 4.828040170770884,
+      "rationales": [
+        "Recent customer and Autoship figures are supported, but several prominent claims lack excerpt support and the briefing cuts off before completing competitors or strategic priorities.",
+        "C gives a coherent strategic overview and acknowledges the leadership gap, but its acquisition narrative and several financial conclusions lack excerpt support."
+      ],
+      "errors": []
+    }
+  ],
+  "contestants": [
+    {
+      "model": "anthropic/claude-sonnet-5.5",
+      "run": 1,
+      "ok": true,
+      "answer": "# Chewy Briefing (as of Oct 12, 2026)\n\n## 1. What they do, who buys it, how they make money\nChewy calls itself the largest U.S. pet e-tailer. It has about 190,000 products from roughly 4,000 brands, plus its own private brands ([sec.gov](https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm)). Buyers are pet parents: 21.7M active customers (+3.8% YoY), each spending $602 a year ([exa.ai](https://exa.ai/library/markets/stocks/CHWY/earnings/FY2027/Q2/transcript)). Revenue comes mainly from product sales, increasingly through Autoship subscriptions. Autoship sales grew 9.3% to $2,817.2M, or 84.6% of net sales ([tenq.co](https://tenq.co/report/CHWY/story)). That implies quarterly net sales of about $3.3B (my calculation). I did not find a margin breakdown or a separate healthcare revenue line.\n\n## 2. Recent news (last 6 months)\n- **Modern Animal:** The agreement was signed April 1, 2026 and the deal closed May 21. Modern Animal is a technology-forward veterinary platform, framed as a step toward an \"integrated pet healthcare ecosystem\" ([sec.gov](https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm)).\n- **SmartPak:** Chewy also acquired SmartPak, recording $73.1M of goodwill and $7.4M of transaction costs in the first half ([sec.gov](https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm)). I couldn't confirm the closing date.\n- **AI support:** About 30% of mobile-app chats are now resolved through self-service ([fool.com](https://www.fool.com/earnings/call-transcripts/2026/09/09/chewy-chwy-q2-2026-earnings-call-transcript/)).\n- **Guidance:** Management raised revenue and profitability expectations on September 9, 2026 ([tenq.co](https://tenq.co/report/CHWY/story)).\n\n## 3. Funding, size, financial signals\n- **Ownership:** Chewy IPO'd June 18, 2019 ([tenq.co](https://tenq.co/report/CHWY/story)). It is a \"controlled company,\" with BC Partners, CDPQ, GIC affiliates, StepStone and Longview holding majority voting power ([sec.gov](https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm)).\n- **Balance sheet (Aug 2, 2026):** Current assets were $1,845.3M against current liabilities of $2,202.4M. Long-term debt was $588.7M ([tenq.co](https://tenq.co/report/CHWY/story)).\n- **Cash flow:** Capex of $47.9M reduced quarterly free cash flow to $89.5M.\n- **Earnings quality:** Results included a $24.0M legal settlement gain. Acquisitions, repurchases and debt issuance all occurred in the first half ([tenq.co](https://tenq.co/report/CHWY/story)).\n- I did not find total revenue, net income or headcount in the sources.\n\n## 4. Leadership\nI couldn't find leadership information in the sources reviewed. Check the latest proxy or investor relations page before the meeting.\n\n## 5. Competitors\nThe sources name categories rather than companies: online retailers, physical stores, suppliers' own websites, and veterinary providers. Chewy competes on price, availability, delivery and service ([tenq.co](https://tenq.co/report/CHWY/story)). Its Autoship base and veterinary push are its differentiators. I found no named-competitor comparison.\n\n## 6. Strategic priorities and open questions\n**Likely priorities**\n- Build a care-plus-commerce healthcare ecosystem.\n- Deepen Autoship.\n- Scale AI-driven service.\n- Integrate acquisitions.\n\n**Open questions**\n- **Organic growth:** Reported growth including SmartPak and Modern Animal was stronger than growth excluding them. How much momentum is organic? ([tenq.co](https://tenq.co/report/CHWY/story))\n- **Customers:** Active customers grew 3.8% and spend per customer 1.9%. Can customer growth keep pace with Autoship depth?\n- **Liquidity:** Current liabilities exceed current assets. How will acquisitions, buybacks and capex be funded?\n- **Healthcare:** Services differ from shipping pet supplies. What does the execution plan and economics look like?",
+      "error": null,
+      "latency": 19.86600267800003,
+      "prompt_tokens": 4082,
+      "completion_tokens": 2383,
+      "cost": 0.038994,
+      "citations": [
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm",
+          "title": "Chewy, Inc. Form 10-Q for the period ended August 2, 2026",
+          "content": "See accompanying Notes to Condensed Consolidated Financial Statements. 7 CHEWY, INC. NOTES TO CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (Unaudited) 1.Description of Business Chewy, Inc. and its wholly-owned subsidiaries (collectively “Chewy” or the “Company”) is primarily an e-commerce business geared toward pet products and services. Chewy serves its customers through its retail websites, and its mobile applications and focuses on delivering exceptional customer service, competitive prices, outstanding convenience (including Chewy’s Autoship subscription program, fast shipping, and hassle-free returns), and a large selection of high-quality pet food, treats and supplies, and pet healthcare products and services. As of September 2, 2026, BC Partners Advisors LP (“BC Partners”) and its affiliates, La Caisse de dépôt et placement du Québec, affiliates of GIC Special Investments Pte Ltd, affiliates of StepStone Group LP and funds advised by Longview Asset Management, LLC (collectively, the “Sponsors”) control a majority of the voting power of our outstanding common stock. As a result, we are considered a “controlled company” within the meaning of the corporate governance standards of the New York Stock Exchange. 2. Basis of Presentation and Significant Accounting Policies Basis of Presentation The Company’s accompanying unaudited condensed consolidated financial statements and related notes include the accounts of Chewy, Inc. and its wholly-owned subsidiaries. All intercompany balances and transactions have been eliminated. The unaudited condensed consolidated financial statements and notes thereto of Chewy, Inc. have been prepared in accordance with the rules and regulations of the Securities and Exchange Commission (the “SEC”) for interim financial reporting and, therefore, omit or condense certain footnotes and other information normally included in financial statements prepared in accordance with accounting principles generally accepted in the United States of America (“GAAP”) as set forth in the Financial Accounting Standards Board’s (“FASB”) accounting standards codification (“ASC”). All adjustments necessary for a fair statement of the financial information, which are of a normal and recurring nature, have been made for the interim periods reported. Results of operations for the quarterly period ended August 2, 2026 are not necessarily indicative of the results for the entire fiscal year. The unaudited condensed consolidated financial statements and notes thereto included in this Quarterly Report on Form 10-Q for the quarterly period ended August 2, 2026 should be read in conjunction with the audited consolidated financial statements and notes thereto included in the Company’s Annual Report on Form 10-K for the fiscal year ended February 1,\n\n...\n\nBased on a preliminary allocation, in connection with this acquisition, the Company recorded goodwill of $73.1 million, the majority of which is anticipated to be deductible for tax purposes. The identified intangible assets consisted of $46.0 million of customer relationships, $33.0 million of trademarks, and $9.0 million of product portfolio with an amortization period of 17, 19, and 6 years, respectively. During the twenty-six weeks ended August 2, 2026, the Company incurred $7.4 million of transaction-related costs in connection with the SmartPak acquisition. These costs were expensed as incurred and are included in selling, general and administrative expenses in the condensed consolidated statements of operations. Modern Animal Acquisition On April 1, 2026, the Company entered into a definitive agreement to acquire Modern Animal, Inc. (“Modern Animal”). Under the terms of the definitive agreement, on May 21, 2026, the Company completed the acquisition of 100% of the issued and outstanding stock in Modern Animal, and Modern Animal became a wholly-owned subsidiary of the Company. Modern Animal is a technology-forward veterinary platform and the acquisition represents an important strategic step in Chewy’s evolution into a fully integrated pet healthcare ecosystem, combining care, commerce and services across the pet lifecycle. The following table reconciles the estimated purchase price to the cash paid for the acquisition, net of cash acquired (in millions):\n\n...\n\nfrom time to time. The information contained on such websites and social media posts is not incorporated by reference into this filing. Further, our references to website URLs in this filing are intended to be inactive textual references only. Overview We are the largest pet e-tailer in the United States, offering virtually every product a pet needs. We launched Chewy in 2011 to bring the best of the neighborhood pet store shopping experience to a larger audience, enhanced by the depth and wide selection of products and services, as well as the around-the-clock convenience, that only e-commerce can offer. We believe that we are the preeminent destination for pet parents as a result of our broad selection of high-quality products and expanded menu of service offerings, which we offer at great prices and deliver with an exceptional level of care and a personal touch. We are the trusted source for pet parents and partners and continually develop innovative ways for our customers to engage with us. We partner with approximately 4,000 of the best and most trusted brands in the pet industry, and we create and offer our own outstanding private brands. Through our websites and mobile applications, we offer our customers approximately 190,000 products, compelling merchandising, an easy and enjoyable shopping experience, and exceptional customer service. Macroeconomic Considerations Macroeconomic conditions, including inflationary pressures, elevated interest rates, and broader economic uncertainty, have influenced consumer spending patterns and may continue to affect demand across our categories. We monitor these conditions closely and adjust elements of our logistics, transportation, supply chain, and merchandising strategies as appropriate. Changes in consumer behavior may impact product mix, purchasing frequency, and promotional intensity, and we manage our operations with a focus on maintaining value, service levels, and operational discipline in varying economic environments. We are unable to predict the duration and ultimate impact of evolving macroeconomic conditions on the broader economy or our operations and liquidity. As such, macroeconomic risks and uncertainties remain. Refer to the section titled “Cautionary Note Regarding Forward-Looking Statements” in this 10-Q Report and the section titled “Risk Factors” in Item 1A of our 10-K Report for the fiscal year ended"
+        },
+        {
+          "url": "https://exa.ai/library/markets/stocks/CHWY/earnings/FY2027/Q2/transcript",
+          "title": "CHWY Earnings Call Transcript — Fiscal Q2 2027",
+          "content": "quarter with 21.7 million active customers, up 3.8% year-over-year, while net sales per active customer increased to $602. Autoship customer sales once again outpaced overall company growth, increasing 9.3% and representing 84.6% of total net sales in the"
+        },
+        {
+          "url": "https://www.fool.com/earnings/call-transcripts/2026/09/09/chewy-chwy-q2-2026-earnings-call-transcript/",
+          "title": "Chewy (CHWY) Q2 2026 Earnings Call Transcript | The Motley Fool",
+          "content": "in the mobile app. Early results are encouraging with approximately 30% of chats resolved through self-service across common needs such as orders, returns, autoship, and account management. To keep true to our Chewy spirit, customers who prefer or require"
+        },
+        {
+          "url": "https://exa.ai/library/markets/stocks/CHWY/earnings/FY2027/Q1/transcript",
+          "title": "CHWY Earnings Call Transcript — Fiscal Q1 2027",
+          "content": "At Chewy, we understand pet parenthood is full of joyful highs and anxious lows. That’s why we’re here, standing alongside pet parents, providing everything their pets need for a happy, healthy life. We’re a leading online source for pet products,"
+        },
+        {
+          "url": "https://tenq.co/report/CHWY/story",
+          "title": "Chewy (CHWY) stock story: what drives it, what the price assumes and the risks | TenQ",
+          "content": "Autoship makes that repeat demand easier to serve. Customers arrange automatic reorders, giving Chewy more visibility into demand and helping it plan inventory and fulfillment. Autoship customer sales grew 9.3 percent to $2,817.2 million in the quarter to August 2026 and represented 84.6 percent of net sales, compared with 83.0 percent a year earlier. This is\n\n...\n\nChewy began operating as Chewy.com in 2011 and completed its initial public offering on June 18, 2019. Its early proposition combined online convenience with unusually personal customer service. The fulfillment network became the practical foundation beneath that promise, while automatic reordering helped turn occasional orders into recurring relationships.\n\n...\n\n- Liquidity has become more dependent on spending discipline. At August 2, 2026, current assets were $1,845.3 million against current liabilities of $2,202.4 million, while long-term debt, net, was $588.7 million. Continued acquisition spending and repurchases would draw on resources also needed for inventory, suppliers, and operating investment.\n- Thin operating margins leave limited room for cost surprises. Shipping disruptions, less favorable supplier terms, or higher customer acquisition costs could consume more of the gross profit left after merchandise costs. Competition includes online retailers, physical stores, suppliers’ own websites, and veterinary providers.\n- Recurring demand still depends on retaining customers. Autoship makes ordering convenient, but Chewy competes on price, product availability, delivery, and service. A deterioration in any of those could weaken the repeat spending that supports fulfillment efficiency.\n- Healthcare and acquisitions add execution demands. Chewy must integrate acquired businesses while expanding services that differ from shipping pet supplies. The quarter to August 2026 already showed why the distinction matters: revenue growth including SmartPak and Modern Animal was stronger than growth excluding them.\n\n...\n\n- The next fiscal 2026 release will put the raised outlook alongside another period of execution. Management raised revenue and profitability expectations on September 9, 2026; reported growth and growth excluding acquisitions will show how much momentum comes from the existing business.\n- Customer growth needs to accompany deeper Autoship use. The August 2, 2026 release reported active customer growth of 3.8 percent and net sales per active customer growth of 1.9 percent. Subsequent customer disclosures will also need to be read with the different treatment of SmartPak and Modern Animal in mind.\n- Cash conversion will show the cost of expansion. In the quarter to August 2026, capital expenditures of $47.9 million reduced free cash flow to $89.5 million despite higher operating cash flow. The next release’s capital spending, inventory movements, and supplier payments will help explain whether that pressure persists.\n- Funding and profit quality deserve separate attention. After the first half of fiscal 2026 included acquisitions, repurchases, and debt issuance, the next balance sheet will show how those demands affect liquidity. Comparisons with the quarter to August 2026 should also distinguish recurring earnings from its $24.0 million legal settlement gain."
+        }
+      ],
+      "usage": {
+        "completion_tokens": 2383,
+        "prompt_tokens": 4082,
+        "total_tokens": 6465,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 757,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.038994,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.031994,
+          "upstream_inference_prompt_cost": 0.008164,
+          "upstream_inference_completions_cost": 0.02383
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "google/gemini-3.8-flash",
+      "run": 1,
+      "ok": true,
+      "answer": "### 1. What They Do, Who Buys, & Revenue Model\nChewy is the largest pure-play pet e-tailer in the U.S., offering ~190,000 products from 4,000 partner brands alongside private labels according to its [Form 10-Q](https://www.stocktitan.net/sec-filings/CHWY/10-q-chewy-inc-quarterly-earnings-report-cc169525ddef.html). Its customers are retail pet parents and specialty animal owners (equine, farm, exotics). \n\nChewy generates revenue primarily by selling pet consumables (food, treats), hard goods (crates, toys), and healthcare items (Rx pharmacy, supplements). Its business model heavily relies on recurring revenue via its \"Autoship\" subscription delivery program, complemented by emerging services such as pet insurance, telehealth, and physical veterinary care according to [Stock Titan](https://www.stocktitan.net/sec-filings/CHWY/10-q-chewy-inc-quarterly-earnings-report-cc169525ddef.html).\n\n### 2. Recent News & Launches (Last 6 Months)\n* **Modern Animal Acquisition:** Completed on May 21, 2026, for $378.0 million in cash, bringing the tech-forward clinic platform into Chewy’s healthcare ecosystem, as reported in its [Form 10-Q filing](https://www.publicnow.com/view/A3C3235618841B1AAA702BBC7CABB83B97784FE3).\n* **SmartPak Integration:** Finalized its $174.8 million acquisition of SmartPak Equine to strengthen horse health and nutrition offerings, per [Public Now](https://www.publicnow.com/view/A3C3235618841B1AAA702BBC7CABB83B97784FE3).\n* **$600M Debt Financing:** Secured a 7-year senior secured term loan facility in June 2026 maturing in 2033 to bolster liquidity, per [Stock Titan](https://www.stocktitan.net/sec-filings/CHWY/10-q-chewy-inc-quarterly-earnings-report-cc169525ddef.html).\n* **Chewy Vet Care Expansion:** Scaled physical veterinary clinics, delivering triple-digit revenue growth in clinic operations according to its [Q2 2026 earnings transcript](https://exa.ai/library/markets/stocks/CHWY/earnings/FY2027/Q2/transcript).\n\n### 3. Funding, Size, & Financial Signals\n* **Financials & Scale:** Annual net sales stand at ~$12.6 billion, with 13,668 employees reported in an [earnings transcript](https://exa.ai/library/markets/stocks/CHWY/earnings/FY2027/Q2/transcript). Chewy held $611.0 million in cash and cash equivalents as of August 2026, noted in its [Form 10-Q](https://www.publicnow.com/view/A3C3235618841B1AAA702BBC7CABB83B97784FE3).\n* **Ownership:** Publicly traded (NYSE: CHWY; IPO in 2019), but remains a \"controlled company\" dominated by sponsor voting power including BC Partners, per [Stock Titan](https://www.stocktitan.net/sec-filings/CHWY/10-q-chewy-inc-quarterly-earnings-report-cc169525ddef.html).\n\n### 4. Leadership\n* **CEO:** Sumit Singh has served as CEO since 2018, leading Chewy through its IPO and shift into healthcare.\n* **CFO:** David Reeder manages financial operations and capital allocation.\n\n### 5. Main Competitors & Differentiation\n* **Amazon:** Broader general selection and faster one-day logistics, but lacks specialized pet pharmacy capabilities, high-touch customer service (e.g., hand-written cards), and veterinary care integrations.\n* **Petco & PetSmart:** Strong brick-and-mortar store footprints offering grooming and in-store adoption; Chewy counters with superior pure-play digital UI, higher Autoship penetration, automated fulfillment centers, and lower overhead.\n\n### 6. Strategic Priorities & Open Questions\n* **Veterinary & Healthcare Integration:** Scaling Chewy Vet Care and integrating Modern Animal to create a full-lifecycle healthcare ecosystem. *Question:* Can Chewy operate physical clinics at high margins without diluting overall return on capital?\n* **Category Expansion:** Building out specialty equine/farm segments (via SmartPak) and fresh/frozen pet food according to [its earnings transcript](https://exa.ai/library/markets/stocks/CHWY/earnings/FY2027/Q2/transcript). *Question:* Will higher fulfillment costs for cold-chain fresh food compress gross margins?\n* **AI & Self-Service Efficiency:** Rolling out conversational self-service tools, which already resolve ~30% of chat interactions according to [The Motley Fool](https://www.fool.com/earnings/call-transcripts/2026/09/09/chewy-chwy-q2-2026-earnings-call-transcript/). *Question:* Can automation lower customer service OpEx without eroding Chewy's signature white-glove brand loyalty?",
+      "error": null,
+      "latency": 20.823065695000025,
+      "prompt_tokens": 2657,
+      "completion_tokens": 1989,
+      "cost": 0.0164515,
+      "citations": [
+        {
+          "url": "https://www.publicnow.com/view/A3C3235618841B1AAA702BBC7CABB83B97784FE3",
+          "title": "Chewy Inc. (via Public) / Quarterly Report for Quarter Ending August 2, 2026 (Form 10-Q)",
+          "content": "We are the largest pet e-tailer in the United States, offering virtually every product a pet needs. We launched Chewy in 2011 to bring the best of the neighborhood pet store shopping experience to a larger audience, enhanced by the depth and wide selection of products and services, as well as the around-the-clock convenience, that only e-commerce can offer. We believe that we are the preeminent destination for pet parents as a result of our broad selection of high-quality products and expanded menu of service offerings, which we offer at great prices and deliver with an exceptional level of care and a personal touch. We are the trusted source for pet parents and partners and continually develop innovative ways for our customers to engage with us. We partner with approximately 4,000 of the best and most trusted brands in the pet industry, and we create and offer our own outstanding private brands. Through our websites and mobile applications, we offer our customers approximately 190,000 products, compelling merchandising, an easy and enjoyable shopping experience, and exceptional customer service.\n\n...\n\nWe derive net sales primarily from sales of both third-party brand and private brand pet food, pet products, pet health and specialty products, and related shipping fees. Consumable products include retail pet food and veterinary diet products. Hard goods products include non-perishable pet supplies. Pet health and specialty products include prescription medications, non-prescription pet health care products and certain specialty animal products for categories such as equine, birds, fish, and other non-traditional pets. Other net sales include private brand sales and certain pet-related services including telehealth services, pet insurance-related offerings, loyalty program memberships, and veterinary clinic services. Revenues from these service-based offerings are not a significant component of net sales and are managed as part of the Company's integrated platform rather than as standalone service offerings.\n\n...\n\nWe finance our operations and capital expenditures primarily through cash flows generated by operations. Our principal sources of liquidity are expected to be our cash and cash equivalents, marketable securities, and our revolving credit facility. Cash and cash equivalents consisted primarily of cash on deposit with banks. Cash and cash equivalents totaled $611.0 million as of August 2, 2026, a decrease of $249.1 million from February 1, 2026.\n\n...\n\nNet cash used in investing activities was $620.6 million for the twenty-six weeks ended August 2, 2026, primarily consisting of $378.0 million for the acquisition of Modern Animal, $174.8 million for the acquisition of SmartPak and $85.6 million for capital expenditures related to expanding operations at our fulfillment centers, veterinary clinics, and future pharmacy facility capabilities. \n\n Net cash used in investing activities was $70.9 million for the twenty-six weeks ended August 3, 2025, primarily consisting of $65.7 million for capital expenditures related to fulfillment centers, veterinary clinics, future pharmacy facility capabilities, and investments in our fresh and frozen private brand infrastructure."
+        },
+        {
+          "url": "https://last10k.com/sec-filings/chwy/0001628280-26-061018.htm",
+          "title": "Chewy, Inc. (CHWY) 10-Q Quarterly Report September 2026",
+          "content": "shop for our products. We partner with approximately 4,000 of the best and most trusted brands in the pet industry, and we create and offer our own private brands. Through our websites and mobile applications, we offer our customers approximately 190,000"
+        },
+        {
+          "url": "https://exa.ai/library/markets/stocks/CHWY/earnings/FY2027/Q2/transcript",
+          "title": "CHWY Earnings Call Transcript — Fiscal Q2 2027",
+          "content": "We view pets and their people as more than just customers and look forward to meeting their needs and exceeding expectations through every interaction. With Chewy, no one pet-parents alone. Founded in 2011. It has 13,668 employees. Annual revenue is $12.6B. IPO 2019.\n\n...\n\nThank you, Lee, and good morning, everyone. Chewy delivered strong results in the second quarter, continuing to gain share and expand profitability. Our performance underscores the strength of our business model and disciplined execution. Our recurring revenue base supports durable sales, while our expanding ecosystem and the growing contribution from Chewy Health drive structural wallet share gains. Together, these advantages position us to outperform in the current environment. Our earnings algorithm also provides the capacity to continue investing for long-term growth. During the second quarter, while we did not see a meaningful recovery in the more pressured consumer backdrop for the pet market, importantly, we did not see further deterioration. The environment has broadly stabilized to the trends we observed exiting the first quarter. Against this backdrop, Chewy continues to outperform the broader pet category by roughly two to three times, and we continue to generate compelling growth across both scaled areas of our business and newer strategic growth platforms. Chewy Vet Care continues to scale in line with the economic framework we outlined at our recent investor event, with our total clinic portfolio again delivering triple-digit revenue growth in the second quarter. Meanwhile, our fresh and frozen portfolio is meaningfully outpacing the broader category, delivering triple-digit unit growth. Our equine, farm, and exotics business delivered its seventh consecutive quarter of mid-double-digit year-over-year sales growth. Taken together, this momentum demonstrates the breadth of growth opportunities across the Chewy ecosystem and our ability to capitalize on"
+        },
+        {
+          "url": "https://www.fool.com/earnings/call-transcripts/2026/09/09/chewy-chwy-q2-2026-earnings-call-transcript/",
+          "title": "Chewy (CHWY) Q2 2026 Earnings Call Transcript | The Motley Fool",
+          "content": "in the mobile app. Early results are encouraging with approximately 30% of chats resolved through self-service across common needs such as orders, returns, autoship, and account management. To keep true to our Chewy spirit, customers who prefer or require"
+        },
+        {
+          "url": "https://www.stocktitan.net/sec-filings/CHWY/10-q-chewy-inc-quarterly-earnings-report-cc169525ddef.html",
+          "title": "Chewy quarterly net income rises to $80.5M | CHWY Quarterly Report (10-Q)",
+          "content": "Chewy, Inc. and its wholly-owned subsidiaries (collectively “Chewy” or the “Company”) is primarily an e-commerce business geared toward pet products and services. Chewy serves its customers through its retail websites, and its mobile applications and focuses on delivering exceptional customer service, competitive prices, outstanding convenience (including Chewy’s Autoship subscription program, fast shipping, and hassle-free returns), and a large selection of high-quality pet food, treats and supplies, and pet healthcare products and services.\n\n...\n\nAs of September 2, 2026, BC Partners Advisors LP (“BC Partners”) and its affiliates, La Caisse de dépôt et placement du Québec, affiliates of GIC Special Investments Pte Ltd, affiliates of StepStone Group LP and funds advised by Longview Asset Management, LLC (collectively, the “Sponsors”) control a majority of the voting power of our outstanding common stock. As a result, we are considered a “controlled company” within the meaning of the corporate governance standards of the New York Stock Exchange.\n\n...\n\nOn October 28, 2025, the Company entered into a definitive agreement to acquire SmartPak Equine, LLC (“SmartPak”). Under the terms of the definitive agreement, on February 2, 2026, the Company completed the acquisition of 100% of the membership interest in SmartPak, and SmartPak became a wholly-owned subsidiary of the Company. SmartPak is a leading provider of equine health and nutrition products and the acquisition is expected to further strengthen the Company’s pet healthcare and specialty product offerings.\n\n...\n\nModern Animal Acquisition\n\nOn April 1, 2026, the Company entered into a definitive agreement to acquire Modern Animal, Inc. (“Modern Animal”). Under the terms of the definitive agreement, on May 21, 2026, the Company completed the acquisition of 100% of the issued and outstanding stock in Modern Animal, and Modern Animal became a wholly-owned subsidiary of the Company. Modern Animal is a technology-forward veterinary platform and the acquisition represents an important strategic step in Chewy’s evolution into a fully integrated pet healthcare ecosystem, combining care, commerce and services across the pet lifecycle.\n\n...\n\nOn June 23, 2026, the Company entered into a seven-year senior secured term loan credit facility (the “Term Loan Credit Facility”), which matures on June 23, 2033, and provides term loans in an aggregate principal amount of $ 600 million. The proceeds of the Term Loan Credit Facility, together with cash on hand, can be used to pay fees, premiums, costs and expenses related to the incurrence of the facility and the related transactions and, to the extent not so applied, for general corporate purposes or working capital requirements.\n\n...\n\nWe are the largest pet e-tailer in the United States, offering virtually every product a pet needs. We launched Chewy in 2011 to bring the best of the neighborhood pet store shopping experience to a larger audience, enhanced by the depth and wide selection of products and services, as well as the around-the-clock convenience, that only e-commerce can offer. We believe that we are the preeminent destination for pet parents as a result of our broad selection of high-quality products and expanded menu of service offerings, which we offer at great prices and deliver with an exceptional level of care and a personal touch. We are the trusted source for pet parents and partners and continually develop innovative ways for our customers to engage with us. We partner with approximately 4,000 of the best and most trusted brands in the pet industry, and we create and offer our own outstanding private brands. Through our websites and mobile applications, we offer our customers approximately 190,000 products, compelling merchandising, an easy and enjoyable shopping experience, and exceptional customer service.\n\n...\n\nWe derive net sales primarily from sales of both third-party brand and private brand pet food, pet products, pet health and specialty products, and related shipping fees. Consumable products include retail pet food and veterinary diet products. Hard goods products include non-perishable pet supplies. Pet health and specialty products include prescription medications, non-prescription pet health care products and certain specialty animal products for categories such as equine, birds, fish, and other non-traditional pets. Other net sales include private brand sales and certain pet-related services including telehealth services, pet insurance-related offerings, loyalty program memberships, and veterinary clinic services. Revenues from these service-based offerings are not a significant component of net sales and are managed as part of the Company’s integrated platform rather than as standalone service offerings."
+        }
+      ],
+      "usage": {
+        "completion_tokens": 1989,
+        "prompt_tokens": 2657,
+        "total_tokens": 4646,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 744,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.0164515,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0094515,
+          "upstream_inference_prompt_cost": 0.00199275,
+          "upstream_inference_completions_cost": 0.00745875
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "run": 1,
+      "ok": true,
+      "answer": "**1. What they do, who buys it, and how they make money**  \nChewy is the largest pet e-tailer in the U.S., offering approximately 190,000 products from 4,000 brands through its websites and mobile apps [sec.gov]. It serves pet parents with food, treats, supplies, and healthcare products. Revenue comes primarily from direct online sales of consumables and hardgoods, anchored by the recurring Autoship subscription program. In its most recent quarter, Autoship represented 84.6% of net sales, the company had 21.7 million active customers, and net sales per active customer reached $602 [exa.ai]. Chewy also generates revenue through its pharmacy, Chewy Health, and veterinary services [weissratings.com].\n\n**2. Recent news and launches (last 6 months)**  \n- Acquired Modern Animal (completed May 2026), a technology-forward veterinary platform, to build an integrated pet healthcare ecosystem [sec.gov].  \n- Completed the SmartPak acquisition (first half of fiscal 2026), adding customer relationships, trademarks, and a supplements portfolio [sec.gov].  \n- Launched self-service chat in the mobile app; early results show about 30% of common inquiries (orders, returns, Autoship) resolved automatically [fool.com].\n\n**3. Funding, size, and financial signals**  \nChewy went public in 2019 and remains a controlled company, with BC Partners and other sponsors holding majority voting power [sec.gov]. It is the largest U.S. pet e-tailer [sec.gov]. Key signals: 21.7 million active customers, $602 net sales per active customer, and Autoship penetration at 84.6% [exa.ai]. The company is investing in healthcare acquisitions while navigating inflationary pressures and economic uncertainty [sec.gov]. The high Autoship share points to strong recurring revenue and customer loyalty.\n\n**4. Leadership**  \n- Sumit Singh – Chief Executive Officer  \n- David Reeder – Chief Financial Officer  \n- Satish Mehta – Chief Technology Officer  \n- Mita Malhotra – Chief Merchandising Officer  \n- Jess Holtz – Chief People Officer  \n- Barbara Messing – Chief Marketing Officer [weissratings.com]  \nFounder Ryan Cohen is no longer involved in day-to-day management [weissratings.com].\n\n**5. Main competitors and how they differ**  \nThe provided materials do not list competitors, but Chewy’s position as the largest U.S. pet e-tailer [sec.gov] places it against Amazon,",
+      "error": null,
+      "latency": 99.223722452,
+      "prompt_tokens": 2450,
+      "completion_tokens": 4000,
+      "cost": 0.010655027035,
+      "citations": [
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm",
+          "title": "Chewy, Inc. Form 10-Q for the period ended August 2, 2026",
+          "content": "See accompanying Notes to Condensed Consolidated Financial Statements. 7 CHEWY, INC. NOTES TO CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (Unaudited) 1.Description of Business Chewy, Inc. and its wholly-owned subsidiaries (collectively “Chewy” or the “Company”) is primarily an e-commerce business geared toward pet products and services. Chewy serves its customers through its retail websites, and its mobile applications and focuses on delivering exceptional customer service, competitive prices, outstanding convenience (including Chewy’s Autoship subscription program, fast shipping, and hassle-free returns), and a large selection of high-quality pet food, treats and supplies, and pet healthcare products and services. As of September 2, 2026, BC Partners Advisors LP (“BC Partners”) and its affiliates, La Caisse de dépôt et placement du Québec, affiliates of GIC Special Investments Pte Ltd, affiliates of StepStone Group LP and funds advised by Longview Asset Management, LLC (collectively, the “Sponsors”) control a majority of the voting power of our outstanding common stock. As a result, we are considered a “controlled company” within the meaning of the corporate governance standards of the New York Stock Exchange. 2. Basis of Presentation and Significant Accounting Policies Basis of Presentation The Company’s accompanying unaudited condensed consolidated financial statements and related notes include the accounts of Chewy, Inc. and its wholly-owned subsidiaries. All intercompany balances and transactions have been eliminated. The unaudited condensed consolidated financial statements and notes thereto of Chewy, Inc. have been prepared in accordance with the rules and regulations of the Securities and Exchange Commission (the “SEC”) for interim financial reporting and, therefore, omit or condense certain footnotes and other information normally included in financial statements prepared in accordance with accounting principles generally accepted in the United States of America (“GAAP”) as set forth in the Financial Accounting Standards Board’s (“FASB”) accounting standards codification (“ASC”). All adjustments necessary for a fair statement of the financial information, which are of a normal and recurring nature, have been made for the interim periods reported. Results of operations for the quarterly period ended August 2, 2026 are not necessarily indicative of the results for the entire fiscal year. The unaudited condensed consolidated financial statements and notes thereto included in this Quarterly Report on Form 10-Q for the quarterly period ended August 2, 2026 should be read in conjunction with the audited consolidated financial statements and notes thereto included in the Company’s Annual Report on Form 10-K for the fiscal year ended February 1, 2026 (“10-K Report”). Fiscal Year The Company has a 52- or 53-week fiscal year ending each year on the Sunday that is closest to January 31 of that year. The Company’s 2026 fiscal year ends on January 31, 2027 and is a 52-week year. The Company’s 202\n\n...\n\nBased on a preliminary allocation, in connection with this acquisition, the Company recorded goodwill of $73.1 million, the majority of which is anticipated to be deductible for tax purposes. The identified intangible assets consisted of $46.0 million of customer relationships, $33.0 million of trademarks, and $9.0 million of product portfolio with an amortization period of 17, 19, and 6 years, respectively. During the twenty-six weeks ended August 2, 2026, the Company incurred $7.4 million of transaction-related costs in connection with the SmartPak acquisition. These costs were expensed as incurred and are included in selling, general and administrative expenses in the condensed consolidated statements of operations. Modern Animal Acquisition On April 1, 2026, the Company entered into a definitive agreement to acquire Modern Animal, Inc. (“Modern Animal”). Under the terms of the definitive agreement, on May 21, 2026, the Company completed the acquisition of 100% of the issued and outstanding stock in Modern Animal, and Modern Animal became a wholly-owned subsidiary of the Company. Modern Animal is a technology-forward veterinary platform and the acquisition represents an important strategic step in Chewy’s evolution into a fully integrated pet healthcare ecosystem, combining care, commerce and services across the pet lifecycle. The following table reconciles the estimated purchase price to the cash paid for the acquisition, net of cash acquired (in millions):\n\n...\n\nfrom time to time. The information contained on such websites and social media posts is not incorporated by reference into this filing. Further, our references to website URLs in this filing are intended to be inactive textual references only. Overview We are the largest pet e-tailer in the United States, offering virtually every product a pet needs. We launched Chewy in 2011 to bring the best of the neighborhood pet store shopping experience to a larger audience, enhanced by the depth and wide selection of products and services, as well as the around-the-clock convenience, that only e-commerce can offer. We believe that we are the preeminent destination for pet parents as a result of our broad selection of high-quality products and expanded menu of service offerings, which we offer at great prices and deliver with an exceptional level of care and a personal touch. We are the trusted source for pet parents and partners and continually develop innovative ways for our customers to engage with us. We partner with approximately 4,000 of the best and most trusted brands in the pet industry, and we create and offer our own outstanding private brands. Through our websites and mobile applications, we offer our customers approximately 190,000 products, compelling merchandising, an easy and enjoyable shopping experience, and exceptional customer service. Macroeconomic Considerations Macroeconomic conditions, including inflationary pressures, elevated interest rates, and broader economic uncertainty, have influenced consumer spending patterns and may continue to affect demand across our categories. We monitor these conditions closely and adjust elements of our logistics, transportation, supply chain, and merchandising strategies as appropriate. Changes in consumer behavior may impact product mix, purchasing frequency, and promotional intensity, and we manage our operations with a focus on maintaining value, service levels, and operational discipline in varying economic environments. We are unable to predict the duration and ultimate impact of evolving macroeconomic conditions on the broader economy or our operations and liquidity. As such, macroeconomic risks and uncertainties remain. Refer to the section titled “Cautionary Note Regarding Forward-Looking Statements” in this 10-Q Report and the section titled “Risk Factors” in Item 1A of our 10-K Report for the"
+        },
+        {
+          "url": "https://exa.ai/library/markets/stocks/CHWY/earnings/FY2027/Q2/transcript",
+          "title": "CHWY Earnings Call Transcript — Fiscal Q2 2027",
+          "content": "quarter with 21.7 million active customers, up 3.8% year-over-year, while net sales per active customer increased to $602. Autoship customer sales once again outpaced overall company growth, increasing 9.3% and representing 84.6% of total net sales in the"
+        },
+        {
+          "url": "https://www.fool.com/earnings/call-transcripts/2026/09/09/chewy-chwy-q2-2026-earnings-call-transcript/",
+          "title": "Chewy (CHWY) Q2 2026 Earnings Call Transcript | The Motley Fool",
+          "content": "in the mobile app. Early results are encouraging with approximately 30% of chats resolved through self-service across common needs such as orders, returns, autoship, and account management. To keep true to our Chewy spirit, customers who prefer or require"
+        },
+        {
+          "url": "https://exa.ai/library/markets/stocks/CHWY/earnings/FY2027/Q1/transcript",
+          "title": "CHWY Earnings Call Transcript — Fiscal Q1 2027",
+          "content": "At Chewy, we understand pet parenthood is full of joyful highs and anxious lows. That’s why we’re here, standing alongside pet parents, providing everything their pets need for a happy, healthy life. We’re a leading online source for pet products,"
+        },
+        {
+          "url": "https://weissratings.com/en/stock/chwy-nyse/company-overview",
+          "title": "Company Overview - CHWY - NYSE - Weiss Ratings",
+          "content": "Chewy was founded in 2011 by Ryan Cohen and Michael Day with the goal of creating a customer-centric online destination for pet owners. The company grew rapidly through aggressive customer acquisition, logistics investments, and a differentiated customer service model. In 2017, Chewy was acquired by PetSmart in a transaction widely reported as one of the largest e-commerce acquisitions at the time. Chewy later became a publicly traded company through its 2019 IPO while remaining operationally independent. The company has since evolved from a pure-play online pet retailer into a broader pet health and services platform with growing emphasis on pharmacy, veterinary services, and recurring revenue programs.\n\n...\n\nChewy generates the majority of its revenue through direct online sales of pet consumables and hardgoods, with pet food and treats representing the largest category. The company reports operations primarily as a single operating segment but organizes its business around categories including pet consumables, hardgoods, and healthcare services. Key offerings include the recurring Autoship program, Chewy Pharmacy, Chewy Health, and veterinary-related services. The company controls an extensive logistics and fulfillment network across the United States, supported by proprietary e-commerce infrastructure, customer engagement systems, and distribution assets designed to support rapid delivery and high reorder frequency.\n\n...\n\nChewy’s strategic direction centers on increasing customer lifetime value through recurring purchases, expanding pet healthcare services, and deepening engagement across the pet ownership lifecycle. The company has invested heavily in fulfillment infrastructure, pharmacy capabilities, customer service operations, and healthcare technology. Growth initiatives have included expansion of Chewy Pharmacy, launch of Chewy Health, development of veterinary clinic initiatives under Chewy Vet Care, and efforts to increase penetration in higher-margin healthcare categories. Management has consistently emphasized long-term growth in pet healthcare as a major strategic priority.\n\n...\n\nChewy’s leadership team combines executives with backgrounds in e-commerce, retail operations, technology, logistics, and consumer products. The company’s governance structure reflects its transition from founder-led startup to publicly traded enterprise, with strategic emphasis on customer experience, operational scale, and long-term recurring revenue growth. Founder Ryan Cohen is widely associated with Chewy’s early customer-centric strategy and brand development, although he is no longer involved in day-to-day management.\n\n...\n\n- Sumit Singh – Chief Executive Officer\n- David Reeder – Chief Financial Officer\n- Satish Mehta – Chief Technology Officer\n- Mita Malhotra – Chief Merchandising Officer\n- Jess Holtz – Chief People Officer\n- Barbara Messing – Chief Marketing Officer"
+        }
+      ],
+      "usage": {
+        "completion_tokens": 4000,
+        "prompt_tokens": 2450,
+        "total_tokens": 6450,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 3468,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 1731,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.010655027035,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.003655027035,
+          "upstream_inference_prompt_cost": 0.000355987035,
+          "upstream_inference_completions_cost": 0.00329904
+        }
+      },
+      "finish_reason": "length",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "anthropic/claude-sonnet-5.5",
+      "run": 2,
+      "ok": true,
+      "answer": "# Chewy Briefing\n\n## 1. What they do, who buys it, how they make money\nChewy is primarily an e-commerce business for pet products and services, sold through its websites and mobile apps. It emphasizes Autoship subscriptions, fast shipping and easy returns ([sec.gov](https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm)). It calls itself the largest US pet e-tailer, with about 190,000 products from roughly 4,000 brands plus its own private brands ([sec.gov](https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm)).\n\nBuyers are pet parents: 21.7M active customers (+3.8% YoY), each spending $602 net sales per year. Autoship sales grew 9.3% and were 84.6% of net sales ([exa.ai](https://exa.ai/library/markets/stocks/CHWY/earnings/FY2027/Q2/transcript)). Revenue comes mainly from product sales, with healthcare services a growing addition. I found no revenue-mix breakdown beyond this.\n\n## 2. Recent news and launches\n- **Modern Animal:** The deal was signed April 1, 2026 and closed May 21, 2026. Modern Animal is a tech-forward veterinary platform, framed as a step toward an integrated pet healthcare ecosystem ([sec.gov](https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm)).\n- **SmartPak:** Chewy acquired it, recording $73.1M of goodwill and $7.4M of transaction costs in the 26 weeks ([sec.gov](https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm)).\n- **AI support:** About 30% of chats in the mobile app are resolved through self-service ([fool.com](https://www.fool.com/earnings/call-transcripts/2026/09/09/chewy-chwy-q2-2026-earnings-call-transcript/)).\n- **Guidance:** Management raised revenue and profitability expectations on September 9, 2026 ([tenq.co](https://tenq.co/report/CHWY/story)).\n\n## 3. Funding, size, financial signals\n- Chewy IPO'd June 18, 2019 ([tenq.co](https://tenq.co/report/CHWY/story)). It is a \"controlled company\": BC Partners, CDPQ, GIC affiliates, StepStone and Longview-advised funds hold majority voting power ([sec.gov](https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm)).\n- Autoship sales of $2,817.2M at 84.6% of net sales imply roughly $3.3B quarterly net sales (my calculation).\n- At Aug 2, 2026, current assets were $1,845.3M against current liabilities of $2,202.4M, and net long-term debt was $588.7M. Quarterly capex was $47.9M and free cash flow $89.5M. Earnings included a $24.0M legal settlement gain ([tenq.co](https://tenq.co/report/CHWY/story)).\n- The first half included acquisitions, repurchases and debt issuance ([tenq.co](https://tenq.co/report/CHWY/story)).\n\n## 4. Leadership\nNot found in the sources I retrieved. Verify the current CEO, CFO and healthcare leads before the meeting.\n\n## 5. Competitors\nThe sources name no specific rivals. They list the categories: online retailers, physical stores, suppliers' own websites and veterinary providers ([tenq.co](https://tenq.co/report/CHWY/story)). Chewy says it competes on price, availability, delivery and service, and Autoship plus the vet push are its main differentiators. Named-competitor comparisons would need further research.\n\n## 6. Likely priorities and open questions\n**Priorities**\n- Integrate SmartPak and Modern Animal.\n- Deepen Autoship use.\n- Grow active customers.\n- Use AI to improve service.\n\n**Open questions**\n- How much growth is organic? Growth including the acquisitions was stronger than growth excluding them ([tenq.co](https://tenq.co/report/CHWY/story)).\n- How will Chewy fund further acquisitions and buybacks given the working-capital position? ([tenq.co](https://tenq.co/report/CHWY/story))\n- Can thin operating margins absorb shipping, supplier or customer-acquisition cost shocks? ([tenq.co](https://tenq.co/report/CHWY/story))\n- How will the vet and services business scale beyond shipping pet supplies?",
+      "error": null,
+      "latency": 18.58886016300005,
+      "prompt_tokens": 4082,
+      "completion_tokens": 2387,
+      "cost": 0.039034,
+      "citations": [
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm",
+          "title": "Chewy, Inc. Form 10-Q for the period ended August 2, 2026",
+          "content": "See accompanying Notes to Condensed Consolidated Financial Statements. 7 CHEWY, INC. NOTES TO CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (Unaudited) 1.Description of Business Chewy, Inc. and its wholly-owned subsidiaries (collectively “Chewy” or the “Company”) is primarily an e-commerce business geared toward pet products and services. Chewy serves its customers through its retail websites, and its mobile applications and focuses on delivering exceptional customer service, competitive prices, outstanding convenience (including Chewy’s Autoship subscription program, fast shipping, and hassle-free returns), and a large selection of high-quality pet food, treats and supplies, and pet healthcare products and services. As of September 2, 2026, BC Partners Advisors LP (“BC Partners”) and its affiliates, La Caisse de dépôt et placement du Québec, affiliates of GIC Special Investments Pte Ltd, affiliates of StepStone Group LP and funds advised by Longview Asset Management, LLC (collectively, the “Sponsors”) control a majority of the voting power of our outstanding common stock. As a result, we are considered a “controlled company” within the meaning of the corporate governance standards of the New York Stock Exchange. 2. Basis of Presentation and Significant Accounting Policies Basis of Presentation The Company’s accompanying unaudited condensed consolidated financial statements and related notes include the accounts of Chewy, Inc. and its wholly-owned subsidiaries. All intercompany balances and transactions have been eliminated. The unaudited condensed consolidated financial statements and notes thereto of Chewy, Inc. have been prepared in accordance with the rules and regulations of the Securities and Exchange Commission (the “SEC”) for interim financial reporting and, therefore, omit or condense certain footnotes and other information normally included in financial statements prepared in accordance with accounting principles generally accepted in the United States of America (“GAAP”) as set forth in the Financial Accounting Standards Board’s (“FASB”) accounting standards codification (“ASC”). All adjustments necessary for a fair statement of the financial information, which are of a normal and recurring nature, have been made for the interim periods reported. Results of operations for the quarterly period ended August 2, 2026 are not necessarily indicative of the results for the entire fiscal year. The unaudited condensed consolidated financial statements and notes thereto included in this Quarterly Report on Form 10-Q for the quarterly period ended August 2, 2026 should be read in conjunction with the audited consolidated financial statements and notes thereto included in the Company’s Annual Report on Form 10-K for the fiscal year ended February 1,\n\n...\n\nBased on a preliminary allocation, in connection with this acquisition, the Company recorded goodwill of $73.1 million, the majority of which is anticipated to be deductible for tax purposes. The identified intangible assets consisted of $46.0 million of customer relationships, $33.0 million of trademarks, and $9.0 million of product portfolio with an amortization period of 17, 19, and 6 years, respectively. During the twenty-six weeks ended August 2, 2026, the Company incurred $7.4 million of transaction-related costs in connection with the SmartPak acquisition. These costs were expensed as incurred and are included in selling, general and administrative expenses in the condensed consolidated statements of operations. Modern Animal Acquisition On April 1, 2026, the Company entered into a definitive agreement to acquire Modern Animal, Inc. (“Modern Animal”). Under the terms of the definitive agreement, on May 21, 2026, the Company completed the acquisition of 100% of the issued and outstanding stock in Modern Animal, and Modern Animal became a wholly-owned subsidiary of the Company. Modern Animal is a technology-forward veterinary platform and the acquisition represents an important strategic step in Chewy’s evolution into a fully integrated pet healthcare ecosystem, combining care, commerce and services across the pet lifecycle. The following table reconciles the estimated purchase price to the cash paid for the acquisition, net of cash acquired (in millions):\n\n...\n\nfrom time to time. The information contained on such websites and social media posts is not incorporated by reference into this filing. Further, our references to website URLs in this filing are intended to be inactive textual references only. Overview We are the largest pet e-tailer in the United States, offering virtually every product a pet needs. We launched Chewy in 2011 to bring the best of the neighborhood pet store shopping experience to a larger audience, enhanced by the depth and wide selection of products and services, as well as the around-the-clock convenience, that only e-commerce can offer. We believe that we are the preeminent destination for pet parents as a result of our broad selection of high-quality products and expanded menu of service offerings, which we offer at great prices and deliver with an exceptional level of care and a personal touch. We are the trusted source for pet parents and partners and continually develop innovative ways for our customers to engage with us. We partner with approximately 4,000 of the best and most trusted brands in the pet industry, and we create and offer our own outstanding private brands. Through our websites and mobile applications, we offer our customers approximately 190,000 products, compelling merchandising, an easy and enjoyable shopping experience, and exceptional customer service. Macroeconomic Considerations Macroeconomic conditions, including inflationary pressures, elevated interest rates, and broader economic uncertainty, have influenced consumer spending patterns and may continue to affect demand across our categories. We monitor these conditions closely and adjust elements of our logistics, transportation, supply chain, and merchandising strategies as appropriate. Changes in consumer behavior may impact product mix, purchasing frequency, and promotional intensity, and we manage our operations with a focus on maintaining value, service levels, and operational discipline in varying economic environments. We are unable to predict the duration and ultimate impact of evolving macroeconomic conditions on the broader economy or our operations and liquidity. As such, macroeconomic risks and uncertainties remain. Refer to the section titled “Cautionary Note Regarding Forward-Looking Statements” in this 10-Q Report and the section titled “Risk Factors” in Item 1A of our 10-K Report for the fiscal year ended"
+        },
+        {
+          "url": "https://exa.ai/library/markets/stocks/CHWY/earnings/FY2027/Q2/transcript",
+          "title": "CHWY Earnings Call Transcript — Fiscal Q2 2027",
+          "content": "quarter with 21.7 million active customers, up 3.8% year-over-year, while net sales per active customer increased to $602. Autoship customer sales once again outpaced overall company growth, increasing 9.3% and representing 84.6% of total net sales in the"
+        },
+        {
+          "url": "https://www.fool.com/earnings/call-transcripts/2026/09/09/chewy-chwy-q2-2026-earnings-call-transcript/",
+          "title": "Chewy (CHWY) Q2 2026 Earnings Call Transcript | The Motley Fool",
+          "content": "in the mobile app. Early results are encouraging with approximately 30% of chats resolved through self-service across common needs such as orders, returns, autoship, and account management. To keep true to our Chewy spirit, customers who prefer or require"
+        },
+        {
+          "url": "https://exa.ai/library/markets/stocks/CHWY/earnings/FY2027/Q1/transcript",
+          "title": "CHWY Earnings Call Transcript — Fiscal Q1 2027",
+          "content": "At Chewy, we understand pet parenthood is full of joyful highs and anxious lows. That’s why we’re here, standing alongside pet parents, providing everything their pets need for a happy, healthy life. We’re a leading online source for pet products,"
+        },
+        {
+          "url": "https://tenq.co/report/CHWY/story",
+          "title": "Chewy (CHWY) stock story: what drives it, what the price assumes and the risks | TenQ",
+          "content": "Autoship makes that repeat demand easier to serve. Customers arrange automatic reorders, giving Chewy more visibility into demand and helping it plan inventory and fulfillment. Autoship customer sales grew 9.3 percent to $2,817.2 million in the quarter to August 2026 and represented 84.6 percent of net sales, compared with 83.0 percent a year earlier. This is\n\n...\n\nChewy began operating as Chewy.com in 2011 and completed its initial public offering on June 18, 2019. Its early proposition combined online convenience with unusually personal customer service. The fulfillment network became the practical foundation beneath that promise, while automatic reordering helped turn occasional orders into recurring relationships.\n\n...\n\n- Liquidity has become more dependent on spending discipline. At August 2, 2026, current assets were $1,845.3 million against current liabilities of $2,202.4 million, while long-term debt, net, was $588.7 million. Continued acquisition spending and repurchases would draw on resources also needed for inventory, suppliers, and operating investment.\n- Thin operating margins leave limited room for cost surprises. Shipping disruptions, less favorable supplier terms, or higher customer acquisition costs could consume more of the gross profit left after merchandise costs. Competition includes online retailers, physical stores, suppliers’ own websites, and veterinary providers.\n- Recurring demand still depends on retaining customers. Autoship makes ordering convenient, but Chewy competes on price, product availability, delivery, and service. A deterioration in any of those could weaken the repeat spending that supports fulfillment efficiency.\n- Healthcare and acquisitions add execution demands. Chewy must integrate acquired businesses while expanding services that differ from shipping pet supplies. The quarter to August 2026 already showed why the distinction matters: revenue growth including SmartPak and Modern Animal was stronger than growth excluding them.\n\n...\n\n- The next fiscal 2026 release will put the raised outlook alongside another period of execution. Management raised revenue and profitability expectations on September 9, 2026; reported growth and growth excluding acquisitions will show how much momentum comes from the existing business.\n- Customer growth needs to accompany deeper Autoship use. The August 2, 2026 release reported active customer growth of 3.8 percent and net sales per active customer growth of 1.9 percent. Subsequent customer disclosures will also need to be read with the different treatment of SmartPak and Modern Animal in mind.\n- Cash conversion will show the cost of expansion. In the quarter to August 2026, capital expenditures of $47.9 million reduced free cash flow to $89.5 million despite higher operating cash flow. The next release’s capital spending, inventory movements, and supplier payments will help explain whether that pressure persists.\n- Funding and profit quality deserve separate attention. After the first half of fiscal 2026 included acquisitions, repurchases, and debt issuance, the next balance sheet will show how those demands affect liquidity. Comparisons with the quarter to August 2026 should also distinguish recurring earnings from its $24.0 million legal settlement gain."
+        }
+      ],
+      "usage": {
+        "completion_tokens": 2387,
+        "prompt_tokens": 4082,
+        "total_tokens": 6469,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 771,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.039034,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.032034,
+          "upstream_inference_prompt_cost": 0.008164,
+          "upstream_inference_completions_cost": 0.02387
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "google/gemini-3.8-flash",
+      "run": 2,
+      "ok": true,
+      "answer": "### 1. What They Do, Who Buys, and How They Make Money\nChewy is the largest pure-play pet e-tailer in the U.S., offering ~190,000 products from 4,000 partner brands alongside private labels, pet medications, and telehealth services [sec.gov](https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm). Its primary buyers are retail pet owners (~21.7 million active customers) [exa.ai](https://exa.ai/library/markets/stocks/CHWY/earnings/FY2027/Q2/transcript). Chewy generates revenue through direct product and pharmacy sales, heavily underpinned by its automated subscription program, \"Autoship,\" which represents 84.6% of net sales [tenq.co](https://tenq.co/report/CHWY/story).\n\n### 2. Recent News and Launches (Last 6 Months)\n* **Modern Animal Acquisition:** On May 21, 2026, Chewy completed the acquisition of Modern Animal, a tech-enabled veterinary clinic platform, expanding its physical and digital healthcare footprint [sec.gov](https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm).\n* **SmartPak Integration:** Chewy integrated equine supplement and supplies business SmartPak, incurring $7.4 million in transaction-related expenses during the first half of fiscal 2026 [sec.gov](https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm).\n* **Customer Service Automation:** In mid-2026, Chewy rolled out self-service app chat features, resolving ~30% of routine inquiries (autoship, tracking, returns) autonomously [fool.com](https://www.fool.com/earnings/call-transcripts/2026/09/09/chewy-chwy-q2-2026-earnings-call-transcript/).\n* **Guidance Increase:** In September 2026, management raised full-year FY2026 net sales and profitability targets [tenq.co](https://tenq.co/report/CHWY/story).\n\n### 3. Funding, Size, and Financial Signals\n* **Structure & Ownership:** Publicly traded (NYSE: CHWY); classified as a \"controlled company\" dominated by BC Partners and affiliated sponsor entities [sec.gov](https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm).\n* **Key Metrics (Q2 2026):** Active customers reached 21.7 million (+3.8% YoY), with net sales per active customer climbing to $602 (+1.9% YoY) [exa.ai](https://exa.ai/library/markets/stocks/CHWY/earnings/FY2027/Q2/transcript), [tenq.co](https://tenq.co/report/CHWY/story). Autoship sales totaled $2.82 billion for the quarter [tenq.co](https://tenq.co/report/CHWY/story).\n* **Balance Sheet:** Long-term debt stood at $588.7 million against $1.85 billion in current assets and $2.20 billion in current liabilities as of August 2, 2026 [tenq.co](https://tenq.co/report/CHWY/story). Free cash flow was $89.5 million in Q2, constrained by $47.9 million in capex [tenq.co](https://tenq.co/report/CHWY/story).\n\n### 4. Leadership\n* **Sumit Singh:** Chief Executive Officer and Board Director (leading Chewy’s operational execution and pet healthcare expansion since 2018).\n* **David Reeder:** Chief Financial Officer.\n\n### 5. Main Competitors and Differentiation\n* **Amazon:** Broader distribution and Prime shipping speed, but lacks Chewy's specialized pet pharmacy compounding, dedicated customer service, and veterinary software integrations.\n* **Petco & PetSmart:** Established brick-and-mortar presence with in-store grooming and vet care; Chewy counters with superior digital Autoship retention (84.6% of sales) [tenq.co](https://tenq.co/report/CHWY/story), larger catalog depth, and newly acquired physical veterinary clinics.\n\n### 6. Likely Strategic Priorities and Open Questions\n* **Strategic Priorities:** Scaling its integrated healthcare ecosystem (Chewy Vet Care, CarePlus insurance, and Modern Animal clinics) [sec.gov](https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm), [tenq.co](https://tenq.co/report/CHWY/story); driving higher basket sizes ($600+) through cross-selling veterinary care and private brands [exa.ai](https://exa.ai/library/markets/stocks/CHWY/earnings/FY2027/Q2/transcript).\n* **Open Questions:** How will the capital expenditure requirements of physical veterinary clinics impact free cash flow margins? Can organic active customer growth accelerate beyond mid-single digits without dilutive promotional spending?",
+      "error": null,
+      "latency": 25.01837459500001,
+      "prompt_tokens": 2650,
+      "completion_tokens": 2785,
+      "cost": 0.01943125,
+      "citations": [
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm",
+          "title": "Chewy, Inc. Form 10-Q for the period ended August 2, 2026",
+          "content": "See accompanying Notes to Condensed Consolidated Financial Statements. 7 CHEWY, INC. NOTES TO CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (Unaudited) 1.Description of Business Chewy, Inc. and its wholly-owned subsidiaries (collectively “Chewy” or the “Company”) is primarily an e-commerce business geared toward pet products and services. Chewy serves its customers through its retail websites, and its mobile applications and focuses on delivering exceptional customer service, competitive prices, outstanding convenience (including Chewy’s Autoship subscription program, fast shipping, and hassle-free returns), and a large selection of high-quality pet food, treats and supplies, and pet healthcare products and services. As of September 2, 2026, BC Partners Advisors LP (“BC Partners”) and its affiliates, La Caisse de dépôt et placement du Québec, affiliates of GIC Special Investments Pte Ltd, affiliates of StepStone Group LP and funds advised by Longview Asset Management, LLC (collectively, the “Sponsors”) control a majority of the voting power of our outstanding common stock. As a result, we are considered a “controlled company” within the meaning of the corporate governance standards of the New York Stock Exchange. 2. Basis of Presentation and Significant Accounting Policies Basis of Presentation The Company’s accompanying unaudited condensed consolidated financial statements and related notes include the accounts of Chewy, Inc. and its wholly-owned subsidiaries. All intercompany balances and transactions have been eliminated. The unaudited condensed consolidated financial statements and notes thereto of Chewy, Inc. have been prepared in accordance with the rules and regulations of the Securities and Exchange Commission (the “SEC”) for interim financial reporting and, therefore, omit or condense certain footnotes and other information normally included in financial statements prepared in accordance with accounting principles generally accepted in the United States of America (“GAAP”) as set forth in the Financial Accounting Standards Board’s (“FASB”) accounting standards codification (“ASC”). All adjustments necessary for a fair statement of the financial information, which are of a normal and recurring nature, have been made for the interim periods reported. Results of operations for the quarterly period ended August 2, 2026 are not necessarily indicative of the results for the entire fiscal year. The\n\n...\n\nBased on a preliminary allocation, in connection with this acquisition, the Company recorded goodwill of $73.1 million, the majority of which is anticipated to be deductible for tax purposes. The identified intangible assets consisted of $46.0 million of customer relationships, $33.0 million of trademarks, and $9.0 million of product portfolio with an amortization period of 17, 19, and 6 years, respectively. During the twenty-six weeks ended August 2, 2026, the Company incurred $7.4 million of transaction-related costs in connection with the SmartPak acquisition. These costs were expensed as incurred and are included in selling, general and administrative expenses in the condensed consolidated statements of operations. Modern Animal Acquisition On April 1, 2026, the Company entered into a definitive agreement to acquire Modern Animal, Inc. (“Modern Animal”). Under the terms of the definitive agreement, on May 21, 2026, the Company completed the acquisition of 100% of the issued and outstanding stock in Modern Animal, and Modern Animal became a wholly-owned subsidiary of the Company. Modern Animal is a technology-forward veterinary platform and the acquisition represents an important strategic step in Chewy’s evolution into a fully integrated pet healthcare ecosystem, combining care, commerce and services across the pet lifecycle. The following table reconciles the estimated purchase price to the cash paid for the acquisition, net of cash acquired (in millions):\n\n...\n\nfrom time to time. The information contained on such websites and social media posts is not incorporated by reference into this filing. Further, our references to website URLs in this filing are intended to be inactive textual references only. Overview We are the largest pet e-tailer in the United States, offering virtually every product a pet needs. We launched Chewy in 2011 to bring the best of the neighborhood pet store shopping experience to a larger audience, enhanced by the depth and wide selection of products and services, as well as the around-the-clock convenience, that only e-commerce can offer. We believe that we are the preeminent destination for pet parents as a result of our broad selection of high-quality products and expanded menu of service offerings, which we offer at great prices and deliver with an exceptional level of care and a personal touch. We are the trusted source for pet parents and partners and continually develop innovative ways for our customers to engage with us. We partner with approximately 4,000 of the best and most trusted brands in the pet industry, and we create and offer our own outstanding private brands. Through our websites and mobile applications, we offer our customers approximately 190,000 products, compelling merchandising, an easy and enjoyable shopping experience, and exceptional customer service. Macroeconomic Considerations Macroeconomic conditions, including inflationary pressures, elevated interest rates, and broader economic uncertainty, have influenced consumer spending patterns and may continue to affect demand across our categories. We monitor these conditions closely and adjust elements of our logistics, transportation, supply chain, and merchandising strategies as appropriate. Changes in consumer behavior may impact product mix, purchasing frequency, and promotional intensity, and we manage our operations with a focus on maintaining value, service levels, and operational discipline in varying economic environments. We are unable to predict the duration and ultimate impact of evolving macroeconomic conditions on the broader economy or our operations and liquidity. As such, macroeconomic risks and uncertainties remain. Refer to the"
+        },
+        {
+          "url": "https://exa.ai/library/markets/stocks/CHWY/earnings/FY2027/Q2/transcript",
+          "title": "CHWY Earnings Call Transcript — Fiscal Q2 2027",
+          "content": "quarter with 21.7 million active customers, up 3.8% year-over-year, while net sales per active customer increased to $602. Autoship customer sales once again outpaced overall company growth, increasing 9.3% and representing 84.6% of total net sales in the"
+        },
+        {
+          "url": "https://www.fool.com/earnings/call-transcripts/2026/09/09/chewy-chwy-q2-2026-earnings-call-transcript/",
+          "title": "Chewy (CHWY) Q2 2026 Earnings Call Transcript | The Motley Fool",
+          "content": "in the mobile app. Early results are encouraging with approximately 30% of chats resolved through self-service across common needs such as orders, returns, autoship, and account management. To keep true to our Chewy spirit, customers who prefer or require"
+        },
+        {
+          "url": "https://exa.ai/library/markets/stocks/CHWY/earnings/FY2027/Q1/transcript",
+          "title": "CHWY Earnings Call Transcript — Fiscal Q1 2027",
+          "content": "At Chewy, we understand pet parenthood is full of joyful highs and anxious lows. That’s why we’re here, standing alongside pet parents, providing everything their pets need for a happy, healthy life. We’re a leading online source for pet products,"
+        },
+        {
+          "url": "https://tenq.co/report/CHWY/story",
+          "title": "Chewy (CHWY) stock story: what drives it, what the price assumes and the risks | TenQ",
+          "content": "Autoship makes that repeat demand easier to serve. Customers arrange automatic reorders, giving Chewy more visibility into demand and helping it plan inventory and fulfillment. Autoship customer sales grew 9.3 percent to $2,817.2 million in the quarter to August 2026 and represented 84.6 percent of net sales, compared with 83.0 percent a year earlier. This is primarily revenue from products delivered to returning customers, rather than a subscription\n\n...\n\nChewy began operating as Chewy.com in 2011 and completed its initial public offering on June 18, 2019. Its early proposition combined online convenience with unusually personal customer service. The fulfillment network became the practical foundation beneath that promise, while automatic reordering helped turn occasional orders into recurring relationships.\n\n...\n\nHealthcare added a different kind of relationship. In 2020, Chewy launched medication compounding and Connect with a Vet telehealth. PracticeHub followed in 2021, connecting veterinary practices with Chewy’s fulfillment and customer service. In 2022, Chewy introduced CarePlus insurance and wellness plans and acquired veterinary technology company Petabyte. It expanded into Canada in 2023, opened eight Chewy Vet Care clinics in 2024, and brought the clinic total to 18 in 2025.\n\n...\n\n- Liquidity has become more dependent on spending discipline. At August 2, 2026, current assets were $1,845.3 million against current liabilities of $2,202.4 million, while long-term debt, net, was $588.7 million. Continued acquisition spending and repurchases would draw on resources also needed for inventory, suppliers, and operating investment.\n- Thin operating margins leave limited room for cost surprises. Shipping disruptions, less favorable supplier terms, or higher customer acquisition costs could consume more of the gross profit left after merchandise costs. Competition includes online retailers, physical stores, suppliers’ own websites, and veterinary providers.\n- Recurring demand still depends on retaining customers. Autoship makes ordering convenient, but Chewy competes on price, product availability, delivery, and service. A deterioration in any of those could weaken the repeat spending that supports fulfillment efficiency.\n- Healthcare and acquisitions add execution demands. Chewy must integrate acquired businesses while expanding services that differ from shipping pet supplies. The quarter to August 2026 already showed why the distinction matters: revenue growth including SmartPak and Modern Animal was stronger than growth excluding them.\n\n...\n\n- The next fiscal 2026 release will put the raised outlook alongside another period of execution. Management raised revenue and profitability expectations on September 9, 2026; reported growth and growth excluding acquisitions will show how much momentum comes from the existing business.\n- Customer growth needs to accompany deeper Autoship use. The August 2, 2026 release reported active customer growth of 3.8 percent and net sales per active customer growth of 1.9 percent. Subsequent customer disclosures will also need to be read with the different treatment of SmartPak and Modern Animal in mind.\n- Cash conversion will show the cost of expansion. In the quarter to August 2026, capital expenditures of $47.9 million reduced free cash flow to $89.5 million despite higher operating cash flow. The next release’s capital spending, inventory movements, and supplier payments will help explain whether that pressure persists.\n- Funding and profit quality deserve separate attention. After the first half of fiscal 2026 included acquisitions, repurchases, and debt issuance, the next balance sheet will show how those demands affect liquidity. Comparisons with the quarter to August 2026 should also distinguish recurring earnings from its"
+        }
+      ],
+      "usage": {
+        "completion_tokens": 2785,
+        "prompt_tokens": 2650,
+        "total_tokens": 5435,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1461,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.01943125,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.01243125,
+          "upstream_inference_prompt_cost": 0.0019875,
+          "upstream_inference_completions_cost": 0.01044375
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "run": 2,
+      "ok": true,
+      "answer": "Based on the latest available information, here is a briefing on Chewy, Inc.\n\n### 1. What they do, who buys it, and how they make money\nChewy is the largest pet e-tailer in the United States, offering a broad selection of pet products and services through its websites and mobile apps. It provides approximately 190,000 products from around 4,000 partner brands, alongside its own private brands. The company’s core proposition combines competitive prices, fast shipping, and a high-touch customer service model. Chewy makes money primarily through the direct sale of pet food, treats, supplies, and healthcare products. A dominant 84.6% of its total net sales come through its Autoship subscription program, where customers schedule automatic reorders, creating a highly predictable revenue stream. As of the quarter ending August 2, 2026, Chewy served 21.7 million active customers, with net sales per active customer reaching $602. [sec.gov](https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm), [tenq.co](https://tenq.co/report/CHWY/story)\n\n### 2. Recent news and launches (last 6 months)\nChewy has made significant moves to expand its pet healthcare ecosystem. On May 21, 2026, it completed the acquisition of Modern Animal, Inc., a technology-forward veterinary platform. This follows an earlier acquisition of SmartPak, a leader in equine and pet supplements. The company is also integrating technology into its customer service; early results from a new AI-powered self-service chat feature in its mobile app show approximately 30% of common inquiries are now resolved without human intervention. [sec.gov](https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm), [fool.com](https://www.fool.com/earnings/call-transcripts/2026/09/09/chewy-chwy-q2-2026-earnings-call-transcript/)\n\n### 3. Funding, size, and financial signals\nChewy is a publicly traded company controlled by a consortium of sponsors including BC Partners. The company is in an active investment phase, funding acquisitions and share repurchases. For the quarter ended August 2, 2026, Autoship customer sales grew 9.3% to $2.82 billion. However, this expansion is pressuring liquidity; current liabilities of $2.20 billion exceeded current assets of $1.85 billion. Free cash flow was reduced to $89.5 million due to $47.9 million in capital expenditures. Management raised its revenue and profitability outlook on September 9, 2026, but thin operating margins leave little room for cost surprises. [sec.gov](https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm), [tenq.co](https://tenq.co/report/CHWY/story)\n\n### 4. Leadership\nSpecific details on the current executive leadership team were not found in the provided search results. The documents focus on the company’s status as a \"controlled company\" under NYSE standards, with its Sponsors holding a majority of voting power. [sec.gov](https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm)\n\n### 5. Main competitors and how they differ\nChewy’s competition is broad, including online retailers, physical pet stores, suppliers’ own direct-to-consumer websites, and veterinary providers. While Chewy differentiates itself through its high-touch customer service and dominant Autoship program, it competes directly on price, product availability, and delivery speed. Its recent acquisitions of veterinary platforms like Modern Animal signal a strategic differentiation toward an integrated pet healthcare ecosystem that combines care, commerce, and services, a move that goes beyond the traditional retail model of many competitors. [sec.gov](https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm), [tenq.co](https://tenq.co/report/CHWY/story)\n\n### 6. Likely strategic priorities and open questions\nChewy’s strategic priority is clearly to evolve into a fully integrated pet healthcare ecosystem, as evidenced by the acquisitions of SmartPak and Modern Animal. A key open question is how effectively it can integrate these healthcare services with its core e-commerce platform. Other priorities include deepening Autoship penetration while growing its active customer base and managing the financial strain of its expansion. Future disclosures will need to clarify how much growth is organic versus acquisition-driven and whether capital spending will continue to constrain free cash flow. [sec.gov](https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm), [tenq.co](https://tenq.co/report/CHWY/story)",
+      "error": null,
+      "latency": 20.389817391999998,
+      "prompt_tokens": 2506,
+      "completion_tokens": 1078,
+      "cost": 0.0130606,
+      "citations": [
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/1766502/000162828026061018/chwy-20260802.htm",
+          "title": "Chewy, Inc. Form 10-Q for the period ended August 2, 2026",
+          "content": "See accompanying Notes to Condensed Consolidated Financial Statements. 7 CHEWY, INC. NOTES TO CONDENSED CONSOLIDATED FINANCIAL STATEMENTS (Unaudited) 1.Description of Business Chewy, Inc. and its wholly-owned subsidiaries (collectively “Chewy” or the “Company”) is primarily an e-commerce business geared toward pet products and services. Chewy serves its customers through its retail websites, and its mobile applications and focuses on delivering exceptional customer service, competitive prices, outstanding convenience (including Chewy’s Autoship subscription program, fast shipping, and hassle-free returns), and a large selection of high-quality pet food, treats and supplies, and pet healthcare products and services. As of September 2, 2026, BC Partners Advisors LP (“BC Partners”) and its affiliates, La Caisse de dépôt et placement du Québec, affiliates of GIC Special Investments Pte Ltd, affiliates of StepStone Group LP and funds advised by Longview Asset Management, LLC (collectively, the “Sponsors”) control a majority of the voting power of our outstanding common stock. As a result, we are considered a “controlled company” within the meaning of the corporate governance standards of the New York Stock Exchange. 2. Basis of Presentation and Significant Accounting Policies Basis of Presentation The Company’s accompanying unaudited condensed consolidated financial statements and related notes include the accounts of Chewy, Inc. and its wholly-owned subsidiaries. All intercompany balances and transactions have been eliminated. The unaudited condensed consolidated financial statements and notes thereto of Chewy, Inc. have been prepared in accordance with the rules and regulations of the Securities and Exchange Commission (the “SEC”) for interim financial reporting and, therefore, omit or condense certain footnotes and other information normally included in financial statements prepared in accordance with accounting principles generally accepted in the United States of America (“GAAP”) as set forth in the Financial Accounting Standards Board’s (“FASB”) accounting standards codification (“ASC”). All adjustments necessary for a fair statement of the financial information, which are of a normal and recurring nature, have been made for the interim periods reported. Results of operations for the quarterly period ended August 2, 2026 are not necessarily indicative of the results for the entire fiscal year. The\n\n...\n\nBased on a preliminary allocation, in connection with this acquisition, the Company recorded goodwill of $73.1 million, the majority of which is anticipated to be deductible for tax purposes. The identified intangible assets consisted of $46.0 million of customer relationships, $33.0 million of trademarks, and $9.0 million of product portfolio with an amortization period of 17, 19, and 6 years, respectively. During the twenty-six weeks ended August 2, 2026, the Company incurred $7.4 million of transaction-related costs in connection with the SmartPak acquisition. These costs were expensed as incurred and are included in selling, general and administrative expenses in the condensed consolidated statements of operations. Modern Animal Acquisition On April 1, 2026, the Company entered into a definitive agreement to acquire Modern Animal, Inc. (“Modern Animal”). Under the terms of the definitive agreement, on May 21, 2026, the Company completed the acquisition of 100% of the issued and outstanding stock in Modern Animal, and Modern Animal became a wholly-owned subsidiary of the Company. Modern Animal is a technology-forward veterinary platform and the acquisition represents an important strategic step in Chewy’s evolution into a fully integrated pet healthcare ecosystem, combining care, commerce and services across the pet lifecycle. The following table reconciles the estimated purchase price to the cash paid for the acquisition, net of cash acquired (in millions):\n\n...\n\nfrom time to time. The information contained on such websites and social media posts is not incorporated by reference into this filing. Further, our references to website URLs in this filing are intended to be inactive textual references only. Overview We are the largest pet e-tailer in the United States, offering virtually every product a pet needs. We launched Chewy in 2011 to bring the best of the neighborhood pet store shopping experience to a larger audience, enhanced by the depth and wide selection of products and services, as well as the around-the-clock convenience, that only e-commerce can offer. We believe that we are the preeminent destination for pet parents as a result of our broad selection of high-quality products and expanded menu of service offerings, which we offer at great prices and deliver with an exceptional level of care and a personal touch. We are the trusted source for pet parents and partners and continually develop innovative ways for our customers to engage with us. We partner with approximately 4,000 of the best and most trusted brands in the pet industry, and we create and offer our own outstanding private brands. Through our websites and mobile applications, we offer our customers approximately 190,000 products, compelling merchandising, an easy and enjoyable shopping experience, and exceptional customer service. Macroeconomic Considerations Macroeconomic conditions, including inflationary pressures, elevated interest rates, and broader economic uncertainty, have influenced consumer spending patterns and may continue to affect demand across our categories. We monitor these conditions closely and adjust elements of our logistics, transportation, supply chain, and merchandising strategies as appropriate. Changes in consumer behavior may impact product mix, purchasing frequency, and promotional intensity, and we manage our operations with a focus on maintaining value, service levels, and operational discipline in varying economic environments. We are unable to predict the duration and ultimate impact of evolving macroeconomic conditions on the broader economy or our operations and liquidity. As such, macroeconomic risks and uncertainties remain. Refer to the"
+        },
+        {
+          "url": "https://exa.ai/library/markets/stocks/CHWY/earnings/FY2027/Q2/transcript",
+          "title": "CHWY Earnings Call Transcript — Fiscal Q2 2027",
+          "content": "quarter with 21.7 million active customers, up 3.8% year-over-year, while net sales per active customer increased to $602. Autoship customer sales once again outpaced overall company growth, increasing 9.3% and representing 84.6% of total net sales in the"
+        },
+        {
+          "url": "https://www.fool.com/earnings/call-transcripts/2026/09/09/chewy-chwy-q2-2026-earnings-call-transcript/",
+          "title": "Chewy (CHWY) Q2 2026 Earnings Call Transcript | The Motley Fool",
+          "content": "in the mobile app. Early results are encouraging with approximately 30% of chats resolved through self-service across common needs such as orders, returns, autoship, and account management. To keep true to our Chewy spirit, customers who prefer or require"
+        },
+        {
+          "url": "https://exa.ai/library/markets/stocks/CHWY/earnings/FY2027/Q1/transcript",
+          "title": "CHWY Earnings Call Transcript — Fiscal Q1 2027",
+          "content": "At Chewy, we understand pet parenthood is full of joyful highs and anxious lows. That’s why we’re here, standing alongside pet parents, providing everything their pets need for a happy, healthy life. We’re a leading online source for pet products,"
+        },
+        {
+          "url": "https://tenq.co/report/CHWY/story",
+          "title": "Chewy (CHWY) stock story: what drives it, what the price assumes and the risks | TenQ",
+          "content": "Autoship makes that repeat demand easier to serve. Customers arrange automatic reorders, giving Chewy more visibility into demand and helping it plan inventory and fulfillment. Autoship customer sales grew 9.3 percent to $2,817.2 million in the quarter to August 2026 and represented 84.6 percent of net sales, compared with 83.0 percent a year earlier. This is primarily revenue from products delivered to returning customers, rather than a subscription\n\n...\n\nChewy began operating as Chewy.com in 2011 and completed its initial public offering on June 18, 2019. Its early proposition combined online convenience with unusually personal customer service. The fulfillment network became the practical foundation beneath that promise, while automatic reordering helped turn occasional orders into recurring relationships.\n\n...\n\nHealthcare added a different kind of relationship. In 2020, Chewy launched medication compounding and Connect with a Vet telehealth. PracticeHub followed in 2021, connecting veterinary practices with Chewy’s fulfillment and customer service. In 2022, Chewy introduced CarePlus insurance and wellness plans and acquired veterinary technology company Petabyte. It expanded into Canada in 2023, opened eight Chewy Vet Care clinics in 2024, and brought the clinic total to 18 in 2025.\n\n...\n\n- Liquidity has become more dependent on spending discipline. At August 2, 2026, current assets were $1,845.3 million against current liabilities of $2,202.4 million, while long-term debt, net, was $588.7 million. Continued acquisition spending and repurchases would draw on resources also needed for inventory, suppliers, and operating investment.\n- Thin operating margins leave limited room for cost surprises. Shipping disruptions, less favorable supplier terms, or higher customer acquisition costs could consume more of the gross profit left after merchandise costs. Competition includes online retailers, physical stores, suppliers’ own websites, and veterinary providers.\n- Recurring demand still depends on retaining customers. Autoship makes ordering convenient, but Chewy competes on price, product availability, delivery, and service. A deterioration in any of those could weaken the repeat spending that supports fulfillment efficiency.\n- Healthcare and acquisitions add execution demands. Chewy must integrate acquired businesses while expanding services that differ from shipping pet supplies. The quarter to August 2026 already showed why the distinction matters: revenue growth including SmartPak and Modern Animal was stronger than growth excluding them.\n\n...\n\n- The next fiscal 2026 release will put the raised outlook alongside another period of execution. Management raised revenue and profitability expectations on September 9, 2026; reported growth and growth excluding acquisitions will show how much momentum comes from the existing business.\n- Customer growth needs to accompany deeper Autoship use. The August 2, 2026 release reported active customer growth of 3.8 percent and net sales per active customer growth of 1.9 percent. Subsequent customer disclosures will also need to be read with the different treatment of SmartPak and Modern Animal in mind.\n- Cash conversion will show the cost of expansion. In the quarter to August 2026, capital expenditures of $47.9 million reduced free cash flow to $89.5 million despite higher operating cash flow. The next release’s capital spending, inventory movements, and supplier payments will help explain whether that pressure persists.\n- Funding and profit quality deserve separate attention. After the first half of fiscal 2026 included acquisitions, repurchases, and debt issuance, the next balance sheet will show how those demands affect liquidity. Comparisons with the quarter to August 2026 should also distinguish recurring earnings from its"
+        }
+      ],
+      "usage": {
+        "completion_tokens": 1078,
+        "prompt_tokens": 2506,
+        "total_tokens": 3584,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.0130606,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0060606,
+          "upstream_inference_prompt_cost": 0.0032578,
+          "upstream_inference_completions_cost": 0.0028028
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    }
+  ],
+  "judgments": [
+    {
+      "run": 1,
+      "label_map": {
+        "A": "deepseek/deepseek-v4-pro",
+        "B": "google/gemini-3.8-flash",
+        "C": "anthropic/claude-sonnet-5.5"
+      },
+      "ok": true,
+      "scores": {
+        "deepseek/deepseek-v4-pro": {
+          "criteria": {
+            "grounding": 4.0,
+            "specificity": 6.0,
+            "recency": 6.0,
+            "usefulness": 3.0
+          },
+          "unsupported_claims": [
+            "The cited excerpts do not establish that Chewy is the largest U.S. pet e-tailer or offers 190,000 products from 4,000 brands.",
+            "The cited SEC excerpt does not substantiate either acquisition or its timing.",
+            "The cited excerpts do not substantiate the named leadership team or Ryan Cohen’s current involvement.",
+            "The cited excerpts do not establish that Chewy is navigating inflationary pressures and economic uncertainty.",
+            "The claim that Autoship’s sales share demonstrates customer loyalty goes beyond the cited figures."
+          ],
+          "rationale": "Recent customer and Autoship figures are supported, but several prominent claims lack excerpt support and the briefing cuts off before completing competitors or strategic priorities.",
+          "weighted_score": 4.7,
+          "label": "A"
+        },
+        "google/gemini-3.8-flash": {
+          "criteria": {
+            "grounding": 4.0,
+            "specificity": 8.0,
+            "recency": 7.0,
+            "usefulness": 6.0
+          },
+          "unsupported_claims": [
+            "The excerpts do not establish a customer base of farm and exotic-animal owners or the listed pet-insurance and telehealth services.",
+            "The excerpts do not substantiate the Modern Animal closing date or $378.0 million price, or SmartPak’s $174.8 million price.",
+            "SmartPak’s February 2, 2026 closing date in the cited excerpt does not place it within the stated last-six-month window.",
+            "The $600 million June 2026 loan, its seven-year term, and the $611.0 million cash balance are not shown in the excerpts.",
+            "The excerpt does not substantiate triple-digit veterinary-clinic revenue growth.",
+            "The excerpts do not substantiate Sumit Singh’s tenure, David Reeder’s role, or the claims about Amazon, Petco, and PetSmart and how they differ from Chewy.",
+            "The cited excerpts do not establish expansion into fresh or frozen food, superior digital UI, lower overhead, or automated fulfillment centers."
+          ],
+          "rationale": "It offers concrete meeting questions and supported scale figures, but many acquisition, financing, leadership, and competitive details are not backed by the supplied excerpts.",
+          "weighted_score": 6.0,
+          "label": "B"
+        },
+        "anthropic/claude-sonnet-5.5": {
+          "criteria": {
+            "grounding": 6.0,
+            "specificity": 8.0,
+            "recency": 8.0,
+            "usefulness": 7.0
+          },
+          "unsupported_claims": [
+            "The supplied SEC excerpt does not substantiate the largest-U.S.-pet-e-tailer claim or the 190,000-product and 4,000-brand figures.",
+            "The supplied SEC excerpt does not substantiate the Modern Animal agreement and closing dates, or the SmartPak acquisition, goodwill, and transaction-cost figures.",
+            "The cited excerpts do not show that management raised guidance on September 9, 2026.",
+            "The cited excerpts do not show the $47.9 million capex, $89.5 million free cash flow, $24.0 million legal-settlement gain, or first-half repurchases and debt issuance.",
+            "The cited excerpt gives $602 in net sales per active customer but does not explicitly establish the answer’s annual spending period or its 1.9% growth figure.",
+            "The cited excerpt does not establish that growth excluding the acquisitions was weaker than reported growth."
+          ],
+          "rationale": "The dated briefing has useful supported Autoship, customer, and balance-sheet signals, but several detailed claims lack excerpt support and it does not identify leaders or named competitors.",
+          "weighted_score": 7.1,
+          "label": "C"
+        }
+      },
+      "raw_outputs": [
+        "{\n  \"A\": {\n    \"scores\": {\n      \"grounding\": 4,\n      \"specificity\": 6,\n      \"recency\": 6,\n      \"usefulness\": 3\n    },\n    \"unsupported_claims\": [\n      \"The cited excerpts do not establish that Chewy is the largest U.S. pet e-tailer or offers 190,000 products from 4,000 brands.\",\n      \"The cited SEC excerpt does not substantiate either acquisition or its timing.\",\n      \"The cited excerpts do not substantiate the named leadership team or Ryan Cohen’s current involvement.\",\n      \"The cited excerpts do not establish that Chewy is navigating inflationary pressures and economic uncertainty.\",\n      \"The claim that Autoship’s sales share demonstrates customer loyalty goes beyond the cited figures.\"\n    ],\n    \"rationale\": \"Recent customer and Autoship figures are supported, but several prominent claims lack excerpt support and the briefing cuts off before completing competitors or strategic priorities.\"\n  },\n  \"B\": {\n    \"scores\": {\n      \"grounding\": 4,\n      \"specificity\": 8,\n      \"recency\": 7,\n      \"usefulness\": 6\n    },\n    \"unsupported_claims\": [\n      \"The excerpts do not establish a customer base of farm and exotic-animal owners or the listed pet-insurance and telehealth services.\",\n      \"The excerpts do not substantiate the Modern Animal closing date or $378.0 million price, or SmartPak’s $174.8 million price.\",\n      \"SmartPak’s February 2, 2026 closing date in the cited excerpt does not place it within the stated last-six-month window.\",\n      \"The $600 million June 2026 loan, its seven-year term, and the $611.0 million cash balance are not shown in the excerpts.\",\n      \"The excerpt does not substantiate triple-digit veterinary-clinic revenue growth.\",\n      \"The excerpts do not substantiate Sumit Singh’s tenure, David Reeder’s role, or the claims about Amazon, Petco, and PetSmart and how they differ from Chewy.\",\n      \"The cited excerpts do not establish expansion into fresh or frozen food, superior digital UI, lower overhead, or automated fulfillment centers.\"\n    ],\n    \"rationale\": \"It offers concrete meeting questions and supported scale figures, but many acquisition, financing, leadership, and competitive details are not backed by the supplied excerpts.\"\n  },\n  \"C\": {\n    \"scores\": {\n      \"grounding\": 6,\n      \"specificity\": 8,\n      \"recency\": 8,\n      \"usefulness\": 7\n    },\n    \"unsupported_claims\": [\n      \"The supplied SEC excerpt does not substantiate the largest-U.S.-pet-e-tailer claim or the 190,000-product and 4,000-brand figures.\",\n      \"The supplied SEC excerpt does not substantiate the Modern Animal agreement and closing dates, or the SmartPak acquisition, goodwill, and transaction-cost figures.\",\n      \"The cited excerpts do not show that management raised guidance on September 9, 2026.\",\n      \"The cited excerpts do not show the $47.9 million capex, $89.5 million free cash flow, $24.0 million legal-settlement gain, or first-half repurchases and debt issuance.\",\n      \"The cited excerpt gives $602 in net sales per active customer but does not explicitly establish the answer’s annual spending period or its 1.9% growth figure.\",\n      \"The cited excerpt does not establish that growth excluding the acquisitions was weaker than reported growth.\"\n    ],\n    \"rationale\": \"The dated briefing has useful supported Autoship, customer, and balance-sheet signals, but several detailed claims lack excerpt support and it does not identify leaders or named competitors.\"\n  }\n}"
+      ],
+      "error": null,
+      "cost": 0.031871,
+      "latency": 24.272072000000037,
+      "usage": [
+        {
+          "completion_tokens": 1605,
+          "prompt_tokens": 6329,
+          "total_tokens": 7934,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": 0,
+            "reasoning_tokens": 822,
+            "rejected_prediction_tokens": null,
+            "text_tokens": null,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 6326,
+            "cached_tokens": 0,
+            "image_tokens": null,
+            "text_tokens": null,
+            "video_tokens": 0
+          },
+          "cost": 0.031871,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.031871,
+            "upstream_inference_prompt_cost": 0.015821,
+            "upstream_inference_completions_cost": 0.01605
+          }
+        }
+      ]
+    },
+    {
+      "run": 2,
+      "label_map": {
+        "A": "anthropic/claude-sonnet-5.5",
+        "B": "google/gemini-3.8-flash",
+        "C": "deepseek/deepseek-v4-pro"
+      },
+      "ok": true,
+      "scores": {
+        "anthropic/claude-sonnet-5.5": {
+          "criteria": {
+            "grounding": 6.0,
+            "specificity": 8.0,
+            "recency": 8.0,
+            "usefulness": 7.0
+          },
+          "unsupported_claims": [
+            "Chewy is the largest U.S. pet e-tailer and offers about 190,000 products from roughly 4,000 brands plus private brands.",
+            "The cited excerpts do not substantiate the Modern Animal transaction, its dates, or the SmartPak acquisition and associated costs.",
+            "The self-service chat excerpt does not establish that the feature uses AI.",
+            "The excerpts do not substantiate the September guidance increase, $47.9 million quarterly capex, $89.5 million free cash flow, or $24.0 million legal-settlement gain.",
+            "The excerpts do not establish that growth including acquisitions exceeded growth excluding them."
+          ],
+          "rationale": "A offers timely metrics and useful meeting questions, but several prominent acquisition, financial, and product claims are not backed by the supplied excerpts.",
+          "weighted_score": 7.1,
+          "label": "A"
+        },
+        "google/gemini-3.8-flash": {
+          "criteria": {
+            "grounding": 4.0,
+            "specificity": 9.0,
+            "recency": 8.0,
+            "usefulness": 7.0
+          },
+          "unsupported_claims": [
+            "Chewy is the largest pure-play U.S. pet e-tailer and offers approximately 190,000 products from 4,000 brands plus private labels.",
+            "The excerpts do not substantiate the Modern Animal acquisition or SmartPak integration and its $7.4 million expense.",
+            "The excerpts do not establish that the app chat feature was rolled out in mid-2026 or resolves inquiries autonomously.",
+            "The September guidance increase and the 1.9% year-over-year increase in sales per active customer are not shown.",
+            "The cited excerpts do not show $588.7 million in debt, $89.5 million in quarterly free cash flow, or $47.9 million in capex.",
+            "Neither leadership name, title, nor Singh's tenure is supported by a cited excerpt.",
+            "The named Amazon, Petco, and PetSmart comparisons—including relative catalog depth, service capabilities, and Autoship retention—are not supported by the excerpts."
+          ],
+          "rationale": "B is concrete and meeting-oriented, but its leadership and competitor sections, along with several recent-event claims, substantially outrun the supplied evidence.",
+          "weighted_score": 6.65,
+          "label": "B"
+        },
+        "deepseek/deepseek-v4-pro": {
+          "criteria": {
+            "grounding": 5.0,
+            "specificity": 8.0,
+            "recency": 8.0,
+            "usefulness": 7.0
+          },
+          "unsupported_claims": [
+            "Chewy is the largest U.S. pet e-tailer and offers approximately 190,000 products from 4,000 brands plus private brands.",
+            "The excerpts do not substantiate the Modern Animal or SmartPak acquisitions or their described businesses.",
+            "The chat excerpt supports self-service resolution, but not that the feature is AI-powered or newly launched.",
+            "The claim that expansion is pressuring liquidity is not established by the cited balance-sheet figures.",
+            "The $89.5 million free-cash-flow and $47.9 million capex figures, and the assertion that capex reduced free cash flow, are not supported by the excerpts.",
+            "The September guidance increase is not shown in the excerpts.",
+            "The assertion that Chewy's model goes beyond that of many competitors lacks a supported competitor comparison."
+          ],
+          "rationale": "C gives a coherent strategic overview and acknowledges the leadership gap, but its acquisition narrative and several financial conclusions lack excerpt support.",
+          "weighted_score": 6.75,
+          "label": "C"
+        }
+      },
+      "raw_outputs": [
+        "{\n  \"A\": {\n    \"scores\": {\n      \"grounding\": 6,\n      \"specificity\": 8,\n      \"recency\": 8,\n      \"usefulness\": 7\n    },\n    \"unsupported_claims\": [\n      \"Chewy is the largest U.S. pet e-tailer and offers about 190,000 products from roughly 4,000 brands plus private brands.\",\n      \"The cited excerpts do not substantiate the Modern Animal transaction, its dates, or the SmartPak acquisition and associated costs.\",\n      \"The self-service chat excerpt does not establish that the feature uses AI.\",\n      \"The excerpts do not substantiate the September guidance increase, $47.9 million quarterly capex, $89.5 million free cash flow, or $24.0 million legal-settlement gain.\",\n      \"The excerpts do not establish that growth including acquisitions exceeded growth excluding them.\"\n    ],\n    \"rationale\": \"A offers timely metrics and useful meeting questions, but several prominent acquisition, financial, and product claims are not backed by the supplied excerpts.\"\n  },\n  \"B\": {\n    \"scores\": {\n      \"grounding\": 4,\n      \"specificity\": 9,\n      \"recency\": 8,\n      \"usefulness\": 7\n    },\n    \"unsupported_claims\": [\n      \"Chewy is the largest pure-play U.S. pet e-tailer and offers approximately 190,000 products from 4,000 brands plus private labels.\",\n      \"The excerpts do not substantiate the Modern Animal acquisition or SmartPak integration and its $7.4 million expense.\",\n      \"The excerpts do not establish that the app chat feature was rolled out in mid-2026 or resolves inquiries autonomously.\",\n      \"The September guidance increase and the 1.9% year-over-year increase in sales per active customer are not shown.\",\n      \"The cited excerpts do not show $588.7 million in debt, $89.5 million in quarterly free cash flow, or $47.9 million in capex.\",\n      \"Neither leadership name, title, nor Singh's tenure is supported by a cited excerpt.\",\n      \"The named Amazon, Petco, and PetSmart comparisons—including relative catalog depth, service capabilities, and Autoship retention—are not supported by the excerpts.\"\n    ],\n    \"rationale\": \"B is concrete and meeting-oriented, but its leadership and competitor sections, along with several recent-event claims, substantially outrun the supplied evidence.\"\n  },\n  \"C\": {\n    \"scores\": {\n      \"grounding\": 5,\n      \"specificity\": 8,\n      \"recency\": 8,\n      \"usefulness\": 7\n    },\n    \"unsupported_claims\": [\n      \"Chewy is the largest U.S. pet e-tailer and offers approximately 190,000 products from 4,000 brands plus private brands.\",\n      \"The excerpts do not substantiate the Modern Animal or SmartPak acquisitions or their described businesses.\",\n      \"The chat excerpt supports self-service resolution, but not that the feature is AI-powered or newly launched.\",\n      \"The claim that expansion is pressuring liquidity is not established by the cited balance-sheet figures.\",\n      \"The $89.5 million free-cash-flow and $47.9 million capex figures, and the assertion that capex reduced free cash flow, are not supported by the excerpts.\",\n      \"The September guidance increase is not shown in the excerpts.\",\n      \"The assertion that Chewy's model goes beyond that of many competitors lacks a supported competitor comparison.\"\n    ],\n    \"rationale\": \"C gives a coherent strategic overview and acknowledges the leadership gap, but its acquisition narrative and several financial conclusions lack excerpt support.\"\n  }\n}"
+      ],
+      "error": null,
+      "cost": 0.0334885,
+      "latency": 24.192424571000004,
+      "usage": [
+        {
+          "completion_tokens": 1670,
+          "prompt_tokens": 6716,
+          "total_tokens": 8386,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": 0,
+            "reasoning_tokens": 899,
+            "rejected_prediction_tokens": null,
+            "text_tokens": null,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 6713,
+            "cached_tokens": 0,
+            "image_tokens": null,
+            "text_tokens": null,
+            "video_tokens": 0
+          },
+          "cost": 0.0334885,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.0334885,
+            "upstream_inference_prompt_cost": 0.0167885,
+            "upstream_inference_completions_cost": 0.0167
+          }
+        }
+      ]
+    }
+  ]
+}

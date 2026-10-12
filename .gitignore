@@ -222,3 +222,7 @@ __marimo__/
 # model-bakeoff
 results/*
 !results/company-research-stripe-20261012-161616/
+!results/company-research-stripe-20261012-163128/
+!results/company-research-openrouter-20261012-163344/
+!results/company-research-plausible-analytics-20261012-163547/
+!results/company-research-oxide-computer-company-20261012-163751/

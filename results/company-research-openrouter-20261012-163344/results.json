@@ -1,0 +1,784 @@
+{
+  "task": {
+    "name": "company_research",
+    "description": "A sourced one-page briefing on a company, for meeting or interview prep.",
+    "path": "tasks/company_research.yaml",
+    "vars": {
+      "company": "OpenRouter"
+    },
+    "system": "You are a research analyst preparing a briefing for someone about to meet this company.\nBe specific and current. Cite a source for every factual claim. If you can't find\nsomething, say so rather than guessing.\n",
+    "user": "Write a briefing on OpenRouter with these sections:\n1. What they do, who buys it, and how they make money\n2. Recent news and launches (last 6 months)\n3. Funding, size, and financial signals\n4. Leadership\n5. Main competitors and how they differ\n6. Likely strategic priorities and open questions\nKeep it under 500 words.\n",
+    "rubric": [
+      {
+        "name": "grounding",
+        "weight": 0.35,
+        "description": "Factual claims are supported by the cited sources; nothing invented or unsupported."
+      },
+      {
+        "name": "specificity",
+        "weight": 0.25,
+        "description": "Concrete facts (names, numbers, dates, products) rather than generic statements."
+      },
+      {
+        "name": "recency",
+        "weight": 0.2,
+        "description": "Reflects current information, not stale or outdated facts."
+      },
+      {
+        "name": "usefulness",
+        "weight": 0.2,
+        "description": "Would genuinely prepare someone for a meeting; strategic section shows real insight. Length is not a virtue."
+      }
+    ],
+    "web": {
+      "enabled": true,
+      "engine": "exa",
+      "max_results": 5
+    },
+    "max_tokens": 4000,
+    "temperature": 0.2
+  },
+  "started_at": "2026-10-12T16:33:44",
+  "flags": {
+    "runs": 2,
+    "free": false,
+    "web": true,
+    "judge": true
+  },
+  "models": [
+    "anthropic/claude-sonnet-5.5",
+    "google/gemini-3.8-flash",
+    "deepseek/deepseek-v4-pro"
+  ],
+  "judge": "openai/gpt-6-sol",
+  "skipped_models": [],
+  "warnings": [],
+  "total_cost": 0.23035614799999998,
+  "contestant_cost": 0.151756648,
+  "judge_cost": 0.0785995,
+  "summary": [
+    {
+      "model": "anthropic/claude-sonnet-5.5",
+      "runs": 2,
+      "ok_runs": 2,
+      "scores": [
+        8.3,
+        7.55
+      ],
+      "mean_score": 7.925000000000001,
+      "latencies": [
+        20.932953190999996,
+        21.295023120999986
+      ],
+      "costs": [
+        0.040262,
+        0.043
+      ],
+      "mean_cost": 0.041631,
+      "sources": [
+        5,
+        5
+      ],
+      "unsupported_claims": [
+        4,
+        7
+      ],
+      "score_per_cent": 1.9036295068578706,
+      "rationales": [
+        "A concrete, timely briefing that distinguishes estimates from company figures and flags conflicting metrics, though several product, pricing, and deal details exceed its supplied excerpts.",
+        "It is meeting-oriented and appropriately distinguishes estimates from confirmed figures, but numerous precise claims lack support in its supplied excerpts."
+      ],
+      "errors": []
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "runs": 2,
+      "ok_runs": 2,
+      "scores": [
+        7.1,
+        7.9
+      ],
+      "mean_score": 7.5,
+      "latencies": [
+        29.20058028400001,
+        39.039495585
+      ],
+      "costs": [
+        0.011679208,
+        0.01223044
+      ],
+      "mean_cost": 0.011954824,
+      "sources": [
+        5,
+        5
+      ],
+      "unsupported_claims": [
+        5,
+        6
+      ],
+      "score_per_cent": 6.273618080868443,
+      "rationales": [
+        "B covers all six sections with useful facts, but overstates the deal’s status, introduces unsupported customers, and presents conflicting token-volume figures without explanation.",
+        "The briefing uses a strong source for the acquisition and offers useful strategic questions, but several commercial and leadership details are unsupported, and it exceeds the requested length."
+      ],
+      "errors": []
+    },
+    {
+      "model": "google/gemini-3.8-flash",
+      "runs": 2,
+      "ok_runs": 2,
+      "scores": [
+        4.95,
+        6.9
+      ],
+      "mean_score": 5.925000000000001,
+      "latencies": [
+        32.40240941100001,
+        24.712438348999996
+      ],
+      "costs": [
+        0.02400625,
+        0.02057875
+      ],
+      "mean_cost": 0.0222925,
+      "sources": [
+        5,
+        5
+      ],
+      "unsupported_claims": [
+        5,
+        7
+      ],
+      "score_per_cent": 2.6578445665582597,
+      "rationales": [
+        "C includes some current figures but ends mid-leadership section, omitting competitors and strategic questions, while making several claims its excerpts do not support.",
+        "It covers all six sections concisely, but it blurs acquisition talks with an agreement and adds funding, leadership, and integration details the excerpts do not establish."
+      ],
+      "errors": []
+    }
+  ],
+  "contestants": [
+    {
+      "model": "anthropic/claude-sonnet-5.5",
+      "run": 1,
+      "ok": true,
+      "answer": "# OpenRouter Briefing (as of Oct 12, 2026)\n\n## 1. What they do, who buys, how they earn\nOpenRouter is a unified API and marketplace for LLMs. It started in early 2023 and claims 500+ models, 80+ providers and 10M+ users ([openrouter.ai](https://openrouter.ai/about)). Developers buy credits, call one OpenAI-compatible endpoint, and get automatic failover across providers ([openrouter.ai](https://openrouter.ai/blog/insights/openrouter-vs-portkey/)). Buyers include individual developers and, increasingly, enterprises that want spend controls and cheaper models for easier tasks ([menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/)).\n\n**Revenue:** Provider pricing passes through at 0% markup. OpenRouter charges a 5.5% fee on credit purchases ($0.80 minimum) and 5% on bring-your-own-key usage ([openrouter.ai](https://openrouter.ai/blog/insights/openrouter-vs-portkey/)).\n\n## 2. Recent news\n- **Stripe acquisition:** Announced Aug 19, 2026. Stripe is paying $7.5B, per a person familiar with the deal: $1.5B to founders and $6B to investors ([nytimes.com](https://www.nytimes.com/2026/08/19/business/stripe-openrouter-ai.html)). I found no source on closing status.\n- **Usage shift:** Chinese open-source models have grown to 50%+ of usage, led by DeepSeek, Tencent, Xiaomi and Z.ai ([sacra.com](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/)).\n- **Product direction:** Multimodal models (image, audio, embeddings, video), OpenRouter Enterprise, and smarter routing ([menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/)).\n\n## 3. Funding, size, financials\n- **Funding:** $40M from Menlo about a year before its post, then a $113M Series B at a $1.3B valuation led by CapitalG ([menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/)).\n- **Team:** About 50 people, per the same Menlo post.\n- **Revenue:** Sacra estimates $140M annualized in July 2026, growing 29% MoM over four months. Per-token monetization has fallen ~60% as cheaper tokens dominate ([sacra.com](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/)). These are third-party estimates, not company-reported.\n- **Data conflicts:** Token volume figures differ by source: ~250T/month (Sacra), 600T+/month (OpenRouter's own page), and a ~1.5 quadrillion/year run rate (Menlo, undated). Sacra also cited a ~$10B reported price, while the NYT reports $7.5B. The NYT figure is later and reflects the announced deal. Ask which metrics they use.\n\n## 4. Leadership\n- **Alex Atallah:** Founder, previously started OpenSea ([menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/)). The NYT describes him as \"a founder\" ([nytimes.com](https://www.nytimes.com/2026/08/19/business/stripe-openrouter-ai.html)).\n- **Chris Clark:** COO, previously a two-time founder ([menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/)).\n- **Not found:** Formal CEO title and other executives. Also unknown is how leadership roles change under Stripe.\n\n## 5. Competitors\nSacra describes the category as split into wholesale token marketplaces (OpenRouter), public gateways (Vercel), and behind-the-firewall options (Kong) ([sacra.com](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/)). Model routing is also becoming a built-in feature in Cursor, Databricks and Ramp (same source).\n- **Portkey:** A governance and observability control plane that sits over keys you already hold. It is now part of Palo Alto Networks. OpenRouter owns the path to the model and holds the provider relationships ([openrouter.ai](https://openrouter.ai/blog/insights/openrouter-vs-portkey/)).\n\n## 6. Strategic priorities and open questions\n**Likely priorities (inferred from the sources):**\n- Integrating with Stripe, pairing routing with usage-based billing. Sacra points to Stripe's Metronome acquisition.\n- Enterprise spend management.\n- Multimodal expansion.\n- Intelligent routing.\n\n**Questions to ask:**\n- Does the deal close, and how independent will OpenRouter stay, including neutrality toward providers?\n- How will margins hold as the per-token fee base shrinks?\n- How exposed is the business to Chinese open-source models, now over half of usage?\n- Will bundled routing from platforms like Vercel, Cursor and Databricks erode demand?",
+      "error": null,
+      "latency": 20.932953190999996,
+      "prompt_tokens": 3781,
+      "completion_tokens": 2570,
+      "cost": 0.040262,
+      "citations": [
+        {
+          "url": "https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/",
+          "title": "OpenRouter growing 29% MoM at $140M/year | Sacra",
+          "content": "TL;DR: Since March, Chinese open-source models have grown from a small fraction to 50%+ of OpenRouter usage, nearly tripling token volume while cheaper tokens pushed monetization per token down ~60%. Sacra estimates OpenRouter hit $140M in annualized revenue in July 2026, growing 29% MoM over the last four months. For more, check out our full report and dataset on OpenRouter.\n\n...\n\nWe've previously covered OpenRouter (July 2025, June 2026) from $5M to $50M annualized revenue as model routing became core AI infrastructure, and spoke with Augusto Marietti, CEO of Kong, about the end of tokenmaxxing and how the category has split into wholesale token marketplaces like OpenRouter, public gateways like Vercel, and behind-the-firewall\n\n...\n\n- Chinese open-source AI labs have driven nearly 3x growth in OpenRouter’s token volume since March and now represent 50%+ of all OpenRouter usage (up from ~2% in mid-2025), led by DeepSeek (3T tokens per day) with V4 Flash, Tencent (1.8T) with Hy3, Xiaomi (~760B) with MiMo and Z.ai (~570B) with GLM-5.2, helping drive OpenRouter’s total throughput to ~250T tokens per month even as per-token monetization has fallen ~60% due to OpenRouter’s flat ~5% fee being applied to less expensive tokens.\n- As tokenmaxxing gives way to optimizing cost per unit of intelligence, developers are increasingly replacing expensive frontier models with cheaper open-source models for easier tasks (Chinese model volume up 7x from March to August), turning model routing into a standard feature across deployment platforms (Vercel), coding agents & IDEs (Cursor), data platforms (Databricks), expense management (Ramp), and enterprise API infra (Kong).\n- Stripe is reportedly in talks to acquire OpenRouter for roughly $10B, or about 71x Sacra-estimated $140M annualized revenue in July 2026 growing 29% MoM over the last 4 months, with the upside of Stripe capturing an emergent developer primitive to pair with usage-based billing (via its $1B acquisition of Metronome), to create Stripe Connect-like infrastructure for the marketplace dynamic underlying AI companies, helping them manage gross margin by controlling the spread between token spend and token usage-based pricing."
+        },
+        {
+          "url": "https://openrouter.ai/about",
+          "title": "About - The Unified Interface For LLMs | OpenRouter",
+          "content": "About\n\n...\n\nStarted in early 2023 as the first LLM marketplace, OpenRouter has grown to become the largest and most popular AI gateway. We eliminate vendor lock-in while offering better prices, uptime, and enterprise-grade reliability.\n\n...\n\n- 600T+\n\n...\n\nMonthly tokens\n- 10M+\n\n...\n\nGlobal users\n- 80+\n\n...\n\nProviders\n- 500+\n\n...\n\nModels\n\n...\n\nThe future of AI is neurodiversity, and OpenRouter is the best place to leverage it. We are building a transparent marketplace for AI that shows what makes each model unique, works everywhere people need it, and gives them the best intelligence without model lock-in.\n\n...\n\nChoose the most cost-effective model, provider, and tool for the task, or use a router to do it automatically.\n- ### Quality\n\n...\n\nSource from the highest-quality providers for every model. Orchestrate multiple models for the best result.\n- ### Security\n\n...\n\nAdvanced security and observability for the boundary between models."
+        },
+        {
+          "url": "https://www.nytimes.com/2026/08/19/business/stripe-openrouter-ai.html",
+          "title": "Stripe Buys A.I. Start-Up OpenRouter for $7.5 Billion - The ...",
+          "content": "Credit...Dado Ruvic/Reuters\nErin Griffith\nBy Erin Griffith\nReporting from San Francisco\nAug. 19, 2026\nSee more of our coverage in your search results.Encuentra más de nuestra cobertura en los resultados de búsqueda. Add The New York Times on GoogleAgrega The New York Times en Google \nIn May, Alex Atallah, a founder of a fast-growing start-up called OpenRouter, described his company as the artificial intelligence version of the payments company Stripe.\nNow Stripe is buying OpenRouter.\nThe deal, announced on Wednesday, combines Stripe’s technology, which lets companies direct payments to other businesses, with OpenRouter’s technology, which lets them direct their spending of “tokens” between different providers of A.I. models. Tokens are an atomic unit of A.I. use, roughly equivalent to a word fragment.\nStripe is paying $7.5 billion for OpenRouter, a person with knowledge of the agreement said. Of that sum, $1.5 billion is going to the start-up’s founders and $6 billion to investors,"
+        },
+        {
+          "url": "https://openrouter.ai/blog/insights/openrouter-vs-portkey/",
+          "title": "OpenRouter vs Portkey: Routing Network vs Control Plane",
+          "content": "OpenRouter is a managed routing network. You buy credits, call one OpenAI-compatible endpoint, and it routes across 70+ providers with automatic failover. You never hold a provider key. Portkey is an AI control plane, now part of Palo Alto Networks after a 2026 acquisition. It sits in front of the provider keys you already have and adds governance, prompt management, guardrails, and observability.\n\n...\n\nPick OpenRouter when you want model access and failover with no infrastructure. Pick Portkey when you need a governance layer over the provider accounts you already run.\n\n...\n\nOpenRouter owns the path to the model. Your app calls `https://openrouter.ai/api/v1`, OpenRouter picks a provider, and forwards the request on credits you’ve already bought. There are no per-provider accounts to manage, and a request that fails on one provider falls over to another automatically.\n\n...\n\nPortkey’s count is breadth of models you can address once you’ve supplied the keys. OpenRouter’s count is models it actively routes to, with credits, load balancing, and cross-provider failover handled for you. Its Auto Router, powered by the wisdom of the market, classifies each prompt and ranks candidates by the aggregate spend of the OpenRouter community over a trailing 7-day window for that task type, and provider routing lets you filter by price, throughput, latency, data policy, and quantization.\n\n...\n\nThe two price along different axes. OpenRouter passes provider pricing through at 0% markup, then charges a 5.5% platform fee on credit purchases with a $0.80 minimum. Bring Your Own Key has a 5% fee on equivalent OpenRouter cost after a plan-dependent free allowance; see the pricing page for current details. You pay for usage, nothing else.\n\n...\n\nNet cost depends on where your weight sits. Heavy model spend with provider keys already in hand often favors Portkey’s self-hosted gateway; usage you’d rather not meter or operate favors OpenRouter’s pay-as-you-go.\n\n...\n\nThese aren’t mutually exclusive. You can point Portkey at OpenRouter as an upstream provider, putting Portkey’s governance and prompt management in front of OpenRouter’s routing network. OpenRouter also lists Portkey as an upcoming broadcast destination, so traces will flow the other direction too."
+        },
+        {
+          "url": "https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/",
+          "title": "OpenRouter Now Processes More Than a Quadrillion Tokens a Year | Menlo Ventures",
+          "content": "When we announced our $40M investment in OpenRouter almost exactly one year ago, they had 2.5M+ developers and had just crossed a ~100 trillion tokens/year run rate. Today, they are at 8M+ developers and, as of this week, will be at a ~1.5 quadrillion tokens/year run rate. That’s one followed by 15 zeros. For comparison, that’s ~15-30% of all of Google’s token run rate, 20-40% of OpenAI’s run rate, and likely >50% of Azure Foundry. On the back of this growth, they’ve raised a $113M Series B at a $1.3B valuation led by CapitalG. Their revenue has already doubled since the round was done in February.\n\n...\n\n### What is OpenRouter? \n\nOpenRouter helps developers and organizations access, route, and choose inference across 400+ AI models through one unified interface.\n\n...\n\nOpenRouter is a lean team of ~50 people. That’s over 20 trillion tokens per year per employee and ~$2M in net revenue per employee. This isn’t the founders’ first rodeo either: Alex Atallah is a 3x founder who previously started the $13B NFT company OpenSea, and COO Chris Clark is a 2x former founder of a public company. The team is remote-friendly with a cluster of employees in NYC and prioritizes startup experience over pedigree, with most of its engineers coming from places where they’ve actually built things from 0 to 1. Compared to many startups, OpenRouter is actually quite fairly valued, especially given the velocity of its growth since the last round already. They’re positioned so squarely in the middle of the AI stack that there’s a lot of headroom to grow in many different directions.\n\n...\n\nThe main things that OpenRouter has been working on in the last year are:\n\n...\n\n- Going beyond text models. Going multimodal. You can now get image, audio (speech and transcription), embedding, and video models on OR. This area continues to be something the team is working on in the coming year.\n- Going enterprise. Businesses are overspending on AI, and companies like Uber and Microsoft are blowing through their token budgets. OpenRouter Enterprise allows you to bring all models to the enterprise, set spend management rules, and allow your employees to use cheaper models for easier tasks, too, while boosting your uptime (and not sacrificing on the capacity you have already)\n- Intelligent routing. OpenRouter does already support automatic request routing from prompts today. But routing based on just the current prompt isn’t quite good enough for production. Soon, enterprises on OpenRouter will be able to use its observability to automatically find callsites where they could’ve just used a cheaper model and got the same quality. After all, routing is in the name."
+        }
+      ],
+      "usage": {
+        "completion_tokens": 2570,
+        "prompt_tokens": 3781,
+        "total_tokens": 6351,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 719,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.040262,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.033262,
+          "upstream_inference_prompt_cost": 0.007562,
+          "upstream_inference_completions_cost": 0.0257
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "google/gemini-3.8-flash",
+      "run": 1,
+      "ok": true,
+      "answer": "### 1. What They Do, Who Buys It, and How They Make Money\nOpenRouter is a unified AI routing gateway providing an OpenAI-compatible API to access hundreds of models across 80+ providers with automatic failover, uptime optimization, and load balancing ([openrouter.ai](https://openrouter.ai/about)). \n\n* **Buyers:** Independent developers, AI startups, coding platforms (e.g., Cursor, Vercel), and enterprises seeking token spend controls ([sacra.com](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/)).\n* **Monetization:** OpenRouter passes provider pricing through at 0% markup and takes a 5.5% platform fee on inference spend ($0.80 minimum), charges a 5% fee on Bring-Your-Own-Key (BYOK) volume, and sells an Enterprise plan with custom governance, SLAs, and SSO ([openrouter.ai](https://openrouter.ai/blog/insights/openrouter-vs-portkey/), [research.contrary.com](https://research.contrary.com/company/openrouter)).\n\n### 2. Recent News and Launches\n* **Reported Stripe Acquisition:** Stripe agreed to/entered advanced talks to acquire OpenRouter for between $7.5B and $10B to pair routing infrastructure with usage-based billing ([sacra.com](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/), [research.contrary.com](https://research.contrary.com/company/openrouter)).\n* **Multimodal Expansion:** Expanded beyond text LLMs into image, speech, audio, and video inference models ([menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/)).\n* **Open-Source Model Surge:** Driven by DeepSeek, Tencent, and Xiaomi, open-source model volume grew to represent over 50% of platform traffic ([sacra.com](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/)).\n\n### 3. Funding, Size, and Financial Signals\n* **Funding:** ~$154M total raised, including a $40M Series A (co-led by a16z and Menlo Ventures) and a $113M Series B led by CapitalG at a $1.3B valuation ([research.contrary.com](https://research.contrary.com/company/openrouter)).\n* **Financials:** Reached an estimated $140M annualized revenue run-rate in July 2026 (up from $10M in October 2025 and $50M in April 2026), growing ~29% MoM ([sacra.com](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/), [research.contrary.com](https://research.contrary.com/company/openrouter)). \n* **Scale:** Lean team of ~50 people supporting over 8M–10M users and processing tokens at a run rate exceeding 1.5 quadrillion tokens/year ([menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/), [openrouter.ai](https://openrouter.ai/about)).\n\n### 4. Leadership\n* **Alex Atallah (Co-founder & CEO):** 3x founder",
+      "error": null,
+      "latency": 32.40240941100001,
+      "prompt_tokens": 2695,
+      "completion_tokens": 3996,
+      "cost": 0.02400625,
+      "citations": [
+        {
+          "url": "https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/",
+          "title": "OpenRouter growing 29% MoM at $140M/year | Sacra",
+          "content": "TL;DR: Since March, Chinese open-source models have grown from a small fraction to 50%+ of OpenRouter usage, nearly tripling token volume while cheaper tokens pushed monetization per token down ~60%. Sacra estimates OpenRouter hit $140M in annualized revenue in July 2026, growing 29% MoM over the last four months. For more, check out our full report and dataset on OpenRouter.\n\n...\n\n- Chinese open-source AI labs have driven nearly 3x growth in OpenRouter’s token volume since March and now represent 50%+ of all OpenRouter usage (up from ~2% in mid-2025), led by DeepSeek (3T tokens per day) with V4 Flash, Tencent (1.8T) with Hy3, Xiaomi (~760B) with MiMo and Z.ai (~570B) with GLM-5.2, helping drive OpenRouter’s total throughput to ~250T tokens per month even as per-token monetization has fallen ~60% due to OpenRouter’s flat ~5% fee being applied to less expensive tokens.\n- As tokenmaxxing gives way to optimizing cost per unit of intelligence, developers are increasingly replacing expensive frontier models with cheaper open-source models for easier tasks (Chinese model volume up 7x from March to August), turning model routing into a standard feature across deployment platforms (Vercel), coding agents & IDEs (Cursor), data platforms (Databricks), expense management (Ramp), and enterprise API infra (Kong).\n- Stripe is reportedly in talks to acquire OpenRouter for roughly $10B, or about 71x Sacra-estimated $140M annualized revenue in July 2026 growing 29% MoM over the last 4 months, with the upside of Stripe capturing an emergent developer primitive to pair with usage-based billing (via its $1B acquisition of Metronome), to create Stripe Connect-like infrastructure for the marketplace dynamic underlying AI companies, helping them manage gross margin by controlling the spread between token spend and token usage-based pricing."
+        },
+        {
+          "url": "https://openrouter.ai/about",
+          "title": "About - The Unified Interface For LLMs | OpenRouter",
+          "content": "About - The Unified Interface For LLMs | OpenRouter\n\n...\n\nStarted in early 2023 as the first LLM marketplace, OpenRouter has grown to become the largest and most popular AI gateway. We eliminate vendor lock-in while offering better prices, uptime, and enterprise-grade reliability.\n\n...\n\n- 600T+\n\n...\n\nMonthly tokens\n- 10M+\n\nGlobal users\n- 80+"
+        },
+        {
+          "url": "https://openrouter.ai/blog/insights/openrouter-vs-portkey/",
+          "title": "OpenRouter vs Portkey: Routing Network vs Control Plane",
+          "content": "OpenRouter is a managed routing network. You buy credits, call one OpenAI-compatible endpoint, and it routes across 70+ providers with automatic failover. You never hold a provider key. Portkey is an AI control plane, now part of Palo Alto Networks after a 2026 acquisition. It sits in front of the provider keys you already have and adds governance, prompt management, guardrails, and observability.\n\n...\n\nThe two price along different axes. OpenRouter passes provider pricing through at 0% markup, then charges a 5.5% platform fee on credit purchases with a $0.80 minimum. Bring Your Own Key has a 5% fee on equivalent OpenRouter cost after a"
+        },
+        {
+          "url": "https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/",
+          "title": "OpenRouter Now Processes More Than a Quadrillion Tokens a Year | Menlo Ventures",
+          "content": "When we announced our $40M investment in OpenRouter almost exactly one year ago, they had 2.5M+ developers and had just crossed a ~100 trillion tokens/year run rate. Today, they are at 8M+ developers and, as of this week, will be at a ~1.5 quadrillion tokens/year run rate. That’s one followed by 15 zeros. For comparison, that’s ~15-30% of all of Google’s token run rate, 20-40% of OpenAI’s run rate, and likely >50% of Azure Foundry. On the back of this growth, they’ve raised a $113M Series B at a $1.3B valuation led by CapitalG. Their revenue has already doubled since the round was done in February.\n\n...\n\nOpenRouter is a lean team of ~50 people. That’s over 20 trillion tokens per year per employee and ~$2M in net revenue per employee. This isn’t the founders’ first rodeo either: Alex Atallah is a 3x founder who previously started the $13B NFT company OpenSea, and COO Chris Clark is a 2x former founder of a public company. The team is remote-friendly with a cluster of employees in NYC and prioritizes startup experience over pedigree, with most of its engineers coming from places where they’ve actually built things from 0 to 1. Compared to many startups, OpenRouter is actually quite fairly valued, especially given the velocity of its growth since the last round already. They’re positioned so squarely in the middle of the AI stack that there’s a lot of headroom to grow in many different directions.\n\n...\n\n- Going beyond text models. Going multimodal. You can now get image, audio (speech and transcription), embedding, and video models on OR. This area continues to be something the team is working on in the coming year.\n- Going enterprise. Businesses are overspending on AI, and companies like Uber and Microsoft are blowing through their token budgets. OpenRouter Enterprise allows you to bring all models to the enterprise, set spend management rules, and allow your employees to use cheaper models for easier tasks, too, while boosting your uptime (and not sacrificing on the capacity you have already)\n- Intelligent routing. OpenRouter does already support automatic request routing from prompts today. But routing based on just the current prompt isn’t quite good enough for production. Soon, enterprises on OpenRouter will be able to use its observability to automatically find callsites where they could’ve just used a cheaper model and got the same quality. After all, routing is in the name."
+        },
+        {
+          "url": "https://research.contrary.com/company/openrouter",
+          "title": "Report: OpenRouter Business Breakdown & Founding Story ...",
+          "content": "LiteLLM: Founded in 2023 out of Y Combinator’s Winter 2023 batch, LiteLLM has raised $1.6 million in total funding as of August 2026. It provides an open-source Python SDK and a self-hosted proxy server that normalizes requests and responses across 100+ model APIs into the OpenAI format, letting engineering teams call any model API without worrying about each model's different syntax. Beyond normalization, teams can define their own routing logic to determine how calls are distributed across different models.\n\n...\n\nOpenRouter takes a fundamentally different approach. It is a cloud-hosted API that developers call externally. A single API call goes to OpenRouter’s endpoint, and its routing intelligence directs the request to the best-fit model across hundreds of models and 80+ providers based on price, performance, and availability. There is no configuration, no infrastructure to manage, and no proxy to run.\n\n...\n\nThis distinction drives every other difference\n\n...\n\nOpenRouter offers a free plan, a usage-based plan, and an enterprise plan. The free plan carries no platform fees, but access is limited to 25 models and four providers. It also excludes auto-routing, preferred vendor selections, budget and spend controls, prompt caching, and admin controls. The usage-based plan charges a 5.5% platform fee on all inference spend and unlocks the full platform: the full model catalog, all providers, auto-routing, preferred vendor selections, budget and spend controls, prompt caching, and admin controls. The enterprise plan includes everything in usage-based, layering on enterprise security and governance features, including managed policy enforcement, Provider Data Explorer, single sign-on (SSO), and contractual service-level agreements (SLAs).\n\n...\n\nThe free plan may serve as a natural acquisition channel, giving developers hands-on access to the platform before converting to usage-based as their inference needs grow. The usage-based plan is where OpenRouter monetizes. The 5.5% fee on inference spend means revenue scales directly with the volume of tokens processed through the platform, aligning OpenRouter’s incentives with its users. The platform earns more only if developers route more calls through it, so OpenRouter has an incentive to consistently offer the broadest model selection, the most reliable uptime, and the most intelligent routing.\n\n...\n\nBecause revenue is tied to inference spend on the platform rather than seat count or subscription tiers, sustaining revenue growth depends on token volume scaling faster than token unit prices decline. While inference costs dropped 1,000-fold between 2022 and 2024 and are projected to fall another 90% in per-token cost from 2025 to 2030, OpenRouter has scaled token consumption on the platform from 10 trillion tokens per year in June 2025 to over 100 trillion tokens per month as of August 2026. That volume growth is what positions OpenRouter for continued revenue growth despite falling per-token costs. Atallah has described inference as potentially “the largest market ever in software,” and OpenRouter’s take-rate model scales its revenue directly with that market’s growth.\n\n...\n\nIn June 2025, OpenRouter announced it had raised a cumulative $40 million across a seed round and a Series A, at a $500 million Series A valuation, co-led by Andreessen Horowitz and Menlo Ventures, with Sequoia Capital and angel investors also participating. In May 2026, amid rapid growth in user count, token usage, and revenue, OpenRouter raised a $113 million Series B at a $1.3 billion valuation, led by Alphabet’s CapitalG. Its total funding reached roughly $154 million as of May 2026. Reporting placed the company’s ARR at $10 million in October 2025, rising to $50 million by April 2026. The valuation jump from Series A to Series B represented a 2.6x increase.\n\n...\n\nIn August 2026, Stripe agreed to acquire OpenRouter for $7.5 billion. At that price, the reported deal values OpenRouter at more than 5x its Series B valuation from just three months earlier and reflects Stripe’s thesis that layer metering AI inference will sit at the center of how AI spend is billed and settled.\n\n...\n\nThe company’s enterprise plan, which includes SSO, managed policy enforcement, contractual SLAs, and Provider Data Explorer, provides the compliance and governance features enterprise buyers require. However, OpenRouter predominantly relies on a product-led growth model to acquire customers, with only two active account executives as of April 2026. Building out a dedicated enterprise sales function would allow OpenRouter to actively pursue and close large enterprise logos rather than relying on inbound developer adoption to convert into enterprise accounts."
+        }
+      ],
+      "usage": {
+        "completion_tokens": 3996,
+        "prompt_tokens": 2695,
+        "total_tokens": 6691,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 3178,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.02400625,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.01700625,
+          "upstream_inference_prompt_cost": 0.00202125,
+          "upstream_inference_completions_cost": 0.014985
+        }
+      },
+      "finish_reason": "length",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "run": 1,
+      "ok": true,
+      "answer": "Here is the briefing on OpenRouter.\n\n### 1. What they do, who buys it, and how they make money\nOpenRouter is a unified interface and marketplace that lets developers access over 500 models from 80+ providers through a single API, eliminating the need to manage multiple provider keys. Its core users are over 10 million developers and enterprises, including companies like Uber and Microsoft, who use it to avoid vendor lock-in and optimize AI spending by routing prompts to the most cost-effective model for a given task [openrouter.ai](https://openrouter.ai/about), [menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/). The company makes money by applying a 5.5% platform fee on credit purchases, passing through the underlying provider’s token pricing with no markup [openrouter.ai](https://openrouter.ai/blog/insights/openrouter-vs-portkey/).\n\n### 2. Recent news and launches (last 6 months)\nThe most significant recent event is Stripe’s announced acquisition of OpenRouter for $7.5 billion in August 2026 [nytimes.com](https://www.nytimes.com/2026/08/19/business/stripe-openrouter-ai.html). In the months leading up to the acquisition, the platform saw explosive growth driven by the adoption of Chinese open-source models, which grew from a small fraction to over 50% of all usage since March [sacra.com](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/). The company also expanded beyond text models to offer multimodal capabilities, including image, audio, and video models [menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/).\n\n### 3. Funding, size, and financial signals\nBefore its acquisition, OpenRouter was growing at 29% month-over-month, reaching an estimated $140 million in annualized revenue by July 2026 [sacra.com](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/). It processes over 600 trillion tokens monthly and recently hit a run rate of roughly 1.5 quadrillion tokens per year [openrouter.ai](https://openrouter.ai/about), [menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/). The company had raised a $113 million Series B at a $1.3 billion valuation and, despite its high growth, operated with a lean team of approximately 50 people, generating about $2 million in net revenue per employee [menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/).\n\n### 4. Leadership\nOpenRouter was co-founded by Alex Atallah, a serial entrepreneur who previously co-founded the $13 billion NFT marketplace OpenSea. The COO is Chris Clark, a two-time founder with experience leading a public company [menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/). Following the acquisition by Stripe, the leadership’s future roles within the larger organization are not yet publicly detailed.\n\n### 5. Main competitors and how they differ\nA key competitor is Portkey, now part of Palo Alto Networks. Portkey functions as an AI control plane, adding a governance and observability layer over the provider keys a company already owns, whereas OpenRouter is a managed routing network that abstracts away the keys and provider management entirely [openrouter.ai](https://openrouter.ai/blog/insights/openrouter-vs-portkey/). The two can be complementary, with users pointing Portkey at OpenRouter to combine governance with automated routing. Other competition comes from model routing features being built directly into deployment platforms like Vercel and enterprise API infrastructure like Kong [sacra.com](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/).\n\n### 6. Likely strategic priorities and open questions\nThe acquisition by Stripe suggests OpenRouter will become a core part of Stripe’s strategy to create infrastructure for the AI economy, analogous to Stripe Connect for marketplace payments. This will likely involve tighter integration of usage-based billing for AI spending. A key priority will be advancing its intelligent routing capabilities to automatically identify where cheaper models can be substituted without quality loss [menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/). An open question is whether OpenRouter can maintain its model-agnostic, neutral marketplace position now that it is owned by a single, non-AI company like Stripe.",
+      "error": null,
+      "latency": 29.20058028400001,
+      "prompt_tokens": 2408,
+      "completion_tokens": 1037,
+      "cost": 0.011679208,
+      "citations": [
+        {
+          "url": "https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/",
+          "title": "OpenRouter growing 29% MoM at $140M/year | Sacra",
+          "content": "TL;DR: Since March, Chinese open-source models have grown from a small fraction to 50%+ of OpenRouter usage, nearly tripling token volume while cheaper tokens pushed monetization per token down ~60%. Sacra estimates OpenRouter hit $140M in annualized revenue in July 2026, growing 29% MoM over the last four months. For more, check out our full report and dataset on OpenRouter.\n\n...\n\nWe've previously covered OpenRouter (July 2025, June 2026) from $5M to $50M annualized revenue as model routing became core AI infrastructure, and spoke with Augusto Marietti, CEO of Kong, about the end of tokenmaxxing and how the category has split into wholesale token marketplaces like OpenRouter, public gateways like Vercel, and behind-the-firewall enterprise gateways like Kong.\n\n...\n\n- Chinese open-source AI labs have driven nearly 3x growth in OpenRouter’s token volume since March and now represent 50%+ of all OpenRouter usage (up from ~2% in mid-2025), led by DeepSeek (3T tokens per day) with V4 Flash, Tencent (1.8T) with Hy3, Xiaomi (~760B) with MiMo and Z.ai (~570B) with GLM-5.2, helping drive OpenRouter’s total throughput to ~250T tokens per month even as per-token monetization has fallen ~60% due to OpenRouter’s flat ~5% fee being applied to less expensive tokens.\n- As tokenmaxxing gives way to optimizing cost per unit of intelligence, developers are increasingly replacing expensive frontier models with cheaper open-source models for easier tasks (Chinese model volume up 7x from March to August), turning model routing into a standard feature across deployment platforms (Vercel), coding agents & IDEs (Cursor), data platforms (Databricks), expense management (Ramp), and enterprise API infra (Kong).\n- Stripe is reportedly in talks to acquire OpenRouter for roughly $10B, or about 71x Sacra-estimated $140M annualized revenue in July 2026 growing 29% MoM over the last 4 months, with the upside of Stripe capturing an emergent developer primitive to pair with usage-based billing (via its $1B acquisition of Metronome), to create Stripe Connect-like infrastructure for the marketplace dynamic underlying AI companies, helping them manage gross margin by controlling the spread between token spend and token usage-based pricing."
+        },
+        {
+          "url": "https://www.nytimes.com/2026/08/19/business/stripe-openrouter-ai.html",
+          "title": "Stripe Buys A.I. Start-Up OpenRouter for $7.5 Billion - The ...",
+          "content": "Credit...Dado Ruvic/Reuters\nErin Griffith\nBy Erin Griffith\nReporting from San Francisco\nAug. 19, 2026\nSee more of our coverage in your search results.Encuentra más de nuestra cobertura en los resultados de búsqueda. Add The New York Times on GoogleAgrega The New York Times en Google \nIn May, Alex Atallah, a founder of a fast-growing start-up called OpenRouter, described his company as the artificial intelligence version of the payments company Stripe.\nNow Stripe is buying OpenRouter.\nThe deal, announced on Wednesday, combines Stripe’s technology, which lets companies direct payments to other businesses, with OpenRouter’s technology, which lets them direct their spending of “tokens” between different providers of A.I. models. Tokens are an atomic unit of A.I. use, roughly equivalent to a word fragment.\nStripe is paying $7.5 billion for OpenRouter, a person with knowledge of the agreement said. Of that sum, $1.5 billion is going to the start-up’s founders and $6 billion to investors,"
+        },
+        {
+          "url": "https://openrouter.ai/about",
+          "title": "About - The Unified Interface For LLMs | OpenRouter",
+          "content": "Started in early 2023 as the first LLM marketplace, OpenRouter has grown to become the largest and most popular AI gateway. We eliminate vendor lock-in while offering better prices, uptime, and enterprise-grade reliability.\n\n...\n\n- 600T+\n\n...\n\nMonthly tokens\n- 10M+\n\n...\n\nGlobal users\n- 80+\n\n...\n\nProviders\n- 500+\n\n...\n\nModels\n\n...\n\nThe future of AI is neurodiversity, and OpenRouter is the best place to leverage it. We are building a transparent marketplace for AI that shows what makes each model unique, works everywhere people need it, and gives them the best intelligence without model lock-in.\n\n...\n\nChoose the most cost-effective model, provider, and tool for the task, or use a router to do it automatically.\n- ### Quality\n\n...\n\nSource from the highest-quality providers for every model. Orchestrate multiple models for the best result.\n- ### Security\n\n...\n\nAdvanced security and observability for the boundary between models."
+        },
+        {
+          "url": "https://openrouter.ai/blog/insights/openrouter-vs-portkey/",
+          "title": "OpenRouter vs Portkey: Routing Network vs Control Plane",
+          "content": "OpenRouter is a managed routing network. You buy credits, call one OpenAI-compatible endpoint, and it routes across 70+ providers with automatic failover. You never hold a provider key. Portkey is an AI control plane, now part of Palo Alto Networks after a 2026 acquisition. It sits in front of the provider keys you already have and adds governance, prompt management, guardrails, and observability.\n\n...\n\nPick OpenRouter when you want model access and failover with no infrastructure. Pick Portkey when you need a governance layer over the provider accounts you already run.\n\n...\n\nOpenRouter owns the path to the model. Your app calls `https://openrouter.ai/api/v1`, OpenRouter picks a provider, and forwards the request on credits you’ve already bought. There are no per-provider accounts to manage, and a request that fails on one provider falls over to another automatically.\n\n...\n\nPo\n\n...\n\nPortkey’s count is breadth of models you can address once you’ve supplied the keys. OpenRouter’s count is models it actively routes to, with credits, load balancing, and cross-provider failover handled for you. Its Auto Router, powered by the wisdom of the market, classifies each prompt and ranks candidates by the aggregate spend of the OpenRouter community over a trailing 7-day window for that task type, and provider routing lets you filter by price, throughput, latency, data policy, and quantization.\n\n...\n\nThe two price along different axes. OpenRouter passes provider pricing through at 0% markup, then charges a 5.5% platform fee on credit purchases with a $0.80 minimum. Bring Your Own Key has a 5% fee on equivalent OpenRouter cost after a plan-dependent free allowance; see the pricing page for current details. You pay for usage, nothing else.\n\n...\n\nNet cost depends on where your weight sits. Heavy model spend with provider keys already in hand often favors Portkey’s self-hosted gateway; usage you’d rather not meter or operate favors OpenRouter’s pay-as-you-go.\n\n...\n\nThese aren’t mutually exclusive. You can point Portkey at OpenRouter as an upstream provider, putting Portkey’s governance and prompt management in front of OpenRouter’s routing network. OpenRouter also lists Portkey as an upcoming broadcast destination, so traces will flow the other direction too."
+        },
+        {
+          "url": "https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/",
+          "title": "OpenRouter Now Processes More Than a Quadrillion Tokens a Year | Menlo Ventures",
+          "content": "When we announced our $40M investment in OpenRouter almost exactly one year ago, they had 2.5M+ developers and had just crossed a ~100 trillion tokens/year run rate. Today, they are at 8M+ developers and, as of this week, will be at a ~1.5 quadrillion tokens/year run rate. That’s one followed by 15 zeros. For comparison, that’s ~15-30% of all of Google’s token run rate, 20-40% of OpenAI’s run rate, and likely >50% of Azure Foundry. On the back of this growth, they’ve raised a $113M Series B at a $1.3B valuation led by CapitalG. Their revenue has already doubled since the round was done in February.\n\n...\n\nOpenRouter helps developers and organizations access, route, and choose inference across 400+ AI models through one unified interface.\n\n...\n\nOpenRouter is a lean team of ~50 people. That’s over 20 trillion tokens per year per employee and ~$2M in net revenue per employee. This isn’t the founders’ first rodeo either: Alex Atallah is a 3x founder who previously started the $13B NFT company OpenSea, and COO Chris Clark is a 2x former founder of a public company. The team is remote-friendly with a cluster of employees in NYC and prioritizes startup experience over pedigree, with most of its engineers coming from places where they’ve actually built things from 0 to 1. Compared to many startups, OpenRouter is actually quite fairly valued, especially given the velocity of its growth since the last round already. They’re positioned so squarely in the middle of the AI stack that there’s a lot of headroom to grow in many different directions.\n\n...\n\nThe main things that OpenRouter has been working on in the last year are:\n\n...\n\n- Going beyond text models. Going multimodal. You can now get image, audio (speech and transcription), embedding, and video models on OR. This area continues to be something the team is working on in the coming year.\n- Going enterprise. Businesses are overspending on AI, and companies like Uber and Microsoft are blowing through their token budgets. OpenRouter Enterprise allows you to bring all models to the enterprise, set spend management rules, and allow your employees to use cheaper models for easier tasks, too, while boosting your uptime (and not sacrificing on the capacity you have already)\n- Intelligent routing. OpenRouter does already support automatic request routing from prompts today. But routing based on just the current prompt isn’t quite good enough for production. Soon, enterprises on OpenRouter will be able to use its observability to automatically find callsites where they could’ve just used a cheaper model and got the same quality. After all, routing is in the name."
+        }
+      ],
+      "usage": {
+        "completion_tokens": 1037,
+        "prompt_tokens": 2408,
+        "total_tokens": 3445,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.011679208,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.004679208,
+          "upstream_inference_prompt_cost": 0.002513952,
+          "upstream_inference_completions_cost": 0.002165256
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "anthropic/claude-sonnet-5.5",
+      "run": 2,
+      "ok": true,
+      "answer": "# OpenRouter Briefing (as of 2026-10-12)\n\n## 1. What they do, who buys, how they earn\nOpenRouter, started in early 2023, calls itself the largest AI gateway: [one API to many LLMs](https://openrouter.ai/about). It routes across 70+ providers with automatic failover, and users [never hold a provider key](https://openrouter.ai/blog/insights/openrouter-vs-portkey/). Buyers are mainly developers and product/engineering teams. It is [product-led, with only two account executives as of April 2026](https://research.contrary.com/company/openrouter). Revenue comes from a [5.5% fee on credit purchases ($0.80 minimum), with provider pricing passed through at 0% markup; bring-your-own-key carries a 5% fee](https://openrouter.ai/blog/insights/openrouter-vs-portkey/). Plans are free, usage-based, and enterprise (SSO, SLAs, policy enforcement) per [Contrary](https://research.contrary.com/company/openrouter).\n\n## 2. Recent news (last ~6 months)\n- **Series B:** $113M at a $1.3B valuation, led by CapitalG ([Menlo Ventures](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/)).\n- **Reported Stripe acquisition:** [Contrary reports](https://research.contrary.com/company/openrouter) that Stripe agreed in August 2026 to acquire OpenRouter for $7.5B. I found no second source, so confirm the status before the meeting.\n- **Model mix:** Chinese open-source models rose [from a small fraction to 50%+ of usage since March](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/).\n- **Product expansion:** image, audio, embedding, and video models, plus an enterprise push ([Menlo Ventures](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/)).\n\n## 3. Funding, size, financials\n- **Funding:** about [$154M total as of May 2026](https://research.contrary.com/company/openrouter), after a $40M seed and Series A at a $500M valuation in June 2025.\n- **Revenue:** Sacra estimates [$140M annualized in July 2026, growing 29% MoM over four months](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/). Contrary cites [ARR of $10M in October 2025 and $50M by April 2026](https://research.contrary.com/company/openrouter). These are third-party estimates, not company-confirmed figures.\n- **Volume and team:** 8M+ developers, a ~1.5 quadrillion tokens/year run rate, and about 50 employees ([Menlo Ventures](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/)).\n- **Pricing pressure:** cheaper tokens pushed monetization per token [down ~60%](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/).\n- **Source discrepancy:** Menlo says the Series B closed in \"February,\" while Contrary says May. Contrary's 2025 token baseline also differs from Menlo's.\n\n## 4. Leadership\n- **Alex Atallah:** a [3x founder who previously started OpenSea](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/). His exact title isn't stated in the sources I have.\n- **Chris Clark:** COO and a 2x founder ([Menlo Ventures](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/)).\n- **Team:** remote-friendly, with a cluster in NYC. I found no other executive names.\n\n## 5. Competitors\n- **LiteLLM:** an open-source, self-hosted proxy that gives teams custom routing and keeps data in their own environment. It is used by [Stripe, Netflix, Adobe, SAP, and Twilio](https://research.contrary.com/company/openrouter). OpenRouter is a managed cloud service with simpler, model- or provider-level routing.\n- **Portkey:** a [control plane for governance, guardrails, and observability that sits in front of your own provider keys, and is now part of Palo Alto Networks after a 2026 acquisition](https://openrouter.ai/blog/insights/openrouter-vs-portkey/).\n- **Hyperscaler platforms:** Menlo compares OpenRouter's volume to Azure Foundry, but I found no direct competitive analysis.\n\n## 6. Strategic priorities and open questions\n**Likely priorities** (from [Menlo Ventures](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/)):\n- Enterprise spend management.\n- Multimodal expansion.\n- Observability-driven routing that finds where a cheaper model would do.\n\n**Open questions:**\n- Is the Stripe deal real, has it closed, and what does it mean for independence and neutrality?\n- Can token volume outgrow falling per-token prices?\n- Can a PLG motion win enterprises that need self-hosting or data control?\n- Is dependence on Chinese open-source models a risk?\n- How do the competing revenue and ARR figures reconcile?",
+      "error": null,
+      "latency": 21.295023120999986,
+      "prompt_tokens": 3880,
+      "completion_tokens": 2824,
+      "cost": 0.043,
+      "citations": [
+        {
+          "url": "https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/",
+          "title": "OpenRouter growing 29% MoM at $140M/year | Sacra",
+          "content": "TL;DR: Since March, Chinese open-source models have grown from a small fraction to 50%+ of OpenRouter usage, nearly tripling token volume while cheaper tokens pushed monetization per token down ~60%. Sacra estimates OpenRouter hit $140M in annualized revenue in July 2026, growing 29% MoM over the last four months. For more, check out our full report and dataset on OpenRouter.\n\n...\n\n- Chinese open-source AI labs have driven nearly 3x growth in OpenRouter’s"
+        },
+        {
+          "url": "https://openrouter.ai/about",
+          "title": "About - The Unified Interface For LLMs | OpenRouter",
+          "content": "Started in early 2023 as the first LLM marketplace, OpenRouter has grown to become the largest and most popular AI gateway. We eliminate vendor lock-in while offering better prices, uptime, and enterprise-grade reliability."
+        },
+        {
+          "url": "https://openrouter.ai/blog/insights/openrouter-vs-portkey/",
+          "title": "OpenRouter vs Portkey: Routing Network vs Control Plane",
+          "content": "OpenRouter is a managed routing network. You buy credits, call one OpenAI-compatible endpoint, and it routes across 70+ providers with automatic failover. You never hold a provider key. Portkey is an AI control plane, now part of Palo Alto Networks after a 2026 acquisition. It sits in front of the provider keys you already have and adds governance, prompt management, guardrails, and observability.\n\n...\n\nThe two price along different axes. OpenRouter passes provider pricing through at 0% markup, then charges a 5.5% platform fee on credit purchases with a $0.80 minimum. Bring Your Own Key has a 5% fee on equivalent OpenRouter cost after a"
+        },
+        {
+          "url": "https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/",
+          "title": "OpenRouter Now Processes More Than a Quadrillion Tokens a Year | Menlo Ventures",
+          "content": "When we announced our $40M investment in OpenRouter almost exactly one year ago, they had 2.5M+ developers and had just crossed a ~100 trillion tokens/year run rate. Today, they are at 8M+ developers and, as of this week, will be at a ~1.5 quadrillion tokens/year run rate. That’s one followed by 15 zeros. For comparison, that’s ~15-30% of all of Google’s token run rate, 20-40% of OpenAI’s run rate, and likely >50% of Azure Foundry. On the back of this growth, they’ve raised a $113M Series B at a $1.3B valuation led by CapitalG. Their revenue has already doubled since the round was done in February.\n\n...\n\nOpenRouter is a lean team of ~50 people. That’s over 20 trillion tokens per year per employee and ~$2M in net revenue per employee. This isn’t the founders’ first rodeo either: Alex Atallah is a 3x founder who previously started the $13B NFT company OpenSea, and COO Chris Clark is a 2x former founder of a public company. The team is remote-friendly with a cluster of employees in NYC and prioritizes startup experience over pedigree, with most of its engineers coming from places where they’ve actually built things from 0 to 1. Compared to many startups, OpenRouter is actually quite fairly valued, especially given the velocity of its growth since the last round already. They’re positioned so squarely in the middle of the AI stack that there’s a lot of headroom to grow in many different directions.\n\n...\n\n- Going beyond text models. Going multimodal. You can now get image, audio (speech and transcription), embedding, and video models on OR. This area continues to be something the team is working on in the coming year.\n- Going enterprise. Businesses are overspending on AI, and companies like Uber and Microsoft are blowing through their token budgets. OpenRouter Enterprise allows you to bring all models to the enterprise, set spend management rules, and allow your employees to use cheaper models for easier tasks, too, while boosting your uptime (and not sacrificing on the capacity you have already)\n- Intelligent routing. OpenRouter does already support automatic request routing from prompts today. But routing based on just the current prompt isn’t quite good enough for production. Soon, enterprises on OpenRouter will be able to use its observability to automatically find callsites where they could’ve just used a cheaper model and got the same quality. After all, routing is in the name."
+        },
+        {
+          "url": "https://research.contrary.com/company/openrouter",
+          "title": "Report: OpenRouter Business Breakdown & Founding Story ...",
+          "content": "LiteLLM: Founded in 2023 out of Y Combinator’s Winter 2023 batch, LiteLLM has raised $1.6 million in total funding as of August 2026. It provides an open-source Python SDK and a self-hosted proxy server that normalizes requests and responses across 100+ model APIs into the OpenAI format, letting engineering teams call any model API without worrying about each model's different syntax. Beyond normalization, teams can define their own routing logic to determine how calls are distributed across different models.\n\n...\n\nOpenRouter takes a fundamentally different approach. It is a cloud-hosted API that developers call externally. A single API call goes to OpenRouter’s endpoint, and its routing intelligence directs the request to the best-fit model across hundreds of models and 80+ providers based on price, performance, and availability. There is no configuration, no infrastructure to manage, and no proxy to run.\n\n...\n\nThis distinction drives every other difference between them. Because teams fully own and operate the LiteLLM infrastructure, they gain precise control over routing logic and configuration, but also inherit the operational overhead of deploying, scaling, and maintaining it. OpenRouter offloads all of that. The tradeoff is routing flexibility. LiteLLM lets teams define fully custom routing criteria tailored to their system requirements. OpenRouter’s routing preferences are set at the model or provider level, meaning teams can either specify the model or model family they want to use, or optimize at the provider level based on price, performance, or security. This is simpler to set up but offers less precision than LiteLLM’s self-hosted configuration.\n\n...\n\nThe full customizability that LiteLLM offers may be one reason large enterprises have gravitated toward it. Companies like Stripe, Netflix, Adobe, SAP, and Twilio use LiteLLM as of April 2026, drawn to the ability to precisely configure routing logic and keep data entirely within their own environment. OpenRouter offers enterprise-grade features, but data flows through its cloud infrastructure, which some buyers cannot accommodate. Overall, OpenRouter may suit fast-moving product and engineering teams that want broad, immediate access to the widest range of models without the overhead of managing infrastructure, while LiteLLM may be more suitable for enterprises that need precise control over their routing logic and prefer to keep data within their own environment.\n\n...\n\nOpenRouter offers a free plan, a usage-based plan, and an enterprise plan. The free plan carries no platform fees, but access is limited to 25 models and four providers. It also excludes auto-routing, preferred vendor selections, budget and spend controls, prompt caching, and admin controls. The usage-based plan charges a 5.5% platform fee on all inference spend and unlocks the full platform: the full model catalog, all providers, auto-routing, preferred vendor selections, budget and spend controls, prompt caching, and admin controls. The enterprise plan includes everything in usage-based, layering on enterprise security and governance features, including managed policy enforcement, Provider Data Explorer, single sign-on (SSO), and contractual service-level agreements (SLAs).\n\n...\n\nThe free plan may serve as a natural acquisition channel, giving developers hands-on access to the platform before converting to usage-based as their inference needs grow. The usage-based plan is where OpenRouter monetizes. The 5.5% fee on inference spend means revenue scales directly with the volume of tokens processed through the platform, aligning OpenRouter’s incentives with its users. The platform earns more only if developers route more calls through it, so OpenRouter has an incentive to consistently offer the broadest model selection, the most reliable uptime, and the most intelligent routing.\n\n...\n\nBecause revenue is tied to inference spend on the platform rather than seat count or subscription tiers, sustaining revenue growth depends on token volume scaling faster than token unit prices decline. While inference costs dropped 1,000-fold between 2022 and 2024 and are projected to fall another 90% in per-token cost from 2025 to 2030, OpenRouter has scaled token consumption on the platform from 10 trillion tokens per year in June 2025 to over 100 trillion tokens per month as of August 2026. That volume growth is what positions OpenRouter for continued revenue growth despite falling per-token costs. Atallah has described inference as potentially “the largest market ever in software,” and OpenRouter’s take-rate model scales its revenue directly with that market’s growth.\n\n...\n\nIn June 2025, OpenRouter announced it had raised a cumulative $40 million across a seed round and a Series A, at a $500 million Series A valuation, co-led by Andreessen Horowitz and Menlo Ventures, with Sequoia Capital and angel investors also participating. In May 2026, amid rapid growth in user count, token usage, and revenue, OpenRouter raised a $113 million Series B at a $1.3 billion valuation, led by Alphabet’s CapitalG. Its total funding reached roughly $154 million as of May 2026. Reporting placed the company’s ARR at $10 million in October 2025, rising to $50 million by April 2026. The valuation jump from Series A to Series B represented a 2.6x increase.\n\n...\n\nIn August 2026, Stripe agreed to acquire OpenRouter for $7.5 billion. At that price, the reported deal values OpenRouter at more than 5x its Series B valuation from just three months earlier and reflects Stripe’s thesis that layer metering AI inference will sit at the center of how AI spend is billed and settled.\n\n...\n\nThe company’s enterprise plan, which includes SSO, managed policy enforcement, contractual SLAs, and Provider Data Explorer, provides the compliance and governance features enterprise buyers require. However, OpenRouter predominantly relies on a product-led growth model to acquire customers, with only two active account executives as of April 2026. Building out a dedicated enterprise sales function would allow OpenRouter to actively pursue and close large enterprise logos rather than relying on inbound developer adoption to convert into enterprise accounts."
+        }
+      ],
+      "usage": {
+        "completion_tokens": 2824,
+        "prompt_tokens": 3880,
+        "total_tokens": 6704,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 950,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.043,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.036,
+          "upstream_inference_prompt_cost": 0.00776,
+          "upstream_inference_completions_cost": 0.02824
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "google/gemini-3.8-flash",
+      "run": 2,
+      "ok": true,
+      "answer": "### 1. What They Do, Who Buys It, and How They Make Money\n* **What they do:** OpenRouter operates a unified API gateway and marketplace for LLMs. Developers integrate a single OpenAI-compatible endpoint that intelligently routes prompts across 80+ providers and hundreds of models for optimal price, performance, and uptime [[openrouter.ai](https://openrouter.ai/about), [research.contrary.com](https://research.contrary.com/company/openrouter)].\n* **Who buys it:** Over 8–10 million developers, AI startups, and enterprises seeking to avoid vendor lock-in and optimize inference costs [[openrouter.ai](https://openrouter.ai/about), [menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/)].\n* **Monetization:** OpenRouter passes raw provider costs through at a 0% markup and monetizes via a 5.5% platform fee on usage/credit purchases, alongside enterprise tiers offering SLA and data compliance controls [[openrouter.ai](https://openrouter.ai/blog/insights/openrouter-vs-portkey/), [research.contrary.com](https://research.contrary.com/company/openrouter)].\n\n### 2. Recent News and Launches (Last 6 Months)\n* **Stripe Acquisition Talks/Agreement:** Stripe agreed/entered talks to acquire OpenRouter for $7.5B–$10B to anchor its AI usage-based billing infrastructure [[research.contrary.com](https://research.contrary.com/company/openrouter), [sacra.com](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/)].\n* **Shift to Open-Source/Chinese Models:** Cheaper open-source models (DeepSeek, Tencent, Xiaomi) surged to over 50% of platform token volume, nearly tripling overall token throughput [[sacra.com](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/)].\n* **Multimodal Expansion:** Expanded beyond text into image, audio (transcription/speech), embeddings, and video model routing [[menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/)].\n\n### 3. Funding, Size, and Financial Signals\n* **Funding:** Raised a $113M Series B led by CapitalG at a $1.3B valuation in mid-2026, bringing total funding to ~$154M (following a $40M Series A in 2025 led by Menlo Ventures and a16z) [[research.contrary.com](https://research.contrary.com/company/openrouter)].\n* **Financials:** Reached a ~1.5 quadrillion tokens/year run rate [[menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/)]. Annualized revenue hit an estimated $140M in July 2026, growing 29% MoM [[sacra.com](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/)]. \n* **Team Size:** Extremely lean at ~50 employees (~$2M+ net revenue per employee) [[menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/)].\n\n### 4. Leadership\n* **Alex Atallah (Founder):** 3x founder; previously co-founder and CTO of OpenSea [[menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/)].\n* **Chris Clark (COO):** 2x former founder of a public company [[menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/)].\n\n### 5. Main Competitors and How They Differ\n* **Portkey (Palo Alto Networks):** Operates as an AI control plane where enterprises manage their own provider API keys and governance rules, whereas OpenRouter is a managed routing network where users never need to hold individual provider keys [[openrouter.ai](https://openrouter.ai/blog/insights/openrouter-vs-portkey/)].\n* **LiteLLM:** An open-source, self-hosted proxy/SDK that requires engineering teams to manage their own infrastructure and routing logic, contrasting with OpenRouter’s fully managed cloud API [[research.contrary.com](https://research.contrary.com/company/openrouter)].\n\n### 6. Likely Strategic Priorities and Open Questions\n* **Deflation vs. Volume:** As token costs drop rapidly and traffic migrates to cheap open-source models, per-token monetization has dropped ~60% [[sacra.com](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/)]. OpenRouter must sustain explosive volume growth to outpace declining inference prices [[research.contrary.com](https://research.contrary.com/company/openrouter)].\n* **Enterprise Direct Sales:** Currently product-led with minimal sales overhead [[research.contrary.com](https://research.contrary.com/company/openrouter)]; a key priority is operationalizing enterprise go-to-market.\n* **Stripe Integration:** How quickly OpenRouter will bundle with Stripe’s usage billing (Metronome) to dominate end-to-end AI billing and inference settlement [[sacra.com](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/)].",
+      "error": null,
+      "latency": 24.712438348999996,
+      "prompt_tokens": 2695,
+      "completion_tokens": 3082,
+      "cost": 0.02057875,
+      "citations": [
+        {
+          "url": "https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/",
+          "title": "OpenRouter growing 29% MoM at $140M/year | Sacra",
+          "content": "TL;DR: Since March, Chinese open-source models have grown from a small fraction to 50%+ of OpenRouter usage, nearly tripling token volume while cheaper tokens pushed monetization per token down ~60%. Sacra estimates OpenRouter hit $140M in annualized revenue in July 2026, growing 29% MoM over the last four months. For more, check out our full report and dataset on OpenRouter.\n\n...\n\n- Chinese open-source AI labs have driven nearly 3x growth in OpenRouter’s token volume since March and now represent 50%+ of all OpenRouter usage (up from ~2% in mid-2025), led by DeepSeek (3T tokens per day) with V4 Flash, Tencent (1.8T) with Hy3, Xiaomi (~760B) with MiMo and Z.ai (~570B) with GLM-5.2, helping drive OpenRouter’s total throughput to ~250T tokens per month even as per-token monetization has fallen ~60% due to OpenRouter’s flat ~5% fee being applied to less expensive tokens.\n- As tokenmaxxing gives way to optimizing cost per unit of intelligence, developers are increasingly replacing expensive frontier models with cheaper open-source models for easier tasks (Chinese model volume up 7x from March to August), turning model routing into a standard feature across deployment platforms (Vercel), coding agents & IDEs (Cursor), data platforms (Databricks), expense management (Ramp), and enterprise API infra (Kong).\n- Stripe is reportedly in talks to acquire OpenRouter for roughly $10B, or about 71x Sacra-estimated $140M annualized revenue in July 2026 growing 29% MoM over the last 4 months, with the upside of Stripe capturing an emergent developer primitive to pair with usage-based billing (via its $1B acquisition of Metronome), to create Stripe Connect-like infrastructure for the marketplace dynamic underlying AI companies, helping them manage gross margin by controlling the spread between token spend and token usage-based pricing."
+        },
+        {
+          "url": "https://openrouter.ai/about",
+          "title": "About - The Unified Interface For LLMs | OpenRouter",
+          "content": "About - The Unified Interface For LLMs | OpenRouter\n\n...\n\nStarted in early 2023 as the first LLM marketplace, OpenRouter has grown to become the largest and most popular AI gateway. We eliminate vendor lock-in while offering better prices, uptime, and enterprise-grade reliability.\n\n...\n\n- 600T+\n\n...\n\nMonthly tokens\n- 10M+\n\nGlobal users\n- 80+"
+        },
+        {
+          "url": "https://openrouter.ai/blog/insights/openrouter-vs-portkey/",
+          "title": "OpenRouter vs Portkey: Routing Network vs Control Plane",
+          "content": "OpenRouter is a managed routing network. You buy credits, call one OpenAI-compatible endpoint, and it routes across 70+ providers with automatic failover. You never hold a provider key. Portkey is an AI control plane, now part of Palo Alto Networks after a 2026 acquisition. It sits in front of the provider keys you already have and adds governance, prompt management, guardrails, and observability.\n\n...\n\nThe two price along different axes. OpenRouter passes provider pricing through at 0% markup, then charges a 5.5% platform fee on credit purchases with a $0.80 minimum. Bring Your Own Key has a 5% fee on equivalent OpenRouter cost after a"
+        },
+        {
+          "url": "https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/",
+          "title": "OpenRouter Now Processes More Than a Quadrillion Tokens a Year | Menlo Ventures",
+          "content": "When we announced our $40M investment in OpenRouter almost exactly one year ago, they had 2.5M+ developers and had just crossed a ~100 trillion tokens/year run rate. Today, they are at 8M+ developers and, as of this week, will be at a ~1.5 quadrillion tokens/year run rate. That’s one followed by 15 zeros. For comparison, that’s ~15-30% of all of Google’s token run rate, 20-40% of OpenAI’s run rate, and likely >50% of Azure Foundry. On the back of this growth, they’ve raised a $113M Series B at a $1.3B valuation led by CapitalG. Their revenue has already doubled since the round was done in February.\n\n...\n\nOpenRouter is a lean team of ~50 people. That’s over 20 trillion tokens per year per employee and ~$2M in net revenue per employee. This isn’t the founders’ first rodeo either: Alex Atallah is a 3x founder who previously started the $13B NFT company OpenSea, and COO Chris Clark is a 2x former founder of a public company. The team is remote-friendly with a cluster of employees in NYC and prioritizes startup experience over pedigree, with most of its engineers coming from places where they’ve actually built things from 0 to 1. Compared to many startups, OpenRouter is actually quite fairly valued, especially given the velocity of its growth since the last round already. They’re positioned so squarely in the middle of the AI stack that there’s a lot of headroom to grow in many different directions.\n\n...\n\n- Going beyond text models. Going multimodal. You can now get image, audio (speech and transcription), embedding, and video models on OR. This area continues to be something the team is working on in the coming year.\n- Going enterprise. Businesses are overspending on AI, and companies like Uber and Microsoft are blowing through their token budgets. OpenRouter Enterprise allows you to bring all models to the enterprise, set spend management rules, and allow your employees to use cheaper models for easier tasks, too, while boosting your uptime (and not sacrificing on the capacity you have already)\n- Intelligent routing. OpenRouter does already support automatic request routing from prompts today. But routing based on just the current prompt isn’t quite good enough for production. Soon, enterprises on OpenRouter will be able to use its observability to automatically find callsites where they could’ve just used a cheaper model and got the same quality. After all, routing is in the name."
+        },
+        {
+          "url": "https://research.contrary.com/company/openrouter",
+          "title": "Report: OpenRouter Business Breakdown & Founding Story ...",
+          "content": "LiteLLM: Founded in 2023 out of Y Combinator’s Winter 2023 batch, LiteLLM has raised $1.6 million in total funding as of August 2026. It provides an open-source Python SDK and a self-hosted proxy server that normalizes requests and responses across 100+ model APIs into the OpenAI format, letting engineering teams call any model API without worrying about each model's different syntax. Beyond normalization, teams can define their own routing logic to determine how calls are distributed across different models.\n\n...\n\nOpenRouter takes a fundamentally different approach. It is a cloud-hosted API that developers call externally. A single API call goes to OpenRouter’s endpoint, and its routing intelligence directs the request to the best-fit model across hundreds of models and 80+ providers based on price, performance, and availability. There is no configuration, no infrastructure to manage, and no proxy to run.\n\n...\n\nThis distinction drives every other difference\n\n...\n\nOpenRouter offers a free plan, a usage-based plan, and an enterprise plan. The free plan carries no platform fees, but access is limited to 25 models and four providers. It also excludes auto-routing, preferred vendor selections, budget and spend controls, prompt caching, and admin controls. The usage-based plan charges a 5.5% platform fee on all inference spend and unlocks the full platform: the full model catalog, all providers, auto-routing, preferred vendor selections, budget and spend controls, prompt caching, and admin controls. The enterprise plan includes everything in usage-based, layering on enterprise security and governance features, including managed policy enforcement, Provider Data Explorer, single sign-on (SSO), and contractual service-level agreements (SLAs).\n\n...\n\nThe free plan may serve as a natural acquisition channel, giving developers hands-on access to the platform before converting to usage-based as their inference needs grow. The usage-based plan is where OpenRouter monetizes. The 5.5% fee on inference spend means revenue scales directly with the volume of tokens processed through the platform, aligning OpenRouter’s incentives with its users. The platform earns more only if developers route more calls through it, so OpenRouter has an incentive to consistently offer the broadest model selection, the most reliable uptime, and the most intelligent routing.\n\n...\n\nBecause revenue is tied to inference spend on the platform rather than seat count or subscription tiers, sustaining revenue growth depends on token volume scaling faster than token unit prices decline. While inference costs dropped 1,000-fold between 2022 and 2024 and are projected to fall another 90% in per-token cost from 2025 to 2030, OpenRouter has scaled token consumption on the platform from 10 trillion tokens per year in June 2025 to over 100 trillion tokens per month as of August 2026. That volume growth is what positions OpenRouter for continued revenue growth despite falling per-token costs. Atallah has described inference as potentially “the largest market ever in software,” and OpenRouter’s take-rate model scales its revenue directly with that market’s growth.\n\n...\n\nIn June 2025, OpenRouter announced it had raised a cumulative $40 million across a seed round and a Series A, at a $500 million Series A valuation, co-led by Andreessen Horowitz and Menlo Ventures, with Sequoia Capital and angel investors also participating. In May 2026, amid rapid growth in user count, token usage, and revenue, OpenRouter raised a $113 million Series B at a $1.3 billion valuation, led by Alphabet’s CapitalG. Its total funding reached roughly $154 million as of May 2026. Reporting placed the company’s ARR at $10 million in October 2025, rising to $50 million by April 2026. The valuation jump from Series A to Series B represented a 2.6x increase.\n\n...\n\nIn August 2026, Stripe agreed to acquire OpenRouter for $7.5 billion. At that price, the reported deal values OpenRouter at more than 5x its Series B valuation from just three months earlier and reflects Stripe’s thesis that layer metering AI inference will sit at the center of how AI spend is billed and settled.\n\n...\n\nThe company’s enterprise plan, which includes SSO, managed policy enforcement, contractual SLAs, and Provider Data Explorer, provides the compliance and governance features enterprise buyers require. However, OpenRouter predominantly relies on a product-led growth model to acquire customers, with only two active account executives as of April 2026. Building out a dedicated enterprise sales function would allow OpenRouter to actively pursue and close large enterprise logos rather than relying on inbound developer adoption to convert into enterprise accounts."
+        }
+      ],
+      "usage": {
+        "completion_tokens": 3082,
+        "prompt_tokens": 2695,
+        "total_tokens": 5777,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1734,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.02057875,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.01357875,
+          "upstream_inference_prompt_cost": 0.00202125,
+          "upstream_inference_completions_cost": 0.0115575
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "run": 2,
+      "ok": true,
+      "answer": "Here is a briefing on OpenRouter, synthesized from recent reports.\n\n### 1. What they do, who buys it, and how they make money\nOpenRouter is a unified interface and marketplace that lets developers access over 500 models from 80+ providers through a single API, eliminating the need to manage multiple vendor accounts [openrouter.ai](https://openrouter.ai/about). It automatically routes requests based on cost, uptime, or other parameters, with built-in failover. Its users range from individual developers to large enterprises like Microsoft and Uber, who use it to manage and optimize AI token spend [menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/). The company’s primary revenue model is a flat ~5% fee it applies to every token routed through its platform. For enterprises, it offers spend management and observability tools to control costs and intelligently route simpler tasks to cheaper models [sacra.com](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/), [menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/).\n\n### 2. Recent news and launches (last 6 months)\nThe most significant development is OpenRouter’s **acquisition by Stripe for $7.5 billion**, announced on August 19, 2026 [nytimes.com](https://www.nytimes.com/2026/08/19/business/stripe-openrouter-ai.html). Stripe’s plan is to create an infrastructure for the AI economy, mirroring its payments product Stripe Connect, to help companies manage the “spread” between their token costs and their own customer pricing [sacra.com](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/). The company also expanded beyond text models to support image, audio, video, and embedding models, and began developing an intelligent router that can automatically identify enterprise callsites where a cheaper model would yield the same quality [menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/).\n\n### 3. Funding, size, and financial signals\nA year before the acquisition, OpenRouter raised a $113M Series B at a $1.3B valuation, led by CapitalG [menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/). At the time, it had ~50 employees processing over 1.5 quadrillion tokens a year, generating roughly $2M in net revenue per employee [menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/). By July 2026, just before the deal, Sacra estimated its annualized revenue hit $140M, growing 29% month-over-month, placing the $7.5B Stripe acquisition at roughly a 54x revenue multiple [sacra.com](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/). The deal allocates $1.5 billion to founders and $6 billion to investors [nytimes.com](https://www.nytimes.com/2026/08/19/business/stripe-openrouter-ai.html). The platform’s growth has been fueled by Chinese open-source models, which grew from a small fraction to over 50% of usage in the last year, led by labs like DeepSeek and Tencent [sacra.com](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/).\n\n### 4. Leadership\nOpenRouter was co-founded by CEO **Alex Atallah**, a 3x entrepreneur who previously co-founded the $13B NFT marketplace OpenSea. COO **Chris Clark** is also a 2x former founder who previously led a public company. The ~50-person team is lean, remote-friendly, and prioritizes startup experience, with most engineers having built products from “0 to 1” [menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/).\n\n### 5. Main competitors and how they differ\nOpenRouter directly competed with the AI control plane **Portkey** (acquired by Palo Alto Networks in 2026). The core difference is ownership: OpenRouter is a managed routing network where you buy credits and never manage provider keys, whereas Portkey is a governance layer that sits in front of a company’s own existing provider keys. Portkey is better for those who need guardrails and observability over accounts they run; OpenRouter was better for pure access and failover without infrastructure [openrouter.ai](https://openrouter.ai/blog/insights/openrouter-vs-portkey/). AI gateways are also becoming embedded into platforms like Vercel and data platforms like Databricks as standard features [sacra.com](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/).\n\n### 6. Likely strategic priorities and open questions\nUnder Stripe, OpenRouter’s priority will likely be integration into Stripe’s billing and developer ecosystem to become the financial backbone for AI companies, not just a model router. A key question is whether deep integration with Stripe’s payment and billing tools (including its $1B Metronome acquisition) will accelerate adoption or create friction for non-Stripe users. Another is how its model-agnostic routing will evolve to help enterprises automatically optimize for cost-per-unit-of-intelligence, turning model selection into a gross-margin management tool [sacra.com](https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/), [menlovc.com](https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/).",
+      "error": null,
+      "latency": 39.039495585,
+      "prompt_tokens": 2410,
+      "completion_tokens": 1300,
+      "cost": 0.01223044,
+      "citations": [
+        {
+          "url": "https://sacra.com/research/openrouter-growing-29-mom-at-140m-year/",
+          "title": "OpenRouter growing 29% MoM at $140M/year | Sacra",
+          "content": "TL;DR: Since March, Chinese open-source models have grown from a small fraction to 50%+ of OpenRouter usage, nearly tripling token volume while cheaper tokens pushed monetization per token down ~60%. Sacra estimates OpenRouter hit $140M in annualized revenue in July 2026, growing 29% MoM over the last four months. For more, check out our full report and dataset on OpenRouter.\n\n...\n\nWe've previously covered OpenRouter (July 2025, June 2026) from $5M to $50M annualized revenue as model routing became core AI infrastructure, and spoke with Augusto Marietti, CEO of Kong, about the end of tokenmaxxing and how the category has split into wholesale token marketplaces like OpenRouter, public gateways like Vercel, and behind-the-firewall\n\n...\n\n- Chinese open-source AI labs have driven nearly 3x growth in OpenRouter’s token volume since March and now represent 50%+ of all OpenRouter usage (up from ~2% in mid-2025), led by DeepSeek (3T tokens per day) with V4 Flash, Tencent (1.8T) with Hy3, Xiaomi (~760B) with MiMo and Z.ai (~570B) with GLM-5.2, helping drive OpenRouter’s total throughput to ~250T tokens per month even as per-token monetization has fallen ~60% due to OpenRouter’s flat ~5% fee being applied to less expensive tokens.\n- As tokenmaxxing gives way to optimizing cost per unit of intelligence, developers are increasingly replacing expensive frontier models with cheaper open-source models for easier tasks (Chinese model volume up 7x from March to August), turning model routing into a standard feature across deployment platforms (Vercel), coding agents & IDEs (Cursor), data platforms (Databricks), expense management (Ramp), and enterprise API infra (Kong).\n- Stripe is reportedly in talks to acquire OpenRouter for roughly $10B, or about 71x Sacra-estimated $140M annualized revenue in July 2026 growing 29% MoM over the last 4 months, with the upside of Stripe capturing an emergent developer primitive to pair with usage-based billing (via its $1B acquisition of Metronome), to create Stripe Connect-like infrastructure for the marketplace dynamic underlying AI companies, helping them manage gross margin by controlling the spread between token spend and token usage-based pricing."
+        },
+        {
+          "url": "https://openrouter.ai/about",
+          "title": "About - The Unified Interface For LLMs | OpenRouter",
+          "content": "About\n\n...\n\nStarted in early 2023 as the first LLM marketplace, OpenRouter has grown to become the largest and most popular AI gateway. We eliminate vendor lock-in while offering better prices, uptime, and enterprise-grade reliability.\n\n...\n\n- 600T+\n\n...\n\nMonthly tokens\n- 10M+\n\n...\n\nGlobal users\n- 80+\n\n...\n\nProviders\n- 500+\n\n...\n\nModels\n\n...\n\nThe future of AI is neurodiversity, and OpenRouter is the best place to leverage it. We are building a transparent marketplace for AI that shows what makes each model unique, works everywhere people need it, and gives them the best intelligence without model lock-in.\n\n...\n\nChoose the most cost-effective model, provider, and tool for the task, or use a router to do it automatically.\n- ### Quality\n\n...\n\nSource from the highest-quality providers for every model. Orchestrate multiple models for the best result.\n- ### Security\n\n...\n\nAdvanced security and observability for the boundary between models."
+        },
+        {
+          "url": "https://www.nytimes.com/2026/08/19/business/stripe-openrouter-ai.html",
+          "title": "Stripe Buys A.I. Start-Up OpenRouter for $7.5 Billion - The ...",
+          "content": "Credit...Dado Ruvic/Reuters\nErin Griffith\nBy Erin Griffith\nReporting from San Francisco\nAug. 19, 2026\nSee more of our coverage in your search results.Encuentra más de nuestra cobertura en los resultados de búsqueda. Add The New York Times on GoogleAgrega The New York Times en Google \nIn May, Alex Atallah, a founder of a fast-growing start-up called OpenRouter, described his company as the artificial intelligence version of the payments company Stripe.\nNow Stripe is buying OpenRouter.\nThe deal, announced on Wednesday, combines Stripe’s technology, which lets companies direct payments to other businesses, with OpenRouter’s technology, which lets them direct their spending of “tokens” between different providers of A.I. models. Tokens are an atomic unit of A.I. use, roughly equivalent to a word fragment.\nStripe is paying $7.5 billion for OpenRouter, a person with knowledge of the agreement said. Of that sum, $1.5 billion is going to the start-up’s founders and $6 billion to investors,"
+        },
+        {
+          "url": "https://openrouter.ai/blog/insights/openrouter-vs-portkey/",
+          "title": "OpenRouter vs Portkey: Routing Network vs Control Plane",
+          "content": "OpenRouter is a managed routing network. You buy credits, call one OpenAI-compatible endpoint, and it routes across 70+ providers with automatic failover. You never hold a provider key. Portkey is an AI control plane, now part of Palo Alto Networks after a 2026 acquisition. It sits in front of the provider keys you already have and adds governance, prompt management, guardrails, and observability.\n\n...\n\nPick OpenRouter when you want model access and failover with no infrastructure. Pick Portkey when you need a governance layer over the provider accounts you already run.\n\n...\n\nOpenRouter owns the path to the model. Your app calls `https://openrouter.ai/api/v1`, OpenRouter picks a provider, and forwards the request on credits you’ve already bought. There are no per-provider accounts to manage, and a request that fails on one provider falls over to another automatically.\n\n...\n\nPortkey’s count is breadth of models you can address once you’ve supplied the keys. OpenRouter’s count is models it actively routes to, with credits, load balancing, and cross-provider failover handled for you. Its Auto Router, powered by the wisdom of the market, classifies each prompt and ranks candidates by the aggregate spend of the OpenRouter community over a trailing 7-day window for that task type, and provider routing lets you filter by price, throughput, latency, data policy, and quantization.\n\n...\n\nThe two price along different axes. OpenRouter passes provider pricing through at 0% markup, then charges a 5.5% platform fee on credit purchases with a $0.80 minimum. Bring Your Own Key has a 5% fee on equivalent OpenRouter cost after a plan-dependent free allowance; see the pricing page for current details. You pay for usage, nothing else.\n\n...\n\nNet cost depends on where your weight sits. Heavy model spend with provider keys already in hand often favors Portkey’s self-hosted gateway; usage you’d rather not meter or operate favors OpenRouter’s pay-as-you-go.\n\n...\n\nThese aren’t mutually exclusive. You can point Portkey at OpenRouter as an upstream provider, putting Portkey’s governance and prompt management in front of OpenRouter’s routing network. OpenRouter also lists Portkey as an upcoming broadcast destination, so traces will flow the other direction too."
+        },
+        {
+          "url": "https://menlovc.com/perspective/openrouter-now-processes-more-than-a-quadrillion-tokens-a-year/",
+          "title": "OpenRouter Now Processes More Than a Quadrillion Tokens a Year | Menlo Ventures",
+          "content": "When we announced our $40M investment in OpenRouter almost exactly one year ago, they had 2.5M+ developers and had just crossed a ~100 trillion tokens/year run rate. Today, they are at 8M+ developers and, as of this week, will be at a ~1.5 quadrillion tokens/year run rate. That’s one followed by 15 zeros. For comparison, that’s ~15-30% of all of Google’s token run rate, 20-40% of OpenAI’s run rate, and likely >50% of Azure Foundry. On the back of this growth, they’ve raised a $113M Series B at a $1.3B valuation led by CapitalG. Their revenue has already doubled since the round was done in February.\n\n...\n\n### What is OpenRouter? \n\nOpenRouter helps developers and organizations access, route, and choose inference across 400+ AI models through one unified interface.\n\n...\n\nOpenRouter is a lean team of ~50 people. That’s over 20 trillion tokens per year per employee and ~$2M in net revenue per employee. This isn’t the founders’ first rodeo either: Alex Atallah is a 3x founder who previously started the $13B NFT company OpenSea, and COO Chris Clark is a 2x former founder of a public company. The team is remote-friendly with a cluster of employees in NYC and prioritizes startup experience over pedigree, with most of its engineers coming from places where they’ve actually built things from 0 to 1. Compared to many startups, OpenRouter is actually quite fairly valued, especially given the velocity of its growth since the last round already. They’re positioned so squarely in the middle of the AI stack that there’s a lot of headroom to grow in many different directions.\n\n...\n\nThe main things that OpenRouter has been working on in the last year are:\n\n...\n\n- Going beyond text models. Going multimodal. You can now get image, audio (speech and transcription), embedding, and video models on OR. This area continues to be something the team is working on in the coming year.\n- Going enterprise. Businesses are overspending on AI, and companies like Uber and Microsoft are blowing through their token budgets. OpenRouter Enterprise allows you to bring all models to the enterprise, set spend management rules, and allow your employees to use cheaper models for easier tasks, too, while boosting your uptime (and not sacrificing on the capacity you have already)\n- Intelligent routing. OpenRouter does already support automatic request routing from prompts today. But routing based on just the current prompt isn’t quite good enough for production. Soon, enterprises on OpenRouter will be able to use its observability to automatically find callsites where they could’ve just used a cheaper model and got the same quality. After all, routing is in the name."
+        }
+      ],
+      "usage": {
+        "completion_tokens": 1300,
+        "prompt_tokens": 2410,
+        "total_tokens": 3710,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.01223044,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00523044,
+          "upstream_inference_prompt_cost": 0.00251604,
+          "upstream_inference_completions_cost": 0.0027144
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    }
+  ],
+  "judgments": [
+    {
+      "run": 1,
+      "label_map": {
+        "A": "anthropic/claude-sonnet-5.5",
+        "B": "deepseek/deepseek-v4-pro",
+        "C": "google/gemini-3.8-flash"
+      },
+      "ok": true,
+      "scores": {
+        "anthropic/claude-sonnet-5.5": {
+          "criteria": {
+            "grounding": 7.0,
+            "specificity": 9.0,
+            "recency": 9.0,
+            "usefulness": 9.0
+          },
+          "unsupported_claims": [
+            "The cited excerpts do not establish the 5.5% credit-purchase fee, $0.80 minimum, or 5% bring-your-own-key fee.",
+            "The cited Menlo excerpt does not establish that enterprise buyers seek spend controls or that OpenRouter launched an Enterprise product.",
+            "The cited Menlo excerpt does not substantiate the listed multimodal launches.",
+            "The supplied Sacra excerpt does not substantiate the reported $10B acquisition price or Stripe’s Metronome acquisition."
+          ],
+          "rationale": "A concrete, timely briefing that distinguishes estimates from company figures and flags conflicting metrics, though several product, pricing, and deal details exceed its supplied excerpts.",
+          "weighted_score": 8.3,
+          "label": "A"
+        },
+        "deepseek/deepseek-v4-pro": {
+          "criteria": {
+            "grounding": 6.0,
+            "specificity": 8.0,
+            "recency": 8.0,
+            "usefulness": 7.0
+          },
+          "unsupported_claims": [
+            "The sources establish 10M+ global users, not 10M+ developers, and do not identify Uber or Microsoft as customers.",
+            "The cited pricing excerpt does not show the 5.5% fee.",
+            "The cited Menlo excerpt does not substantiate the multimodal expansion or its listed formats.",
+            "The excerpts establish an announced Stripe deal, not a completed acquisition or that Stripe already owns OpenRouter.",
+            "The excerpts do not establish a planned Stripe Connect-like integration or the specific priority of substituting cheaper models without quality loss."
+          ],
+          "rationale": "B covers all six sections with useful facts, but overstates the deal’s status, introduces unsupported customers, and presents conflicting token-volume figures without explanation.",
+          "weighted_score": 7.1,
+          "label": "B"
+        },
+        "google/gemini-3.8-flash": {
+          "criteria": {
+            "grounding": 4.0,
+            "specificity": 7.0,
+            "recency": 6.0,
+            "usefulness": 3.0
+          },
+          "unsupported_claims": [
+            "Sacra describes Cursor and Vercel as platforms adding routing, not as OpenRouter buyers.",
+            "The excerpts do not substantiate Enterprise-plan SLAs, SSO, or custom governance.",
+            "The supplied sources support reported talks around $10B, not an agreed $7.5B–$10B acquisition.",
+            "The excerpts do not establish $154M total funding, a $40M Series A co-led by a16z, or the stated October 2025 and April 2026 revenue figures.",
+            "The supplied excerpts do not establish Alex Atallah’s CEO title."
+          ],
+          "rationale": "C includes some current figures but ends mid-leadership section, omitting competitors and strategic questions, while making several claims its excerpts do not support.",
+          "weighted_score": 4.95,
+          "label": "C"
+        }
+      },
+      "raw_outputs": [
+        "{\n  \"A\": {\n    \"scores\": {\n      \"grounding\": 7,\n      \"specificity\": 9,\n      \"recency\": 9,\n      \"usefulness\": 9\n    },\n    \"unsupported_claims\": [\n      \"The cited excerpts do not establish the 5.5% credit-purchase fee, $0.80 minimum, or 5% bring-your-own-key fee.\",\n      \"The cited Menlo excerpt does not establish that enterprise buyers seek spend controls or that OpenRouter launched an Enterprise product.\",\n      \"The cited Menlo excerpt does not substantiate the listed multimodal launches.\",\n      \"The supplied Sacra excerpt does not substantiate the reported $10B acquisition price or Stripe’s Metronome acquisition.\"\n    ],\n    \"rationale\": \"A concrete, timely briefing that distinguishes estimates from company figures and flags conflicting metrics, though several product, pricing, and deal details exceed its supplied excerpts.\"\n  },\n  \"B\": {\n    \"scores\": {\n      \"grounding\": 6,\n      \"specificity\": 8,\n      \"recency\": 8,\n      \"usefulness\": 7\n    },\n    \"unsupported_claims\": [\n      \"The sources establish 10M+ global users, not 10M+ developers, and do not identify Uber or Microsoft as customers.\",\n      \"The cited pricing excerpt does not show the 5.5% fee.\",\n      \"The cited Menlo excerpt does not substantiate the multimodal expansion or its listed formats.\",\n      \"The excerpts establish an announced Stripe deal, not a completed acquisition or that Stripe already owns OpenRouter.\",\n      \"The excerpts do not establish a planned Stripe Connect-like integration or the specific priority of substituting cheaper models without quality loss.\"\n    ],\n    \"rationale\": \"B covers all six sections with useful facts, but overstates the deal’s status, introduces unsupported customers, and presents conflicting token-volume figures without explanation.\"\n  },\n  \"C\": {\n    \"scores\": {\n      \"grounding\": 4,\n      \"specificity\": 7,\n      \"recency\": 6,\n      \"usefulness\": 3\n    },\n    \"unsupported_claims\": [\n      \"Sacra describes Cursor and Vercel as platforms adding routing, not as OpenRouter buyers.\",\n      \"The excerpts do not substantiate Enterprise-plan SLAs, SSO, or custom governance.\",\n      \"The supplied sources support reported talks around $10B, not an agreed $7.5B–$10B acquisition.\",\n      \"The excerpts do not establish $154M total funding, a $40M Series A co-led by a16z, or the stated October 2025 and April 2026 revenue figures.\",\n      \"The supplied excerpts do not establish Alex Atallah’s CEO title.\"\n    ],\n    \"rationale\": \"C includes some current figures but ends mid-leadership section, omitting competitors and strategic questions, while making several claims its excerpts do not support.\"\n  }\n}"
+      ],
+      "error": null,
+      "cost": 0.0402635,
+      "latency": 27.67776668000002,
+      "usage": [
+        {
+          "completion_tokens": 2000,
+          "prompt_tokens": 8106,
+          "total_tokens": 10106,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": 0,
+            "reasoning_tokens": 1378,
+            "rejected_prediction_tokens": null,
+            "text_tokens": null,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 8103,
+            "cached_tokens": 0,
+            "image_tokens": null,
+            "text_tokens": null,
+            "video_tokens": 0
+          },
+          "cost": 0.0402635,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.0402635,
+            "upstream_inference_prompt_cost": 0.0202635,
+            "upstream_inference_completions_cost": 0.02
+          }
+        }
+      ]
+    },
+    {
+      "run": 2,
+      "label_map": {
+        "A": "deepseek/deepseek-v4-pro",
+        "B": "anthropic/claude-sonnet-5.5",
+        "C": "google/gemini-3.8-flash"
+      },
+      "ok": true,
+      "scores": {
+        "deepseek/deepseek-v4-pro": {
+          "criteria": {
+            "grounding": 7.0,
+            "specificity": 9.0,
+            "recency": 9.0,
+            "usefulness": 7.0
+          },
+          "unsupported_claims": [
+            "Microsoft and Uber are OpenRouter customers.",
+            "OpenRouter charges a flat ~5% fee on every token; the cited pricing excerpt instead specifies a 5.5% fee on credit purchases.",
+            "Stripe specifically plans to use OpenRouter to manage the spread between companies’ token costs and customer pricing.",
+            "The Series B occurred a year before the August 2026 acquisition.",
+            "The cited excerpts establish Alex Atallah’s CEO title.",
+            "Stripe acquired Metronome for $1B."
+          ],
+          "rationale": "The briefing uses a strong source for the acquisition and offers useful strategic questions, but several commercial and leadership details are unsupported, and it exceeds the requested length.",
+          "weighted_score": 7.9,
+          "label": "A"
+        },
+        "anthropic/claude-sonnet-5.5": {
+          "criteria": {
+            "grounding": 6.0,
+            "specificity": 9.0,
+            "recency": 8.0,
+            "usefulness": 8.0
+          },
+          "unsupported_claims": [
+            "OpenRouter had only two account executives as of April 2026.",
+            "The enterprise plan includes SSO, SLAs, and policy enforcement.",
+            "The supplied Contrary excerpt reports a $7.5B Stripe acquisition agreement.",
+            "OpenRouter had raised about $154M total as of May 2026, including a $40M seed and Series A at a $500M valuation in June 2025.",
+            "Contrary reports ARR of $10M in October 2025 and $50M by April 2026.",
+            "Contrary dates the Series B to May or supplies a conflicting 2025 token baseline.",
+            "Stripe, Netflix, Adobe, SAP, and Twilio use LiteLLM."
+          ],
+          "rationale": "It is meeting-oriented and appropriately distinguishes estimates from confirmed figures, but numerous precise claims lack support in its supplied excerpts.",
+          "weighted_score": 7.55,
+          "label": "B"
+        },
+        "google/gemini-3.8-flash": {
+          "criteria": {
+            "grounding": 6.0,
+            "specificity": 8.0,
+            "recency": 7.0,
+            "usefulness": 7.0
+          },
+          "unsupported_claims": [
+            "OpenRouter has 8–10 million developers; the excerpts give 8M+ developers and, separately, 10M+ global users.",
+            "The cited excerpts establish enterprise SLAs and data-compliance controls.",
+            "Stripe agreed to acquire OpenRouter for $7.5B or sought the deal specifically to anchor its AI usage-based billing infrastructure; its supplied Sacra excerpt reports talks at roughly $10B.",
+            "The $40M 2025 round was a Series A led by Menlo Ventures and a16z, and total funding reached approximately $154M.",
+            "Alex Atallah was OpenSea’s CTO.",
+            "The team generated more than $2M in net revenue per employee; the cited excerpt says approximately $2M.",
+            "OpenRouter’s minimal sales overhead and a planned Stripe Metronome integration are established by the cited excerpts."
+          ],
+          "rationale": "It covers all six sections concisely, but it blurs acquisition talks with an agreement and adds funding, leadership, and integration details the excerpts do not establish.",
+          "weighted_score": 6.9,
+          "label": "C"
+        }
+      },
+      "raw_outputs": [
+        "{\n  \"A\": {\n    \"scores\": {\n      \"grounding\": 7,\n      \"specificity\": 9,\n      \"recency\": 9,\n      \"usefulness\": 7\n    },\n    \"unsupported_claims\": [\n      \"Microsoft and Uber are OpenRouter customers.\",\n      \"OpenRouter charges a flat ~5% fee on every token; the cited pricing excerpt instead specifies a 5.5% fee on credit purchases.\",\n      \"Stripe specifically plans to use OpenRouter to manage the spread between companies’ token costs and customer pricing.\",\n      \"The Series B occurred a year before the August 2026 acquisition.\",\n      \"The cited excerpts establish Alex Atallah’s CEO title.\",\n      \"Stripe acquired Metronome for $1B.\"\n    ],\n    \"rationale\": \"The briefing uses a strong source for the acquisition and offers useful strategic questions, but several commercial and leadership details are unsupported, and it exceeds the requested length.\"\n  },\n  \"B\": {\n    \"scores\": {\n      \"grounding\": 6,\n      \"specificity\": 9,\n      \"recency\": 8,\n      \"usefulness\": 8\n    },\n    \"unsupported_claims\": [\n      \"OpenRouter had only two account executives as of April 2026.\",\n      \"The enterprise plan includes SSO, SLAs, and policy enforcement.\",\n      \"The supplied Contrary excerpt reports a $7.5B Stripe acquisition agreement.\",\n      \"OpenRouter had raised about $154M total as of May 2026, including a $40M seed and Series A at a $500M valuation in June 2025.\",\n      \"Contrary reports ARR of $10M in October 2025 and $50M by April 2026.\",\n      \"Contrary dates the Series B to May or supplies a conflicting 2025 token baseline.\",\n      \"Stripe, Netflix, Adobe, SAP, and Twilio use LiteLLM.\"\n    ],\n    \"rationale\": \"It is meeting-oriented and appropriately distinguishes estimates from confirmed figures, but numerous precise claims lack support in its supplied excerpts.\"\n  },\n  \"C\": {\n    \"scores\": {\n      \"grounding\": 6,\n      \"specificity\": 8,\n      \"recency\": 7,\n      \"usefulness\": 7\n    },\n    \"unsupported_claims\": [\n      \"OpenRouter has 8–10 million developers; the excerpts give 8M+ developers and, separately, 10M+ global users.\",\n      \"The cited excerpts establish enterprise SLAs and data-compliance controls.\",\n      \"Stripe agreed to acquire OpenRouter for $7.5B or sought the deal specifically to anchor its AI usage-based billing infrastructure; its supplied Sacra excerpt reports talks at roughly $10B.\",\n      \"The $40M 2025 round was a Series A led by Menlo Ventures and a16z, and total funding reached approximately $154M.\",\n      \"Alex Atallah was OpenSea’s CTO.\",\n      \"The team generated more than $2M in net revenue per employee; the cited excerpt says approximately $2M.\",\n      \"OpenRouter’s minimal sales overhead and a planned Stripe Metronome integration are established by the cited excerpts.\"\n    ],\n    \"rationale\": \"It covers all six sections concisely, but it blurs acquisition talks with an agreement and adds funding, leadership, and integration details the excerpts do not establish.\"\n  }\n}"
+      ],
+      "error": null,
+      "cost": 0.038336,
+      "latency": 22.438175837000017,
+      "usage": [
+        {
+          "completion_tokens": 1747,
+          "prompt_tokens": 8347,
+          "total_tokens": 10094,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": 0,
+            "reasoning_tokens": 1034,
+            "rejected_prediction_tokens": null,
+            "text_tokens": null,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 8344,
+            "cached_tokens": 0,
+            "image_tokens": null,
+            "text_tokens": null,
+            "video_tokens": 0
+          },
+          "cost": 0.038336,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.038336,
+            "upstream_inference_prompt_cost": 0.020866,
+            "upstream_inference_completions_cost": 0.01747
+          }
+        }
+      ]
+    }
+  ]
+}

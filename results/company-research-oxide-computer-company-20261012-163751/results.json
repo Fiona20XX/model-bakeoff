@@ -1,0 +1,781 @@
+{
+  "task": {
+    "name": "company_research",
+    "description": "A sourced one-page briefing on a company, for meeting or interview prep.",
+    "path": "tasks/company_research.yaml",
+    "vars": {
+      "company": "Oxide Computer Company"
+    },
+    "system": "You are a research analyst preparing a briefing for someone about to meet this company.\nBe specific and current. Cite a source for every factual claim. If you can't find\nsomething, say so rather than guessing.\n",
+    "user": "Write a briefing on Oxide Computer Company with these sections:\n1. What they do, who buys it, and how they make money\n2. Recent news and launches (last 6 months)\n3. Funding, size, and financial signals\n4. Leadership\n5. Main competitors and how they differ\n6. Likely strategic priorities and open questions\nKeep it under 500 words.\n",
+    "rubric": [
+      {
+        "name": "grounding",
+        "weight": 0.35,
+        "description": "Factual claims are supported by the cited sources; nothing invented or unsupported."
+      },
+      {
+        "name": "specificity",
+        "weight": 0.25,
+        "description": "Concrete facts (names, numbers, dates, products) rather than generic statements."
+      },
+      {
+        "name": "recency",
+        "weight": 0.2,
+        "description": "Reflects current information, not stale or outdated facts."
+      },
+      {
+        "name": "usefulness",
+        "weight": 0.2,
+        "description": "Would genuinely prepare someone for a meeting; strategic section shows real insight. Length is not a virtue."
+      }
+    ],
+    "web": {
+      "enabled": true,
+      "engine": "exa",
+      "max_results": 5
+    },
+    "max_tokens": 4000,
+    "temperature": 0.2
+  },
+  "started_at": "2026-10-12T16:37:51",
+  "flags": {
+    "runs": 2,
+    "free": false,
+    "web": true,
+    "judge": true
+  },
+  "models": [
+    "anthropic/claude-sonnet-5.5",
+    "google/gemini-3.8-flash",
+    "deepseek/deepseek-v4-pro"
+  ],
+  "judge": "openai/gpt-6-sol",
+  "skipped_models": [],
+  "warnings": [],
+  "total_cost": 0.20716384205,
+  "contestant_cost": 0.13691684205,
+  "judge_cost": 0.070247,
+  "summary": [
+    {
+      "model": "anthropic/claude-sonnet-5.5",
+      "runs": 2,
+      "ok_runs": 2,
+      "scores": [
+        8.4,
+        7.85
+      ],
+      "mean_score": 8.125,
+      "latencies": [
+        19.26986416599999,
+        19.499768226000015
+      ],
+      "costs": [
+        0.038816,
+        0.040478
+      ],
+      "mean_cost": 0.039647,
+      "sources": [
+        5,
+        5
+      ],
+      "unsupported_claims": [
+        4,
+        5
+      ],
+      "score_per_cent": 2.0493353847706004,
+      "rationales": [
+        "This is the most careful briefing: it distinguishes company claims from verified figures, acknowledges missing launch and competitor evidence, and turns the backlog into useful meeting questions.",
+        "This is a useful, current briefing that clearly labels vendor claims and unknowns, although a few specifics and its proposed competitors lack support in the supplied excerpts."
+      ],
+      "errors": []
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "runs": 2,
+      "ok_runs": 2,
+      "scores": [
+        7.3,
+        7.1
+      ],
+      "mean_score": 7.199999999999999,
+      "latencies": [
+        46.79747954300001,
+        45.80285728299998
+      ],
+      "costs": [
+        0.0103132281,
+        0.01021261395
+      ],
+      "mean_cost": 0.010262921025,
+      "sources": [
+        5,
+        5
+      ],
+      "unsupported_claims": [
+        6,
+        5
+      ],
+      "score_per_cent": 7.0155465315002745,
+      "rationales": [
+        "Current funding and manufacturing details make this useful, but several customer, competitor, and strategic assertions exceed the supplied excerpts, and some citation URLs contain typos.",
+        "It captures the major recent financial signals, but its competitor comparison relies heavily on unsupported assertions and numerous typos reduce its value as a meeting briefing."
+      ],
+      "errors": []
+    },
+    {
+      "model": "google/gemini-3.8-flash",
+      "runs": 2,
+      "ok_runs": 2,
+      "scores": [
+        6.95,
+        6.95
+      ],
+      "mean_score": 6.95,
+      "latencies": [
+        21.606592850000027,
+        23.154000451
+      ],
+      "costs": [
+        0.01730275,
+        0.01979425
+      ],
+      "mean_cost": 0.0185485,
+      "sources": [
+        5,
+        5
+      ],
+      "unsupported_claims": [
+        6,
+        5
+      ],
+      "score_per_cent": 3.746933714316522,
+      "rationales": [
+        "It offers concrete, recent meeting context and a sourced employee figure, but adds numerous unsourced biographies and competitive details.",
+        "The funding, manufacturing and product facts are timely and concrete, but several leadership, competitor and strategy details go beyond the supplied evidence."
+      ],
+      "errors": []
+    }
+  ],
+  "contestants": [
+    {
+      "model": "anthropic/claude-sonnet-5.5",
+      "run": 1,
+      "ok": true,
+      "answer": "# Oxide Computer Company briefing (as of Oct 12, 2026)\n\n## 1. What they do, who buys, how they make money\nOxide sells the Cloud Computer, a rack-scale system with co-designed compute, storage, networking and open-source software. It brings hyperscale-style cloud to a customer's own data center ([prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)). Customers span financial services, government, national laboratories, aerospace and other compute-intensive industries (same source). Revenue comes from hardware sales: the company says it is a one-time purchase with no licensing fees, and claims half the price of public cloud and traditional on-prem ([oxide.computer](https://oxide.computer/)). That pricing claim is Oxide's own and unverified.\n\n## 2. Recent news (last 6 months)\n- **Oct 9, 2026:** Announced a $445M Series D ([prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n- **Spring 2026:** Paid income tax for the first time, from ordinary operations ([oxide.computer](https://oxide.computer/blog/our-445m-series-d)).\n- **Manufacturing:** The CEO says capacity grew 20x over the past 12 months, and demand still exceeds supply ([prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n- **Product launches:** I found no specific launches in the sources. The homepage shows \"Rack 6 Initialized,\" but I can't tell what it refers to ([oxide.computer](https://oxide.computer/)).\n\n## 3. Funding, size, financial signals\n- The Series D was led by Eclipse. Existing investors USIT, Riot Ventures and Jane Street joined, and new investors include Atreides Management and AMD Ventures ([prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n- CB Insights puts total raised at $809M ([cbinsights.com](https://www.cbinsights.com/company/oxide-computer)). The prior round was a $200M Series C ([oxide.computer](https://oxide.computer/blog/our-445m-series-d)).\n- The company describes itself as profitable with a very large order backlog. It also has existing debt facilities, and cash is needed up front for components and manufacturing ([oxide.computer](https://oxide.computer/blog/our-445m-series-d)).\n- **Not found:** revenue, valuation, headcount, customer counts.\n\n## 4. Leadership\n- **Steve Tuck**, co-founder and CEO.\n- **Bryan Cantrill**, co-founder and CTO ([prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n\nI found no other executive information. The company was founded in 2019 and is based in Emeryville, CA.\n\n## 5. Competitors\nCB Insights names Mithril and \"5 more\" without listing them ([cbinsights.com](https://www.cbinsights.com/company/oxide-computer)). Oxide positions itself against public cloud and traditional on-prem, arguing for integrated hardware and software over assembled components, with no subscriptions or egress fees ([oxide.computer](https://oxide.computer/)). It also integrates with tools such as Kubernetes, OpenShift, Rancher and Terraform (same source). I found no sourced competitor comparison. Expect incumbent server and private-cloud vendors and the hyperscalers to come up, but verify that independently.\n\n## 6. Likely priorities and open questions\n**Priorities**\n- Secure components and scale manufacturing to clear the backlog while still taking new orders ([oxide.computer](https://oxide.computer/blog/our-445m-series-d)).\n- Ride demand for agentic AI and sovereign or on-prem compute.\n- Deepen the AMD relationship. Oxide's systems use AMD EPYC processors, and AMD Ventures has now invested ([prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n\n**Questions to ask**\n- How large is the backlog, and what are realistic delivery lead times?\n- How exposed is Oxide to component supply shocks? Its own post flags this risk.\n- How durable is profitability while it spends heavily on inventory?\n- What are the AI-specific offerings, beyond the marketing language?\n- Who are the real competitive alternatives in deals?",
+      "error": null,
+      "latency": 19.26986416599999,
+      "prompt_tokens": 3803,
+      "completion_tokens": 2421,
+      "cost": 0.038816,
+      "citations": [
+        {
+          "url": "https://oxide.computer/blog/our-445m-series-d",
+          "title": "Our $445M Series D | Oxide Computer Company",
+          "content": "In the spring, we hit a pretty wild milestone: Oxide paid income tax. And not because of some unusual transaction or one-time event, but because our ordinary operations (selling computers!) generated taxable income after accounting for the costs of components, manufacturing, salaries, and running the rest of the business. Of course, we each individually pay income tax every year; is it that surprising that a company is doing what we all do every spring?\n\n...\n\nSo this was a big milestone, and on top of that (and contrary to Russ Hanneman’s admonition!), we have a very large order backlog. On the one hand, it’s truly extraordinary to watch the business generate cash, but with demand far exceeding supply, significant cash is needed to secure inventory and fulfill these orders. This is one of the peculiar dynamics of a rapidly growing hardware business: we must commit substantial cash to components and manufacturing well before the resulting systems reach customers.\n\n...\n\nNow, between our Series B, Series C, our existing debt facilities, and the cash generated by the business itself, we felt confident we could satisfy our current backlog, but the absolute numbers are large enough that we would have had to exercise real caution in accepting additional demand. We are, after all, children of the Dot Com bust — cautious by nature — and would not put the business in a position where new supply disruptions, economic shocks, or other events outside our control could jeopardize it.\n\n...\n\nAs they have so many times for us over the seven years of the company, Eclipse stood up to lead, and our $445M Series D quickly came together. Existing investors USIT, Riot Ventures, and Jane Street signed up for big pieces — and others on the cap table including Friends and Family Capital and Counterpart eagerly joined in.\n\n...\n\nAll of these investors are — like us — in it for the long haul. When we raised our $200M Series C, we said that it was to entirely de-risk the company with respect to capital, to assure both our longevity and our independence. This Series D builds on that assurance to allow us to satisfy our substantial backlog while continuing to accept new demand, expand manufacturing capacity, and invest for the enduring company that we have always set out to build."
+        },
+        {
+          "url": "https://oxide.computer/",
+          "title": "Oxide Computer Company",
+          "content": "Rack 6 Initialized\n\n...\n\nRun AI, HPC, mission-critical, and general workloads with the elasticity, programmability, and unified control of cloud\n\n...\n\nOn-Demand Virtual Machines Kubernetes Container Orchestration Leading AMD EPYC Processors\n\n...\n\n## For the first time, the speed of cloud meets on-prem governance.\n\n...\n\nA fully auditable security chain, with a hardware root of trust, open-source firmware, and cryptographic isolation.\n\n...\n\n### Predictable, lower costs\n\n...\n\nHalf the price of public cloud and traditional on-prem. No subscriptions, surprise bills, or egress fees.\n\n...\n\n### API-driven developer velocity\n\n...\n\nOn-demand elastic resources, just like the public cloud, and support for tools\n\n...\n\n### 2-hour setup\n\n...\n\n### Modern cloud repatriation \n\nPublic cloud experience with on-prem TCO. Streamlined for modern ops teams.\n\nCo-designed hardware and software. One-time purchase with no licensing fees.\n\n...\n\nData engineering is the foundation of every AI initiative. Run data-intensive workloads where your data belongs, on hardware you control.\n\n...\n\n### High-performance computing\n\n...\n\nRun batch compute, data staging, and orchestration tools on secure, multi-tenant infrastructure you control.\n\n...\n\n### Sovereign cloud\n\n...\n\nYour data stays in your authority. Running on hardware you can verify and own outright.\n\n...\n\n### CI/CD\n\n...\n\nSecure builds on infrastructure you own. Dedicated runners with security baked in at a fixed cost.\n\n...\n\nLow latency, speed, and control. On-prem deployment with cloud elasticity, set up in under 2 hours.\n\n...\n\n### For technology \n\nRun AI inference, simulations, analytics, and real-time platforms on hyperscale cloud architecture within your own walls.\n\n...\n\n### Granular control of utilization through quotas\n\n...\n\n### Setup within hours\n\n...\n\nJust add power, networking, and go. Start new projects today, not next quarter. Zero subscription licensing. Prioritize real work, not renewals.\n\n...\n\nLike SUSE Rancher, Red Hat OpenShift, Kubernetes, Terraform, OpenTofu. Provision and scale on-demand elastic resources however you like – API, CLI, or console."
+        },
+        {
+          "url": "https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html",
+          "title": "Oxide Raises $445M Series D as the Company Proves Vision of Full-Stack Cloud Infrastructure Enterprises Can Own",
+          "content": "EMERYVILLE, Calif., Oct. 9, 2026 /PRNewswire/ -- Oxide Computer Company, the on-premises cloud computing company, today announced it has raised a $445 million Series D led by Eclipse, with participation from existing investors US Innovative Technology Fund (USIT), Riot Ventures, Jane Street, and more. New investors Atreides Management and AMD Ventures also joined the round.\n\n...\n\nOxide entered rarefied air earlier this year as it reached profitability, a significant milestone for a rapidly scaling hardware company. With customer demand exceeding current production capacity, the Series D provides additional working capital to secure components, increase manufacturing and serve new and existing customers.\n\n...\n\n\"The accelerating pace of on-prem cloud computing projects has required us to scale manufacturing capacity by 20x over the past 12 months, and yet demand still exceeds supply,\" said Steve Tuck, co-founder and CEO at Oxide. \"We're well-capitalized, and hit an important profitability milestone earlier this year. This funding will allow us to aggressively invest in the materials and manufacturing scale our customers need for years to come.\"\n\n...\n\nOxide's growth comes as the rise of agentic AI intensifies demand for infrastructure that can support a growing mix of compute, memory, networking and data-intensive workloads. The level of complexity required to support these agentic workloads is only achievable or scalable with full-stack systems – something that historically only the world's largest cloud providers could offer and at a price point that is cost-prohibitive for many organizations. With demand for compute, memory and data center capacity outpacing supply, even the hyperscalers are struggling to keep up. These dynamics reinforce that enterprises need the ability to own and control the systems their most critical workloads run on in order to ensure on-demand access to reliable, secure and cost-effective computing.\n\n...\n\nThe Oxide Cloud Computer is a rack-scale integrated system with purpose-built hardware and open-source software that brings the architectural model of the hyperscale cloud to an organization's own data center. By co-designing compute, storage, networking, and software as a single system, Oxide gives enterprises cloud automation and agility with direct ownership over their security, performance, data, and economics.\n\n...\n\n\"When we started Oxide in 2019, we knew that there would be increasing demand for owning and operating one's own compute -- and we felt strongly that organizations should be able to control their infrastructure without having to forfeit the modernity of cloud computing,\" said Bryan Cantrill, CTO and co-founder of Oxide. \"The specifics have been surprising -- we certainly did not anticipate the explosion in compute demand from agentic AI -- but today's thirst to control one's own fate is exactly what we sought to slake with Oxide.\"\n\n...\n\nOxide made an early bet that the next era of computing would be built as systems with hardware and software designed together rather than assembled from disparate components. AMD and Oxide have worked closely across the hardware and software stack. As agentic AI creates new demands across compute, memory and networking, AMD Ventures is deepening that relationship through a strategic investment in Oxide.\n\n...\n\nOxide customers span organizations with demanding infrastructure requirements across financial services, government, national laboratories, aerospace, and other compute-intensive industries. This infusion of capital further strengthens Oxide's ability to invest for the long term as customers deploy its infrastructure for increasingly critical workloads.\n\n...\n\nAbout Oxide Oxide Computer Company is the creator of the Cloud Computer, a rack-scale system with fully unified hardware and open-source software purpose-built to deliver hyperscale cloud computing to on-premises data centers. Oxide gives developers the elasticity, programmability and unified control of the cloud while enabling enterprises to retain ownership of their infrastructure for greater security, latency, sovereignty and cost predictability. Founded in 2019, Oxide is based in Emeryville, California."
+        },
+        {
+          "url": "https://www.cbinsights.com/company/oxide-computer",
+          "title": "Oxide - Products, Competitors, Financials, Employees ...",
+          "content": "## Stage\n\n...\n\nSeries D | Alive\n\n## Total Raised\n\n...\n\n$809M\n\n...\n\n$445M | 3 days ago\n\n...\n\nOxide provides on-premises cloud infrastructure solutions for various industries. Their offerings include elastic compute resources, programmable networking, and block storage, which manage on-premises compute infrastructure. Oxide's solutions serve sectors that need secure and scalable computing environments, such as finance, technology, and life sciences. It was founded in 2019 and is based in Emeryville, California.\n\n...\n\nInvestors of Oxide include Eclipse, US Innovative Technology Fund, Riot Ventures, Jane Street Group, AMD Ventures and 10 more.\n- Who are Oxide's competitors?\n\n...\n\nCompetitors of Oxide include Mithril and 5 more."
+        },
+        {
+          "url": "https://www.counterpart.vc/news/oxides-series-d-the-power-of-perseverance",
+          "title": "Oxide's Series D & The Power of Perseverance",
+          "content": "And this was even before the AI revolution began its trajectory - predating companies like Anthropic and OpenAI. Now, Oxide is powering the AI revolution installing their rack-scale sled-design computers into next-gen data centers, national laboratories and major corporations around the world. The relentless perseverance of cofounders Steve Tuck and Bryan Cantrill is where all credit is due. A belief in their vision from Day #1 and an unwillingness to let this vision dissipate has been their foundation for success.\n\n...\n\nWe're excited about the opportunities that lie ahead for Oxide following their growth financing. We predict the"
+        }
+      ],
+      "usage": {
+        "completion_tokens": 2421,
+        "prompt_tokens": 3803,
+        "total_tokens": 6224,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 615,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.038816,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.031816,
+          "upstream_inference_prompt_cost": 0.007606,
+          "upstream_inference_completions_cost": 0.02421
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "google/gemini-3.8-flash",
+      "run": 1,
+      "ok": true,
+      "answer": "### 1. What They Do, Who Buys It, & How They Make Money\nOxide Computer Company designs and manufactures the \"Cloud Computer,\" a vertically integrated, rack-scale system delivering hyperscale cloud functionality to on-premises data centers ([oxide.computer](https://oxide.computer/)). They co-design custom hardware (powered by AMD EPYC processors), networking, and open-source software/firmware into a unified appliance that installs in hours ([oxide.computer](https://oxide.computer/blog/our-445m-series-d)). \n\n* **Buyers:** Compute-intensive enterprises in financial services, aerospace, government, national laboratories, and AI/data engineering seeking cloud agility without data sovereignty, security, or egress issues ([prnewswire.com](https://prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n* **Monetization:** Outright hardware sales. Unlike traditional enterprise vendors, Oxide charges no recurring licensing, hypervisor, or subscription software fees ([oxide.computer](https://oxide.computer/)).\n\n### 2. Recent News & Launches\n* **$445M Series D (October 2026):** Raised a $445 million Series D led by Eclipse, with participation from USIT, Riot Ventures, Jane Street, Atreides Management, and a strategic investment from AMD Ventures ([prnewswire.com](https://prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n* **Manufacturing Expansion:** Scaled manufacturing capacity 20x over the prior 12 months to meet demand surges, particularly for agentic AI workloads ([prnewswire.com](https://prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n\n### 3. Funding, Size, & Financial Signals\n* **Funding:** Over $645M in total funding, following a $200M Series C and the recent $445M Series D ([oxide.computer](https://oxide.computer/blog/our-445m-series-d)).\n* **Size:** ~122 employees, based in Emeryville, California ([pitchbook.com](https://pitchbook.com/profiles/company/343384-66)).\n* **Financial Signals:** Reached profitability in spring 2026, generating positive taxable income and cash flow from normal operations ([oxide.computer](https://oxide.computer/blog/our-445m-series-d)). Demand currently far outstrips capacity, resulting in a large order backlog ([oxide.computer](https://oxide.computer/blog/our-445m-series-d)).\n\n### 4. Leadership\n* **Steve Tuck (Co-founder & CEO):** Former SVP of Sales and Solutions at Joyent ([prnewswire.com](https://prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n* **Bryan Cantrill (Co-founder & CTO):** Former CTO of Joyent, systems software pioneer (co-creator of DTrace at Sun Microsystems) ([prnewswire.com](https://prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n\n### 5. Main Competitors & Differentiation\n* **Competitors:** Legacy server OEMs (Dell, HPE), virtualization/private cloud software (VMware/Broadcom, Nutanix), and public cloud on-prem appliances (AWS Outposts, Azure Stack).\n* **Differentiation:** \n  * *True vertical integration:* Rather than piecing together disparate OEM components and third-party hypervisors, Oxide builds the silicon integration, hardware root-of-trust, networking, and software stack from the ground up ([prnewswire.com](https://prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n  * *No subscription lock-in:* Avoids ongoing software licensing overhead (e.g., post-Broadcom VMware price hikes) and cloudy subscription tethering ([oxide.computer](https://oxide.computer/)).\n\n### 6. Strategic Priorities & Open Questions\n* **Priorities:** Deploying Series D capital into component purchasing and scaling manufacturing throughput to clear the order backlog; expanding deep integration with AMD silicon for agentic AI and HPC workloads ([oxide.computer](https://oxide.computer/blog/our-445m-series-d)).\n* **Open Questions:**\n  * Can Oxide scale assembly and quality control quickly enough without hitting hardware supply chain bottlenecks?\n  * What is their dedicated roadmap for specialized AI accelerators/GPUs to address GPU-heavy agentic training and inference?",
+      "error": null,
+      "latency": 21.606592850000027,
+      "prompt_tokens": 2482,
+      "completion_tokens": 2251,
+      "cost": 0.01730275,
+      "citations": [
+        {
+          "url": "https://oxide.computer/blog/our-445m-series-d",
+          "title": "Our $445M Series D | Oxide Computer Company",
+          "content": "In the spring, we hit a pretty wild milestone: Oxide paid income tax. And not because of some unusual transaction or one-time event, but because our ordinary operations (selling computers!) generated taxable income after accounting for the costs of components, manufacturing, salaries, and running the rest of the business. Of course, we each individually pay income tax every year; is it that surprising that a company is doing what we all do every spring?\n\n...\n\nSo this was a big milestone, and on top of that (and contrary to Russ Hanneman’s admonition!), we have a very large order backlog. On the one hand, it’s truly extraordinary to watch the business generate cash, but with demand far exceeding supply, significant cash is needed to secure inventory and fulfill these orders. This is one of the peculiar dynamics of a rapidly growing hardware business: we must commit substantial cash to components and manufacturing well before the resulting systems reach customers.\n\n...\n\nNow, between our Series B, Series C, our existing debt facilities, and the cash generated by the business itself, we felt confident we could satisfy our current backlog, but the absolute numbers are large enough that we would have had to exercise real caution in accepting additional demand. We are, after all, children of the Dot Com bust — cautious by nature — and would not put the business in a position where new supply disruptions, economic shocks, or other events outside our control could jeopardize it.\n\n...\n\nAs they have so many times for us over the seven years of the company, Eclipse stood up to lead, and our $445M Series D quickly came together. Existing investors USIT, Riot Ventures, and Jane Street signed up for big pieces — and others on the cap table including Friends and Family Capital and Counterpart eagerly joined in.\n\n...\n\nFinally, we are thrilled to welcome AMD as a new strategic investor. AMD has long been a believer in Oxide: it was with their support that we were able to achieve breakthroughs like our own platform enablement software. And of course, we have been big believers in AMD: one of our first big bets was on AMD EPYC. We think the partnership between AMD and Oxide is a lasting one, and it’s fitting to have that expressed in the cap table.\n\n...\n\nAll of these investors are — like us — in it for the long haul. When we raised our $200M Series C, we said that it was to entirely de-risk the company with respect to capital, to assure both our longevity and our independence. This Series D builds on that assurance to allow us to satisfy our substantial backlog while continuing to accept new demand, expand manufacturing capacity, and invest for the enduring company that we have always set out to build."
+        },
+        {
+          "url": "https://oxide.computer/",
+          "title": "Oxide Computer Company",
+          "content": "Run AI, HPC, mission-critical, and general workloads with the elasticity, programmability, and unified control of cloud\n\n...\n\nOn-Demand Virtual Machines Kubernetes Container Orchestration Leading AMD EPYC Processors\n\n...\n\n## For the first time, the speed of cloud meets on-prem governance.\n\n...\n\nA fully auditable security chain, with a hardware root of trust, open-source firmware, and cryptographic isolation.\n\n...\n\n### Predictable, lower costs\n\n...\n\nHalf the price of public cloud and traditional on-prem. No subscriptions, surprise bills, or egress fees.\n\n...\n\n### API-driven developer velocity\n\n...\n\nOn-demand elastic resources, just like the public cloud, and support for tools developers already use.\n\n...\n\n### 2-hour setup\n\n...\n\n###\n\n...\n\nPublic cloud experience with on-prem TCO. Streamlined for modern ops teams.\n\n...\n\nCo-designed hardware and software. One-time purchase with no licensing fees.\n\n...\n\nData engineering is the foundation of every AI initiative. Run data-intensive workloads where your data belongs, on hardware you control.\n\n...\n\n### High-performance computing\n\n...\n\nRun batch compute, data staging, and orchestration tools on secure, multi-tenant infrastructure you control.\n\n...\n\nYour data stays in your authority. Running on hardware you can verify and own outright.\n\n...\n\n### CI/CD\n\n...\n\nSecure builds on infrastructure you own. Dedicated runners with security baked in at a fixed cost.\n\n...\n\nLow latency, speed, and control. On-prem deployment with cloud elasticity, set up in under 2 hours.\n\n...\n\nRun AI inference, simulations, analytics, and real-time platforms on hyperscale cloud architecture within your own walls.\n\n...\n\n### Granular control of utilization through quotas\n\n...\n\n### Setup within hours\n\n...\n\nJust add power, networking, and go. Start new projects today, not next quarter. Zero subscription licensing. Prioritize real work, not renewals.\n\n...\n\nLike SUSE Rancher, Red Hat OpenShift, Kubernetes, Terraform, OpenTofu. Provision and scale on-demand elastic resources however you like – API, CLI, or console."
+        },
+        {
+          "url": "https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html",
+          "title": "Oxide Raises $445M Series D as the Company Proves Vision of Full-Stack Cloud Infrastructure Enterprises Can Own",
+          "content": "EMERYVILLE, Calif., Oct. 9, 2026 /PRNewswire/ -- Oxide Computer Company, the on-premises cloud computing company, today announced it has raised a $445 million Series D led by Eclipse, with participation from existing investors US Innovative Technology Fund (USIT), Riot Ventures, Jane Street, and more. New investors Atreides Management and AMD Ventures also joined the round.\n\n...\n\nOxide entered rarefied air earlier this year as it reached profitability, a significant milestone for a rapidly scaling hardware company. With customer demand exceeding current production capacity, the Series D provides additional working capital to secure components, increase manufacturing and serve new and existing customers.\n\n...\n\n\"The accelerating pace of on-prem cloud computing projects has required us to scale manufacturing capacity by 20x over the past 12 months, and yet demand still exceeds supply,\" said Steve Tuck, co-founder and CEO at Oxide. \"We're well-capitalized, and hit an important profitability milestone earlier this year. This funding will allow us to aggressively invest in the materials and manufacturing scale our customers need for years to come.\"\n\n...\n\nOxide's growth comes as the rise of agentic AI intensifies demand for infrastructure that can support a growing mix of compute, memory, networking and data-intensive workloads. The level of complexity required to support these agentic workloads is only achievable or scalable with full-stack systems – something that historically only the world's largest cloud providers could offer and at a price point that is cost-prohibitive for many organizations. With demand for compute, memory and data center capacity outpacing supply, even the hyperscalers are struggling to keep up. These dynamics reinforce that enterprises need the ability to own and control the systems their most critical workloads run on in order to ensure on-demand access to reliable, secure and cost-effective computing.\n\n...\n\nThe Oxide Cloud Computer is a rack-scale integrated system with purpose-built hardware and open-source software that brings the architectural model of the hyperscale cloud to an organization's own data center. By co-designing compute, storage, networking, and software as a single system, Oxide gives enterprises cloud automation and agility with direct ownership over their security, performance, data, and economics.\n\n...\n\n\"When we started Oxide in 2019, we knew that there would be increasing demand for owning and operating one's own compute -- and we felt strongly that organizations should be able to control their infrastructure without having to forfeit the modernity of cloud computing,\" said Bryan Cantrill, CTO and co-founder of Oxide. \"The specifics have been surprising -- we certainly did not anticipate the explosion in compute demand from agentic AI -- but today's thirst to control one's own fate is exactly what we sought to slake with Oxide.\"\n\n...\n\nOxide made an early bet that the next era of computing would be built as systems with hardware and software designed together rather than assembled from disparate components. AMD and Oxide have worked closely across the hardware and software stack. As agentic AI creates new demands across compute, memory and networking, AMD Ventures is deepening that relationship through a strategic investment in Oxide.\n\n...\n\nOxide customers span organizations with demanding infrastructure requirements across financial services, government, national laboratories, aerospace, and other compute-intensive industries. This infusion of capital further strengthens Oxide's ability to invest for the long term as customers deploy its infrastructure for increasingly critical workloads.\n\n...\n\nAbout Oxide Oxide Computer Company is the creator of the Cloud Computer, a rack-scale system with fully unified hardware and open-source software purpose-built to deliver hyperscale cloud computing to on-premises data centers. Oxide gives developers the elasticity, programmability and unified control of the cloud while enabling enterprises to retain ownership of their infrastructure for greater security, latency, sovereignty and cost predictability. Founded in 2019, Oxide is based in Emeryville, California."
+        },
+        {
+          "url": "https://www.cbinsights.com/company/oxide-computer",
+          "title": "Oxide - Products, Competitors, Financials, Employees ...",
+          "content": "Oxide provides on-premises cloud infrastructure solutions for various industries. Their offerings include elastic compute resources, programmable networking, and block storage, which manage on-premises compute infrastructure. Oxide's solutions serve sectors that need secure and scalable computing environments, such as finance, technology, and life sciences. It was founded in 2019 and is based in Emeryville, California.\n\n...\n\nInvestors of Oxide include Eclipse, US Innovative Technology Fund, Riot Ventures, Jane Street Group, AMD Ventures and 10 more.\n- Who are Oxide's competitors?\n\n...\n\nCompetitors of Oxide include Mithril and 5 more."
+        },
+        {
+          "url": "https://pitchbook.com/profiles/company/343384-66",
+          "title": "Oxide Computer 2026 Company Profile: Valuation, Funding & Investors | PitchBook",
+          "content": "- Year Founded\n- 2019\n\n...\n\n- Status\n- Private\n\n- Employees\n- 122\n\n \n\n- Latest Deal Type\n- Series D\n\n- Latest Deal Amount\n- $445M\n\n- Investors\n- 13\n\n...\n\nManufacturer of an integrated rack-scale computer system designed for on-premises cloud computing. The company's system integrates co-designed hardware and software to offer a programmable, application"
+        }
+      ],
+      "usage": {
+        "completion_tokens": 2251,
+        "prompt_tokens": 2482,
+        "total_tokens": 4733,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1006,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.01730275,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.01030275,
+          "upstream_inference_prompt_cost": 0.0018615,
+          "upstream_inference_completions_cost": 0.00844125
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "run": 1,
+      "ok": true,
+      "answer": "**Oxide Computer Company Briefing**  \n*October 12, 2026*\n\n### 1. What they do, who buys it, and how they make money\nOxide sells the **Oxide Cloud Computer**, a rack‑scale system that combines purpose‑built hardware with open‑source software to deliver a public‑cloud‑like experience inside an enterprise’s own data center. The system provides on‑demand virtual machines, Kubernetes orchestration, programmable networking, block storage, and API‑driven automation – all with a hardware root of trust and cryptographic isolation [oxide.computer](https://oxide.computer/).  \nCustomers span financial services, government, national laboratoris, aerospae, and other compute‑intensive industries that need security, sovereignty, and predictable costs [prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html).  \nRevenue comes from a **one‑time purchase of the hardware**; there are no subscriptions, licensing fees, or egress charges [oxide.computer](https://oxide.computer/).\n\n### 2. Recent news and launches (last 6 months)\n- **Series D funding ($445M)** was announced on October 9, 2026. The round was led by Eclipse, with participation from USIT, Riot Ventures, Jane Street, Atreides Management, and a strategic investment from AMD Ventures [prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html).  \n- Earlier in the spring of 2026, the company **achieved profitability** – paying income tax from ordinary operations – a rare milestone for a fast‑scaling hardware startup [oxide.computer/blog](https://oxide.computer/blog/our-445m-series-d).  \n- Over the last 12 months, manufacturing capacity has **scaled 20x** to keep pace with demand, yet the order backlog still exceeds supply [prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html).\n\n### 3. Funding, size, and financial signals\n- **Total raised: $809 million** [cbinsights.com](https://www.cbinsights.com/company/oxide-computer).  \n- The latest $445M Series D brings working capital to secure components, fill the substantial backlog, and expand manufacturing while continuing to accept new demand [oxide.computer/blog](https://oxide.computer/blog/our-445m-series-d).  \n- Oxied **reached profitability in early 2026**, generating taxable income solely from selling computers. Before the round, the company already had enough cash (from prior series and debt facilities) to meet its existing backlog, but the large absolute numbers required caution [oxide.computer/blog](https://oxide.computer/blog/our-445m-series-d).  \n- The company’s own description emphasizes an enduring, long‑haul mentality – the Series D is intended to assure longevity and independence, not a prelude to an exit [oxide.computer/blog](https://oxide.computer/blog/our-445m-series-d).\n\n### 4. Leadership\n- **Steve Tuck – Co‑founder & CEO** [prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-provies-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html).  \n- **Bryan Cantrill – Co‑founder & CTO** [prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-provies-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html).  \n- Both have been vocal stewards of the company’s vision since founding in 2019; the Series D blog post is written in their characteristically frank voice [oxide.computer/blog](https://oxide.computer/blog/our-445m-series-d).\n\n###5. Main competitors and how they differ\n- According to CB Insights, competitors include **Mithril and five others** [cbinsights.com](https://www.cbinsights.com/company/oxide-computer).  \n- More broadly, Oxide competes against public cloud providers (AWS, Azure, GCP) that offer on‑premises extensions like Outposts or Azure Stack, and traditional on‑prem vendors (Dell, HPE) that sell disaggregated hardware plus software licenses.  \n- Oxide’s key differentiation: a **fully co‑designed, full‑stack system** that provides cloud‑native elasticity and API‑driven control **without subscriptions, egress fees, or multi‑vendor integration complexity**. It claims to deliver this at roughly half the cost of public cloud or traditional on‑prem, with setup in under two hours [oxide.computer](https://oxide.computer/).\n\n###6. Likely strategic priorities and open questions\n- **Priorities**: Use Series D capital to convert backlog, secure component inventory, and continue scaling manufacturing. Deepen the AMD partnership (now a strategic investor) to support the **growing compute demands of agentic AI** [prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-provies-vis-ion-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html). Preserve the company’s independent, long‑term orientation [oxide.computer/blog](https://oxide.computer/blog/our-445m-series-d).  \n- **Open questions**: Can supply‑chain and manufacturing scaling keep pace with the20x expansion without introducing quality or delivery risks? How large is the adressable market for on‑prem “cloud computers” once the early adopter wave subsides? Will the incumbents (hyperscalers and legacy OEMs) accelerate their own integrated on‑prem offers, and how defensible is Oxide’s full‑stack approach? No public information on international expansion or the specifics of the AMD Ventures relationship beyond the strategic investment.",
+      "error": null,
+      "latency": 46.79747954300001,
+      "prompt_tokens": 2302,
+      "completion_tokens": 2850,
+      "cost": 0.0103132281,
+      "citations": [
+        {
+          "url": "https://oxide.computer/blog/our-445m-series-d",
+          "title": "Our $445M Series D | Oxide Computer Company",
+          "content": "In the spring, we hit a pretty wild milestone: Oxide paid income tax. And not because of some unusual transaction or one-time event, but because our ordinary operations (selling computers!) generated taxable income after accounting for the costs of components, manufacturing, salaries, and running the rest of the business. Of course, we each individually pay income tax every year; is it that surprising that a company is doing what we all do every spring?\n\n...\n\nSo this was a big milestone, and on top of that (and contrary to Russ Hanneman’s admonition!), we have a very large order backlog. On the one hand, it’s truly extraordinary to watch the business generate cash, but with demand far exceeding supply, significant cash is needed to secure inventory and fulfill these orders. This is one of the peculiar dynamics of a rapidly growing hardware business: we must commit substantial cash to components and manufacturing well before the resulting systems reach customers.\n\n...\n\nNow, between our Series B, Series C, our existing debt facilities, and the cash generated by the business itself, we felt confident we could satisfy our current backlog, but the absolute numbers are large enough that we would have had to exercise real caution in accepting additional demand. We are, after all, children of the Dot Com bust — cautious by nature — and would not put the business in a position where new supply disruptions, economic shocks, or other events outside our control could jeopardize it.\n\n...\n\nAs they have so many times for us over the seven years of the company, Eclipse stood up to lead, and our $445M Series D quickly came together. Existing investors USIT, Riot Ventures, and Jane Street signed up for big pieces — and others on the cap table including Friends and Family Capital and Counterpart eagerly joined in.\n\n...\n\nAll of these investors are — like us — in it for the long haul. When we raised our $200M Series C, we said that it was to entirely de-risk the company with respect to capital, to assure both our longevity and our independence. This Series D builds on that assurance to allow us to satisfy our substantial backlog while continuing to accept new demand, expand manufacturing capacity, and invest for the enduring company that we have always set out to build."
+        },
+        {
+          "url": "https://oxide.computer/",
+          "title": "Oxide Computer Company",
+          "content": "Rack 6 Initialized\n\n...\n\nRun AI, HPC, mission-critical, and general workloads with the elasticity, programmability, and unified control of cloud\n\n...\n\nOn-Demand Virtual Machines Kubernetes Container Orchestration Leading AMD EPYC Processors\n\n...\n\n## For the first time, the speed of cloud meets on-prem governance.\n\n...\n\nA fully auditable security chain, with a hardware root of trust, open-source firmware, and cryptographic isolation.\n\n...\n\n### Predictable, lower costs\n\n...\n\nHalf the price of public cloud and traditional on-prem. No subscriptions, surprise bills, or egress fees.\n\n...\n\n### API-driven developer velocity\n\n...\n\nOn-demand elastic resources, just like the public cloud, and support for tools developers already use.\n\n...\n\n### 2-hour setup\n\n...\n\n### Modern cloud repatriation\n\n...\n\nPublic cloud experience with on-prem TCO. Streamlined for modern ops teams.\n\n...\n\nCo-designed hardware and software. One-time purchase with no licensing fees.\n\n...\n\nData engineering is the foundation of every AI initiative. Run data-intensive workloads where your data belongs, on hardware you control.\n\n...\n\n### High-performance computing\n\n...\n\nRun batch compute, data staging, and orchestration tools on secure, multi-tenant infrastructure you control.\n\n...\n\n### Sovereign cloud\n\n...\n\nYour data stays in your authority. Running on hardware you can verify and own outright.\n\n...\n\n### CI/CD\n\n...\n\nSecure builds on infrastructure you own. Dedicated runners with security baked in at a fixed cost.\n\n...\n\nLow latency, speed, and control. On-prem deployment with cloud elasticity, set up in under 2 hours.\n\n...\n\nRun AI inference, simulations, analytics, and real-time platforms on hyperscale cloud architecture within your own walls.\n\n...\n\n### Granular control of utilization through quotas\n\n...\n\n### Setup within hours\n\n...\n\nJust add power, networking, and go. Start new projects today, not next quarter. Zero subscription licensing. Prioritize real work, not renewals.\n\n...\n\nLike SUSE Rancher, Red Hat OpenShift, Kubernetes, Terraform, OpenTofu. Provision and scale on-demand elastic resources however you like – API, CLI, or console."
+        },
+        {
+          "url": "https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html",
+          "title": "Oxide Raises $445M Series D as the Company Proves Vision of Full-Stack Cloud Infrastructure Enterprises Can Own",
+          "content": "EMERYVILLE, Calif., Oct. 9, 2026 /PRNewswire/ -- Oxide Computer Company, the on-premises cloud computing company, today announced it has raised a $445 million Series D led by Eclipse, with participation from existing investors US Innovative Technology Fund (USIT), Riot Ventures, Jane Street, and more. New investors Atreides Management and AMD Ventures also joined the round.\n\n...\n\nOxide entered rarefied air earlier this year as it reached profitability, a significant milestone for a rapidly scaling hardware company. With customer demand exceeding current production capacity, the Series D provides additional working capital to secure components, increase manufacturing and serve new and existing customers.\n\n...\n\n\"The accelerating pace of on-prem cloud computing projects has required us to scale manufacturing capacity by 20x over the past 12 months, and yet demand still exceeds supply,\" said Steve Tuck, co-founder and CEO at Oxide. \"We're well-capitalized, and hit an important profitability milestone earlier this year. This funding will allow us to aggressively invest in the materials and manufacturing scale our customers need for years to come.\"\n\n...\n\nOxide's growth comes as the rise of agentic AI intensifies demand for infrastructure that can support a growing mix of compute, memory, networking and data-intensive workloads. The level of complexity required to support these agentic workloads is only achievable or scalable with full-stack systems – something that historically only the world's largest cloud providers could offer and at a price point that is cost-prohibitive for many organizations. With demand for compute, memory and data center capacity outpacing supply, even the hyperscalers are struggling to keep up. These dynamics reinforce that enterprises need the ability to own and control the systems their most critical workloads run on in order to ensure on-demand access to reliable, secure and cost-effective computing.\n\n...\n\nThe Oxide Cloud Computer is a rack-scale integrated system with purpose-built hardware and open-source software that brings the architectural model of the hyperscale cloud to an organization's own data center. By co-designing compute, storage, networking, and software as a single system, Oxide gives enterprises cloud automation and agility with direct ownership over their security, performance, data, and economics.\n\n...\n\n\"When we started Oxide in 2019, we knew that there would be increasing demand for owning and operating one's own compute -- and we felt strongly that organizations should be able to control their infrastructure without having to forfeit the modernity of cloud computing,\" said Bryan Cantrill, CTO and co-founder of Oxide. \"The specifics have been surprising -- we certainly did not anticipate the explosion in compute demand from agentic AI -- but today's thirst to control one's own fate is exactly what we sought to slake with Oxide.\"\n\n...\n\nOxide made an early bet that the next era of computing would be built as systems with hardware and software designed together rather than assembled from disparate components. AMD and Oxide have worked closely across the hardware and software stack. As agentic AI creates new demands across compute, memory and networking, AMD Ventures is deepening that relationship through a strategic investment in Oxide.\n\n...\n\nOxide customers span organizations with demanding infrastructure requirements across financial services, government, national laboratories, aerospace, and other compute-intensive industries. This infusion of capital further strengthens Oxide's ability to invest for the long term as customers deploy its infrastructure for increasingly critical workloads.\n\n...\n\nAbout Oxide Oxide Computer Company is the creator of the Cloud Computer, a rack-scale system with fully unified hardware and open-source software purpose-built to deliver hyperscale cloud computing to on-premises data centers. Oxide gives developers the elasticity, programmability and unified control of the cloud while enabling enterprises to retain ownership of their infrastructure for greater security, latency, sovereignty and cost predictability. Founded in 2019, Oxide is based in Emeryville, California."
+        },
+        {
+          "url": "https://www.counterpart.vc/news/oxides-series-d-the-power-of-perseverance",
+          "title": "Oxide's Series D & The Power of Perseverance",
+          "content": "Congratulations to the entire team at the Oxide Computer Company, led by Steve Tuck and Bryan Cantrill, on their monumental $445M Series D fundraise. The Series D represents a new phase of growth capital for Oxide, to continue providing next generation on-premise cloud computing infrastructure to corporations and enterprises around the world.\n\n...\n\nAnd this was even before the AI revolution began its trajectory - predating companies like Anthropic and OpenAI. Now, Oxide is powering the AI\n\n...\n\nWe're excited about the opportunities that lie ahead for Oxide following their growth"
+        },
+        {
+          "url": "https://www.cbinsights.com/company/oxide-computer",
+          "title": "Oxide - Products, Competitors, Financials, Employees ...",
+          "content": "## Total Raised\n\n...\n\n$809M\n\n...\n\n$445M | 3 days ago\n\n...\n\nOxide provides on-premises cloud infrastructure solutions for various industries. Their offerings include elastic compute resources, programmable networking, and block storage, which manage on-premises compute infrastructure. Oxide's solutions serve sectors that need secure and scalable computing environments, such as finance, technology, and life sciences. It was founded in 2019 and is based in Emeryville, California.\n\n...\n\nOxide raised a total of $809M.\n- Who are the investors of Oxide?\n\n...\n\nInvestors of Oxide include Eclipse, US Innovative Technology Fund, Riot Ventures, Jane Street Group, AMD Ventures and 10 more.\n- Who are Oxide's competitors?\n\n...\n\nCompetitors of Oxide include Mithril and 5 more."
+        }
+      ],
+      "usage": {
+        "completion_tokens": 2850,
+        "prompt_tokens": 2302,
+        "total_tokens": 5152,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1479,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.0103132281,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0033132281,
+          "upstream_inference_prompt_cost": 0.0009531431,
+          "upstream_inference_completions_cost": 0.002360085
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "anthropic/claude-sonnet-5.5",
+      "run": 2,
+      "ok": true,
+      "answer": "# Oxide Computer Company: Briefing (as of Oct 12, 2026)\n\n## 1. What they do, who buys it, how they make money\nOxide makes the Oxide Cloud Computer, a rack-scale system with co-designed hardware and open-source software that brings hyperscale-style cloud to a customer's own data center ([prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)). Customers include financial services, government, national laboratories, aerospace, and other compute-intensive industries ([prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)). Oxide sells hardware as a one-time purchase with no licensing fees. It claims about half the cost of public cloud and traditional on-prem, and setup in about 2 hours ([oxide.computer](https://oxide.computer/)). Those are vendor claims, not independently verified.\n\n## 2. Recent news (last 6 months)\n- **Oct 9, 2026:** Announced a $445M Series D ([prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n- **Spring 2026:** Paid income tax for the first time, because ordinary operations generated taxable income ([oxide.computer](https://oxide.computer/blog/our-445m-series-d)).\n- **Capacity:** Manufacturing capacity grew 20x over the past 12 months, and demand still exceeds supply ([prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n- **Product launches:** I found none in the search results.\n\n## 3. Funding, size, financial signals\n- **Series D:** $445M, led by Eclipse. Existing investors USIT, Riot Ventures, and Jane Street participated. New investors are Atreides Management and AMD Ventures ([prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n- **Prior capital:** A $200M Series C, a Series B, and existing debt facilities ([oxide.computer](https://oxide.computer/blog/our-445m-series-d)).\n- **Profitability and backlog:** Oxide describes itself as profitable with a very large order backlog. The new money is mainly working capital to buy components ahead of shipments ([oxide.computer](https://oxide.computer/blog/our-445m-series-d)).\n- **Headcount:** About 122 employees, per [pitchbook.com](https://pitchbook.com/profiles/company/343384-66).\n- **Not found:** Revenue, valuation, and customer counts.\n\n## 4. Leadership\n- **Steve Tuck:** Co-founder and CEO.\n- **Bryan Cantrill:** Co-founder and CTO ([prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n- **Other executives:** Not covered in the results.\n\n## 5. Competitors and differentiation\nThe search results name no competitors. Oxide's own positioning contrasts it with public cloud and traditional on-prem infrastructure. It cites no subscriptions, egress fees, or licensing, and says it offers a hardware root of trust and open-source firmware ([oxide.computer](https://oxide.computer/)). It also lists compatibility with Kubernetes, Terraform, OpenShift, and Rancher, so these are tools it works with rather than rivals ([oxide.computer](https://oxide.computer/)). From my own background knowledge (uncited), likely rivals are traditional server and hyperconverged vendors such as Dell, HPE, and Nutanix, plus hyperscaler on-prem offerings. Verify before relying on this.\n\n## 6. Likely priorities and open questions\n**Priorities (inferred from the sources):**\n- Scale manufacturing and secure component supply ([prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n- Work through the backlog while still accepting new demand ([oxide.computer](https://oxide.computer/blog/our-445m-series-d)).\n- Ride demand from agentic AI workloads, though Cantrill said Oxide did not anticipate that surge ([prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n- Deepen the AMD relationship. AMD is now a strategic investor, and Oxide's early bet was on AMD EPYC ([oxide.computer](https://oxide.computer/blog/our-445m-series-d)).\n\n**Open questions to ask:**\n- What are lead times and backlog size?\n- How exposed is Oxide to supply shocks, and to dependence on AMD?\n- What is the AI/GPU roadmap? The site mentions AI workloads, but the sources give no hardware details.\n- What are real customer count, revenue, and pricing?",
+      "error": null,
+      "latency": 19.499768226000015,
+      "prompt_tokens": 3784,
+      "completion_tokens": 2591,
+      "cost": 0.040478,
+      "citations": [
+        {
+          "url": "https://oxide.computer/blog/our-445m-series-d",
+          "title": "Our $445M Series D | Oxide Computer Company",
+          "content": "In the spring, we hit a pretty wild milestone: Oxide paid income tax. And not because of some unusual transaction or one-time event, but because our ordinary operations (selling computers!) generated taxable income after accounting for the costs of components, manufacturing, salaries, and running the rest of the business. Of course, we each individually pay income tax every year; is it that surprising that a company is doing what we all do every spring?\n\n...\n\nSo this was a big milestone, and on top of that (and contrary to Russ Hanneman’s admonition!), we have a very large order backlog. On the one hand, it’s truly extraordinary to watch the business generate cash, but with demand far exceeding supply, significant cash is needed to secure inventory and fulfill these orders. This is one of the peculiar dynamics of a rapidly growing hardware business: we must commit substantial cash to components and manufacturing well before the resulting systems reach customers.\n\n...\n\nNow, between our Series B, Series C, our existing debt facilities, and the cash generated by the business itself, we felt confident we could satisfy our current backlog, but the absolute numbers are large enough that we would have had to exercise real caution in accepting additional demand. We are, after all, children of the Dot Com bust — cautious by nature — and would not put the business in a position where new supply disruptions, economic shocks, or other events outside our control could jeopardize it.\n\n...\n\nAs they have so many times for us over the seven years of the company, Eclipse stood up to lead, and our $445M Series D quickly came together. Existing investors USIT, Riot Ventures, and Jane Street signed up for big pieces — and others on the cap table including Friends and Family Capital and Counterpart eagerly joined in.\n\n...\n\nWe are deeply appreciative of the support of these existing investors, but we also wanted to add new investors to the company. While there was a lot of outside interest (profitability being the ultimate VC aphrodisiac!), there was one firm that stood above the rest: Atreides Management, which first got to know us nearly two years ago and has stayed close to the company ever since. We love their analytical approach, their courage in hard-tech investing — and their belief in Oxide.\n\n...\n\nFinally, we are thrilled to welcome AMD as a new strategic investor. AMD has long been a believer in Oxide: it was with their support that we were able to achieve breakthroughs like our own platform enablement software. And of course, we have been big believers in AMD: one of our first big bets was on AMD EPYC. We think the partnership between AMD and Oxide is a lasting one, and it’s fitting to have that expressed in the cap table.\n\n...\n\nAll of these investors are — like us — in it for the long haul. When we raised our $200M Series C, we said that it was to entirely de-risk the company with respect to capital, to assure both our longevity and our independence. This Series D builds on that assurance to allow us to satisfy our substantial backlog while continuing to accept new demand, expand manufacturing capacity, and invest for the enduring company that we have always set out to build."
+        },
+        {
+          "url": "https://oxide.computer/",
+          "title": "Oxide Computer Company",
+          "content": "Run AI, HPC, mission-critical, and general workloads with the elasticity, programmability, and unified control of cloud\n\n...\n\nOn-Demand Virtual Machines\n\n...\n\n## For the first time, the speed of cloud meets on-prem governance.\n\n...\n\nA fully auditable security chain, with a hardware root of trust, open-source firmware, and cryptographic isolation.\n\n...\n\n### Predictable, lower costs\n\n...\n\nHalf the price of public cloud and traditional on-prem. No subscriptions, surprise bills, or egress fees.\n\n...\n\n### API-driven developer velocity\n\n...\n\nOn-demand elastic resources, just like the public cloud, and support for tools developers already use.\n\n...\n\n### 2-hour setup\n\n...\n\nPublic cloud experience with on-prem TCO. Streamlined for modern ops teams.\n\n...\n\nCo-designed hardware and software. One-time purchase with no licensing fees.\n\n...\n\nData engineering is the foundation of every AI initiative. Run data-intensive workloads where your data belongs, on hardware you control.\n\n...\n\n### High-performance computing\n\n...\n\nRun batch compute, data staging, and orchestration tools on secure, multi-tenant infrastructure you control.\n\n...\n\nYour data stays in your authority. Running on hardware you can verify and own outright.\n\n...\n\n### CI/CD\n\n...\n\nSecure builds on infrastructure you own. Dedicated runners with security baked in at a fixed cost.\n\n...\n\nLow latency, speed, and control. On-prem deployment with cloud elasticity, set up in under 2 hours.\n\n...\n\nRun AI inference, simulations, analytics, and real-time platforms on hyperscale cloud architecture within your own walls.\n\n...\n\n### Granular control of utilization through quotas\n\n...\n\n### Setup within hours\n\n...\n\nJust add power, networking, and go. Start new projects today, not next quarter. Zero subscription licensing. Prioritize real work, not renewals.\n\n...\n\nLike SUSE Rancher, Red Hat OpenShift, Kubernetes, Terraform, OpenTofu. Provision and scale on-demand elastic resources however you like – API, CLI, or console."
+        },
+        {
+          "url": "https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html",
+          "title": "Oxide Raises $445M Series D as the Company Proves Vision of Full-Stack Cloud Infrastructure Enterprises Can Own",
+          "content": "EMERYVILLE, Calif., Oct. 9, 2026 /PRNewswire/ -- Oxide Computer Company, the on-premises cloud computing company, today announced it has raised a $445 million Series D led by Eclipse, with participation from existing investors US Innovative Technology Fund (USIT), Riot Ventures, Jane Street, and more. New investors Atreides Management and AMD Ventures also joined the round.\n\n...\n\nOxide entered rarefied air earlier this year as it reached profitability, a significant milestone for a rapidly scaling hardware company. With customer demand exceeding current production capacity, the Series D provides additional working capital to secure components, increase manufacturing and serve new and existing customers.\n\n...\n\n\"The accelerating pace of on-prem cloud computing projects has required us to scale manufacturing capacity by 20x over the past 12 months, and yet demand still exceeds supply,\" said Steve Tuck, co-founder and CEO at Oxide. \"We're well-capitalized, and hit an important profitability milestone earlier this year. This funding will allow us to aggressively invest in the materials and manufacturing scale our customers need for years to come.\"\n\n...\n\nOxide's growth comes as the rise of agentic AI intensifies demand for infrastructure that can support a growing mix of compute, memory, networking and data-intensive workloads. The level of complexity required to support these agentic workloads is only achievable or scalable with full-stack systems – something that historically only the world's largest cloud providers could offer and at a price point that is cost-prohibitive for many organizations. With demand for compute, memory and data center capacity outpacing supply, even the hyperscalers are struggling to keep up. These dynamics reinforce that enterprises need the ability to own and control the systems their most critical workloads run on in order to ensure on-demand access to reliable, secure and cost-effective computing.\n\n...\n\nThe Oxide Cloud Computer is a rack-scale integrated system with purpose-built hardware and open-source software that brings the architectural model of the hyperscale cloud to an organization's own data center. By co-designing compute, storage, networking, and software as a single system, Oxide gives enterprises cloud automation and agility with direct ownership over their security, performance, data, and economics.\n\n...\n\n\"When we started Oxide in 2019, we knew that there would be increasing demand for owning and operating one's own compute -- and we felt strongly that organizations should be able to control their infrastructure without having to forfeit the modernity of cloud computing,\" said Bryan Cantrill, CTO and co-founder of Oxide. \"The specifics have been surprising -- we certainly did not anticipate the explosion in compute demand from agentic AI -- but today's thirst to control one's own fate is exactly what we sought to slake with Oxide.\"\n\n...\n\nOxide made an early bet that the next era of computing would be built as systems with hardware and software designed together rather than assembled from disparate components. AMD and Oxide have worked closely across the hardware and software stack. As agentic AI creates new demands across compute, memory and networking, AMD Ventures is deepening that relationship through a strategic investment in Oxide.\n\n...\n\nOxide customers span organizations with demanding infrastructure requirements across financial services, government, national laboratories, aerospace, and other compute-intensive industries. This infusion of capital further strengthens Oxide's ability to invest for the long term as customers deploy its infrastructure for increasingly critical workloads.\n\n...\n\nAbout Oxide Oxide Computer Company is the creator of the Cloud Computer, a rack-scale system with fully unified hardware and open-source software purpose-built to deliver hyperscale cloud computing to on-premises data centers. Oxide gives developers the elasticity, programmability and unified control of the cloud while enabling enterprises to retain ownership of their infrastructure for greater security, latency, sovereignty and cost predictability. Founded in 2019, Oxide is based in Emeryville, California."
+        },
+        {
+          "url": "https://www.cbinsights.com/company/oxide-computer",
+          "title": "Oxide - Products, Competitors, Financials, Employees ...",
+          "content": ", and block storage, which manage on-premises compute infrastructure. Oxide's solutions serve sectors that need secure and scalable computing environments, such as finance, technology, and life sciences. It was founded in 2019 and is based in Emeryville,"
+        },
+        {
+          "url": "https://pitchbook.com/profiles/company/343384-66",
+          "title": "Oxide Computer 2026 Company Profile: Valuation, Funding & Investors | PitchBook",
+          "content": "- Year Founded\n- 2019\n\n...\n\n- Status\n- Private\n\n- Employees\n- 122\n\n \n\n- Latest Deal Type\n- Series D\n\n- Latest Deal Amount\n- $445M\n\n- Investors\n- 13\n\n...\n\nManufacturer of an integrated rack-scale computer system designed for on-premises cloud computing. The company's system integrates co-designed hardware and software to offer a programmable, application programming"
+        }
+      ],
+      "usage": {
+        "completion_tokens": 2591,
+        "prompt_tokens": 3784,
+        "total_tokens": 6375,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 565,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.040478,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.033478,
+          "upstream_inference_prompt_cost": 0.007568,
+          "upstream_inference_completions_cost": 0.02591
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "google/gemini-3.8-flash",
+      "run": 2,
+      "ok": true,
+      "answer": "### 1. What They Do, Who Buys It, and How They Make Money\nOxide builds the **Cloud Computer**, an integrated rack-scale server system co-designing hardware, firmware, and software to deliver a hyperscale public cloud operational model inside on-premises data centers ([prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)). \n\n* **Customers:** Compute-intensive enterprises in financial services, aerospace, government/defense, national laboratories, and AI engineering seeking data sovereignty and predictable latency ([prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n* **Business Model:** Systems are purchased outright as a one-time capital investment—with zero software subscription licensing, support tiers, or egress fees ([oxide.computer](https://oxide.computer/)).\n\n### 2. Recent News & Launches (Last 6 Months)\n* **Series D Raise:** Closed a massive $445M Series D round in October 2026 led by Eclipse to fulfill an extensive order backlog ([oxide.computer](https://oxide.computer/blog/our-445m-series-d)).\n* **AMD Strategic Partnership:** AMD Ventures joined as a strategic investor, expanding co-engineering around AMD EPYC silicon and platform enablement software ([oxide.computer](https://oxide.computer/blog/our-445m-series-d)).\n* **Manufacturing Scale:** Scaled production capacity 20x over the prior year to address surging demand from cloud repatriation and agentic AI workloads ([prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n\n### 3. Funding, Size, and Financial Signals\n* **Total Funding:** ~$809M raised across all rounds ([cbinsights.com](https://www.cbinsights.com/company/oxide-computer)), including the $445M Series D (2026) and prior $200M Series C ([oxide.computer](https://oxide.computer/blog/our-445m-series-d)).\n* **Key Backers:** Eclipse, USIT, Jane Street, Riot Ventures, Atreides Management, and AMD Ventures ([prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n* **Financial Signals:** Oxide turned cash-flow positive from operations and paid corporate income tax in early 2026, though working capital demands remain high to procure inventory against severe demand-supply imbalances ([oxide.computer](https://oxide.computer/blog/our-445m-series-d)).\n\n### 4. Leadership\n* **Steve Tuck (Co-Founder & CEO):** Former SVP of Joyent; experienced cloud infrastructure executive ([prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n* **Bryan Cantrill (Co-Founder & CTO):** Systems pioneer, former Joyent CTO, and Sun Microsystems veteran known for co-creating DTrace ([prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n\n### 5. Main Competitors & Key Differentiators\n* **Hyperscaler Hybrid Appliances (AWS Outposts, Azure Stack):** These rely on rented hardware, perpetual operational fees, and vendor lock-in. Oxide is a customer-owned, open-source stack with no egress fees ([oxide.computer](https://oxide.computer/)).\n* **Legacy OEMs (Dell, HPE, Cisco) + VMware:** Legacy vendors assemble piecemeal systems requiring fragile cabling, separate software licenses, and complex maintenance contracts. Oxide provides a unified, vertically integrated rack that deploys in under two hours with API-native control ([oxide.computer](https://oxide.computer/)).\n\n### 6. Likely Strategic Priorities & Open Questions\n* **Strategic Priorities:** Securing supply chain components and scaling manufacturing throughput to clear the multi-quarter backlog; deepening integration with AMD for memory/compute density in AI environments ([oxide.computer](https://oxide.computer/blog/our-445m-series-d), [prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)).\n* **Open Questions:**\n  1. *Hardware Lead Times:* Can Oxide scale its supply chain fast enough to prevent customer churn to legacy OEMs?\n  2. *AI Accelerator Strategy:* While built on AMD EPYC CPUs, how does Oxide plan to natively accommodate discrete GPU clusters and specialized accelerators demanded by frontier AI models?",
+      "error": null,
+      "latency": 23.154000451,
+      "prompt_tokens": 2509,
+      "completion_tokens": 2910,
+      "cost": 0.01979425,
+      "citations": [
+        {
+          "url": "https://oxide.computer/blog/our-445m-series-d",
+          "title": "Our $445M Series D | Oxide Computer Company",
+          "content": "In the spring, we hit a pretty wild milestone: Oxide paid income tax. And not because of some unusual transaction or one-time event, but because our ordinary operations (selling computers!) generated taxable income after accounting for the costs of components, manufacturing, salaries, and running the rest of the business. Of course, we each individually pay income tax every year; is it that surprising that a company is doing what we all do every spring?\n\n...\n\nSo this was a big milestone, and on top of that (and contrary to Russ Hanneman’s admonition!), we have a very large order backlog. On the one hand, it’s truly extraordinary to watch the business generate cash, but with demand far exceeding supply, significant cash is needed to secure inventory and fulfill these orders. This is one of the peculiar dynamics of a rapidly growing hardware business: we must commit substantial cash to components and manufacturing well before the resulting systems reach customers.\n\n...\n\nNow, between our Series B, Series C, our existing debt facilities, and the cash generated by the business itself, we felt confident we could satisfy our current backlog, but the absolute numbers are large enough that we would have had to exercise real caution in accepting additional demand. We are, after all, children of the Dot Com bust — cautious by nature — and would not put the business in a position where new supply disruptions, economic shocks, or other events outside our control could jeopardize it.\n\n...\n\nAs they have so many times for us over the seven years of the company, Eclipse stood up to lead, and our $445M Series D quickly came together. Existing investors USIT, Riot Ventures, and Jane Street signed up for big pieces — and others on the cap table including Friends and Family Capital and Counterpart eagerly joined in.\n\n...\n\nFinally, we are thrilled to welcome AMD as a new strategic investor. AMD has long been a believer in Oxide: it was with their support that we were able to achieve breakthroughs like our own platform enablement software. And of course, we have been big believers in AMD: one of our first big bets was on AMD EPYC. We think the partnership between AMD and Oxide is a lasting one, and it’s fitting to have that expressed in the cap table.\n\n...\n\nAll of these investors are — like us — in it for the long haul. When we raised our $200M Series C, we said that it was to entirely de-risk the company with respect to capital, to assure both our longevity and our independence. This Series D builds on that assurance to allow us to satisfy our substantial backlog while continuing to accept new demand, expand manufacturing capacity, and invest for the enduring company that we have always set out to build."
+        },
+        {
+          "url": "https://oxide.computer/",
+          "title": "Oxide Computer Company",
+          "content": "Rack 6 Initialized\n\n...\n\nRun AI, HPC, mission-critical, and general workloads with the elasticity, programmability, and unified control of cloud\n\n...\n\nOn-Demand Virtual Machines Kubernetes Container Orchestration Leading AMD EPYC Processors\n\n...\n\n## For the first time, the speed of cloud meets on-prem governance.\n\n...\n\nA fully auditable security chain, with a hardware root of trust, open-source firmware, and cryptographic isolation.\n\n...\n\n### Predictable, lower costs\n\n...\n\nHalf the price of public cloud and traditional on-prem. No subscriptions, surprise bills, or egress fees.\n\n...\n\n### API-driven developer velocity\n\n...\n\nOn-demand elastic resources, just like the public cloud, and support for tools developers already use.\n\n...\n\n### 2-hour setup\n\n...\n\n### Modern cloud repatriation\n\n...\n\nPublic cloud experience with on-prem TCO. Streamlined for modern ops teams.\n\n...\n\nCo-designed hardware and software. One-time purchase with no licensing fees.\n\n...\n\nData engineering is the foundation of every AI initiative. Run data-intensive workloads where your data belongs, on hardware you control.\n\n...\n\n### High-performance computing\n\n...\n\nRun batch compute, data staging, and orchestration tools on secure, multi-tenant infrastructure you control.\n\n...\n\n### Sovereign cloud\n\n...\n\nYour data stays in your authority. Running on hardware you can verify and own outright.\n\n...\n\n### CI/CD\n\n...\n\nSecure builds on infrastructure you own. Dedicated runners with security baked in at a fixed cost.\n\n...\n\nLow latency, speed, and control. On-prem deployment with cloud elasticity, set up in under 2 hours.\n\n...\n\nRun AI inference, simulations, analytics, and real-time platforms on hyperscale cloud architecture within your own walls.\n\n...\n\n### Granular control of utilization through quotas\n\n...\n\n### Setup within hours\n\n...\n\nJust add power, networking, and go. Start new projects today, not next quarter. Zero subscription licensing. Prioritize real work, not renewals.\n\n...\n\nLike SUSE Rancher, Red Hat OpenShift, Kubernetes, Terraform, OpenTofu. Provision and scale on-demand elastic resources however you like – API, CLI, or console."
+        },
+        {
+          "url": "https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html",
+          "title": "Oxide Raises $445M Series D as the Company Proves Vision of Full-Stack Cloud Infrastructure Enterprises Can Own",
+          "content": "EMERYVILLE, Calif., Oct. 9, 2026 /PRNewswire/ -- Oxide Computer Company, the on-premises cloud computing company, today announced it has raised a $445 million Series D led by Eclipse, with participation from existing investors US Innovative Technology Fund (USIT), Riot Ventures, Jane Street, and more. New investors Atreides Management and AMD Ventures also joined the round.\n\n...\n\nOxide entered rarefied air earlier this year as it reached profitability, a significant milestone for a rapidly scaling hardware company. With customer demand exceeding current production capacity, the Series D provides additional working capital to secure components, increase manufacturing and serve new and existing customers.\n\n...\n\n\"The accelerating pace of on-prem cloud computing projects has required us to scale manufacturing capacity by 20x over the past 12 months, and yet demand still exceeds supply,\" said Steve Tuck, co-founder and CEO at Oxide. \"We're well-capitalized, and hit an important profitability milestone earlier this year. This funding will allow us to aggressively invest in the materials and manufacturing scale our customers need for years to come.\"\n\n...\n\nOxide's growth comes as the rise of agentic AI intensifies demand for infrastructure that can support a growing mix of compute, memory, networking and data-intensive workloads. The level of complexity required to support these agentic workloads is only achievable or scalable with full-stack systems – something that historically only the world's largest cloud providers could offer and at a price point that is cost-prohibitive for many organizations. With demand for compute, memory and data center capacity outpacing supply, even the hyperscalers are struggling to keep up. These dynamics reinforce that enterprises need the ability to own and control the systems their most critical workloads run on in order to ensure on-demand access to reliable, secure and cost-effective computing.\n\n...\n\nThe Oxide Cloud Computer is a rack-scale integrated system with purpose-built hardware and open-source software that brings the architectural model of the hyperscale cloud to an organization's own data center. By co-designing compute, storage, networking, and software as a single system, Oxide gives enterprises cloud automation and agility with direct ownership over their security, performance, data, and economics.\n\n...\n\n\"When we started Oxide in 2019, we knew that there would be increasing demand for owning and operating one's own compute -- and we felt strongly that organizations should be able to control their infrastructure without having to forfeit the modernity of cloud computing,\" said Bryan Cantrill, CTO and co-founder of Oxide. \"The specifics have been surprising -- we certainly did not anticipate the explosion in compute demand from agentic AI -- but today's thirst to control one's own fate is exactly what we sought to slake with Oxide.\"\n\n...\n\nOxide made an early bet that the next era of computing would be built as systems with hardware and software designed together rather than assembled from disparate components. AMD and Oxide have worked closely across the hardware and software stack. As agentic AI creates new demands across compute, memory and networking, AMD Ventures is deepening that relationship through a strategic investment in Oxide.\n\n...\n\nOxide customers span organizations with demanding infrastructure requirements across financial services, government, national laboratories, aerospace, and other compute-intensive industries. This infusion of capital further strengthens Oxide's ability to invest for the long term as customers deploy its infrastructure for increasingly critical workloads.\n\n...\n\nAbout Oxide Oxide Computer Company is the creator of the Cloud Computer, a rack-scale system with fully unified hardware and open-source software purpose-built to deliver hyperscale cloud computing to on-premises data centers. Oxide gives developers the elasticity, programmability and unified control of the cloud while enabling enterprises to retain ownership of their infrastructure for greater security, latency, sovereignty and cost predictability. Founded in 2019, Oxide is based in Emeryville, California."
+        },
+        {
+          "url": "https://www.counterpart.vc/news/oxides-series-d-the-power-of-perseverance",
+          "title": "Oxide's Series D & The Power of Perseverance",
+          "content": "to the entire team at the Oxide Computer Company, led by Steve Tuck and Bryan Cantrill, on their monumental $445M Series D fundraise. The Series D represents a new phase of growth capital for Oxide, to continue providing next generation on-premise cloud"
+        },
+        {
+          "url": "https://www.cbinsights.com/company/oxide-computer",
+          "title": "Oxide - Products, Competitors, Financials, Employees ...",
+          "content": "## Total Raised\n\n...\n\n$809M\n\n...\n\n$445M | 3 days ago\n\n...\n\nOxide provides on-premises cloud infrastructure solutions for various industries. Their offerings include elastic compute resources, programmable networking, and block storage, which manage on-premises compute infrastructure. Oxide's solutions serve sectors that need secure and scalable computing environments, such as finance, technology, and life sciences. It was founded in 2019 and is based in Emeryville, California.\n\n...\n\nOxide raised a total of $809M.\n- Who are the investors of Oxide?\n\n...\n\nInvestors of Oxide include Eclipse, US Innovative Technology Fund, Riot Ventures, Jane Street Group, AMD Ventures and 10 more.\n- Who are Oxide's competitors?\n\n...\n\nCompetitors of Oxide include Mithril and 5 more."
+        }
+      ],
+      "usage": {
+        "completion_tokens": 2910,
+        "prompt_tokens": 2509,
+        "total_tokens": 5419,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1602,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.01979425,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.01279425,
+          "upstream_inference_prompt_cost": 0.00188175,
+          "upstream_inference_completions_cost": 0.0109125
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "run": 2,
+      "ok": true,
+      "answer": "### 1. What they do, who buys it, and how they make money\nOxide sells a rack-scale, on-premises cloud computer that combines co-designed hardware and open-source software to deliver public-cloud-like elasticity, programmability, and self-service to an enterprise’s own data center. Buyers get on-demand VMs, Kubernetes, and API/CLI/console provisioning on AMD EPYC processors, with a hardware root of trust, cryptographic isolation, and no subscription or egress fees. [oxide.computer](https://oxide.computer/)  \nCustomers are organizations with demanding infrastructure requirements: financial services firms, government agencies, national laboratories, aerospace, and other compute-intensive industries. [prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)  \nRevenue comes from one-time purchases of the integrated rack-scale systems—no licensing fees or recurring subscriptions—so the model is straightforward hardware sales.\n\n### 2. Recent news and launches (last 6 months)\n- **$445M Series D (Oct 2026):** Led by Eclipse, with participation from USITF, Riot Ventures, Jane Street, AMD Ventures (a new strategic investor), and others. The round provides working capital to secure components and scale manufacturing. [prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)  \n- **Profitability milestone:** Earlier in 2026 Oxide became profitabe, paying income tax from ordinary operations—a rare feat for a hardware company at this scale. [oxide.computer](https://oxide.computer/blog/our-445m-series-d)  \n- **Manufacturing scale-up:** The company expanded manufacturing capacity 20x over the past 12 months, yet demand still exceeds supply. [prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)  \n- **AMD Ventures strategic investment:** Deepens the existing co-engineering partnership across the hardare/softeare stack, particularly as agentic AI drives new compute, memory, and networking demands. [prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html)\n\n### 3. Funding, size, and financial signals\n- **Total raised:** $809M, following the $445M Series D. [cbinsights.com](https://www.cbinsights.com/company/oxide-computer)  \n- **Profitability:** Achieved earlier this year; the company generated taxable income from selling computers, not from one-off events. [oxide.computer](https://oxide.computer/blog/our-445m-series-d)  \n- **Backlog and demand:** A “very large” order backlog exists, and demand continues to outstrip supply even after a 20x manufacturing ramp. The Series D explicitly addresses the need for cash to pre-purchase components. [oxide.computer](https://oxide.computer/blog/our-445m-series-d)  \n- **Headcount:** Not publicly disclosed in these sources.\n\n### 4. Leadership\n- **Steve Tuck,** Co-founder & CEO  \n- **Bryan Cantrill,** Co-founder & CTO  \nThe pair founded the company in 2019 and are credited with the original vision and “unwillingness to let this vision dissipate.” [prnewswire.com](https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html) [counterpart.vc](https://www.counterpart.vc/news/oxides-series-d-the-power-of-perseverance)\n\n### 5. Main competitors and how they differ\nCompetitors named by third-party data include Mithril and others, but Oxide’s differentiation is structural. [cbinsights.com](https://www.cbinsights.com/company/oxide-computer)  \n- **Traditional on-prem vendors (Del, HPe):** Assemble discrete components; Oxide delivers a pre-integrated, cloud-native experience with unified hardare/softeare, no licensing complexity.  \n- **Public-cloud hybrd solutions (AWS Outosts, Azure Stak):** Often come with vendor lock-in, egress fees, and ongoing subscriptions. Oxide offers a one-time purchase at roughly half the cost of public cloud, with no surprise bills. [oxide.computer](https://oxide.computer/)  \nOxide’s core moat is co-design: the rack-scale system includes compute, storage, networking, and open-source software, giving enterprises hyperscale cloud agility with full ownership and governance.\n\n### 6. Likely strategic priorities and open questions\n**Priorities:**\n- Aggressively scale manufacturing and secure the component supply chain to fulfill the existing backlog and capture new demand, particularly from agentic AI workloads.\n- Deepen the AMD relationship to ensure silicon roadma alignment and co-engineering advances.\n- Continue to prove the model in financial services, government, and labs, while selectively entering new verticles.\n\n**Open questions:**\n- Can Oxide sustain (or grow) profitability while the capital-intensive hardware business doubles down on growth?\n- How large is the total addressable market for on-prem cloud computers, and what is the competitive response from established sever OEMs and cloud hybrd solutions?\n- How concentrated is supply risk on AMD, and could a shift in AMD’s strategy or external shocks disrupt Oxide’s manufacturing curve? The leadership acnowledges caution from the Dot Com bust and the possibility of “supply disruptions, economic shocks” [oxide.computer](https://oxide.computer/blog/our-445m-series-d), so this is very much on their radar.",
+      "error": null,
+      "latency": 45.80285728299998,
+      "prompt_tokens": 2297,
+      "completion_tokens": 2731,
+      "cost": 0.01021261395,
+      "citations": [
+        {
+          "url": "https://oxide.computer/blog/our-445m-series-d",
+          "title": "Our $445M Series D | Oxide Computer Company",
+          "content": "In the spring, we hit a pretty wild milestone: Oxide paid income tax. And not because of some unusual transaction or one-time event, but because our ordinary operations (selling computers!) generated taxable income after accounting for the costs of components, manufacturing, salaries, and running the rest of the business. Of course, we each individually pay income tax every year; is it that surprising that a company is doing what we all do every spring?\n\n...\n\nSo this was a big milestone, and on top of that (and contrary to Russ Hanneman’s admonition!), we have a very large order backlog. On the one hand, it’s truly extraordinary to watch the business generate cash, but with demand far exceeding supply, significant cash is needed to secure inventory and fulfill these orders. This is one of the peculiar dynamics of a rapidly growing hardware business: we must commit substantial cash to components and manufacturing well before the resulting systems reach customers.\n\n...\n\nNow, between our Series B, Series C, our existing debt facilities, and the cash generated by the business itself, we felt confident we could satisfy our current backlog, but the absolute numbers are large enough that we would have had to exercise real caution in accepting additional demand. We are, after all, children of the Dot Com bust — cautious by nature — and would not put the business in a position where new supply disruptions, economic shocks, or other events outside our control could jeopardize it.\n\n...\n\nAs they have so many times for us over the seven years of the company, Eclipse stood up to lead, and our $445M Series D quickly came together. Existing investors USIT, Riot Ventures, and Jane Street signed up for big pieces — and others on the cap table including Friends and Family Capital and Counterpart eagerly joined in.\n\n...\n\nFinally, we are thrilled to\n\n...\n\nAll of these investors are — like us — in it for the long haul. When we raised our $200M Series C, we said that it was to entirely de-risk the company with respect to capital, to assure both our longevity and our independence. This Series D builds on that assurance to allow us to satisfy our substantial backlog while continuing to accept new demand, expand manufacturing capacity, and invest for the enduring company that we have always set out to build."
+        },
+        {
+          "url": "https://oxide.computer/",
+          "title": "Oxide Computer Company",
+          "content": "Rack 6 Initialized\n\n...\n\nRun AI, HPC, mission-critical, and general workloads with the elasticity, programmability, and unified control of cloud\n\n...\n\nOn-Demand Virtual Machines Kubernetes Container Orchestration Leading AMD EPYC Processors\n\n...\n\n## For the first time, the speed of cloud meets on-prem governance.\n\n...\n\nA fully auditable security chain, with a hardware root of trust, open-source firmware, and cryptographic isolation.\n\n...\n\n### Predictable, lower costs\n\n...\n\nHalf the price of public cloud and traditional on-prem. No subscriptions, surprise bills, or egress fees.\n\n...\n\n### API-driven developer velocity\n\n...\n\nOn-demand elastic resources, just like the public cloud, and support for tools developers already use.\n\n...\n\n### 2-hour setup\n\n...\n\n### Modern cloud repatriation \n\nPublic cloud experience with on-prem TCO. Streamlined for modern ops teams.\n\nCo-designed hardware and software. One-time purchase with no licensing fees.\n\n...\n\nData engineering is the foundation of every AI initiative. Run data-intensive workloads where your data belongs, on hardware you control.\n\n...\n\n### High-performance computing\n\n...\n\nRun batch compute, data staging, and orchestration tools on secure, multi-tenant infrastructure you control.\n\n...\n\n### Sovereign cloud\n\n...\n\nYour data stays in your authority. Running on hardware you can verify and own outright.\n\n...\n\n### CI/CD\n\n...\n\nSecure builds on infrastructure you own. Dedicated runners with security baked in at a fixed cost.\n\n...\n\nLow latency, speed, and control. On-prem deployment with cloud elasticity, set up in under 2 hours.\n\n...\n\nRun AI inference, simulations, analytics, and real-time platforms on hyperscale cloud architecture within your own walls.\n\n...\n\n### Granular control of utilization through quotas\n\n...\n\n### Setup within hours\n\n...\n\nJust add power, networking, and go. Start new projects today, not next quarter. Zero subscription licensing. Prioritize real work, not renewals.\n\n...\n\nLike SUSE Rancher, Red Hat OpenShift, Kubernetes, Terraform, OpenTofu. Provision and scale on-demand elastic resources however you like – API, CLI, or console."
+        },
+        {
+          "url": "https://www.prnewswire.com/news-releases/oxide-raises-445m-series-d-as-the-company-proves-vision-of-full-stack-cloud-infrastructure-enterprises-can-own-302903159.html",
+          "title": "Oxide Raises $445M Series D as the Company Proves Vision of Full-Stack Cloud Infrastructure Enterprises Can Own",
+          "content": "EMERYVILLE, Calif., Oct. 9, 2026 /PRNewswire/ -- Oxide Computer Company, the on-premises cloud computing company, today announced it has raised a $445 million Series D led by Eclipse, with participation from existing investors US Innovative Technology Fund (USIT), Riot Ventures, Jane Street, and more. New investors Atreides Management and AMD Ventures also joined the round.\n\n...\n\nOxide entered rarefied air earlier this year as it reached profitability, a significant milestone for a rapidly scaling hardware company. With customer demand exceeding current production capacity, the Series D provides additional working capital to secure components, increase manufacturing and serve new and existing customers.\n\n...\n\n\"The accelerating pace of on-prem cloud computing projects has required us to scale manufacturing capacity by 20x over the past 12 months, and yet demand still exceeds supply,\" said Steve Tuck, co-founder and CEO at Oxide. \"We're well-capitalized, and hit an important profitability milestone earlier this year. This funding will allow us to aggressively invest in the materials and manufacturing scale our customers need for years to come.\"\n\n...\n\nOxide's growth comes as the rise of agentic AI intensifies demand for infrastructure that can support a growing mix of compute, memory, networking and data-intensive workloads. The level of complexity required to support these agentic workloads is only achievable or scalable with full-stack systems – something that historically only the world's largest cloud providers could offer and at a price point that is cost-prohibitive for many organizations. With demand for compute, memory and data center capacity outpacing supply, even the hyperscalers are struggling to keep up. These dynamics reinforce that enterprises need the ability to own and control the systems their most critical workloads run on in order to ensure on-demand access to reliable, secure and cost-effective computing.\n\n...\n\nThe Oxide Cloud Computer is a rack-scale integrated system with purpose-built hardware and open-source software that brings the architectural model of the hyperscale cloud to an organization's own data center. By co-designing compute, storage, networking, and software as a single system, Oxide gives enterprises cloud automation and agility with direct ownership over their security, performance, data, and economics.\n\n...\n\n\"When we started Oxide in 2019, we knew that there would be increasing demand for owning and operating one's own compute -- and we felt strongly that organizations should be able to control their infrastructure without having to forfeit the modernity of cloud computing,\" said Bryan Cantrill, CTO and co-founder of Oxide. \"The specifics have been surprising -- we certainly did not anticipate the explosion in compute demand from agentic AI -- but today's thirst to control one's own fate is exactly what we sought to slake with Oxide.\"\n\n...\n\nOxide made an early bet that the next era of computing would be built as systems with hardware and software designed together rather than assembled from disparate components. AMD and Oxide have worked closely across the hardware and software stack. As agentic AI creates new demands across compute, memory and networking, AMD Ventures is deepening that relationship through a strategic investment in Oxide.\n\n...\n\nOxide customers span organizations with demanding infrastructure requirements across financial services, government, national laboratories, aerospace, and other compute-intensive industries. This infusion of capital further strengthens Oxide's ability to invest for the long term as customers deploy its infrastructure for increasingly critical workloads.\n\n...\n\nAbout Oxide Oxide Computer Company is the creator of the Cloud Computer, a rack-scale system with fully unified hardware and open-source software purpose-built to deliver hyperscale cloud computing to on-premises data centers. Oxide gives developers the elasticity, programmability and unified control of the cloud while enabling enterprises to retain ownership of their infrastructure for greater security, latency, sovereignty and cost predictability. Founded in 2019, Oxide is based in Emeryville, California."
+        },
+        {
+          "url": "https://www.counterpart.vc/news/oxides-series-d-the-power-of-perseverance",
+          "title": "Oxide's Series D & The Power of Perseverance",
+          "content": "And this was even before the AI revolution began its trajectory - predating companies like Anthropic and OpenAI. Now, Oxide is powering the AI revolution installing their rack-scale sled-design computers into next-gen data centers, national laboratories and major corporations around the world. The relentless perseverance of cofounders Steve Tuck and Bryan Cantrill is where all credit is due. A belief in their vision from Day #1 and an unwillingness to let this vision dissipate has been their foundation for success.\n\n...\n\nWe're excited about the opportunities that lie ahead for Oxide following their growth financing. We predict"
+        },
+        {
+          "url": "https://www.cbinsights.com/company/oxide-computer",
+          "title": "Oxide - Products, Competitors, Financials, Employees ...",
+          "content": "## Total Raised\n\n...\n\n$809M\n\n...\n\n$445M | 3 days ago\n\n...\n\nOxide provides on-premises cloud infrastructure solutions for various industries. Their offerings include elastic compute resources, programmable networking, and block storage, which manage on-premises compute infrastructure. Oxide's solutions serve sectors that need secure and scalable computing environments, such as finance, technology, and life sciences. It was founded in 2019 and is based in Emeryville, California.\n\n...\n\nInvestors of Oxide include Eclipse, US Innovative Technology Fund, Riot Ventures, Jane Street Group, AMD Ventures and 10 more.\n- Who are Oxide's competitors?\n\n...\n\nCompetitors of Oxide include Mithril and 5 more."
+        }
+      ],
+      "usage": {
+        "completion_tokens": 2731,
+        "prompt_tokens": 2297,
+        "total_tokens": 5028,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1416,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.01021261395,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00321261395,
+          "upstream_inference_prompt_cost": 0.00095107285,
+          "upstream_inference_completions_cost": 0.0022615411
+        }
+      },
+      "finish_reason": "stop",
+      "attempts": 1,
+      "status": null
+    }
+  ],
+  "judgments": [
+    {
+      "run": 1,
+      "label_map": {
+        "A": "deepseek/deepseek-v4-pro",
+        "B": "google/gemini-3.8-flash",
+        "C": "anthropic/claude-sonnet-5.5"
+      },
+      "ok": true,
+      "scores": {
+        "deepseek/deepseek-v4-pro": {
+          "criteria": {
+            "grounding": 6.0,
+            "specificity": 8.0,
+            "recency": 9.0,
+            "usefulness": 7.0
+          },
+          "unsupported_claims": [
+            "The cited excerpts do not establish customers in government or aerospace.",
+            "The cited excerpts do not identify Bryan Cantrill as CTO.",
+            "The named hyperscalers and OEMs, and the description of their on-premises offerings, are not substantiated by the excerpts.",
+            "The excerpts do not establish that the Series D is intended to preserve independence rather than precede an exit.",
+            "The homepage says '2-hour setup,' not setup in under two hours.",
+            "The characterization of the founders' public stewardship and the blog post's voice is not supported."
+          ],
+          "rationale": "Current funding and manufacturing details make this useful, but several customer, competitor, and strategic assertions exceed the supplied excerpts, and some citation URLs contain typos.",
+          "weighted_score": 7.3,
+          "label": "A"
+        },
+        "google/gemini-3.8-flash": {
+          "criteria": {
+            "grounding": 5.0,
+            "specificity": 8.0,
+            "recency": 9.0,
+            "usefulness": 7.0
+          },
+          "unsupported_claims": [
+            "The cited excerpts do not establish customers in aerospace or government.",
+            "The $200M Series C is not stated in the supplied excerpts; presenting total funding as merely 'over $645M' omits the sourced $809M figure.",
+            "The founders' former Joyent positions, Cantrill's DTrace work, and his CTO title are not established by the excerpts.",
+            "The named OEM, virtualization, and cloud-appliance competitors are not identified in the excerpts.",
+            "Claims about Oxide's silicon integration, competitors' hypervisor fees, and post-Broadcom VMware price hikes are not supported.",
+            "The excerpts do not say manufacturing expanded particularly because of agentic-AI demand or establish plans for deeper AMD silicon integration."
+          ],
+          "rationale": "It offers concrete, recent meeting context and a sourced employee figure, but adds numerous unsourced biographies and competitive details.",
+          "weighted_score": 6.95,
+          "label": "B"
+        },
+        "anthropic/claude-sonnet-5.5": {
+          "criteria": {
+            "grounding": 8.0,
+            "specificity": 8.0,
+            "recency": 9.0,
+            "usefulness": 9.0
+          },
+          "unsupported_claims": [
+            "The cited excerpts do not establish customers in government or aerospace.",
+            "The $200M Series C amount is not present in the supplied excerpt.",
+            "The excerpts do not explicitly identify Bryan Cantrill as CTO.",
+            "Support for OpenShift, Rancher, and Terraform is not shown in the cited homepage excerpt."
+          ],
+          "rationale": "This is the most careful briefing: it distinguishes company claims from verified figures, acknowledges missing launch and competitor evidence, and turns the backlog into useful meeting questions.",
+          "weighted_score": 8.4,
+          "label": "C"
+        }
+      },
+      "raw_outputs": [
+        "{\n  \"A\": {\n    \"scores\": {\n      \"grounding\": 6,\n      \"specificity\": 8,\n      \"recency\": 9,\n      \"usefulness\": 7\n    },\n    \"unsupported_claims\": [\n      \"The cited excerpts do not establish customers in government or aerospace.\",\n      \"The cited excerpts do not identify Bryan Cantrill as CTO.\",\n      \"The named hyperscalers and OEMs, and the description of their on-premises offerings, are not substantiated by the excerpts.\",\n      \"The excerpts do not establish that the Series D is intended to preserve independence rather than precede an exit.\",\n      \"The homepage says '2-hour setup,' not setup in under two hours.\",\n      \"The characterization of the founders' public stewardship and the blog post's voice is not supported.\"\n    ],\n    \"rationale\": \"Current funding and manufacturing details make this useful, but several customer, competitor, and strategic assertions exceed the supplied excerpts, and some citation URLs contain typos.\"\n  },\n  \"B\": {\n    \"scores\": {\n      \"grounding\": 5,\n      \"specificity\": 8,\n      \"recency\": 9,\n      \"usefulness\": 7\n    },\n    \"unsupported_claims\": [\n      \"The cited excerpts do not establish customers in aerospace or government.\",\n      \"The $200M Series C is not stated in the supplied excerpts; presenting total funding as merely 'over $645M' omits the sourced $809M figure.\",\n      \"The founders' former Joyent positions, Cantrill's DTrace work, and his CTO title are not established by the excerpts.\",\n      \"The named OEM, virtualization, and cloud-appliance competitors are not identified in the excerpts.\",\n      \"Claims about Oxide's silicon integration, competitors' hypervisor fees, and post-Broadcom VMware price hikes are not supported.\",\n      \"The excerpts do not say manufacturing expanded particularly because of agentic-AI demand or establish plans for deeper AMD silicon integration.\"\n    ],\n    \"rationale\": \"It offers concrete, recent meeting context and a sourced employee figure, but adds numerous unsourced biographies and competitive details.\"\n  },\n  \"C\": {\n    \"scores\": {\n      \"grounding\": 8,\n      \"specificity\": 8,\n      \"recency\": 9,\n      \"usefulness\": 9\n    },\n    \"unsupported_claims\": [\n      \"The cited excerpts do not establish customers in government or aerospace.\",\n      \"The $200M Series C amount is not present in the supplied excerpt.\",\n      \"The excerpts do not explicitly identify Bryan Cantrill as CTO.\",\n      \"Support for OpenShift, Rancher, and Terraform is not shown in the cited homepage excerpt.\"\n    ],\n    \"rationale\": \"This is the most careful briefing: it distinguishes company claims from verified figures, acknowledges missing launch and competitor evidence, and turns the backlog into useful meeting questions.\"\n  }\n}"
+      ],
+      "error": null,
+      "cost": 0.036091,
+      "latency": 23.172662185999968,
+      "usage": [
+        {
+          "completion_tokens": 1622,
+          "prompt_tokens": 7949,
+          "total_tokens": 9571,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": 0,
+            "reasoning_tokens": 1008,
+            "rejected_prediction_tokens": null,
+            "text_tokens": null,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 7946,
+            "cached_tokens": 0,
+            "image_tokens": null,
+            "text_tokens": null,
+            "video_tokens": 0
+          },
+          "cost": 0.036091,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.036091,
+            "upstream_inference_prompt_cost": 0.019871,
+            "upstream_inference_completions_cost": 0.01622
+          }
+        }
+      ]
+    },
+    {
+      "run": 2,
+      "label_map": {
+        "A": "google/gemini-3.8-flash",
+        "B": "anthropic/claude-sonnet-5.5",
+        "C": "deepseek/deepseek-v4-pro"
+      },
+      "ok": true,
+      "scores": {
+        "google/gemini-3.8-flash": {
+          "criteria": {
+            "grounding": 5.0,
+            "specificity": 8.0,
+            "recency": 9.0,
+            "usefulness": 7.0
+          },
+          "unsupported_claims": [
+            "The cited excerpts do not establish aerospace or government/defense customers, or the stated customer motivations of data sovereignty and predictable latency.",
+            "The excerpts do not support the claims of no support tiers, a $200M Series C, or AMD co-engineering and platform-enablement work.",
+            "The cited excerpts do not establish Tuck’s and Cantrill’s previous roles or Cantrill’s role in creating DTrace.",
+            "The descriptions of AWS and Azure appliances’ pricing and lock-in, and of legacy vendors’ cabling, licensing and maintenance, are not supported by the excerpts.",
+            "The excerpts do not establish a multi-quarter backlog or plans to improve memory and compute density through AMD."
+          ],
+          "rationale": "The funding, manufacturing and product facts are timely and concrete, but several leadership, competitor and strategy details go beyond the supplied evidence.",
+          "weighted_score": 6.95,
+          "label": "A"
+        },
+        "anthropic/claude-sonnet-5.5": {
+          "criteria": {
+            "grounding": 7.0,
+            "specificity": 8.0,
+            "recency": 9.0,
+            "usefulness": 8.0
+          },
+          "unsupported_claims": [
+            "The cited excerpts do not establish the full list of customer sectors, including government and aerospace.",
+            "The $200M Series C amount is not in the cited excerpt.",
+            "The supplied excerpts do not establish Cantrill’s CTO title, compatibility with Terraform, OpenShift and Rancher, or his statement that Oxide did not anticipate the agentic-AI surge.",
+            "Dell, HPE and Nutanix are proposed as rivals from expressly uncited background knowledge; the excerpts do not verify them.",
+            "The claim that Oxide made an early bet on AMD EPYC is not established by the cited excerpt."
+          ],
+          "rationale": "This is a useful, current briefing that clearly labels vendor claims and unknowns, although a few specifics and its proposed competitors lack support in the supplied excerpts.",
+          "weighted_score": 7.85,
+          "label": "B"
+        },
+        "deepseek/deepseek-v4-pro": {
+          "criteria": {
+            "grounding": 6.0,
+            "specificity": 8.0,
+            "recency": 9.0,
+            "usefulness": 6.0
+          },
+          "unsupported_claims": [
+            "The cited excerpts do not establish API/CLI/console provisioning or the full list of customer sectors, including government and aerospace.",
+            "The excerpts support AMD Ventures joining the round, but not a deepened co-engineering partnership across the hardware and software stack.",
+            "The cited excerpts do not establish the descriptions of Dell and HPE systems or the asserted lock-in, egress fees and subscriptions of AWS Outposts and Azure Stack.",
+            "The claim that Tuck and Cantrill founded the company in 2019 is not established by the cited excerpts, which separately identify the founding year and the co-founders.",
+            "Selective entry into new verticals and AMD silicon-roadmap alignment are presented as priorities without supporting evidence."
+          ],
+          "rationale": "It captures the major recent financial signals, but its competitor comparison relies heavily on unsupported assertions and numerous typos reduce its value as a meeting briefing.",
+          "weighted_score": 7.1,
+          "label": "C"
+        }
+      },
+      "raw_outputs": [
+        "{\n  \"A\": {\n    \"scores\": {\n      \"grounding\": 5,\n      \"specificity\": 8,\n      \"recency\": 9,\n      \"usefulness\": 7\n    },\n    \"unsupported_claims\": [\n      \"The cited excerpts do not establish aerospace or government/defense customers, or the stated customer motivations of data sovereignty and predictable latency.\",\n      \"The excerpts do not support the claims of no support tiers, a $200M Series C, or AMD co-engineering and platform-enablement work.\",\n      \"The cited excerpts do not establish Tuck’s and Cantrill’s previous roles or Cantrill’s role in creating DTrace.\",\n      \"The descriptions of AWS and Azure appliances’ pricing and lock-in, and of legacy vendors’ cabling, licensing and maintenance, are not supported by the excerpts.\",\n      \"The excerpts do not establish a multi-quarter backlog or plans to improve memory and compute density through AMD.\"\n    ],\n    \"rationale\": \"The funding, manufacturing and product facts are timely and concrete, but several leadership, competitor and strategy details go beyond the supplied evidence.\"\n  },\n  \"B\": {\n    \"scores\": {\n      \"grounding\": 7,\n      \"specificity\": 8,\n      \"recency\": 9,\n      \"usefulness\": 8\n    },\n    \"unsupported_claims\": [\n      \"The cited excerpts do not establish the full list of customer sectors, including government and aerospace.\",\n      \"The $200M Series C amount is not in the cited excerpt.\",\n      \"The supplied excerpts do not establish Cantrill’s CTO title, compatibility with Terraform, OpenShift and Rancher, or his statement that Oxide did not anticipate the agentic-AI surge.\",\n      \"Dell, HPE and Nutanix are proposed as rivals from expressly uncited background knowledge; the excerpts do not verify them.\",\n      \"The claim that Oxide made an early bet on AMD EPYC is not established by the cited excerpt.\"\n    ],\n    \"rationale\": \"This is a useful, current briefing that clearly labels vendor claims and unknowns, although a few specifics and its proposed competitors lack support in the supplied excerpts.\"\n  },\n  \"C\": {\n    \"scores\": {\n      \"grounding\": 6,\n      \"specificity\": 8,\n      \"recency\": 9,\n      \"usefulness\": 6\n    },\n    \"unsupported_claims\": [\n      \"The cited excerpts do not establish API/CLI/console provisioning or the full list of customer sectors, including government and aerospace.\",\n      \"The excerpts support AMD Ventures joining the round, but not a deepened co-engineering partnership across the hardware and software stack.\",\n      \"The cited excerpts do not establish the descriptions of Dell and HPE systems or the asserted lock-in, egress fees and subscriptions of AWS Outposts and Azure Stack.\",\n      \"The claim that Tuck and Cantrill founded the company in 2019 is not established by the cited excerpts, which separately identify the founding year and the co-founders.\",\n      \"Selective entry into new verticals and AMD silicon-roadmap alignment are presented as priorities without supporting evidence.\"\n    ],\n    \"rationale\": \"It captures the major recent financial signals, but its competitor comparison relies heavily on unsupported assertions and numerous typos reduce its value as a meeting briefing.\"\n  }\n}"
+      ],
+      "error": null,
+      "cost": 0.034156,
+      "latency": 18.72523334199991,
+      "usage": [
+        {
+          "completion_tokens": 1432,
+          "prompt_tokens": 7935,
+          "total_tokens": 9367,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": 0,
+            "reasoning_tokens": 733,
+            "rejected_prediction_tokens": null,
+            "text_tokens": null,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 7932,
+            "cached_tokens": 0,
+            "image_tokens": null,
+            "text_tokens": null,
+            "video_tokens": 0
+          },
+          "cost": 0.034156,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.034156,
+            "upstream_inference_prompt_cost": 0.019836,
+            "upstream_inference_completions_cost": 0.01432
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -35,6 +35,18 @@ class CallResult:
     citations: list[dict] = field(default_factory=list)
     usage: dict | None = None
     attempts: int = 0
+    status: int | None = None  # HTTP status of the final failed attempt, when there was one
+
+    @property
+    def permanent_failure(self) -> bool:
+        """A 4xx other than 429: retrying or waiting won't help (e.g. model gated or unavailable)."""
+        return not self.ok and self.status is not None and 400 <= self.status < 500 and self.status != 429
+
+
+@dataclass
+class Skipped:
+    model: str
+    error: str
 
 
 def make_client(api_key: str) -> AsyncOpenAI:
@@ -166,7 +178,12 @@ def parse_response(model: str, run: int, response: Any, latency: float, attempts
     # OpenRouter can return an error object with HTTP 200 instead of choices.
     if data.get("error"):
         err = data["error"]
-        result.error = err.get("message", str(err)) if isinstance(err, dict) else str(err)
+        if isinstance(err, dict):
+            result.error = err.get("message", str(err))
+            if isinstance(err.get("code"), int):
+                result.status = err["code"]
+        else:
+            result.error = str(err)
         return result
     choices = data.get("choices") or []
     if not choices:
@@ -205,6 +222,7 @@ async def call_model(
                 ok=False,
                 error=_error_message(e),
                 attempts=getattr(e, "attempts", 1),
+                status=e.status_code if isinstance(e, openai.APIStatusError) else None,
             )
     try:
         return parse_response(model, run, response, latency, attempts)
@@ -222,12 +240,61 @@ async def run_contestants(
 ) -> list[CallResult]:
     """Run every model `runs` times, at most MAX_CONCURRENCY requests at once."""
     semaphore = asyncio.Semaphore(MAX_CONCURRENCY)
+    return await _run_all(client, semaphore, task, models, range(1, runs + 1), web, on_done)
 
+
+async def run_free_with_backfill(
+    client: AsyncOpenAI,
+    task: Task,
+    candidates: list[str],
+    runs: int,
+    web: bool,
+    limit: int = 4,
+    on_done: Callable[[CallResult], None] | None = None,
+    on_skip: Callable[[Skipped], None] | None = None,
+) -> tuple[list[CallResult], list[str], list[Skipped]]:
+    """Run up to `limit` free models, replacing any whose first call fails permanently.
+
+    Candidates are tried in order. A model whose first run fails with a 4xx other
+    than 429 is skipped and the next candidate takes its slot. Models that fail for
+    other reasons (rate limits, 5xx, timeouts, empty answers) keep their slot and
+    show as failed. Returns (results, models used, skipped models).
+    """
+    semaphore = asyncio.Semaphore(MAX_CONCURRENCY)
+    queue = list(candidates)
+    used: list[str] = []
+    skipped: list[Skipped] = []
+    results: list[CallResult] = []
+
+    async def fill_slot() -> None:
+        while queue:
+            model = queue.pop(0)
+            result = await call_model(client, semaphore, task, model, 1, web)
+            if result.permanent_failure:
+                entry = Skipped(model=model, error=result.error or "unknown error")
+                skipped.append(entry)
+                if on_skip:
+                    on_skip(entry)
+                continue
+            used.append(model)
+            results.append(result)
+            if on_done:
+                on_done(result)
+            return
+
+    await asyncio.gather(*(fill_slot() for _ in range(min(limit, len(queue)))))
+    # Keep the candidate ranking order, not completion order.
+    used.sort(key=candidates.index)
+    if runs > 1:
+        results += await _run_all(client, semaphore, task, used, range(2, runs + 1), web, on_done)
+    return results, used, skipped
+
+
+async def _run_all(client, semaphore, task, models, run_numbers, web, on_done) -> list[CallResult]:
     async def one(model: str, run: int) -> CallResult:
         result = await call_model(client, semaphore, task, model, run, web)
         if on_done:
             on_done(result)
         return result
 
-    jobs = [one(model, run) for run in range(1, runs + 1) for model in models]
-    return list(await asyncio.gather(*jobs))
+    return list(await asyncio.gather(*(one(m, r) for r in run_numbers for m in models)))

@@ -6,9 +6,10 @@ from dataclasses import dataclass, field
 from statistics import mean
 
 from rich.console import Console
+from rich.markup import escape
 from rich.table import Table
 
-from .runner import CallResult
+from .runner import CallResult, Skipped
 
 
 @dataclass
@@ -131,11 +132,21 @@ def render_table(summaries: list[ModelSummary], title: str) -> Table:
     return table
 
 
-def print_summary(console: Console, summaries: list[ModelSummary], title: str, total_cost: float) -> None:
+def print_summary(
+    console: Console,
+    summaries: list[ModelSummary],
+    title: str,
+    total_cost: float,
+    skipped: list[Skipped] | None = None,
+) -> None:
     console.print(render_table(summaries, title))
+    if skipped:
+        console.print(f"[yellow]Note:[/yellow] skipped {len(skipped)} free model(s) that can't be used, and backfilled with the next candidate:")
+        for s in skipped:
+            console.print(f"  [yellow]{s.model}[/yellow]: {escape(str(s.error))}")
     console.print(f"Total cost of run: [bold]${total_cost:.4f}[/bold]")
     for s in sort_summaries(summaries):
         if s.rationales:
-            console.print(f"[cyan]{s.model}[/cyan]: {s.rationales[0]}")
+            console.print(f"[cyan]{s.model}[/cyan]: {escape(str(s.rationales[0]))}")
         for err in dict.fromkeys(s.errors):
-            console.print(f"[red]{s.model} failed:[/red] {err}")
+            console.print(f"[red]{s.model} failed:[/red] {escape(str(err))}")

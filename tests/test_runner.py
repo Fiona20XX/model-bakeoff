@@ -6,8 +6,15 @@ import openai
 import pytest
 
 from bakeoff import runner
-from bakeoff.openrouter import ModelInfo, select_free_models
-from bakeoff.runner import build_request, call_model, chat_with_retries, extract_citations, parse_response
+from bakeoff.openrouter import ModelInfo, free_candidates
+from bakeoff.runner import (
+    build_request,
+    call_model,
+    chat_with_retries,
+    extract_citations,
+    parse_response,
+    run_free_with_backfill,
+)
 from bakeoff.task import Criterion, Task, WebConfig
 
 
@@ -138,7 +145,7 @@ def test_failed_call_is_recorded_not_raised(monkeypatch):
     assert result.attempts == 4 and len(completions.calls) == 4
 
 
-def test_select_free_models_skips_specialists_and_judge():
+def test_free_candidates_skip_specialists_and_judge():
     models = [
         ModelInfo("big/chat:free", "", 1_000_000, 0, 0),
         ModelInfo("x/coder-code:free", "", 2_000_000, 0, 0),
@@ -147,4 +154,65 @@ def test_select_free_models_skips_specialists_and_judge():
         ModelInfo("paid/model", "", 4_000_000, 1, 1),
         ModelInfo("small/chat:free", "", 8_000, 0, 0),
     ]
-    assert select_free_models(models, judge="judge/model:free") == ["big/chat:free", "small/chat:free"]
+    assert free_candidates(models, judge="judge/model:free") == ["big/chat:free", "small/chat:free"]
+
+
+class RoutedCompletions:
+    """Answers per model: an exception to raise, or a response dict."""
+
+    def __init__(self, by_model):
+        self.by_model = by_model
+        self.calls = []
+
+    async def create(self, **kwargs):
+        self.calls.append(kwargs["model"])
+        outcome = self.by_model[kwargs["model"]]
+        if isinstance(outcome, Exception):
+            raise outcome
+        return outcome
+
+
+def routed_client(by_model):
+    completions = RoutedCompletions(by_model)
+    return SimpleNamespace(chat=SimpleNamespace(completions=completions)), completions
+
+
+def test_backfill_replaces_permanent_failures(monkeypatch):
+    monkeypatch.setattr(runner.asyncio, "sleep", no_sleep)
+    client, completions = routed_client(
+        {
+            "gated:free": status_error(403),
+            "a:free": ok_response("a"),
+            "b:free": ok_response("b"),
+            "c:free": ok_response("c"),
+        }
+    )
+    results, used, skipped = asyncio.run(
+        run_free_with_backfill(client, make_task(), ["gated:free", "a:free", "b:free", "c:free"], 1, False, limit=2)
+    )
+    assert used == ["a:free", "b:free"]
+    assert [s.model for s in skipped] == ["gated:free"] and "403" in skipped[0].error
+    assert "c:free" not in completions.calls
+    assert all(r.ok for r in results)
+
+
+def test_backfill_keeps_rate_limited_and_server_errors(monkeypatch):
+    monkeypatch.setattr(runner.asyncio, "sleep", no_sleep)
+    client, _ = routed_client(
+        {"busy:free": status_error(429), "down:free": status_error(502), "spare:free": ok_response()}
+    )
+    results, used, skipped = asyncio.run(
+        run_free_with_backfill(client, make_task(), ["busy:free", "down:free", "spare:free"], 1, False, limit=2)
+    )
+    assert used == ["busy:free", "down:free"] and skipped == []
+    assert not any(r.ok for r in results)
+
+
+def test_backfill_runs_remaining_runs_only_for_used_models(monkeypatch):
+    client, completions = routed_client({"gated:free": status_error(404), "a:free": ok_response()})
+    results, used, _ = asyncio.run(
+        run_free_with_backfill(client, make_task(), ["gated:free", "a:free"], 3, False, limit=4)
+    )
+    assert used == ["a:free"]
+    assert sorted(r.run for r in results) == [1, 2, 3]
+    assert completions.calls.count("gated:free") == 1

@@ -95,10 +95,13 @@ def is_specialist(model_id: str) -> bool:
     return any(marker in lowered for marker in SPECIALIST_MARKERS)
 
 
-def select_free_models(models: list[ModelInfo], judge: str | None = None, limit: int = 4) -> list[str]:
-    """Pick up to `limit` free general-purpose models, largest context first, never the judge."""
+def free_candidates(models: list[ModelInfo], judge: str | None = None) -> list[str]:
+    """Free general-purpose models, largest context first, never the judge.
+
+    `bakeoff run --free` tries these in order until it has up to 4 that work.
+    """
     candidates = [
         m for m in models if m.is_free and not is_specialist(m.id) and m.id != judge
     ]
     candidates.sort(key=lambda m: (-(m.context_length or 0), m.id))
-    return [m.id for m in candidates[:limit]]
+    return [m.id for m in candidates]

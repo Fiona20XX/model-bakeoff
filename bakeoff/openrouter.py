@@ -84,3 +84,21 @@ def filter_models(
         needle = search.lower()
         out = [m for m in out if needle in m.id.lower() or needle in m.name.lower()]
     return out
+
+
+SPECIALIST_MARKERS = ("code", "safety")
+
+
+def is_specialist(model_id: str) -> bool:
+    """Coding and safety-classifier models aren't general chat models; skip them as contestants or judge."""
+    lowered = model_id.lower()
+    return any(marker in lowered for marker in SPECIALIST_MARKERS)
+
+
+def select_free_models(models: list[ModelInfo], judge: str | None = None, limit: int = 4) -> list[str]:
+    """Pick up to `limit` free general-purpose models, largest context first, never the judge."""
+    candidates = [
+        m for m in models if m.is_free and not is_specialist(m.id) and m.id != judge
+    ]
+    candidates.sort(key=lambda m: (-(m.context_length or 0), m.id))
+    return [m.id for m in candidates[:limit]]

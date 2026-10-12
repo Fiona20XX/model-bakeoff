@@ -1,0 +1,141 @@
+"""Summarize results per model and render the terminal table."""
+
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+from statistics import mean
+
+from rich.console import Console
+from rich.table import Table
+
+from .runner import CallResult
+
+
+@dataclass
+class ModelSummary:
+    model: str
+    runs: int
+    ok_runs: int
+    latencies: list[float] = field(default_factory=list)
+    costs: list[float] = field(default_factory=list)
+    sources: list[int] = field(default_factory=list)
+    scores: list[float] = field(default_factory=list)
+    unsupported: list[int] = field(default_factory=list)
+    rationales: list[str] = field(default_factory=list)
+    errors: list[str] = field(default_factory=list)
+
+    @property
+    def failed(self) -> bool:
+        return self.ok_runs == 0
+
+    @property
+    def mean_score(self) -> float | None:
+        return mean(self.scores) if self.scores else None
+
+    @property
+    def mean_cost(self) -> float | None:
+        return mean(self.costs) if self.costs else None
+
+    @property
+    def is_free(self) -> bool:
+        return bool(self.costs) and all(c == 0 for c in self.costs)
+
+    @property
+    def score_per_cent(self) -> float | None:
+        score, cost = self.mean_score, self.mean_cost
+        if score is None or not cost:
+            return None
+        return score / (cost * 100)
+
+
+def summarize(results: list[CallResult], models: list[str]) -> list[ModelSummary]:
+    summaries = []
+    for model in models:
+        rows = [r for r in results if r.model == model]
+        s = ModelSummary(model=model, runs=len(rows), ok_runs=sum(r.ok for r in rows))
+        for r in rows:
+            if r.cost is not None:
+                s.costs.append(r.cost)
+            if r.ok:
+                if r.latency is not None:
+                    s.latencies.append(r.latency)
+                s.sources.append(len(r.citations))
+            elif r.error:
+                s.errors.append(r.error)
+        summaries.append(s)
+    return summaries
+
+
+def sort_summaries(summaries: list[ModelSummary]) -> list[ModelSummary]:
+    """Best score first; unscored after scored; failures last. Stable otherwise."""
+    def key(s: ModelSummary):
+        score = s.mean_score
+        return (s.failed, score is None, -(score or 0))
+
+    return sorted(summaries, key=key)
+
+
+def _spread(values: list[float], fmt: str) -> str:
+    if not values:
+        return "—"
+    if len(values) == 1:
+        return fmt.format(values[0])
+    return f"{fmt.format(mean(values))} ({fmt.format(min(values))}–{fmt.format(max(values))})"
+
+
+def format_cost(s: ModelSummary) -> str:
+    if s.mean_cost is None:
+        return "?"
+    if s.is_free:
+        return "free"
+    return f"${s.mean_cost:.4f}"
+
+
+def format_score_per_cent(s: ModelSummary) -> str:
+    if s.is_free:
+        return "n/a"
+    value = s.score_per_cent
+    return "—" if value is None else f"{value:.1f}"
+
+
+def table_rows(summaries: list[ModelSummary]) -> list[list[str]]:
+    rows = []
+    for s in sort_summaries(summaries):
+        if s.failed:
+            rows.append([s.model, "FAILED", format_cost(s), "—", "—", "—", "—"])
+            continue
+        rows.append(
+            [
+                s.model,
+                _spread(s.scores, "{:.1f}"),
+                format_cost(s),
+                _spread(s.latencies, "{:.1f}s"),
+                _spread([float(x) for x in s.sources], "{:.0f}") if s.sources else "0",
+                _spread([float(x) for x in s.unsupported], "{:.0f}"),
+                format_score_per_cent(s),
+            ]
+        )
+    return rows
+
+
+HEADERS = ["Model", "Score", "Cost", "Latency", "Sources", "Unsupported claims", "Score per cent"]
+
+
+def render_table(summaries: list[ModelSummary], title: str) -> Table:
+    table = Table(title=title)
+    for i, h in enumerate(HEADERS):
+        table.add_column(h, style="cyan" if i == 0 else None, justify="left" if i == 0 else "right")
+    for row in table_rows(summaries):
+        style = "red" if row[1] == "FAILED" else None
+        table.add_row(*row, style=style)
+    return table
+
+
+def print_summary(console: Console, summaries: list[ModelSummary], title: str, total_cost: float) -> None:
+    console.print(render_table(summaries, title))
+    console.print(f"Total cost of run: [bold]${total_cost:.4f}[/bold]")
+    for s in sort_summaries(summaries):
+        if s.rationales:
+            console.print(f"[cyan]{s.model}[/cyan]: {s.rationales[0]}")
+        for err in dict.fromkeys(s.errors):
+            console.print(f"[red]{s.model} failed:[/red] {err}")

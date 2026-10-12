@@ -8,11 +8,11 @@ user: |
 models:
   - google/gemma-4-31b-it:free
   - nvidia/nemotron-3-super-120b-a12b:free
-  - thinkingmachines/inkling:free
+  - apodex/apodex-1.1-mini:free
 judge: nvidia/nemotron-3-ultra-550b-a55b:free
 web:
   enabled: false
-max_tokens: 200
+max_tokens: 1000  # reasoning models spend tokens thinking before they answer
 temperature: 0.2
 runs: 1
 rubric:

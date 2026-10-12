@@ -136,7 +136,7 @@ def run(
 
     judgments: list[Judgment] = []
     if judge:
-        judgments = asyncio.run(judge_all(api_key, task, judge, results, n_runs))
+        judgments = asyncio.run(judge_all(api_key, task, judge, results, n_runs, web))
 
     summaries = summarize(results, models_used, judgments)
     total_cost = sum(r.cost or 0 for r in results) + sum(j.cost or 0 for j in judgments)
@@ -159,7 +159,9 @@ def run(
     console.print(f"Saved [bold]{out_dir}/results.json[/bold] and [bold]{out_dir}/report.md[/bold]")
 
 
-async def judge_all(api_key: str, task, judge: str, results: list[CallResult], n_runs: int) -> list[Judgment]:
+async def judge_all(
+    api_key: str, task, judge: str, results: list[CallResult], n_runs: int, web: bool
+) -> list[Judgment]:
     rng = random.Random()
     judgments = []
     async with make_client(api_key) as client:
@@ -168,7 +170,7 @@ async def judge_all(api_key: str, task, judge: str, results: list[CallResult], n
             if not answers:
                 continue
             console.print(f"Judging run {run_number} ({len(answers)} answer(s)) with {judge}...")
-            j = await judge_run(client, task, judge, run_number, answers, rng)
+            j = await judge_run(client, task, judge, run_number, answers, rng, web)
             if not j.ok:
                 console.print(f"  [red]judging failed[/red]: {escape(str(j.error))}")
             judgments.append(j)

@@ -144,3 +144,13 @@ def test_judge_gives_up_after_one_retry():
     j = asyncio.run(judge_run(client_for(judge), make_task(), "j/m", 1, results, random.Random(0)))
     assert not j.ok and "invalid JSON" in j.error
     assert len(judge.requests) == 2 and j.scores == {}
+
+
+def test_judge_prompt_without_web_has_no_source_checks():
+    from bakeoff.judge import judge_system_prompt
+
+    results = [answer("a/m", text="Rate limits cap requests.")]
+    prompt = build_judge_prompt(make_task(), assign_labels(results, random.Random(0)), web=False)
+    assert "Sources:" not in prompt
+    assert "not a fault" in judge_system_prompt(False)
+    assert "cited excerpts" in judge_system_prompt(True)

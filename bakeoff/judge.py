@@ -20,9 +20,15 @@ EXCERPT_LIMIT = 1500  # characters of each cited excerpt shown to the judge
 JUDGE_SYSTEM = """You are an impartial evaluator comparing anonymous answers to the same task.
 Score each answer against the rubric on its merits. Do not reward length: a shorter answer
 that fully does the job beats a longer one that pads. Ignore the order the answers appear in.
-When an answer has sources, check its factual claims against the cited excerpts and list any
-claim that the excerpts do not support. When an answer has no sources, list factual claims
-you cannot verify and that look invented. Return JSON only, with no prose and no code fences."""
+{claims_rule} Return JSON only, with no prose and no code fences."""
+
+# With web search, claims are checked against what each model retrieved.
+CLAIMS_RULE_WEB = """Each answer comes with the sources its model retrieved. Check its factual claims against
+the cited excerpts and list any claim the excerpts do not support. An answer with no sources
+has nothing backing its claims."""
+# Without web search there are no sources to check, and their absence is not a fault.
+CLAIMS_RULE_NO_WEB = """The models had no web access, so answers have no sources and that is not a fault.
+List any factual claim that is wrong or looks invented."""
 
 RETRY_REMINDER = (
     "Your previous reply was not valid JSON in the required shape. "
@@ -80,7 +86,11 @@ def format_citations(citations: list[dict]) -> str:
     return "\n".join(lines)
 
 
-def build_judge_prompt(task: Task, labeled: dict[str, CallResult]) -> str:
+def judge_system_prompt(web: bool) -> str:
+    return JUDGE_SYSTEM.format(claims_rule=CLAIMS_RULE_WEB if web else CLAIMS_RULE_NO_WEB)
+
+
+def build_judge_prompt(task: Task, labeled: dict[str, CallResult], web: bool = True) -> str:
     rubric_lines = "\n".join(
         f"- {c.name} (weight {c.weight:g}): {c.description}" for c in task.rubric
     )
@@ -92,9 +102,10 @@ def build_judge_prompt(task: Task, labeled: dict[str, CallResult]) -> str:
     parts.append(f"# Rubric (score each criterion 1-10)\n{rubric_lines}")
     parts.append("# Answers")
     for label, result in labeled.items():
-        parts.append(
-            f"## Answer {label}\n{result.answer.strip()}\n\n{format_citations(result.citations)}"
-        )
+        section = f"## Answer {label}\n{result.answer.strip()}"
+        if web:
+            section += f"\n\n{format_citations(result.citations)}"
+        parts.append(section)
     labels = ", ".join(labeled)
     parts.append(
         "# Output\n"
@@ -170,13 +181,14 @@ async def judge_run(
     run: int,
     results: list[CallResult],
     rng: random.Random,
+    web: bool = True,
 ) -> Judgment:
     """Judge one run's successful answers. Never raises: failures come back as ok=False."""
     labeled = assign_labels(results, rng)
     judgment = Judgment(run=run, label_map={label: r.model for label, r in labeled.items()})
     messages = [
-        {"role": "system", "content": JUDGE_SYSTEM},
-        {"role": "user", "content": build_judge_prompt(task, labeled)},
+        {"role": "system", "content": judge_system_prompt(web)},
+        {"role": "user", "content": build_judge_prompt(task, labeled, web)},
     ]
     request = {
         "model": judge_model,

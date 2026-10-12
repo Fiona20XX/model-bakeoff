@@ -6,7 +6,7 @@ import os
 from dataclasses import dataclass
 
 import httpx
-from dotenv import load_dotenv
+from dotenv import find_dotenv, load_dotenv
 
 BASE_URL = "https://openrouter.ai/api/v1"
 
@@ -16,7 +16,7 @@ class ConfigError(Exception):
 
 
 def get_api_key() -> str:
-    load_dotenv()
+    load_dotenv(find_dotenv(usecwd=True))  # the .env in the folder you run from (or a parent)
     key = os.environ.get("OPENROUTER_API_KEY", "").strip()
     if not key:
         raise ConfigError(
@@ -64,7 +64,7 @@ def parse_models(payload: dict) -> list[ModelInfo]:
 
 def fetch_models(timeout: float = 30.0) -> list[ModelInfo]:
     """GET /api/v1/models. Works without a key; sends one if available."""
-    load_dotenv()
+    load_dotenv(find_dotenv(usecwd=True))  # the .env in the folder you run from (or a parent)
     headers = {}
     key = os.environ.get("OPENROUTER_API_KEY", "").strip()
     if key:

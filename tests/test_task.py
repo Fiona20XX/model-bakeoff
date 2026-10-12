@@ -76,3 +76,12 @@ def test_rubric_weights_must_sum_to_one(tmp_path):
 def test_hello_task_loads():
     task = load_task("tasks/hello.yaml")
     assert task.models and task.judge and not task.web.enabled
+
+
+def test_api_key_read_from_dotenv_in_current_directory(tmp_path, monkeypatch):
+    from bakeoff.openrouter import get_api_key
+
+    (tmp_path / ".env").write_text("OPENROUTER_API_KEY=sk-from-cwd\n")
+    monkeypatch.delenv("OPENROUTER_API_KEY", raising=False)
+    monkeypatch.chdir(tmp_path)
+    assert get_api_key() == "sk-from-cwd"

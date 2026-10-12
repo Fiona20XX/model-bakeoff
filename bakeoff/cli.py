@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import asyncio
+import random
+from datetime import datetime
 from typing import List, Optional
 
 import httpx
@@ -19,7 +21,9 @@ from .openrouter import (
     is_specialist,
     free_candidates,
 )
+from .judge import Judgment, judge_run
 from .report import print_summary, summarize
+from .results import build_report, build_results, results_dir, save_results
 from .runner import CallResult, Skipped, make_client, run_contestants, run_free_with_backfill
 from .task import TaskError, load_task, parse_vars
 
@@ -74,6 +78,7 @@ def run(
 
     n_runs = runs or task.runs
     web = task.web.enabled and not no_web
+    started_at = datetime.now()
 
     candidates: list[str] = []
     if free:
@@ -120,11 +125,54 @@ def run(
             return results, candidates, []
 
     results, models_used, skipped = asyncio.run(go())
-    summaries = summarize(results, models_used)
-    total_cost = sum(r.cost or 0 for r in results)
+
+    warnings: list[str] = []
+    if judge and judge in models_used:
+        warnings.append(
+            f"The judge ({judge}) is also a contestant; models tend to prefer their own answers "
+            "(self-preference bias)."
+        )
+        console.print(f"[yellow]Warning:[/yellow] {escape(warnings[-1])}")
+
+    judgments: list[Judgment] = []
     if judge:
-        console.print("[yellow]Judging is not implemented yet (milestone 3); showing answers without scores.[/yellow]")
+        judgments = asyncio.run(judge_all(api_key, task, judge, results, n_runs))
+
+    summaries = summarize(results, models_used, judgments)
+    total_cost = sum(r.cost or 0 for r in results) + sum(j.cost or 0 for j in judgments)
     print_summary(console, summaries, f"{task.name} results", total_cost, skipped)
+
+    data = build_results(
+        task,
+        started_at=started_at,
+        flags={"runs": n_runs, "free": free, "web": web, "judge": not no_judge},
+        judge_model=judge,
+        models=models_used,
+        results=results,
+        judgments=judgments,
+        summaries=summaries,
+        skipped=skipped,
+        total_cost=total_cost,
+        warnings=warnings,
+    )
+    out_dir = save_results(results_dir(task, started_at), data, build_report(data, summaries, results))
+    console.print(f"Saved [bold]{out_dir}/results.json[/bold] and [bold]{out_dir}/report.md[/bold]")
+
+
+async def judge_all(api_key: str, task, judge: str, results: list[CallResult], n_runs: int) -> list[Judgment]:
+    rng = random.Random()
+    judgments = []
+    async with make_client(api_key) as client:
+        for run_number in range(1, n_runs + 1):
+            answers = [r for r in results if r.run == run_number and r.ok]
+            if not answers:
+                continue
+            console.print(f"Judging run {run_number} ({len(answers)} answer(s)) with {judge}...")
+            j = await judge_run(client, task, judge, run_number, answers, rng)
+            if not j.ok:
+                console.print(f"  [red]judging failed[/red]: {escape(str(j.error))}")
+            judgments.append(j)
+    return judgments
 
 
 @app.command()

@@ -57,7 +57,7 @@ web:
   enabled: true
   engine: exa        # same engine for every model, so the comparison is between models, not search engines
   max_results: 5
-max_tokens: 1200
+max_tokens: 4000   # reasoning models spend part of this budget thinking before they write
 temperature: 0.2
 runs: 1
 rubric:

@@ -34,6 +34,7 @@ class CallResult:
     cost: float | None = None  # USD from usage.cost
     citations: list[dict] = field(default_factory=list)
     usage: dict | None = None
+    finish_reason: str | None = None  # "length" means the answer was cut off at max_tokens
     attempts: int = 0
     status: int | None = None  # HTTP status of the final failed attempt, when there was one
 
@@ -190,6 +191,7 @@ def parse_response(model: str, run: int, response: Any, latency: float, attempts
         result.error = "Response contained no choices"
         return result
     choice = choices[0]
+    result.finish_reason = choice.get("finish_reason")
     message = choice.get("message") or {}
     result.citations = extract_citations(message)
     answer = (message.get("content") or "").strip()

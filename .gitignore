@@ -221,3 +221,4 @@ __marimo__/
 
 # model-bakeoff
 results/*
+!results/company-research-stripe-20261012-161616/

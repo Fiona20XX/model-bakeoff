@@ -49,7 +49,10 @@ class ModelSummary:
         return score / (cost * 100)
 
 
-def summarize(results: list[CallResult], models: list[str]) -> list[ModelSummary]:
+def summarize(
+    results: list[CallResult], models: list[str], judgments: list | None = None
+) -> list[ModelSummary]:
+    """One row per model. `judgments` is a list of judge.Judgment (one per run)."""
     summaries = []
     for model in models:
         rows = [r for r in results if r.model == model]
@@ -63,6 +66,12 @@ def summarize(results: list[CallResult], models: list[str]) -> list[ModelSummary
                 s.sources.append(len(r.citations))
             elif r.error:
                 s.errors.append(r.error)
+        for j in judgments or []:
+            entry = j.scores.get(model)
+            if entry:
+                s.scores.append(entry["weighted_score"])
+                s.unsupported.append(len(entry["unsupported_claims"]))
+                s.rationales.append(entry["rationale"])
         summaries.append(s)
     return summaries
 

@@ -1,5 +1,6 @@
 # Flagship example: a sourced briefing on any company.
 # Run: bakeoff run tasks/company_research.yaml --var company="Zilliant"
+# Council mode: bakeoff council tasks/company_research.yaml --var company="Zilliant"
 # Pick other models with: bakeoff models --search <text>
 name: company_research
 description: A sourced one-page briefing on a company, for meeting or interview prep.
@@ -21,6 +22,7 @@ models:
   - google/gemini-3.8-flash
   - deepseek/deepseek-v4-pro
 judge: openai/gpt-6-sol
+synthesizer: x-ai/grok-4.7   # council mode only: merges the answers; not a contestant or the judge
 web:
   enabled: true
   engine: exa        # same engine for every model, so the comparison is between models, not search engines

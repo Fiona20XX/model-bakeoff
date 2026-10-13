@@ -24,6 +24,8 @@ class ModelSummary:
     unsupported: list[int] = field(default_factory=list)
     rationales: list[str] = field(default_factory=list)
     errors: list[str] = field(default_factory=list)
+    synth_probs: list[float] = field(default_factory=list)  # council mode: judge's guess, 0-100
+    synth_reasons: list[str] = field(default_factory=list)
 
     @property
     def failed(self) -> bool:
@@ -50,9 +52,13 @@ class ModelSummary:
 
 
 def summarize(
-    results: list[CallResult], models: list[str], judgments: list | None = None
+    results: list[CallResult],
+    models: list[str],
+    judgments: list | None = None,
+    guesses: list | None = None,
 ) -> list[ModelSummary]:
-    """One row per model. `judgments` is a list of judge.Judgment (one per run)."""
+    """One row per model. `judgments` is a list of judge.Judgment (one per run);
+    `guesses` (council mode) a list of council.Guess."""
     summaries = []
     for model in models:
         rows = [r for r in results if r.model == model]
@@ -72,6 +78,10 @@ def summarize(
                 s.scores.append(entry["weighted_score"])
                 s.unsupported.append(len(entry["unsupported_claims"]))
                 s.rationales.append(entry["rationale"])
+        for g in guesses or []:
+            if model in g.probabilities:
+                s.synth_probs.append(g.probabilities[model])
+                s.synth_reasons.append(g.reasons[model])
         summaries.append(s)
     return summaries
 
@@ -108,14 +118,17 @@ def format_score_per_cent(s: ModelSummary) -> str:
     return "—" if value is None else f"{value:.1f}"
 
 
-def table_rows(summaries: list[ModelSummary]) -> list[list[str]]:
+def format_synth_prob(s: ModelSummary) -> str:
+    return f"{mean(s.synth_probs):.0f}%" if s.synth_probs else "—"
+
+
+def table_rows(summaries: list[ModelSummary], council: bool = False) -> list[list[str]]:
     rows = []
     for s in sort_summaries(summaries):
         if s.failed:
-            rows.append([s.model, "FAILED", format_cost(s), "—", "—", "—", "—"])
-            continue
-        rows.append(
-            [
+            row = [s.model, "FAILED", format_cost(s), "—", "—", "—", "—"]
+        else:
+            row = [
                 s.model,
                 _spread(s.scores, "{:.1f}"),
                 format_cost(s),
@@ -124,20 +137,34 @@ def table_rows(summaries: list[ModelSummary]) -> list[list[str]]:
                 _spread([float(x) for x in s.unsupported], "{:.0f}"),
                 format_score_per_cent(s),
             ]
-        )
+        if council:
+            row += [format_synth_prob(s), s.synth_reasons[0] if s.synth_reasons else "—"]
+        rows.append(row)
     return rows
 
 
 HEADERS = ["Model", "Score", "Cost", "Latency", "Sources", "Unsupported claims", "Score per cent"]
+COUNCIL_HEADERS = HEADERS + ["Synthesis %", "Why (judge's guess)"]
 
 
-def render_table(summaries: list[ModelSummary], title: str) -> Table:
+def headers(council: bool = False) -> list[str]:
+    return COUNCIL_HEADERS if council else HEADERS
+
+
+def render_table(summaries: list[ModelSummary], title: str, council: bool = False) -> Table:
     table = Table(title=title)
-    for i, h in enumerate(HEADERS):
-        table.add_column(h, style="cyan" if i == 0 else None, justify="left" if i == 0 else "right")
-    for row in table_rows(summaries):
+    cols = headers(council)
+    for i, h in enumerate(cols):
+        left = i == 0 or h == "Why (judge's guess)"
+        table.add_column(
+            h,
+            style="cyan" if i == 0 else None,
+            justify="left" if left else "right",
+            min_width=30 if h == "Why (judge's guess)" else None,
+        )
+    for row in table_rows(summaries, council):
         style = "red" if row[1] == "FAILED" else None
-        table.add_row(*row, style=style)
+        table.add_row(*(escape(c) for c in row), style=style)
     return table
 
 
@@ -147,8 +174,11 @@ def print_summary(
     title: str,
     total_cost: float,
     skipped: list[Skipped] | None = None,
+    council: bool = False,
+    disagreements: list[str] | None = None,
+    disagreements_run: int | None = None,
 ) -> None:
-    console.print(render_table(summaries, title))
+    console.print(render_table(summaries, title, council))
     if skipped:
         console.print(f"[yellow]Note:[/yellow] skipped {len(skipped)} free model(s) that can't be used, and backfilled with the next candidate:")
         for s in skipped:
@@ -159,3 +189,7 @@ def print_summary(
             console.print(f"[cyan]{s.model}[/cyan]: {escape(str(s.rationales[0]))}")
         for err in dict.fromkeys(s.errors):
             console.print(f"[red]{s.model} failed:[/red] {escape(str(err))}")
+    if disagreements:
+        console.print(f"[bold]Where the models disagreed[/bold] (from the synthesizer, run {disagreements_run}):")
+        for d in disagreements:
+            console.print(f"  - {escape(d)}")

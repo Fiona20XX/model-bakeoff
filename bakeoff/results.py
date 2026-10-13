@@ -9,7 +9,7 @@ from datetime import datetime
 from pathlib import Path
 
 from .judge import Judgment
-from .report import HEADERS, ModelSummary, format_cost, sort_summaries, table_rows
+from .report import ModelSummary, format_cost, headers, sort_summaries, table_rows
 from .runner import CallResult, Skipped
 from .task import Task
 
@@ -18,9 +18,11 @@ def slugify(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
 
 
-def results_dir(task: Task, now: datetime, root: Path = Path("results")) -> Path:
-    """results/<task-name>-<var-values>-<timestamp>/"""
+def results_dir(task: Task, now: datetime, root: Path = Path("results"), mode: str | None = None) -> Path:
+    """results/<task-name>[-<mode>]-<var-values>-<timestamp>/"""
     parts = [slugify(task.name)]
+    if mode:
+        parts.append(mode)
     parts += [slugify(v)[:40] for v in task.vars.values() if slugify(v)]
     parts.append(now.strftime("%Y%m%d-%H%M%S"))
     return root / "-".join(parts)
@@ -39,8 +41,9 @@ def build_results(
     skipped: list[Skipped],
     total_cost: float,
     warnings: list[str],
+    council: dict | None = None,
 ) -> dict:
-    return {
+    data = {
         "task": {
             "name": task.name,
             "description": task.description,
@@ -77,12 +80,25 @@ def build_results(
                 "score_per_cent": s.score_per_cent,
                 "rationales": s.rationales,
                 "errors": s.errors,
+                "synthesis_probabilities": s.synth_probs,
+                "synthesis_reasons": s.synth_reasons,
             }
             for s in sort_summaries(summaries)
         ],
         "contestants": [asdict(r) for r in results],
         "judgments": [asdict(j) for j in judgments],
     }
+    if council is not None:
+        data["council"] = council
+    return data
+
+
+def _chance(council: dict) -> str:
+    sizes = sorted({len(g["label_map"]) for g in council["guesses"] if g["ok"]})
+    if not sizes:
+        return "no guess was made"
+    return "chance is " + " or ".join(f"{100 / n:.0f}%" for n in sizes) + " with " + " or ".join(
+        str(n) for n in sizes) + " answers"
 
 
 def _md_cell(text: str) -> str:
@@ -91,29 +107,48 @@ def _md_cell(text: str) -> str:
 
 def build_report(data: dict, summaries: list[ModelSummary], results: list[CallResult]) -> str:
     task = data["task"]
-    lines = [f"# Bake-off: {task['name']}", ""]
+    council = data.get("council")
+    lines = [f"# {'Council' if council else 'Bake-off'}: {task['name']}", ""]
     if task["description"]:
         lines += [task["description"], ""]
     meta = [f"- Run: {data['started_at']}"]
     if task["vars"]:
         meta.append("- Variables: " + ", ".join(f"`{k}={v}`" for k, v in task["vars"].items()))
     meta.append(f"- Judge: `{data['judge']}`" if data["judge"] else "- Judge: none (--no-judge)")
+    if council:
+        meta.append(f"- Synthesizer: `{council['synthesizer']}`")
     web = task["web"]
     if data["flags"].get("web"):
         meta.append(f"- Web search: on ({web.get('engine') or 'default'} engine, max {web.get('max_results') or 'default'} results)")
     else:
         meta.append("- Web search: off")
     meta.append(f"- Runs per model: {data['flags'].get('runs')}")
-    meta.append(f"- Total cost: ${data['total_cost']:.4f} (contestants ${data['contestant_cost']:.4f}, judge ${data['judge_cost']:.4f})")
+    if council:
+        meta.append(
+            f"- Total cost: ${data['total_cost']:.4f} (contestants ${data['contestant_cost']:.4f}, "
+            f"synthesis ${council['synthesis_cost']:.4f}, judge ${data['judge_cost']:.4f}, "
+            f"synthesis guess ${council['guess_cost']:.4f})"
+        )
+    else:
+        meta.append(f"- Total cost: ${data['total_cost']:.4f} (contestants ${data['contestant_cost']:.4f}, judge ${data['judge_cost']:.4f})")
     lines += meta + [""]
 
     for w in data["warnings"]:
         lines += [f"> **Warning:** {w}", ""]
 
-    lines += ["## Results", "", "| " + " | ".join(HEADERS) + " |", "|" + "---|" * len(HEADERS)]
-    for row in table_rows(summaries):
+    cols = headers(bool(council))
+    lines += ["## Results", "", "| " + " | ".join(cols) + " |", "|" + "---|" * len(cols)]
+    for row in table_rows(summaries, bool(council)):
         lines.append("| " + " | ".join(_md_cell(c) for c in row) + " |")
     lines.append("")
+    if council:
+        lines += [
+            f"The council row is the synthesizer's merge of the other answers. Its cost includes every "
+            f"contestant call plus the synthesis; its latency is the slowest contestant plus the synthesis. "
+            f"\"Synthesis %\" is the judge's guess, in a separate call after scoring, that the row is the "
+            f"merged answer ({_chance(council)}).",
+            "",
+        ]
 
     if data["skipped_models"]:
         lines += ["Skipped free models (backfilled with the next candidate):", ""]
@@ -135,6 +170,18 @@ def build_report(data: dict, summaries: list[ModelSummary], results: list[CallRe
             for claim in j["scores"][model]["unsupported_claims"]:
                 lines.append(f"- **{model}** (run {j['run']}): {claim}")
         lines.append("")
+
+    if council:
+        for syn in council["syntheses"]:
+            if syn["ok"] and syn["disagreements"]:
+                lines += [f"## Where the models disagreed (run {syn['run']})", ""]
+                lines += [f"- {d}" for d in syn["disagreements"]]
+                lines.append("")
+            elif not syn["ok"]:
+                lines += [f"> Synthesis failed for run {syn['run']}: {syn['error']}", ""]
+        for g in council["guesses"]:
+            if not g["ok"]:
+                lines += [f"> Synthesis guess failed for run {g['run']}: {g['error']}", ""]
 
     failed_judgments = [j for j in data["judgments"] if not j["ok"]]
     for j in failed_judgments:

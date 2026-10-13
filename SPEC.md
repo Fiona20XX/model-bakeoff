@@ -78,6 +78,7 @@ rubric:
 - `{{file:path}}` placeholders are replaced with that file's contents before sending.
 - `{{var:name}}` placeholders are filled from `--var name=value` on the command line. Missing variables are an error that names the variable.
 - Model IDs are never hardcoded in Python. They live only in task files.
+- Optional `synthesizer: <model-id>` names the model that writes the combined answer in council mode (v1.1.0). `bakeoff run` ignores it.
 
 ### Web search
 
@@ -94,6 +95,7 @@ rubric:
   - `--free` ignores the task's model list and auto-selects up to 4 currently available free models (IDs ending in `:free`, fetched from `GET /api/v1/models`). Candidates exclude coding and safety models (IDs containing `code` or `safety`) and the judge, and are ranked by context length, largest first. Some listed free models can't actually be called (for example, OpenRouter restricts some to agentic harnesses and returns 403), and the model list doesn't say which. So if a candidate's first call fails with a permanent error (a 4xx other than 429), it is skipped and the next candidate takes its slot, until there are 4 models or no candidates left. Models that fail for other reasons (429, 5xx, timeouts, empty answers) keep their slot and show as failed. Skipped models and their errors are listed in a note under the table and saved in `results.json`.
   - `--no-web` disables web search for this run (useful to measure how much search helps)
   - `--no-judge` skips scoring and only collects answers, cost, and latency
+- `bakeoff council <task.yaml>` (v1.1.0) runs council mode; see **Council mode** below. It takes the same flags as `bakeoff run` (`--var`, `--runs`, `--free`, `--no-web`, `--no-judge`).
 - `bakeoff models [--free] [--search TEXT]` lists available models from `GET /api/v1/models` with ID, context length, and prompt/completion price per million tokens, so the user can pick IDs for a task file.
 
 ### Judging
@@ -118,6 +120,28 @@ Saved to `results/<task-name>-<var-values>-<timestamp>/`:
 - `results.json`: everything, including raw answers, citations, usage objects, judge output, the label-to-model mapping, and any `--free` models skipped with their errors
 - `report.md`: the ranked table, rationales, and each model's full briefing with its sources under its own heading, readable on GitHub
 
+### Council mode (v1.1.0)
+
+Bake-off mode answers "which model should I use for this job?". Council mode answers "what's the best answer I can get to this question?", by combining several models' answers, and measures whether the combination actually beats the individual answers.
+
+- **Same machinery.** Council mode reuses the bake-off fan-out unchanged (concurrency, retries, web search, citations, cost and latency capture, `--free` backfill) and the same judge. It does not duplicate run logic.
+- **Synthesis.** For each run, the successful contestant answers go to the task's `synthesizer` model, anonymized (no model names) and with each answer's sources. The synthesizer gets the original task and is told to write one best answer to it, keep claims tied to the provided sources, and not add facts that none of the answers or sources contain. It must return JSON only: `{"answer": "<markdown>", "disagreements": ["<one line each>"]}`. The disagreements list names each point where the answers conflicted and what each side said. Parsed strictly, with one "return valid JSON only" retry, like the judge. The synthesizer does not get web search. It uses the task's `temperature`, and the task's `max_tokens` or 4000, whichever is larger (it reads every answer, wraps a full answer in JSON, and reasoning models think first). An empty reply is recorded as a failure without the JSON retry, since it usually means the token budget went on reasoning.
+- **The council answer is judged blind as a fourth answer.** It joins the contestant answers in the normal judging call, labeled and shuffled like any other, with the union of the contestants' sources as its sources. The judging prompt is unchanged and never mentions that one answer is a synthesis.
+- **Synthesis guess (separate call).** After scoring, the judge model gets a second, separate call: the same answers under a fresh shuffle and labels, told that exactly one of them merges the others, and asked for each label a probability (0-100) that it is the synthesis, plus a one-to-two-line reason. It never sees the scores. Must return JSON only: `{"<label>": {"probability": <0-100>, "reason": "<1-2 lines>"}}`. Parsed strictly with one retry; probabilities must add up to 100 (within ±5) and are normalized to exactly 100. Chance level is 100 / number of answers (25% with three contestants).
+- **Cost and latency of the council row.** The council answer's cost is the full cost of producing it in that run: every contestant call plus the synthesis call. Its latency is the slowest contestant call in that run plus the synthesis call. So its "Score per cent" is comparable with the single models'.
+- **Rules.** `synthesizer` is required for `bakeoff council`. The synthesizer can't be the judge (the run stops with an error before any requests), and can't be a coding or safety model. If the synthesizer is also a contestant, print a warning. If fewer than two contestant answers succeed in a run, that run gets no synthesis and the reason is recorded.
+- **`--no-judge`** skips both the scoring and the guess call; the council answer and its disagreements are still produced and saved.
+
+Council output adds two columns to the table, after the bake-off columns:
+
+| Model | Score | Cost | Latency | Sources | Unsupported claims | Score per cent | Synthesis % | Why (judge's guess) |
+
+- The council row is labeled `council (<synthesizer-id>)`.
+- "Synthesis %" is the mean probability the judge gave that row across runs; "Why" is the judge's reason from the first run.
+- Below the table, also print the council's disagreement list.
+- Saved to `results/<task-name>-council-<var-values>-<timestamp>/`. `results.json` adds a `council` object: the synthesizer model, and per run the synthesis answer, disagreements, raw output, cost and latency, and the guess call's label-to-model mapping, probabilities, reasons and cost. `report.md` adds the council answer with its disagreement list, and the guess column.
+- Total cost of the run includes contestants, synthesis, judging, and the guess call.
+
 ### Reliability
 
 - Concurrency capped at 3 simultaneous requests (free models are limited to 20 requests per minute).
@@ -133,7 +157,7 @@ bakeoff/                 package code
 tasks/
   hello.yaml             tiny smoke-test task (short prompt, free models, no web)
   company_research.yaml  the flagship example
-results/                 gitignored except one committed sample run
+results/                 gitignored except committed sample runs
 tests/                   unit tests with the API mocked
 README.md
 SPEC.md
@@ -150,6 +174,7 @@ LICENSE                  MIT
 - Weighted score math
 - Label shuffling maps scores back to the correct models
 - A failed model call is recorded, not raised
+- Council (v1.1.0): synthesis JSON parsing and its retry; the council answer is added to judging as an anonymous extra answer with the union of sources; council cost and latency math; guess parsing, the sum-to-100 check and normalization, and probabilities mapping back to the right models; the synthesizer-equals-judge error
 
 All tests mock the API and never make network calls.
 
@@ -161,12 +186,12 @@ All tests mock the API and never make network calls.
 - Quickstart: clone, install, set key, run `hello.yaml`, then `company_research.yaml --var company="..."`
 - A pasted table from a real run
 - How judging works, including the bias controls (anonymization, shuffling, length instruction, citation checking, self-judging warning)
-- A "What I learned" section left for the author to fill in with findings from real runs
-- Roadmap: council mode, fallbacks, local models
+- How council mode works (v1.1.0), including why the guess call is separate from scoring
+- A "What I learned" section with findings from real runs, one subsection per version (v1.0.0 bake-off, v1.1.0 council), each with enough context to read on its own
+- Roadmap: fallbacks, local models
 
-## Out of scope for v1 (roadmap)
+## Out of scope (roadmap)
 
-- **Council mode**: `bakeoff council <task.yaml>` reuses the same fan-out answers, then sends them to a synthesizer model that combines them into one best answer and lists where the models disagreed. Should reuse the run machinery, not duplicate it.
 - **Fallbacks**: per-model fallback lists using OpenRouter's `models` array.
 - **Streaming and time-to-first-token** measurement.
 - **Local models** via Ollama as an additional provider.
@@ -178,3 +203,4 @@ All tests mock the API and never make network calls.
 - `bakeoff run tasks/company_research.yaml --var company="Stripe"` produces a ranked table with source counts and a `report.md`
 - Tests pass with `pytest`
 - README quickstart works exactly as written
+- v1.1.0: `bakeoff council tasks/company_research.yaml --var company="..."` produces a table with the council row and the Synthesis % column, and a `report.md` with the council answer and its disagreements

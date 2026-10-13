@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "model-bakeoff"
-version = "0.1.0"
+version = "1.1.0"
 description = "Compare LLMs on your own task: quality, cost, and latency, via OpenRouter."
 readme = "README.md"
 license = { file = "LICENSE" }

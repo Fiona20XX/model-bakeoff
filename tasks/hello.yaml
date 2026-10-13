@@ -10,6 +10,7 @@ models:
   - nvidia/nemotron-3-super-120b-a12b:free
   - apodex/apodex-1.1-mini:free
 judge: nvidia/nemotron-3-ultra-550b-a55b:free
+synthesizer: nvidia/nemotron-3.5-lightning:free   # council mode only
 web:
   enabled: false
 max_tokens: 1000  # reasoning models spend tokens thinking before they answer

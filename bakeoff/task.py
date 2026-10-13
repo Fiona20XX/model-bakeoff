@@ -37,6 +37,7 @@ class Task:
     models: list[str]
     judge: str | None
     rubric: list[Criterion]
+    synthesizer: str | None = None  # council mode only
     description: str = ""
     system: str | None = None
     web: WebConfig = field(default_factory=WebConfig)
@@ -155,6 +156,7 @@ def load_task(path: str | Path, variables: dict[str, str] | None = None) -> Task
         user=user,
         models=models,
         judge=data.get("judge"),
+        synthesizer=data.get("synthesizer"),
         rubric=rubric,
         web=web,
         max_tokens=data.get("max_tokens"),

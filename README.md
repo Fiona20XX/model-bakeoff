@@ -50,6 +50,7 @@ Total cost of run: $0.2179 (contestants $0.1455, judge $0.0724). With `--runs 2`
 
 ```bash
 bakeoff run <task.yaml> [--var name=value ...] [--runs N] [--free] [--no-web] [--no-judge]
+bakeoff council <task.yaml> [same flags as run]
 bakeoff models [--free] [--search TEXT]
 ```
 
@@ -58,6 +59,7 @@ bakeoff models [--free] [--search TEXT]
 - `--free` ignores the task's model list and picks up to 4 free models (largest context first, skipping coding and safety models and the judge). If one turns out not to be callable (a 4xx other than 429, for example a model OpenRouter restricts to agentic apps), it is skipped and the next candidate takes its place. Skipped models are listed under the table.
 - `--no-web` turns off web search, to measure how much search helps.
 - `--no-judge` only collects answers, cost, and latency.
+- `bakeoff council` runs [council mode](#council-mode-v110): the same fan-out, then a synthesizer merges the answers and the judge scores all of them, merge included, blind.
 - `bakeoff models` lists model IDs, context length, and $ per million prompt/completion tokens, for picking models for a task file.
 
 ## Using it for other tasks
@@ -133,6 +135,31 @@ The scoring is deliberately simple. That makes it cheap and easy to read, but yo
 - **One judge, uncalibrated.** Anonymising, shuffling, the length instruction and the self-judging warning reduce known biases, but nothing checks the judge against a human or a second judge. Its taste becomes your ranking. Spot-check a few answers in `report.md` against your own reading.
 - **The judge is part of the bill.** It reads every answer plus every retrieved excerpt, so it can be a large share of a run's cost; see the cost line under each table.
 
+## Council mode (v1.1.0)
+
+A bake-off tells you which model to use for a job. Council mode is for when you want the best possible answer to *this* question: it merges several models' answers into one, and measures whether the merge actually beats the individual answers.
+
+```bash
+bakeoff council tasks/company_research.yaml --var company="Zilliant"
+```
+
+It needs one extra line in the task file, the model that writes the merge:
+
+```yaml
+synthesizer: x-ai/grok-4.7
+```
+
+What happens, per run:
+
+1. **Fan-out.** The same as `bakeoff run`: every contestant answers, with web search, retries and cost capture.
+2. **Synthesis.** The answers and their sources go to the synthesizer, without model names. It writes one best answer to the original task, using only facts from the answers and their sources, and lists every point where the answers disagreed.
+3. **Blind scoring of all four.** The merged answer joins the three originals in the normal judging call, labelled and shuffled like the rest, with all of the contestants' sources. The judge isn't told that one of the answers is a merge.
+4. **Synthesis guess.** In a separate call after scoring, the judge sees the same answers (reshuffled) and is told that one of them is a merge. It gives each one a probability of being the merge and a short reason. It's separate so the scores stay blind: if the judge knew a merge was in the set, it might mark that answer up or down for it. Chance is 25% with three contestants.
+
+The table gets a council row and two extra columns, **Synthesis %** and **Why (judge's guess)**, and `report.md` adds the merged answer and the disagreement list. The council row's cost is everything it took to produce it (all contestant calls plus the synthesis), so its score per cent compares fairly with the single models.
+
+Rules: the synthesizer can't be the judge (the judge would be scoring its own writing), and you get a warning if it's also a contestant. A run needs at least two successful answers to synthesize.
+
 ## Reliability
 
 - At most 3 requests in flight (free models are limited to 20 requests per minute).
@@ -150,16 +177,26 @@ All tests mock the API; none make network calls.
 
 ## What I learned
 
-From `company_research` with `--runs 2` on four companies: two big (Amazon, Chewy) and two small (Kajabi, Zilliant). That's 24 briefings and 8 judge calls, $0.85 in total. The contestants were Claude Sonnet 5.5, Gemini 3.8 Flash and DeepSeek V4 Pro, judged by GPT-6 Sol. The full reports are in [`results/`](results/).
+### v1.0.0: model bake-off
+
+Which single model writes the best company briefing, and is it worth the price? From `company_research` with `--runs 2` on four companies: two big (Amazon, Chewy) and two small (Kajabi, Zilliant). That's 24 briefings and 8 judge calls, $0.85 in total. The contestants were Claude Sonnet 5.5, Gemini 3.8 Flash and DeepSeek V4 Pro, judged by GPT-6 Sol. The full reports are in [`results/`](results/).
 
 1. **The most expensive model won, but the cheapest one gave the most score per dollar.** Sonnet won 7 of 8 runs and averaged 7.6, against 6.7 for Gemini and 6.3 for DeepSeek. It also cost 2.9x as much as DeepSeek per briefing ($0.038 vs $0.013). That gives DeepSeek 4.8 points per cent, Gemini 3.3 and Sonnet 2.0. DeepSeek was also the slowest by far: 55s per briefing, against 25s for Gemini and 18s for Sonnet.
 2. **The gap is in grounding, not detail.** All three models were about equally specific, averaging 8.3–8.6 out of 10 on specificity. They split on grounding, meaning whether claims match the retrieved sources: Sonnet averaged 6.5, and Gemini and DeepSeek 5.0 each. Sonnet's lead also roughly doubled on the small companies: 1.1 points over the next model on Kajabi and Zilliant, against 0.6 on Amazon and Chewy. That's where sources are thin and it's tempting to fill gaps.
 3. **Every briefing contained claims its sources didn't back.** All 24 had between 4 and 8 claims the judge couldn't match to the model's own retrieved excerpts. The average was 4.9 for Sonnet, 5.9 for Gemini and 6.0 for DeepSeek, even though each model had 5 sources. Most were financial figures and competitor comparisons. "Unsupported" doesn't mean false, but it is what you'd need to fact-check before a meeting.
 4. **Budget for the hidden costs.** The judge was 33% of the total spend ($0.28 of $0.85), because it reads every answer plus every retrieved excerpt. Reasoning tokens also count against `max_tokens`: even at 4,000, DeepSeek used up the whole budget twice and was cut off mid-briefing (Chewy and Kajabi, run 1). The Chewy one scored 4.7, the lowest of all 24 answers, against 6.75 for its complete second attempt.
 
+### v1.1.0: council mode
+
+Does merging several models' answers beat the best single model, and can a judge tell a merged answer from an original? From `bakeoff council` on `company_research` with `--runs 2`, on the same four companies as v1.0.0: Amazon, Chewy, Kajabi and Zilliant. The contestants and judge were the same as v1.0.0 (Sonnet 5.5, Gemini 3.8 Flash and DeepSeek V4 Pro, judged by GPT-6 Sol), and Grok 4.7 wrote the merge. That's 31 judged answers (one DeepSeek answer came back empty) and 8 merges, $1.98 in total. The reports are in [`results/`](results/).
+
+1. **The merge edged out the best single model, by less than the noise.** The council answer won 5 of 8 runs and placed first or second in every one. It averaged 7.7, against 7.5 for Sonnet, 6.6 for DeepSeek and 5.8 for Gemini, and had the fewest unsupported claims per briefing (4.4, against 5.1–5.8). But a 0.2-point lead is inside the noise described in the trade-offs above. It also had an edge in how it was judged: its claims were checked against every contestant's sources, roughly three times the evidence any single model had.
+2. **It cost 5x as much and took 9x as long.** A council answer cost $0.19 on average, because you pay for every contestant plus the merge, against $0.039 for Sonnet alone. That's 0.4 points per cent, against 1.9 for Sonnet and 4.9 for DeepSeek. It also took about 3 minutes, against 20 seconds for Sonnet, mostly waiting on the synthesizer. Council mode only makes sense for one-off answers where the extra quality is worth paying for.
+3. **The merge is easy to spot, and that didn't hurt it.** Told that one answer was a merge, the judge picked it in 7 of 8 runs, giving it 93–100% when chance was 25% (33% in the one run with only three answers). Its reasons were consistent: the merge "combines" figures that each appear in only one of the other answers, is "unusually dense", and lists conflicting numbers side by side. The one miss (Zilliant, run 1) went to DeepSeek at 90%. Being recognisable didn't cost the merge on blind scoring. Its most useful by-product was the disagreement list: 4–9 conflicts per run (6 on average), mostly financial figures (revenue, funding, debt, headcount, pricing), then competitor lists and dates. That is exactly the checklist to verify before a meeting.
+4. **`max_tokens` isn't always a cap.** The synthesizer used 4,900–48,300 reasoning tokens per merge, even though each request set `max_tokens` to 4,000. So for this model and provider, the reasoning tokens weren't held to the cap. One merge cost $0.32 on its own, and synthesis was 46% of the total spend ($0.92 of $1.98), which pushed the test about a third over its ~$1.50 estimate. The opposite failure also happened again: DeepSeek spent its whole 4,000 tokens reasoning and returned nothing (Chewy, run 1). Check the actual token counts in `results.json` when you first try a new reasoning model, rather than trusting `max_tokens` to cap cost.
+
 ## Roadmap
 
-- **Council mode**: `bakeoff council <task.yaml>` reuses the same fan-out answers, then has a synthesizer model combine them into one best answer and list where the models disagreed.
 - **Fallbacks**: per-model fallback lists using OpenRouter's `models` array.
 - **Local models** via Ollama as an additional provider.
 
